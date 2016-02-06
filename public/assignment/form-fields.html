@@ -31,12 +31,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Form Maker</a>
+            <a class="navbar-brand" href="home.html">Form Maker</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">UserName</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="profile.html">UserName</a></li>
+                <li><a href="home.html">Logout</a></li>
             </ul>
         </div>
     </div>
@@ -56,88 +56,106 @@
             <h1 class="title">Forms : Registration Form</h1>
             <ul class="nav nav-tabs">
                 <li role="presentation"><a href="forms.html">Forms</a></li>
-                <li role="presentation" class="active"><a href="form-fields.html">Feilds</a></li>
+                <li role="presentation" class="active"><a href="form-fields.html">Fields</a></li>
             </ul>
             <div>
             <form>
                 <div class="form-group">
                     <label for="fName">First Name:</label>
-                    <br/>
-                    <input type="text" id="fName" placeholder="First Name">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="glyphicon glyphicon-remove"></span>
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    <div>
+                        <input type="text" id="fName" placeholder="First Name" class="col-sm-6">
+                        </div>
+                    <div class="col-sm-6" align="right">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </div>
                 </div>
-
                 <div class="form-group">
                     <label for="lName">Last Name:</label>
-                    <br/>
-                    <input type="text" id="lName" placeholder="Last Name">
+                    <div>
+                    <input type="text" id="lName" placeholder="Last Name" class="col-sm-6">
+                        </div>
+                    <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
+                       </div>
                 </div>
 
                 <div class="form-group">
                     <label for="dob">Date Of Birth:</label>
-                    <br/>
-                    <input type="date" id="dob" placeholder="Select Date">
+                    <div>
+                    <input type="date" id="dob" placeholder="Select Date" class="col-sm-6">
+                        </div>
+                    <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        </div>
                 </div>
 
                 <div class="form-group dropdown">
                     <label>Gender:</label>
                     <br/>
-                    <select>
+                    <select class="col-sm-6">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
+                    <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
+                        </div>
                 </div>
 
                 <div class="form-group">
                     <label>Roles:</label>
                     <br/>
-                    <input type="checkbox" name="roles" value="admin"/>Admin<br />
-                    <input type="checkbox" name="roles" value="student" />Student<br />
-                    <input type="checkbox" name="roles" value="user" />User
+                    <div class="checkbox-group col-sm-6">
+                        <input type="checkbox" name="roles" value="admin"/>Admin<br/>
+                        <input type="checkbox" name="roles" value="student" />Student<br />
+                        <input type="checkbox" name="roles" value="user"/>User<br/>
+                        </div><br/>
+                    <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </div>
-
+                    </div><br/>
+                </div><br/>
                 <div class="form-group">
                     <label>License Agreement:</label>
                     <br/>
+                    <div class="radio-group col-sm-6">
                     <input type="radio" name="licenseAgreement" value="yes">Yes<br>
-                    <input type="radio" name="licenseAgreement" value="no">No
+                    <input type="radio" name="licenseAgreement" value="no">No<br/>
+                    </div><br/>
+                    <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </div>
-
+                    </div><br/>
+                </div><br/>
                 <div class="form-group dropdown">
                     <label>Add New Field:</label>
                     <br/>
-                        <select>
+                        <select class="col-sm-6">
                             <option value="singleText">Single Text</option>
                             <option value="date">Date</option>
-                            <option value="dropDown">Drop Down</option>
-                            <option value="checkBoxes">CheckBoxes</option>
-                            <option value="radioButtons">Radio Buttons</option>
+                            <option value="dropDown">Dropdown</option>
+                            <option value="checkBoxes">Checkboxes</option>
+                            <option value="radioButtons">Radio buttons</option>
                             <option value="paragraphTextField">Paragraph Text Field</option>
                         </select>
+                    <div class="col-sm-2 col-sm-offset-4" align="center">
                     <span class="glyphicon glyphicon-plus"></span>
+                        </div>
                 </div>
             </form>
         </div>

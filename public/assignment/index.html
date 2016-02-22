@@ -26,6 +26,8 @@
 
     <!-- config.js-->
     <script src="config.js"></script>
+    <!-- main.controller.js-->
+    <script src="views/main/main.controller.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -33,15 +35,22 @@
 
 </head>
 
-<body>
+<body ng-controller="MainController">
 <div class="container-fluid">
+    <!-- includes the header and sidebar-->
     <div ng-include="'views/header/header.view.html'"></div>
     <div ng-include="'views/sidebar/sidebar.view.html'"></div>
     <h1>Form Maker</h1>
+    <!-- provides the division between the sidebar and header-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <!-- major content of the application is written in this division by ng-view-->
     <div ng-view></div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

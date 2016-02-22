@@ -26,7 +26,8 @@
 
     <!-- config.js-->
     <script src="config.js"></script>
-
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/sidebar/sidebar.controller.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -35,9 +36,9 @@
 </head>
 
 <body ng-controller="MainController">
+<div ng-include="'views/header/header.view.html'"></div>
+<div ng-include="'views/sidebar/sidebar.view.html'"></div>
 <div ng-view></div>
-<div ng-include='views/header/header.view.html'></div>
-
 
 
 <!-- Bootstrap core JavaScript

@@ -17,53 +17,38 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="register.view.html">Register<span class="sr-only">(current)</span></a></li>
-                <li><a href="login.view.html">Login</a></li>
-                <li><a href="profile.view.html">UserName</a></li>
-                <li><a href="../home/home.view.html">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <h1 class="sub-header">Register</h1>
             <form class="form-horizontal" action="profile.view.html">
                 <div class="form-group">
                     <label for="userName" class="col-sm-2 control-label">Username:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="userName" placeholder="Username">
+                        <input type="text" class="form-control" id="userName" placeholder="Username" ng-model="userName">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password:</label>
                     <div class="col-sm-10">
-                        <input type="Password" class="form-control" id="password" placeholder="Password">
+                        <input type="Password" class="form-control" id="password" placeholder="Password" ng-model="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="verifyPassword" class="col-sm-2 control-label">Verify Password:</label>
                     <div class="col-sm-10">
-                        <input type="Password" class="form-control" id="verifyPassword" placeholder="Password">
+                        <input type="Password" class="form-control" id="verifyPassword" placeholder="Password" ng-model="verifyPassword">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2">
-                        <button type="submit" value="register" class="btn btn-primary btn-block">
+                        <button type="submit" value="register" class="btn btn-primary btn-block" onclick="register()">
                             Register
                         </button>
                       </div>

@@ -16,18 +16,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- agnulareJS CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
     <!-- angularJS Routing CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
     <!-- app.js-->
     <script src="app.js"></script>
 
     <!-- config.js-->
     <script src="config.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/sidebar/sidebar.controller.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
@@ -35,10 +33,13 @@
 
 </head>
 
-<body ng-controller="MainController">
-<div ng-include="'views/header/header.view.html'"></div>
-<div ng-include="'views/sidebar/sidebar.view.html'"></div>
-<div ng-view></div>
+<body>
+<div class="container-fluid">
+    <div ng-include="'views/header/header.view.html'"></div>
+    <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+    <h1>Form Maker</h1>
+    <div ng-view></div>
+</div>
 
 
 <!-- Bootstrap core JavaScript

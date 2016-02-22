@@ -1,6 +1,6 @@
 (function(){
     angular
-        .module("FormBuilderApp",[UserService])
+        .module("FormBuilderApp",['UserService'])
         .controller("RegisterController", registerController);
 
     function registerController($scope, $location){
@@ -12,7 +12,7 @@
         return api;
 
         function register(){
-
+            console.log("register function from register conotroller");
         }
 
     }

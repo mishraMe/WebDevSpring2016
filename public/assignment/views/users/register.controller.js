@@ -1,18 +1,15 @@
 (function(){
     angular
-        .module("FormBuilderApp",['UserService'])
+        .module("FormBuilderApp")
         .controller("RegisterController", registerController);
 
-    function registerController($scope, $location){
+    function registerController($scope, $location, UserServices){
 
-        var api = {
-            register: register
-        };
+        $scope.register = register;
 
-        return api;
-
-        function register(){
+        function register($scope, $location, UserService){
             console.log("register function from register conotroller");
+            $scope.register = "../views/users/profile.view.html";
         }
 
     }

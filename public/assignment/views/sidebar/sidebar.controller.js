@@ -1,8 +1,8 @@
 (function(){
     angular
         .module("FormBuilderApp")
-        .controller("SidebarController",SidebarController);
-    function SidebarController(){
+        .controller("SidebarController",sidebarController);
+    function sidebarController(){
 
     }
 })();

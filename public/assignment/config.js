@@ -7,24 +7,29 @@
         $routeProvider
             //header links where profile and admin are common amongst header and sidebar
             .when("/home", {
-                templateUrl: "views/home/home.view.html"
+                templateUrl: "views/home/home.view.html",
+                controller: "HomeController"
             })
             .when("/register",{
-                templateUrl: "views/users/register.view.html"
+                templateUrl: "views/users/register.view.html",
+                controller: "RegisterController"
             })
             .when("/login",{
                 templateUrl: "views/users/login.view.html",
                 controller: "RegisterController"
             })
             .when("/profile",{
-                templateUrl: "views/users/profile.view.html"
+                templateUrl: "views/users/profile.view.html",
+                controller: "ProfileController"
             })
             .when("/admin",{
-                templateUrl: "views/users/admin.view.html"
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController"
             })
         // sidebar config links
             .when("/forms",{
-                templateUrl: "views/forms/forms.view.html"
+                templateUrl: "views/forms/forms.view.html",
+                controller: "FormController"
             })
             .otherwise({
                 redirectTo:"/home"

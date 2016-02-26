@@ -1,34 +1,65 @@
-            <h1 class="sub-header">Register</h1>
-            <form class="form-horizontal" action="profile.view.html">
+       <h1 class="sub-header">Register</h1>
+            <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="userName" class="col-sm-2 control-label">Username:</label>
+                    <label for="userName"
+                           class="col-sm-2 control-label">
+                        Username:
+                    </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="userName" placeholder="Username" ng-model="userName">
+                        <input type="text" class="form-control"
+                               id="userName"
+                               placeholder="Username"
+                               ng-model="userName">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">Password:</label>
+                    <label for="password"
+                           class="col-sm-2 control-label">
+                        Password:
+                    </label>
                     <div class="col-sm-10">
-                        <input type="Password" class="form-control" id="password" placeholder="Password" ng-model="password">
+                        <input type="Password"
+                               class="form-control"
+                               id="password"
+                               placeholder="Password"
+                               ng-model="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="verifyPassword" class="col-sm-2 control-label">Verify Password:</label>
+                    <label for="verifyPassword"
+                           class="col-sm-2 control-label">
+                        Verify Password:
+                    </label>
                     <div class="col-sm-10">
-                        <input type="Password" class="form-control" id="verifyPassword" placeholder="Password" ng-model="verifyPassword">
+                        <input type="Password"
+                               class="form-control"
+                               id="verifyPassword"
+                               placeholder="Password"
+                               ng-model="verifyPassword">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email:</label>
+                    <label for="email"
+                           class="col-sm-2 control-label">
+                        Email:
+                    </label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="email">
+                        <input type="email"
+                               class="form-control"
+                               id="email"
+                               placeholder="Email"
+                               ng-model="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2">
-                        <button type="submit" value="register" class="btn btn-primary btn-block" onclick="register()">
+                        <button type="submit"
+                                value="register"
+                                class="btn btn-primary btn-block"
+                                ng-click="register()">
                             Register
                         </button>
                       </div>
                 </div>
             </form>
+

@@ -2,10 +2,9 @@
     angular
         .module("FormBuilderApp")
         .factory("UserService", userService);
-    function userService($http) {
-        var currentUsers;
-
-        currentUsers = [
+    function userService() {
+        var api= {
+            currentUsers: [
             {
                 "_id": 123,
                 "firstName": "Alice", "lastName": "Wonderland",
@@ -27,9 +26,8 @@
                 "_id": 567, "firstName": "Edward", "lastName": "Norton",
                 "username": "ed", "password": "ed", "roles": ["student"]
             }
-        ]
+            ],
 
-        var api = {
             findUserByCredentials: findUserByCredentials,
             findAllUsers: findAllUsers,
             createUser: createUser,
@@ -39,7 +37,7 @@
         return api;
 
         function findUserByCredentials(username, password, callback) {
-            var user;
+            var currentUser;
             for (var i = 0; i <= currentUsers.length; i++) {
 
                 if (currentUsers[i].username == username

@@ -2,25 +2,32 @@
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", profileController)
-    function profileController($scope, $location, UserService){
+    function profileController($scope, $location, UserService, $rootScope){
+        $scope.error = null;
+        $scope.message = null;
+
         $scope.currentUser= UserService.getCurrentUser();
         if(!$scope.currentUser){
             $location.url("/home");
         }
 
         $scope.update = update;
-        function update(){
-            var user = {
 
-                firstname: $scope.firstname,
-                lastname: $scope.lastname,
-                username: $scope.username,
-                password: $scope.password
-            };
-            $scope.currentUser = UserService.updateUser
-            (user, function(){
-                $location.url("/profile");
-            });
+        function update(user){
+            $scope.error = null;
+            $scope.message = null;
+
+         $scope.currentUser = UserService.updateUser
+         (user._id, user, function(response){
+              if(response){
+                  $scope.message = "User updated successfully";
+                  $scope.currentUser=response;
+                  UserService.setCurrentUser($scope.currentUser);
+                  $location.url("/profile/");
+              }else{
+                        $scope.message = "Unable to update user";
+                    }
+          });
         }
     }
 })();

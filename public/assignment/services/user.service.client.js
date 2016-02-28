@@ -33,6 +33,7 @@
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
+            findUserById: findUserById,
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser
         };
@@ -60,17 +61,19 @@
 
         function createUser(user, callback) {
 
+          api.currentUsers.pop()
+
             var newUser;
             newUser = {
-                "_id": user.id,
+                "_id": Date.timestamp,
                 "firstName": user.firstName,
                 "lastName":  user.lastName,
                 "username":  user.username,
                 "password":  user.password,
             };
+            console.log(newUser);
             api.currentUsers.push(newUser);
              callback(newUser);
-
         }
 
         function deleteUserById(userId, callback) {
@@ -83,20 +86,33 @@
                     api.currentUsers.pop(deleteUser);
                 }
             }
-            callback();
+            callback(api.currentUsers);
         }
 
         function updateUser(userId, user, callback) {
-            var updateUser = api.findUserByCredentials (user.username, user.password, callback);
+            var updateUser = api.findUserById(userId);
+            console.log(updateUser);
             if (updateUser != null) {
                 updateUser.firstName = user.firstName;
                 updateUser.lastName = user.lastName;
                 updateUser.password = user.password;
                 callback(updateUser);
             } else {
+                console.log("else condition fired");
                callback();
             }
         }
+
+        function findUserById(userId){
+
+            for(var l in api.currentUsers){
+                if(api.currentUsers[l]._id == userId){
+                    return api.currentUsers[l];
+                }
+            }
+            return null;
+        }
+
         function setCurrentUser(user){
             $rootScope.currentUser= user;
         }

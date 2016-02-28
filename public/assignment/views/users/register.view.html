@@ -1,30 +1,9 @@
        <h1 class="sub-header">Register</h1>
+
+       <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+
        <form class="form-horizontal">
            <div class="form-group">
-               <label for="firstname"
-                      class="col-sm-2 control-label">
-                   Firstname:
-               </label>
-               <div class="col-sm-10">
-                   <input type="text" class="form-control"
-                          id="firstname"
-                          placeholder="firstname"
-                          ng-model="firstname">
-               </div>
-           </div>
-           <div class="form-group">
-               <label for="lastname"
-                      class="col-sm-2 control-label">
-                   Lastname:
-               </label>
-               <div class="col-sm-10">
-                   <input type="text" class="form-control"
-                          id="lastname"
-                          placeholder="lastname"
-                          ng-model="lastname">
-               </div>
-           </div>
-                <div class="form-group">
                     <label for="userName"
                            class="col-sm-2 control-label">
                         Username:
@@ -33,10 +12,10 @@
                         <input type="text" class="form-control"
                                id="userName"
                                placeholder="Username"
-                               ng-model="userName">
+                               ng-model="user.username">
                     </div>
-                </div>
-                <div class="form-group">
+           </div>
+           <div class="form-group">
                     <label for="password"
                            class="col-sm-2 control-label">
                         Password:
@@ -46,10 +25,10 @@
                                class="form-control"
                                id="password"
                                placeholder="Password"
-                               ng-model="password">
+                               ng-model="user.password">
                     </div>
-                </div>
-                <div class="form-group">
+           </div>
+           <div class="form-group">
                     <label for="verifyPassword"
                            class="col-sm-2 control-label">
                         Verify Password:
@@ -59,10 +38,10 @@
                                class="form-control"
                                id="verifyPassword"
                                placeholder="Password"
-                               ng-model="verifyPassword">
+                               ng-model="user.verifyPassword">
                     </div>
-                </div>
-                <div class="form-group">
+           </div>
+           <div class="form-group">
                     <label for="email"
                            class="col-sm-2 control-label">
                         Email:
@@ -72,18 +51,18 @@
                                class="form-control"
                                id="email"
                                placeholder="Email"
-                               ng-model="email">
+                               ng-model="user.email">
                     </div>
-                </div>
-                <div class="form-group">
+           </div>
+           <div class="form-group">
                     <div class="col-sm-offset-2">
                         <button type="submit"
                                 value="register"
                                 class="btn btn-primary btn-block"
-                                ng-click="register()">
+                                ng-click="register(user)">
                             Register
                         </button>
                       </div>
-                </div>
+           </div>
             </form>
 

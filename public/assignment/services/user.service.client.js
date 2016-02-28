@@ -2,7 +2,7 @@
     angular
         .module("FormBuilderApp")
         .factory("UserService", userService);
-    function userService($rootScope, $scope, $location) {
+    function userService($rootScope) {
         var currentUsers=[];
         var api= {
             currentUsers: [
@@ -36,27 +36,25 @@
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser
         };
+
         return api;
 
         function findUserByCredentials(username, password, callback) {
-            for (var i = 0; i <= currentUsers.length; i++) {
-
-                if (currentUsers[i].username == username
-                    && currentUsers[i].password == password) {
-                    user = currentUsers[i];
+            var user;
+            for (var i in api.currentUsers) {
+                if (api.currentUsers[i].username == username
+                    && api.currentUsers[i].password == password) {
+                    user= api.currentUsers[i];
                     callback(user);
-                }else{
-                    callback();
                 }
             }
+            callback(null);
         }
 
         function findAllUsers(callback) {
 
-            var users = currentUsers;
-            return callback
-
-           callback();
+            var users = api.currentUsers;
+            callback(users);
 
         }
 
@@ -69,42 +67,35 @@
                 "lastName":  user.lastName,
                 "username":  user.username,
                 "password":  user.password,
-                "roles":     user.role
             };
-             callback();
+            api.currentUsers.push(newUser);
+             callback(newUser);
 
         }
 
         function deleteUserById(userId, callback) {
 
             var deleteUser;
-            for (var j = 0; j <= currentUsers.length; j++) {
+            for (var j in api.currentUsers) {
 
                 if (currentUsers[j]._id == userId) {
                     deleteUser = currentUsers[j];
+                    api.currentUsers.pop(deleteUser);
                 }
             }
-            (callback);
+            callback();
         }
 
         function updateUser(userId, user, callback) {
-
-            var updateUser;
-
-            for (var k = 0; k <= currentUsers.length; k++) {
-
-                if (currentUsers[k]._id == userId) {
-                    updateUser = currentUsers[k];
-                }
+            var updateUser = api.findUserByCredentials (user.username, user.password, callback);
+            if (updateUser != null) {
+                updateUser.firstName = user.firstName;
+                updateUser.lastName = user.lastName;
+                updateUser.password = user.password;
+                callback(updateUser);
+            } else {
+               callback();
             }
-            updateUser._id = user.id;
-            updateUser.firstName = user.firstName;
-            updateUser.lastName = user.lastName;
-            updateUser.username = user.username;
-            updateUser.password = user.password;
-            updateUser.roles = user.roles;
-
-            (callback);
         }
         function setCurrentUser(user){
             $rootScope.currentUser= user;

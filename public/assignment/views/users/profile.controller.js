@@ -2,7 +2,7 @@
     angular
         .module("FormBuilderApp")
         .controller("ProfileController", profileController)
-    function profileController($scope, $location, UserService, $rootScope){
+    function profileController($scope, $location, UserService){
         $scope.error = null;
         $scope.message = null;
 

@@ -14,11 +14,15 @@
                     <tbody>
                     <tr>
                         <td>
-                            <input type="text"  placeholder="name" class="form-control">
+                            <input type="text"  ng-model="formName" placeholder="name" class="form-control">
                         </td>
                         <td align="right">
+                            <button type="button" ng-click="addForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                            <button type="button" ng-click= "selectForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-ok"></span>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -26,8 +30,12 @@
                             <lable>Registeration Form</lable>
                         </td>
                         <td align="right">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-pencil"></span>
+                            <button type="button" ng-click="deleteForm()" class="btn btn-xs">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" ng-click="updateForm()" class="btn btn-xs">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
                         </td>
                     </tr>
                     <tr>
@@ -35,8 +43,12 @@
                             <lable>Contact List</lable>
                         </td>
                         <td align="right">
+                            <button type="button" ng-click="deleteForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" ng-click="updateForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
                         </td>
                     </tr>
 
@@ -45,8 +57,12 @@
                             <lable>To Do List</lable>
                         </td>
                         <td align="right">
+                            <button type="button" ng-click="deleteForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                            <button type="button" ng-click="updateForm()" class="btn btn-xs">
                             <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

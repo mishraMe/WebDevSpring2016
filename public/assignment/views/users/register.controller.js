@@ -4,10 +4,11 @@
         .controller("RegisterController", registerController);
 
     function registerController($scope, $location, $rootScope, UserService) {
-        var newId=0;
+
         $scope.register= register;
 
         function register(user) {
+
             $scope.message = null;
             if (user == null) {
                 $scope.message = "Please fill in the required fields";
@@ -38,6 +39,9 @@
                     $rootScope.currentUser = response;
                     UserService.setCurrentUser(response);
                     $location.url("/profile/");
+                    UserService.findAllUsers(function(response){
+                        console.log("the all users list is :" + response);
+                    });
                 }
                 return null;
             });

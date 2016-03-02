@@ -54,7 +54,7 @@
 
         function findAllUsers(callback) {
 
-            var users = api.currentUsers;
+            var users = currentUsers;
             callback(users);
 
         }
@@ -65,7 +65,7 @@
 
             var newUser;
             newUser = {
-                "_id": Date.timestamp,
+                "_id": (new Date).getTime(),
                 "firstName": user.firstName,
                 "lastName":  user.lastName,
                 "username":  user.username,

@@ -53,10 +53,9 @@
 
         function deleteFormById(formId, callback){
              var formsAfterDeletion=[];
-
             for(var j in formsApi.forms){
                 if(formsApi.forms[j]._id == formId){
-                    formsApi.forms.pop(formsApi.forms[j])
+                    formsApi.forms.splice(formId,1);
                 }
             }
             formsAfterDeletion = formsApi.forms;

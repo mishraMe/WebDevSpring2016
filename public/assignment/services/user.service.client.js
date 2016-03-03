@@ -48,6 +48,7 @@
                     && api.currentUsers[i].password == password) {
                     user= api.currentUsers[i];
                     callback(user);
+                    break;
                 }
             }
             callback(null);
@@ -55,14 +56,14 @@
 
         function findAllUsers(callback) {
 
-            var users = currentUsers;
+            var users = api.currentUsers;
             callback(users);
 
         }
 
         function createUser(user, callback) {
 
-          api.currentUsers.pop()
+          api.currentUsers.pop();
 
             var newUser;
             newUser = {
@@ -82,9 +83,9 @@
             var deleteUser;
             for (var j in api.currentUsers) {
 
-                if (currentUsers[j]._id == userId) {
-                    deleteUser = currentUsers[j];
-                    api.currentUsers.pop(deleteUser);
+                if (api.currentUsers[j]._id == userId) {
+                    deleteUser = api.currentUsers[j];
+                    api.currentUsers.splice(j, 1);
                 }
             }
             callback(api.currentUsers);

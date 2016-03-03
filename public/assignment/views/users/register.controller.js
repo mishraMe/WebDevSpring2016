@@ -27,26 +27,27 @@
                 $scope.message = "Passwords must match";
                 return;
             }
-            var existingUser = UserService.findUserByCredentials(user.username, user.password,
+            var callback=
                 function (response) {
                     if (response != null) {
-                        $scope.message = "User already exists";
-                        return;
-                    }
-                });
+                    $scope.message = "User already exists";
+                    return;
+                }
+            };
 
-            var newUser = UserService.createUser(user, function (response) {
-                if (response) {
+            var existingUser = UserService.findUserByCredentials
+            (user.username, user.password,callback);
+
+            var callbackNewUser =
+                function (response) {
+                    if (response) {
                     $rootScope.currentUser = response;
                     UserService.setCurrentUser(response);
                     $location.url("/profile/");
-                    UserService.findAllUsers(function(response){
-                        console.log("the all users list is :" + response);
-                    });
-                }
+                    }
                 return null;
-            });
+            };
+            var newUser = UserService.createUser(user, callbackNewUser);
         }
-
     }
 })();

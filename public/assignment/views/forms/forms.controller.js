@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController(FormService, $scope, $location, $rootScope){
+    function FormController(FormService, $scope, $rootScope){
         console.log("Form controller hey!");
 
         $scope.addForm = addForm;
@@ -23,20 +23,20 @@
             $scope.form ={};
         }
         function deleteForm($index){
+            //function is responsible for deleting a form by the index value
             var formsAfterDeletion=[];
             var callback=
                 function(response){
                     formsAfterDeletion= response;
-                }
+                };
 
             FormService.deleteFormById($scope.forms[$index]._id,callback);
-
 
         }
 
         function updateForm(newForm){
+            //function is reponsible for updating selected form to the new form's value
             var updatedForm;
-
             var callback =
                 function (newForm){
                 updatedForm=newForm;
@@ -46,7 +46,8 @@
         }
 
         function selectForm($index){
-            console.log("hello select form");
+           // console.log("hello select form");
+            //function is responsible for selecting a form to edit
             $scope.form = {
                 _id: $scope.forms[$index]._id,
                 title: $scope.forms[$index].title,
@@ -54,6 +55,5 @@
             };
             $rootScope.currentForm =$scope.form;
         }
-
     }
 })();

@@ -1,4 +1,5 @@
 (function MainController(){
+    "use strict";
     angular
         .module("FormBuilderApp")
         .controller("MainController", mainController);

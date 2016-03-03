@@ -22,11 +22,16 @@
             ($scope.currentUser, form, callback);
             $scope.form ={};
         }
-        function deleteForm(){
-            FormService.deleteFormById
-            ( function(){
+        function deleteForm($index){
+            var formsAfterDeletion=[];
+            var callback=
+                function(response){
+                    formsAfterDeletion= response;
+                }
 
-            })
+            FormService.deleteFormById($scope.forms[$index]._id,callback);
+
+
         }
 
         function updateForm(newForm){

@@ -29,7 +29,7 @@
         // sidebar config links
             .when("/forms",{
                 templateUrl: "views/forms/forms.view.html",
-                //controller: "FormController"
+                controller: "FormController"
             })
             .when("/form-fields",{
                 templateUrl: "views/forms/form-fields.view.html",

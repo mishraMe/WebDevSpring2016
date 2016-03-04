@@ -1,0 +1,37 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/home">Writers Club</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-hide="currentUser"
+                    ng-class="{'active': $locationUrl()=='/register'}">
+                    <a href="#/register">Register</a></li>
+                <li ng-hide="currentUser"
+                    ng-class="{'active': $locationUrl()=='/login'}">
+                    <a href="#/login">Login</a></li>
+                <li ng-show="currentUser">
+                   <a href="" ng-click="logout()">Logout</a></li>
+                <li ng-show="currentUser"
+                    ng-class="{'active': $locationUrl()=='/profile'}">
+                    <a href="#/profile">{{currentUser.username}}</a></li>
+                <li ng-show="currentUser.roles.indexOf('admin')>=0"
+                    ng-class="{'active': $locationUrl()=='/admin'}">
+                    <a href="#/admin">Admin</a></li>
+                <li>
+                    <a href="https://docs.google.com/document/d/1VHk4VDrxX7wSScK5v0rT-spQL5SZrnjFSTqSKD7CROs/edit?usp=sharing">
+                    Project Document</a></li>
+                <li ng-class="{'active': $locationUrl()=='/publicDirectory'}">
+                    <a href="#/publicDirectory">PublicDirectory</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,10 @@
+.glyphicon {
+    font-size: 25px;
+    }
+
+.form-horizontal .control-label{
+    text-align: left;
+    }
+table,th, td{
+    border: 1px solid black;
+}

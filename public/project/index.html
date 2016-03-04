@@ -1,2 +1,69 @@
-<h1>PROJECT</h1>
-<a href="https://docs.google.com/document/d/1VHk4VDrxX7wSScK5v0rT-spQL5SZrnjFSTqSKD7CROs/edit?usp=sharing">Project Document</a>
+<!DOCTYPE html>
+<html lang="en" ng-app="WritersClubApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>IndexPage</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- angularJS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+
+    <!-- angularJS Routing CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+
+    <!-- app.js-->
+    <script src="app.js"></script>
+
+    <!-- config.js-->
+    <script src="config.js"></script>
+    <!-- main.controller.js-->
+    <script src="views/main/main.controller.js"></script>
+    <!-- controllers sidebar and header-->
+    <script src="views/sidebar/sidebar.controller.js"></script>
+    <script src="views/header/header.controller.js"></script>
+    <!-- register.controller.js-->
+    <script src="views/user/register.controller.js"></script>
+    <!-- profile.controller.js-->
+    <script src="views/user/userProfile.controller.js"></script>
+    <!-- user.service.client.js-->
+    <script src="services/user.service.client.js"></script>
+    <!-- login.controller.js-->
+    <script src="views/user/login.controller.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+
+</head>
+
+<body ng-controller="MainController">
+<div class="container-fluid">
+    <!-- includes the header and sidebar-->
+    <div ng-include="'views/header/header.view.html'"></div>
+    <div ng-include="'views/sidebar/sidebar.view.html'"></div>
+    <h1>Form Maker</h1>
+    <!-- provides the division between the sidebar and header-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <!-- major content of the application is written in this division by ng-view-->
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

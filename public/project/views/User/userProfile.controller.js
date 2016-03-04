@@ -1,7 +1,7 @@
 (function(){
     "use strict";
     angular
-        .module("FormBuilderApp")
+        .module("WritersClubApp")
         .controller("ProfileController", profileController)
     function profileController($scope, $location, UserService){
         $scope.error = null;

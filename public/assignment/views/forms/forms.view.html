@@ -1,6 +1,6 @@
             <h1 class="title">Forms</h1>
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="forms.view.html">Forms</a></li>
+                <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
                 <li role="presentation"><a href="#/form-fields">Fields</a></li>
             </ul>
             <div class="table-responsive">
@@ -33,7 +33,9 @@
                           {{form.title}}
                       </td>
                         <td align="right">
-                            <span ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"></span>
+                            <span  ng-click="deleteForm($index)"
+                                  class="glyphicon glyphicon-remove">
+                            </span>
                             <span ng-click="selectForm($index)" class="glyphicon glyphicon-pencil"></span>
                         </td>
                     </tr>

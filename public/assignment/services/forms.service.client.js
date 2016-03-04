@@ -55,7 +55,7 @@
              var formsAfterDeletion=[];
             for(var j in formsApi.forms){
                 if(formsApi.forms[j]._id == formId){
-                    formsApi.forms.splice(formId,1);
+                    formsApi.forms.splice(j,1);
                 }
             }
             formsAfterDeletion = formsApi.forms;

@@ -25,13 +25,17 @@
         function deleteForm($index){
             //function is responsible for deleting a form by the index value
             var formsAfterDeletion=[];
+
             var callback=
                 function(response){
                     formsAfterDeletion= response;
+                    for(var form in formsAfterDeletion){
+                        console.log(formsAfterDeletion[form]._id);
+                    };
                 };
 
-            FormService.deleteFormById($scope.forms[$index]._id,callback);
-
+            FormService.deleteFormById
+            ($scope.forms[$index]._id,callback);
         }
 
         function updateForm(newForm){

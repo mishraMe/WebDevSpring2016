@@ -10,23 +10,28 @@
                 {
                     "_id": 123,
                     "firstName": "Alice", "lastName": "Wonderland",
-                    "username": "alice", "password": "alice", "roles": ["student"]
+                    "username": "alice", "password": "alice", "roles": ["student"],
+                    "email": "alice@gmail.com"
                 },
                 {
                     "_id": 234, "firstName": "Bob", "lastName": "Hope",
-                    "username": "bob", "password": "bob", "roles": ["admin"]
+                    "username": "bob", "password": "bob", "roles": ["admin"],
+                    "email": "bob@gmail.com"
                 },
                 {
                     "_id": 345, "firstName": "Charlie", "lastName": "Brown",
-                    "username": "charlie", "password": "charlie", "roles": ["faculty"]
+                    "username": "charlie", "password": "charlie", "roles": ["faculty"],
+                    "email": "charlie@gmail.com"
                 },
                 {
                     "_id": 456, "firstName": "Dan", "lastName": "Craig",
-                    "username": "dan", "password": "dan", "roles": ["faculty", "admin"]
+                    "username": "dan", "password": "dan", "roles": ["faculty", "admin"],
+                    "email": "dan@gmail.com"
                 },
                 {
                     "_id": 567, "firstName": "Edward", "lastName": "Norton",
-                    "username": "ed", "password": "ed", "roles": ["student"]
+                    "username": "ed", "password": "ed", "roles": ["student"],
+                    "email": "ed@gmail.com"
                 }
             ],
             findUserByCredentials: findUserByCredentials,

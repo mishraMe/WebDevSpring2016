@@ -36,7 +36,8 @@
             updateUser: updateUser,
             findUserById: findUserById,
             getCurrentUser: getCurrentUser,
-            setCurrentUser: setCurrentUser
+            setCurrentUser: setCurrentUser,
+            getCurrentUserId: getCurrentUserId
         };
 
         return api;
@@ -121,6 +122,10 @@
 
         function getCurrentUser(){
             return $rootScope.currentUser;
+        }
+        function getCurrentUserId(){
+            console.log($rootScope.currentUser._id);
+            return $rootScope.currentUser._id;
         }
     }
 })();

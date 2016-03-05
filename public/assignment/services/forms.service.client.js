@@ -15,40 +15,56 @@
             createFormForUser: createFormForUser,
             findAllFormsForUser: findAllFormsForUser,
             deleteFormById: deleteFormById,
-            updateFormById: updateFormById
+            updateFormById: updateFormById,
+            findAllFormsForUserId: findAllFormsForUserId
         };
-        $rootScope.forms = formsApi.forms;
+        //$rootScope.forms = formsApi.forms;
         return formsApi;
 
-        function setCurrentUser(form){
+
+        function setCurrentForm(form){
             $rootScope.currentForm= form;
         }
 
-        function getCurrentUser(){
+        function getCurrentForm(){
             return $rootScope.currentForm;
         }
+
+        function getCurrentForms(){
+            return formsApi.forms;
+        }
         function createFormForUser(userId, form, callback){
-           var newForm = {
-               "_id": (new Date).getTime(),
-               "title": form.title,
-               "userId": userId
-           }
-            formsApi.forms.push(newForm);
-            callback(newForm);
+            if(form!= null){
+                var newForm = {
+                    "_id": (new Date).getTime(),
+                    "title": form.title,
+                    "userId": userId
+                }
+                formsApi.forms.push(newForm);
+                callback(newForm);
+            }
+            callback();
         }
 
         function findAllFormsForUser(userId, callback){
             var formsForUser = [];
             for(var i in formsApi.forms){
                 if(formsApi.forms[i].userId == userId){
-                    formsForUser = formsForUser.add(formsApi.forms[i]);
+                    formsForUser.push(formsApi.forms[i]);
                 }
             }
-            if(formsForUser){
-                callback(formsForUser);
-            }else{
-                callback();
+            callback(formsForUser);
+        }
+
+        function findAllFormsForUserId(userId){
+            var formsForUserId = [];
+            for(var i in formsApi.forms){
+                if(formsApi.forms[i].userId == userId){
+                    formsForUserId.push(formsApi.forms[i]);
+                }
             }
+            console.log(formsForUserId);
+            return formsForUserId;
         }
 
         function deleteFormById(formId, callback){
@@ -71,9 +87,7 @@
                     callback(editForm);
                     break;
                 }
-
             }
-
         }
     }
 })();

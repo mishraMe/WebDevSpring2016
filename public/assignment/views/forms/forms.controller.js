@@ -47,7 +47,6 @@
 
         function updateForm(newForm){
             //function is responsible for updating selected form to the new form's value
-
             var renewedForm = {
                 _id: newForm._id,
                 title: newForm.title,

@@ -27,6 +27,9 @@
                 $scope.message = "Passwords must match";
                 return;
             }
+            if(user.email!= user.email){
+                $scope.message = "Email already exists";
+            }
             var callback=
                 function (response) {
                     if (response != null) {

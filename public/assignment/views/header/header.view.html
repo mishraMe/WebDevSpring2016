@@ -21,6 +21,9 @@
                    <a ng-click="logout()">Logout</a></li>
                 <li ng-show="currentUser"
                     ng-class="{'active': $locationUrl()=='/profile'}">
+                    <a href="#/profile">Profile</a></li>
+                <li ng-show="currentUser"
+                    ng-class="{'active': $locationUrl()=='/profile'}">
                     <a href="#/profile">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles.indexOf('admin')>=0"
                     ng-class="{'active': $locationUrl()=='/admin'}">

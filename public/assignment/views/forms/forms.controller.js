@@ -4,12 +4,12 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController(FormService, $scope, UserService){
+    function FormController(FormService, $scope, UserService, $rootScope){
 
         //variables :
         $scope.error=null;
         $scope.message= null;
-        $scope.selectForm= null;
+        $scope.selectedForm= null;
         $scope.addForm = addForm;
         $scope.deleteForm = deleteForm;
         $scope.updateForm = updateForm;
@@ -28,7 +28,7 @@
             }
                 FormService.createFormForUser
                 ($scope.currentUser._id, form, callback);
-                $scope.form = null;
+            $scope.form = null;
         }
 
         function deleteForm($index){
@@ -47,23 +47,27 @@
 
         function updateForm(newForm){
             //function is responsible for updating selected form to the new form's value
+
             var renewedForm = {
                 _id: newForm._id,
                 title: newForm.title,
                 userId: newForm.userId
-            }
-            function callback (newForm){
-                $scope.forms= FormService.findAllFormsForUserId($scope.currentUser._id);
             };
-            FormService.updateFormById(renewedForm._id, renewedForm,callback);
-            $scope.form =null;
+            function callback (newForm){
+                if($scope.form._id == null){
+                    $scope.error = "Form name cannot be empty";
+                }else {
+                    $scope.forms = FormService.findAllFormsForUserId($scope.currentUser._id);
+                    $scope.error=null;
+                }
+            };
+            FormService.updateFormById($scope.form._id, renewedForm,callback);
+            $scope.form=null;
         }
 
         function selectForm($index){
            // console.log("hello select form");
             //function is responsible for selecting a form to edit
-            $scope.selectedForm =$scope.forms[$index];
-            $scope.selectedIndex = $index;
             $scope.form = {
                 _id: $scope.forms[$index]._id,
                 title: $scope.forms[$index].title,

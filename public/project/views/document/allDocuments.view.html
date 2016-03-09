@@ -1,0 +1,29 @@
+<h1>All Documents</h1>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Post</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Writer</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Rating
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="document in documents">
+            <td>
+                {{document.title}}
+            </td>
+            <td>
+                {{document.userId}}
+            </td>
+            <td>
+                {{document.rating}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

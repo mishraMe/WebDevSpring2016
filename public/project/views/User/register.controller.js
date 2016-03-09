@@ -1,5 +1,7 @@
+"use strict";
+
 (function(){
-    "use strict";
+
     angular
         .module("WritersClubApp")
         .controller("RegisterController", registerController);
@@ -27,6 +29,12 @@
                 $scope.message = "Passwords must match";
                 return;
             }
+            if(!user.email){
+                $scope.message = "Please enter an email address";
+                return;
+            }
+
+
             var callback=
                 function (response) {
                     if (response != null) {
@@ -34,20 +42,22 @@
                         return;
                     }
                 };
-
             var existingUser = UserService.findUserByCredentials
             (user.username, user.password,callback);
+
 
             var callbackNewUser =
                 function (response) {
                     if (response) {
                         $rootScope.currentUser = response;
                         UserService.setCurrentUser(response);
-                        $location.url("/profile/");
+                        $location.url("/account/");
                     }
                     return null;
                 };
+
             var newUser = UserService.createUser(user, callbackNewUser);
+
         }
     }
 })();

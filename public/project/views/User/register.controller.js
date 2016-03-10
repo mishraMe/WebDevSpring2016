@@ -1,7 +1,6 @@
-"use strict";
-
+//register.controller.js
 (function(){
-
+    "use strict";
     angular
         .module("WritersClubApp")
         .controller("RegisterController", registerController);

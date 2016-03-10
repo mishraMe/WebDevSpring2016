@@ -1,3 +1,4 @@
+//main.controller.js
 (function MainController(){
     "use strict";
     angular

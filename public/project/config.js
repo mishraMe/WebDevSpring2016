@@ -1,3 +1,4 @@
+//config.js
 (function(){
     "use strict";
     angular
@@ -28,7 +29,7 @@
                 controller: "AdminController"
             })
             .when("/document",{
-                templateUrl: "views/document/writeDocument.html",
+                templateUrl: "views/document/writeDocument.view.html",
                  controller: "DocumentController"
             })
             .when("/myDocuments",{

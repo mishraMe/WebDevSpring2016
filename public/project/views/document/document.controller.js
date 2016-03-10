@@ -1,4 +1,6 @@
+//document.controller.js
 (function(){
+    "use strict";
     angular.module("WritersClubApp")
         .controller("DocumentController", documentController);
 

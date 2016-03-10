@@ -1,3 +1,5 @@
+//account.controller.js
+
 (function(){
     "use strict";
     angular
@@ -30,16 +32,16 @@
                     }else{
                         $scope.message = "Unable to update user";
                     }
-                };
+                }
             $scope.currentUser = UserService.updateUser(user._id, user,callback);
 
-        };
+        }
         function listFollowers(user){
             console.log("lists those who follow the user");
 
-        };
+        }
         function listFollowing(user){
             console.log("lists those whom the user follows");
-        };
+        }
     }
 })();

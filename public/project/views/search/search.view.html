@@ -1,0 +1,33 @@
+<h2>Search</h2>
+
+<input  ng-model="title"
+        class="form-control"/>
+<button ng-click="search(title)"
+        class="btn btn-primary btn-block">
+    Search
+</button>
+
+<h3>Search Results</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Poster</th>
+            <th>Title</th>
+            <th>ImdbID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="book in data.Search">
+            <td><img height="100px" ng-src="{{book.Cover}}"/></td>
+            <td>
+                <a href="#/detail/{{book.ISBN}}">
+                    {{book.title}}
+                </a>
+            </td>
+            <td>{{book.ISBN}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -44,7 +44,7 @@
             templateUrl: "views/document/viewDocument.view.html",
             controller: "DocumentController"
             })
-            .when("/search",{
+            .when("/search/:title",{
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController"
             })

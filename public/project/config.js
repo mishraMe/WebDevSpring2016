@@ -13,15 +13,15 @@
                 // controller: "HomeController"
             })
             .when("/register",{
-                templateUrl: "views/user/register.view.html",
+                templateUrl: "views/User/register.view.html",
                 controller: "RegisterController"
             })
             .when("/login",{
-                templateUrl: "views/user/login.view.html",
+                templateUrl: "views/User/login.view.html",
                 controller: "LoginController"
             })
             .when("/account",{
-                templateUrl: "views/user/account.view.html",
+                templateUrl: "views/User/account.view.html",
                 controller: "AccountController"
             })
             .when("/admin",{

@@ -21,27 +21,26 @@
         function update(user){
             $scope.error = null;
             $scope.message = null;
-
             var callback =
                 function(response){
                     if(response){
-                        $scope.message = "user updated successfully";
+                        $scope.message = "User updated successfully";
                         $scope.currentUser=response;
                         UserService.setCurrentUser($scope.currentUser);
                         $location.url("/account/");
                     }else{
-                        $scope.message = "Unable to update user";
+                        $scope.message = "Unable to update User";
                     }
                 }
             $scope.currentUser = UserService.updateUser(user._id, user,callback);
 
         }
         function listFollowers(user){
-            console.log("lists those who follow the user");
+            console.log("lists those who follow the User");
 
         }
         function listFollowing(user){
-            console.log("lists those whom the user follows");
+            console.log("lists those whom the User follows");
         }
     }
 })();

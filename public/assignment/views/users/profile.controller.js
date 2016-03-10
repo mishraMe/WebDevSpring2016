@@ -21,12 +21,12 @@
             var callback =
                 function(response){
                     if(response){
-                        $scope.message = "user updated successfully";
+                        $scope.message = "User updated successfully";
                         $scope.currentUser=response;
                         UserService.setCurrentUser($scope.currentUser);
                         $location.url("/profile/");
                     }else{
-                        $scope.message = "Unable to update user";
+                        $scope.message = "Unable to update User";
                     }
                 };
             $scope.currentUser = UserService.updateUser(user._id, user,callback);

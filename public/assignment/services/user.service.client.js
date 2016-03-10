@@ -30,6 +30,7 @@
                 }
             ],
             findUserByCredentials: findUserByCredentials,
+            findUserByUsername:findUserByUsername,
             findAllUsers: findAllUsers,
             createUser: createUser,
             deleteUserById: deleteUserById,
@@ -114,18 +115,28 @@
                 }
             }
             return null;
-        }
+        };
 
         function setCurrentUser(user){
             $rootScope.currentUser= user;
-        }
+        };
 
         function getCurrentUser(){
             return $rootScope.currentUser;
-        }
+        };
         function getCurrentUserId(){
             console.log($rootScope.currentUser._id);
             return $rootScope.currentUser._id;
-        }
+        };
+
+        function findUserByUsername(username){
+            for(var x in api.currentUsers){
+                if(username==api.currentUsers[x].username){
+                    return username;
+                    break;
+                }
+            }
+            return;
+        };
     }
 })();

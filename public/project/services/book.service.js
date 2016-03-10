@@ -12,7 +12,7 @@
         return bookApi;
 
         function findBookByTitle(title, callback) {
-            $http.get("http://www.omdbapi.com/?s="+title)
+            $http.get("https://www.googleapis.com/books/v1/volumes?q=search"+title)
                 .success(callback);
         }
 

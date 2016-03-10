@@ -6,7 +6,7 @@
     function configuration($routeProvider){
 
         $routeProvider
-            //header links where profile and admin are common amongst header and sidebar
+            //header links where account and admin are common amongst header and sidebar
             .when("/home", {
                 templateUrl: "views/home/home.view.html",
                 // controller: "HomeController"
@@ -19,17 +19,29 @@
                 templateUrl: "views/user/login.view.html",
                 controller: "LoginController"
             })
-            .when("/profile",{
-                templateUrl: "views/user/userProfile.view.html",
-                controller: "ProfileController"
+            .when("/account",{
+                templateUrl: "views/user/account.view.html",
+                controller: "AccountController"
             })
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
             .when("/document",{
-                templateUrl: "views/document/document.view.html",
-                // controller: "AdminController"
+                templateUrl: "views/document/writeDocument.html",
+                 controller: "DocumentController"
+            })
+            .when("/myDocuments",{
+                templateUrl: "views/document/myDocuments.view.html",
+                controller: "DocumentController"
+            })
+            .when("/allDocuments",{
+                templateUrl: "views/document/allDocuments.view.html",
+                controller: "DocumentController"
+            })
+            .when("/viewDocument",{
+            templateUrl: "views/document/viewDocument.view.html",
+            controller: "DocumentController"
             })
             .otherwise({
                 redirectTo:"/home"

@@ -21,7 +21,7 @@
             var callback =
                 function(response){
                     if(response){
-                        $scope.message = "User updated successfully";
+                        $scope.message = "user updated successfully";
                         $scope.currentUser=response;
                         UserService.setCurrentUser($scope.currentUser);
                         $location.url("/profile/");

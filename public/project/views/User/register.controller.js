@@ -37,7 +37,7 @@
             var callback=
                 function (response) {
                     if (response != null) {
-                        $scope.message = "User already exists";
+                        $scope.message = "user already exists";
                         return;
                     }
                 };

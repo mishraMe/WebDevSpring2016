@@ -36,6 +36,7 @@
         };
         function listFollowers(user){
             console.log("lists those who follow the user");
+
         };
         function listFollowing(user){
             console.log("lists those whom the user follows");

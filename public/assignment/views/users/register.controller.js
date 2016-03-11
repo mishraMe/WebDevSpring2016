@@ -42,7 +42,7 @@
                     if (response) {
                     $rootScope.currentUser = response;
                     UserService.setCurrentUser(response);
-                    $location.url("/profile/");
+                    $location.url("/profile");
                     }
                 return null;
             };

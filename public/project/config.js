@@ -60,6 +60,10 @@
                 templateUrl: "views/document/documentTable.view.html",
                 controller: "DocumentTableController"
             })
+            .when("/userTable", {
+                templateUrl: "views/user/userTable.view.html",
+                controller: "UserTableController"
+            })
             .otherwise({
                 redirectTo:"/home"
             })

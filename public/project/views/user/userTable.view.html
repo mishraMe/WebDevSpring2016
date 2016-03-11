@@ -1,0 +1,119 @@
+<h1 class="title">User Table</h1>
+<div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                ID</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Username</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Password</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                FirstName</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                LastName</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Roles</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Email</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <lable type="datetime"
+                       ng-readonly="user._id"
+                       ng-model="user._id"
+                       placeholder="UserID"
+                       id="id"
+                       class="form-control">
+                    {{user._id}}
+                </lable>
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="user.username"
+                       value="user.username"
+                       placeholder="Username"
+                       id="username"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="password"
+                       ng-model="user.password"
+                       placeholder="Password"
+                       id="password"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="user.firstName"
+                       placeholder="FirstName"
+                       id="firstname"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="user.lastName"
+                       placeholder="LastName"
+                       id="lastname"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="user.roles"
+                       placeholder="Roles"
+                       id="role"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="user.email"
+                       placeholder="Email"
+                       id="email"
+                       class="form-control">
+            </td>
+            <td align="right">
+                            <span class="glyphicon glyphicon-plus"
+                                  ng-click="createUser(user)"></span>
+                            <span  class="glyphicon glyphicon-ok"
+                                   ng-click="updateUser(user)"></span>
+            </td>
+        </tr>
+        <tr ng-repeat="user in userTable">
+            <td>
+                {{user._id}}
+            </td>
+            <td>
+                {{user.username}}
+            </td>
+            <td>
+
+            </td>
+            <td>
+                {{user.firstName}}
+            </td>
+            <td>
+                {{user.lastName}}
+            </td>
+            <td>
+                {{user.role}}
+            </td>
+            <td>
+                {{user.email}}
+            </td>
+            <td align="right">
+                            <span  ng-click="deleteUser($index)"
+                                   class="glyphicon glyphicon-remove">
+                            </span>
+                            <span ng-click="selectUser($index)"
+                                  class="glyphicon glyphicon-pencil"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

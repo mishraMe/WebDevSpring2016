@@ -42,7 +42,11 @@
             updateUser: updateUser,
             findUserById: findUserById,
             getCurrentUser: getCurrentUser,
-            setCurrentUser: setCurrentUser
+            setCurrentUser: setCurrentUser,
+            getAllUsers: getAllUsers,
+            createUserInTable: createUserInTable,
+            deleteUserInTable: deleteUserInTable,
+            updateUserInTable:updateUserInTable
         };
 
         return api;
@@ -68,8 +72,6 @@
         }
 
         function createUser(user, callback) {
-
-          api.currentUsers.pop();
 
             var newUser;
             newUser = {
@@ -127,6 +129,53 @@
 
         function getCurrentUser(){
             return $rootScope.currentUser;
+        }
+
+        function getAllUsers(){
+            return api.currentUsers;
+        }
+
+        function createUserInTable(user, callback){
+
+            var newUser;
+            newUser = {
+                "_id": (new Date).getTime(),
+                "firstName": user.firstName,
+                "lastName":  user.lastName,
+                "username":  user.username,
+                "password":  user.password,
+                "roles":user.roles,
+                "email":user.email
+            };
+            console.log(newUser);
+            api.currentUsers.push(newUser);
+            callback(newUser);
+        }
+        function deleteUserInTable(userId, callback){
+            var deleteUser;
+            for (var j in api.currentUsers) {
+
+                if (api.currentUsers[j]._id == userId) {
+                    deleteUser = api.currentUsers[j];
+                    api.currentUsers.splice(j, 1);
+                }
+            }
+            callback(api.currentUsers);
+        }
+        function updateUserInTable(userId, user, callback){
+            var updateUser = api.findUserById(userId);
+            console.log(updateUser);
+            if (updateUser != null) {
+                updateUser.firstName = user.firstName;
+                updateUser.lastName = user.lastName;
+                updateUser.password = user.password;
+                updateUser.roles = user.roles;
+                updateUser.email = user.email;
+                callback(updateUser);
+            } else {
+                console.log("else condition fired");
+                callback();
+            }
         }
     }
 })();

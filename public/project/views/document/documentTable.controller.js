@@ -4,7 +4,7 @@
     angular.module("WritersClubApp")
         .controller("DocumentTableController", documentTableController);
 
-    function documentTableController($scope, $http, UserService, DocumentService){
+    function documentTableController($scope, DocumentService){
 
         //variables :
         $scope.error=null;

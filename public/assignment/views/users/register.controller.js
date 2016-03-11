@@ -32,7 +32,7 @@
             }
 
             var existingUser = UserService.findUserByUsername(user.username);
-            if (user != null) {
+            if (existingUser) {
                 $scope.message = "User already exists";
                 return;
             }

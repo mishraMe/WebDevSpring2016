@@ -7,8 +7,8 @@
     function FormController(FormService, $scope, UserService, $rootScope){
 
         //variables :
-        $scope.error=null;
         $scope.message= null;
+        $scope.error= null;
         $scope.selectedForm= null;
         $scope.addForm = addForm;
         $scope.deleteForm = deleteForm;
@@ -17,10 +17,9 @@
         $scope.currentUser = UserService.getCurrentUser();
         $scope.forms=FormService.findAllFormsForUserId($scope.currentUser._id);
 
-
         function addForm(form){
             function callback (response) {
-                if (form === null) {
+                if (form == null) {
                     $scope.message = "Please enter a form name";
                 } else {
                     $scope.forms = FormService.findAllFormsForUserId($scope.currentUser._id);

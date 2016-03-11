@@ -5,7 +5,8 @@
         .controller("LoginController", LoginController);
 
     function LoginController(UserService, $rootScope, $scope, $location){
-        $scope.login= login;
+        $scope.login = login;
+        $scope.message = null;
 
         function login(user){
             var callback=
@@ -18,8 +19,10 @@
                     }
                 }
 
-            var user = UserService.findUserByCredentials
+
+            UserService.findUserByCredentials
             (user.username, user.password, callback);
+
         }
     }
 })();

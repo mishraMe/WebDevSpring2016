@@ -3,11 +3,12 @@
             <div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
             <div ng-show="error"  vclass="alert alert-danger"  role="alert">{{error}}</div>
 
-            <form class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="userName" class="col-sm-2 control-label">Username:</label>
+                    <label for="userName"  class="col-sm-2 control-label">Username:</label>
                     <div class="col-sm-10">
                         <input ng-model="currentUser.username"
+                               ng-readonly="currentUser.username"
                                type="text"
                                class="form-control"
                                id="userName"
@@ -64,4 +65,4 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </div>

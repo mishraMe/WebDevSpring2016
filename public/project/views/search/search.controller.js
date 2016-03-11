@@ -1,25 +1,27 @@
 (function(){
+    var SEARCH_URL = "https://www.googleapis.com/books/v1/volumes?q=search+TITLE";
+
     angular
         .module("WritersClubApp")
-        .controller("SearchController", searchController);
+        .controller("SearchController", SearchController);
 
-    function searchController($scope, $location, $routeParams, BookService) {
-        $scope.search = search;
-        $scope.title = $routeParams.title;
-
-        if($scope.title) {
-            search($scope.title);
-        }
+    function SearchController($scope, $location, BookService) {
+        $scope.search=search;
 
         function search(title) {
-            $location.url("/search/"+$scope.title);
-            console.log(title);
-            BookService.findBookByTitle(
-                title,
-                function(response){
-                    console.log(response);
-                    $scope.data = response;
-                });
+            var bookTitle = title;
+            if(bookTitle) {
+                fetchBooks(bookTitle);
+            }
+        }
+
+        function fetchBooks(bookTitle) {
+            BookService.findBooksByTitle(bookTitle, renderBooks)
+        }
+
+        function renderBooks(response) {
+            console.log(response);
+            $scope.books = response;
         }
     }
 })();

@@ -1,0 +1,81 @@
+<h1 class="title">Document Table</h1>
+<div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                 ID</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Title</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Writer</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Rating</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <lable type="datetime"
+                       ng-readonly="document._id"
+                       ng-model="document._id"
+                       placeholder="DocumentID"
+                       id="id"
+                       class="form-control">{{document._id}}</lable>
+            </td>
+
+            <td>
+                <input type="text"
+                       ng-model="document.title"
+                       placeholder="Title"
+                       id="title"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="document.username"
+                       placeholder="Writer"
+                       id="writer"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="number"
+                       ng-model="document.rating"
+                       placeholder="Rating"
+                       id="rating"
+                       class="form-control">
+            </td>
+            <td align="right">
+                            <span class="glyphicon glyphicon-plus"
+                                  ng-click="createDocument(document)"></span>
+                            <span  class="glyphicon glyphicon-ok"
+                                   ng-click="updateDocument(document)"></span>
+            </td>
+        </tr>
+        <tr ng-repeat="document in documentTable">
+            <td>
+                {{document._id}}
+            </td>
+            <td>
+                {{document.title}}
+            </td>
+            <td>
+                {{document.username}}
+            </td>
+            <td>
+                {{document.rating}}
+            </td>
+            <td align="right">
+                            <span  ng-click="deleteDocument($index)"
+                                   class="glyphicon glyphicon-remove">
+                            </span>
+                            <span ng-click="selectDocument($index)"
+                                  class="glyphicon glyphicon-pencil"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

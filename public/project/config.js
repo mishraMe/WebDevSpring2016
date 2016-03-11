@@ -44,9 +44,21 @@
             templateUrl: "views/document/viewDocument.view.html",
             controller: "DocumentController"
             })
+            .when("/search", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController"
+            })
             .when("/search/:title",{
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController"
+            })
+            .when("/details/:id", {
+                templateUrl: "views/details/details.html",
+                controller: "DetailsController"
+            })
+            .when("/documentTable", {
+                templateUrl: "views/document/documentTable.view.html",
+                controller: "DocumentTableController"
             })
             .otherwise({
                 redirectTo:"/home"

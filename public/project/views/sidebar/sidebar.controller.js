@@ -4,6 +4,7 @@
     angular
         .module("WritersClubApp")
         .controller("SidebarController",sidebarController);
-    function sidebarController(){
+    function sidebarController($scope){
+
     }
 })();

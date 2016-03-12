@@ -12,13 +12,23 @@
         <table class="table table-striped"  class="form-control">
             <thead>
             <tr>
+                <th>Cover</th>
                 <th>Title</th>
+                <th>Author</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="book in books">
                 <td>
-                    {{book.volumeInfo.title}}
+                    <img height="100px" ng-src="{{book.volumeInfo.imageLinks.thumbnail}}"/>
+                </td>
+                <td>
+                    <a href="#/details/{{book.id}}">
+                        {{book.volumeInfo.title}}
+                    </a>
+                </td>
+                <td>
+                    {{book.volumeInfo.publishedDate}}
                 </td>
             </tr>
             </tbody>

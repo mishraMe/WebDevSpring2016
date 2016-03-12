@@ -1,7 +1,6 @@
 (function(){
     var SEARCH_URL = "https://www.googleapis.com/books/v1/volumes?q=search+TITLE";
-    var DETAILS_URL = "http://www.omdbapi.com/?i=IMDBID&type=movie&plot=full&tomatoes=true";
-
+    var DETAILS_URL = "https://www.googleapis.com/books/v1/volumes?q=ID";
     angular
         .module("WritersClubApp")
         .factory("BookService", bookService);
@@ -10,7 +9,7 @@
 
         var bookApi = {
             findBooksByTitle: findBooksByTitle,
-            findBookByISBN: findBookByISBN
+            findBookByID: findBookByID
         };
         return bookApi;
 
@@ -20,9 +19,10 @@
                 .success(callback);
         }
 
-        function findBookByISBN(ISBN, callback) {
-            $http.get("http://www.omdbapi.com/?i="+ISBN)
-                .success(callback);
+        function findBookByID(ID, callback) {
+            var url = DETAILS_URL.replace("ID", ID)
+            console.log("entered FindBook in book services");
+            $http.get(url).success(callback);
         }
 
     }

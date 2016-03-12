@@ -1,6 +1,17 @@
-<h2>{{model.details.title}}</h2>
-<div>{{model.details.author}}</div>
-<img ng-src="{{model.details.Cover}}" height="100px" class="pull-left"/>
+<h2>{{book.title}}</h2>
+
+<img ng-src="{{book.imageLinks.thumbnail}}" height="300px" class="pull-left"/>
+
 <p>
-    {{model.details.subtitle}}
+    {{book.description}}
 </p>
+
+<h3>Actors</h3>
+
+<ul>
+    <li ng-repeat="authorName in book.authors.split(',')">
+        {{authorName}}
+    </li>
+</ul>
+
+{{movie}}

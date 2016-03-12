@@ -53,7 +53,7 @@
                 controller: "SearchController"
             })
             .when("/details/:id", {
-                templateUrl: "views/details/details.html",
+                templateUrl: "views/details/details.view.html",
                 controller: "DetailsController"
             })
             .when("/documentTable", {

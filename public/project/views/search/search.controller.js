@@ -3,12 +3,14 @@
 
     angular
         .module("WritersClubApp")
-        .controller("SearchController", SearchController);
+        .controller("SearchController", searchController);
 
-    function SearchController($scope, $location, BookService) {
+    function searchController($scope, $location, BookService) {
         $scope.search=search;
 
+
         function search(title) {
+            console.log("entered search");
             var bookTitle = title;
             if(bookTitle) {
                 fetchBooks(bookTitle);
@@ -16,12 +18,15 @@
         }
 
         function fetchBooks(bookTitle) {
+            console.log("entered  fetch books");
             BookService.findBooksByTitle(bookTitle, renderBooks)
         }
 
         function renderBooks(response) {
             console.log(response);
-            $scope.books = response;
+            $scope.books = response.items;
+            console.log("books are:");
+           console.log($scope.books);
         }
     }
 })();

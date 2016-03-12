@@ -53,7 +53,8 @@
             var renewedDocument = {
                 title: newDocument.title,
                 username: newDocument.username,
-                rating: newDocument.rating
+                tag: newDocument.tag,
+                type: newDocument.type,
             };
             function callback (response){
                 console.log(response);
@@ -75,7 +76,8 @@
                 _id: $scope.documentTable[$index]._id,
                 title: $scope.documentTable[$index].title,
                 username: $scope.documentTable[$index].username,
-                rating: $scope.documentTable[$index].rating
+                tag: $scope.documentTable[$index].tag,
+                type: $scope.documentTable[$index].type
             };
         }
     }

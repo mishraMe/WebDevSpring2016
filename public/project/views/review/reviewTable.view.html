@@ -1,19 +1,19 @@
-<h1 class="title">Document Table</h1>
+<h1 class="title">Review Table</h1>
 <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                 ID</th>
+                ID</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                DocumentID</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Title</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Writer</th>
+                Rating</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Tag</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Type</th>
+                Comments</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Actions</th>
         </tr>
@@ -22,69 +22,68 @@
         <tr>
             <td>
                 <lable type="datetime"
-                       ng-readonly="document._id"
-                       ng-model="document._id"
-                       placeholder="DocumentID"
+                       ng-readonly="review._id"
+                       ng-model="review._id"
+                       placeholder="ID"
                        id="id"
                        class="form-control">{{document._id}}</lable>
             </td>
-
             <td>
                 <input type="text"
-                       ng-model="document.title"
+                       ng-model="review.documentId"
+                       placeholder="DocumentID"
+                       id="document._id"
+                       class="form-control">
+            </td>
+            <td>
+                <input type="text"
+                       ng-model="review.title"
                        placeholder="Title"
                        id="title"
                        class="form-control">
             </td>
             <td>
-                <input type="text"
-                       ng-model="document.username"
-                       placeholder="Writer"
-                       id="writer"
+                <input type="number"
+                       ng-model="review.rating"
+                       placeholder="Rating"
+                       id="rating"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="document.tag"
-                       placeholder="Tag"
-                       id="tag"
-                       class="form-control">
-            </td>
-            <td>
-                <input type="text"
-                       ng-model="document.type"
-                       placeholder="Type"
-                       id="type"
+                       ng-model="review.comments"
+                       placeholder="Comments"
+                       id="comments"
                        class="form-control">
             </td>
             <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="createDocument(document)"></span>
+                                  ng-click="createReview(review)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updateDocument(document)"></span>
+                                   ng-click="updateReview(review)"></span>
             </td>
         </tr>
-        <tr ng-repeat="document in documentTable">
+        <tr ng-repeat="review in reviewTable">
             <td>
-                {{document._id}}
+                {{review._id}}
             </td>
             <td>
-                {{document.title}}
+                {{review.documentId}}
             </td>
             <td>
-                {{document.username}}
+                {{review.title}}
             </td>
             <td>
-                {{document.tag}}
+                {{review.rating}}
             </td>
             <td>
-                {{document.type}}
+                {{review.comments}}
             </td>
             <td align="right">
-                            <span  ng-click="deleteDocument($index)"
+                            <span  ng-click="deleteReview($index)"
                                    class="glyphicon glyphicon-remove">
                             </span>
-                            <span ng-click="selectDocument($index)"
+                            <span ng-click="selectReview($index)"
                                   class="glyphicon glyphicon-pencil"></span>
             </td>
         </tr>

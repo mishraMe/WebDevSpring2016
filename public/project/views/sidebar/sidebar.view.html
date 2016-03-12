@@ -21,6 +21,8 @@
                 <a href="#/documentTable">DocumentTable</a></li>
             <li ng-class="{'active': $locationUrl().indexOf('userTable') >= 0}">
                 <a href="#/userTable">UserTable</a></li>
+            <li ng-class="{'active': $locationUrl().indexOf('reviewTable') >= 0}">
+                <a href="#/reviewTable">ReviewTable</a></li>
             <li ng-show="currentUser.roles.indexOf('admin')>=0"
                 ng-class="{'active': $locationUrl()==='/admin'}">
                 <a href="#/admin">Admin</a></li>

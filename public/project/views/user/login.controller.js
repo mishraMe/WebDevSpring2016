@@ -15,7 +15,7 @@
                     console.log(response);
                     $rootScope.currentUser = response;
                     UserService.setCurrentUser(response);
-                    $location.url("/profile");
+                    $location.url("/account");
                 }
             }
 

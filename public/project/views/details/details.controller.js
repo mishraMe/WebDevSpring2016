@@ -3,15 +3,26 @@
         .module("WritersClubApp")
         .controller("DetailsController", detailsController);
 
-    function detailsController($scope, $routeParams, BookService) {
-        $scope.id = $routeParams.id
+    function detailsController($scope,$http, $routeParams, BookService) {
 
-        BookService.findBookByID(
-            $scope.id,
-            function(response) {
-                $scope.book = response;
-                console.log($scope.book);
-            }
-        )
+
+        var id = $routeParams.id;
+        console.log(id);
+
+        function init() {
+            fetchMovie(id);
+        }
+        init();
+
+        function fetchMovie(ID) {
+            BookService.findBookByID(ID, renderDetails);
+        }
+
+        function renderDetails(response) {
+            console.log("enter render details");
+            console.log(response);
+            $scope.details = response.items[0];
+            console.log($scope.details);
+        }
     }
 })();

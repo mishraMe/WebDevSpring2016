@@ -1,17 +1,22 @@
-<h2>{{book.title}}</h2>
+<div class="form-horizontal">
+<h2>{{details.volumeInfo.title}}</h2>
 
-<img ng-src="{{book.imageLinks.thumbnail}}" height="300px" class="pull-left"/>
+<div class="form-group">
+<img ng-src="{{details.volumeInfo.imageLinks.thumbnail}}" height="300px" class="pull-left"/>
+</div>
 
+<div class="form-group">
 <p>
-    {{book.description}}
+    {{details.volumeInfo.description}}
 </p>
-
-<h3>Actors</h3>
-
+</div>
+<div class="form-group">
+<h3>Authors</h3>
 <ul>
-    <li ng-repeat="authorName in book.authors.split(',')">
+    <li ng-repeat="authorName in details.volumeInfo.authors">
         {{authorName}}
     </li>
 </ul>
+    </div>
+    </div>
 
-{{movie}}

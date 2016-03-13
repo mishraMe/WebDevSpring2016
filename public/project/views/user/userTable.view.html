@@ -101,7 +101,10 @@
                 {{user.lastName}}
             </td>
             <td>
-                {{user.role}}
+
+                <ul ng-repeat="roles in user.roles">
+                {{roles}}
+                </ul>
             </td>
             <td>
                 {{user.email}}

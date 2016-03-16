@@ -12,21 +12,21 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="currentUser"
-                    ng-class="{'active': $locationUrl()=='/register'}">
+                    ng-class="{'active': model.$locationUrl()=='/register'}">
                     <a href="#/register">Register</a></li>
                 <li ng-hide="currentUser"
-                    ng-class="{'active': $locationUrl()=='/login'}">
+                    ng-class="{'active': model.$locationUrl()=='/login'}">
                     <a href="#/login">Login</a></li>
                 <li ng-show="currentUser">
                    <a ng-click="logout()">Logout</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl()=='/profile'}">
+                    ng-class="{'active': model.$locationUrl()=='/profile'}">
                     <a href="#/profile">Profile</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl()=='/profile'}">
+                    ng-class="{'active': model.$locationUrl()=='/profile'}">
                     <a href="#/profile">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles.indexOf('admin')>=0"
-                    ng-class="{'active': $locationUrl()=='/admin'}">
+                    ng-class="{'active': model.$locationUrl()=='/admin'}">
                     <a href="#/admin">Admin</a></li>
             </ul>
         </div>

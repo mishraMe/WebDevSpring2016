@@ -3,8 +3,12 @@
     angular
         .module("FormBuilderApp")
         .controller("MainController", mainController);
-    function mainController($scope, $location){
+    function mainController($location){
+        var vm = this;
+        function init(){
 
-        $scope.$location = $location;
+            vm.$location = $location;
+        }
+        init();
     }
 })();

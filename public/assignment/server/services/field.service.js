@@ -1,38 +1,27 @@
 module.exports = function(app, formModel) {
-    app.get("/api/assignment/user/:userId/form", getFormsForUser);
-    app.get("/api/assignment/form/:formId", getFormById);
-    app.delete("/api/assignment/form/:formId", deleteFormById);
-    app.post("/api/assignment/user/:userId/form", createFormForUser);
-    app.put("/api/assignment/form/:formId", updateFormById);
+    app.get("/api/assignment/form/:formId/field", getFieldsOfForm);
+    app.get("/api/assignment/form/:formId/field/:fieldId", getFieldOfForm);
+    app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldFromForm);
+    app.post("/api/assignment/form/:formId/field", createFieldInForm);
+    app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
 
-    function getFormsForUser(req, res){
-        var userId = req.params.userId;
-        var forms = formModel.findFormsForUser(userId);
-        res.json(forms);
+    function getFieldsOfForm(req, res){
+
     };
 
-    function getFormById(req, res){
-        var formId = req.params.formId;
-        var form = formModel.findFormById(formId);
-        res.send(form);
+    function getFieldOfForm(req, res){
+
     };
 
-    function deleteFormById(req, res){
-        var deleteFormId = req.params.formId;
-        formModel.deleteForm(deleteFormId);
+    function deleteFieldFromForm(req, res){
+
     };
 
-    function createFormForUser(req, res){
-        var form = req.body;
-        var userId = req.params.userId;
-        form.userId = userId;
-        var createdForm = formModel.createForm(form);
-        res.send(createdForm);
+    function createFieldInForm(req, res){
+
     };
 
-    function updateFormById(req, res){
-        var formId = req.params.formId;
-        var updatedForm = req.body;
-        formModel.updateForm(formId, updatedForm);
+    function updateFieldInForm(req, res){
+
     };
 };

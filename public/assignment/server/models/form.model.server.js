@@ -73,7 +73,6 @@ module.exports = function(app){
         var form;
         for (var index in mockForms) {
             form = mockForms[index];
-
             if (form.userId === userId) {
                 formsForUser.push(form);
             }

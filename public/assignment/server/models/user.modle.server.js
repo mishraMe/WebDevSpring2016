@@ -2,7 +2,7 @@ var mockUsers = require("./user.mock.json");
 
 module.exports = function(app) {
 
-    var userApi = {
+    var api = {
         createUser: createUser,
         findAllUsers: findAllUsers,
         findUserById: findUserById,
@@ -11,7 +11,7 @@ module.exports = function(app) {
         updateUser: updateUser,
         deleteUser: deleteUser
     };
-    return userApi;
+    return api;
 
     //createUser function
     function createUser(user) {

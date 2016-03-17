@@ -1,17 +1,17 @@
 var mockForms = require("./form.mock.json");
 
 module.exports = function(app){
-    var formApi = {
+    var api = {
         createForm: createForm,
         findAllForms: findAllForms,
         findFormById: findFormById,
         updateForm: updateForm,
         deleteForm: deleteForm,
         findFormByTitle: findFormByTitle,
-        findFormsForUser: findFormsForUser,
+        findFormsForUser: findFormsForUser
     };
 
-    return formApi;
+    return api;
 
     function createForm (form) {
         form._id = (new Date).getTime();
@@ -40,7 +40,7 @@ module.exports = function(app){
                 break;
             }
         }
-    }
+    };
 
     function deleteForm (formId) {
         for (var index in mockForms) {
@@ -49,7 +49,7 @@ module.exports = function(app){
                break;
             }
         }
-    }
+    };
 
     function findFormByTitle(title) {
         var form;

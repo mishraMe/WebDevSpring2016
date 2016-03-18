@@ -12,15 +12,18 @@
             })
             .when("/register",{
                 templateUrl: "views/register/register.view.html",
-                controller: "RegisterController"
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/login",{
                 templateUrl: "views/login/login.view.html",
-                controller: "LoginController"
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .when("/profile",{
                 templateUrl: "views/profile/profile.view.html",
-                controller: "ProfileController"
+                controller: "ProfileController",
+                controllerAs: "model"
             })
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html",
@@ -29,7 +32,8 @@
         // sidebar config links
             .when("/forms",{
                 templateUrl: "views/forms/forms.view.html",
-                controller: "FormController"
+                controller: "FormController",
+                controllerAs: "model"
             })
             .when("/form-fields",{
                 templateUrl: "views/form-fields/form-fields.view.html",

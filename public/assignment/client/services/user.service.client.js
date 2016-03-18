@@ -4,6 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", userService);
     function userService($http, $rootScope) {
+        console.log("entered User service client");
 
         var api= {
             findUserByCredentials: findUserByCredentials,
@@ -21,6 +22,8 @@
         return api;
 
         function findUserByCredentials(username, password) {
+            console.log(username+" - "+password);
+            console.log("entered find User by credentials in user service client");
             return $http.get("/api/assignment/user?username="
                 +username+"&password=" +password);
         };
@@ -41,6 +44,9 @@
         };
 
         function updateUser(userId, user) {
+            console.log("entered UpdateUser in client service");
+            console.log(userId);
+            console.log(user);
            return $http.put("/api/assignment/user/" + userId, user);
         };
 

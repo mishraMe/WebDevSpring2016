@@ -38,7 +38,7 @@ module.exports = function(app) {
     //findUserById function
     function findUserById(userId) {
         for (var index in mockUsers) {
-            if (mockUsers[index]._id === userId) {
+            if (mockUsers[index]._id == userId) {
                 return mockUsers[index];
                 break;
             }
@@ -48,12 +48,15 @@ module.exports = function(app) {
 
     //updateUser function
     function updateUser(userId, user) {
+        console.log("entered updateUser in model")
+        console.log("user in user model server js")
+        console.log(user);
+        console.log("mock users are:");
+        console.log(mockUsers);
         for (var index in mockUsers) {
-            if (mockUsers[index]._id === userId) {
-                mockUsers[index].firstName = user.firstName;
-                mockUsers[index].lastName = user.lastName;
-                mockUsers[index].lastName = user.password;
-                break;
+            if (mockUsers[index]._id == userId) {
+              mockUsers[index] = user;
+
             }
         }
     };
@@ -84,6 +87,7 @@ module.exports = function(app) {
 
     //findUserByCredentials function
     function findUserByCredentials(credentials) {
+        console.log("entered in user model");
         var user
         for (var index in mockUsers) {
              user = mockUsers[index];

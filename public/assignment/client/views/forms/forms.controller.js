@@ -22,7 +22,7 @@
                 if (form == null) {
                     $scope.message = "Please enter a form name";
                 } else {
-                    $scope.forms = FormService.findAllFormsForUserId($scope.currentUser._id);
+                    $scope.forms = FormService.findAllFormsForUser($scope.currentUser._id);
                 }
             }
                 FormService.createFormForUser

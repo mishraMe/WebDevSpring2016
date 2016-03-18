@@ -15,17 +15,10 @@ module.exports = function(app) {
 
     //createUser function
     function createUser(user) {
-        var newUserId = (new Date).getTime();
-        var newUser =
-        {
-            "_id": newUserId,
-            "firstName": user.firstName,
-            "lastName": user.lastName,
-            "username": user.username,
-            "password": user.password
-        };
+        console.log("entered createUser method of user model in server");
+        user._id = (new Date).getTime();
+        mockUsers.push(user);
 
-        mockUsers.push(newUser);
         return mockUsers;
 
     };

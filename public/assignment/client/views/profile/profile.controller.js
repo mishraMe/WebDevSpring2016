@@ -24,7 +24,7 @@
                 .then(
                     function (response){
                         console.log(response.data);
-                        UserService.setCurrentUser(response.data);
+                        UserService.setCurrentUser(vm.currentUser);
                         $location.url("/profile");
                     });
 

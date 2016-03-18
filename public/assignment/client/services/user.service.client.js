@@ -35,7 +35,6 @@
         };
 
         function createUser(user) {
-          api.currentUsers.pop();
            return $http.post("/api/assignment/user", user);
         };
 

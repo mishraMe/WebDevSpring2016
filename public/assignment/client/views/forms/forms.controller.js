@@ -66,21 +66,27 @@
 
         function updateForm(newForm){
             //function is responsible for updating selected form to the new form's value
+            console.log("entered updatedForm")
             var renewedForm = {
                 _id: newForm._id,
                 title: newForm.title,
                 userId: newForm.userId
             };
-            function callback (newForm){
-                if(vm.form._id == null){
-                    vm.error = "Form name cannot be empty";
-                }else {
-                    vm.forms = FormService.findAllFormsForUserId(vm.currentUser._id);
-                    vm.error=null;
-                }
-            };
-            FormService.updateFormById(vm.form._id, renewedForm,callback);
-            vm.form=null;
+            if(vm.form._id == null){
+                vm.error = "Form name cannot be empty";
+            }
+            FormService
+                .updateFormById(vm.form._id, renewedForm)
+                .then(function(response){
+                    FormService
+                        .findAllFormsForUser(vm.currentUser._id)
+                        .then(function(resp){
+                            vm.forms= resp.data;
+                            vm.error = null;
+                            vm.form = null;
+                        });
+                });
+
         }
 
         function selectForm($index){

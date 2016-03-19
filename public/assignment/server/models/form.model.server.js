@@ -42,7 +42,7 @@ module.exports = function(app){
         for (var index in mockForms) {
             if (mockForms[index]._id === formId) {
                 mockForms[index] = form;
-                break;
+                return true;
             }
         }
     };

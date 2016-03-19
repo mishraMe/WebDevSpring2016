@@ -24,8 +24,10 @@ module.exports = function(app, formModel) {
     };
 
     function deleteFormById(req, res){
+        console.log("entered deleteFormById in server service");
         var deleteFormId = req.params.formId;
-        formModel.deleteForm(deleteFormId);
+       var response = formModel.deleteForm(deleteFormId);
+        res.send(response);
     };
 
     function createFormForUser(req, res){

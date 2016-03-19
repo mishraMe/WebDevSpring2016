@@ -48,19 +48,23 @@ module.exports = function(app){
     };
 
     function deleteForm (formId) {
+        console.log("entered deleteForm in model");
+        console.log("formId is " + formId);
         for (var index in mockForms) {
-            if (mockForms[index]._id === formId) {
+            if (mockForms[index]._id == formId) {
+                console.log("entered if condition");
                 mockForms.splice(index, 1);
-               break;
+                return true;
             }
         }
+        return false;
     };
 
     function findFormByTitle(title) {
         var form;
         for (var index in mockForms) {
              form = mockForms[index];
-            if (form.title === title) {
+            if (form.title == title) {
                 return form;
                 break;
             }

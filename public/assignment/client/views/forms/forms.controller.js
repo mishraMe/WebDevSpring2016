@@ -38,27 +38,30 @@
                             .findAllFormsForUser(vm.currentUser._id)
                             .then(function(resp){
                                 vm.forms= resp.data;
-                                console.log("response is ");
-                                console.log(resp);
-                                console.log("response data is");
-                                console.log(resp.data);
                             });
                     });
             vm.form = null;
         }
 
-        function deleteForm($index){
+        function deleteForm(form){
             //function is responsible for deleting a form by the index value
             var formsAfterDeletion=[];
+            console.log("form Id is");
+            console.log(form._id);
 
-            var callback=
-                function(response){
-                    formsAfterDeletion= response;
-                    vm.forms= FormService.findAllFormsForUserId(vm.currentUser._id);
-                    vm.error = null;
-                };
-            FormService.deleteFormById
-            (vm.forms[$index]._id,callback);
+            FormService
+                .deleteFormById(form._id)
+                .then(function(response){
+                    console.log("entered then condition of deleteFormByID");
+                    FormService
+                        .findAllFormsForUser(vm.currentUser._id)
+                        .then(function(resp){
+                            console.log("entrered then condition of find All forms in delete funciton");
+                            console.log(resp);
+                            vm.forms= resp.data;
+                            vm.error = null;
+                        });
+                });
         }
 
         function updateForm(newForm){

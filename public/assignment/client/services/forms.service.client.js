@@ -36,6 +36,7 @@
         };
 
         function deleteFormById(formId){
+            console.log("entered deleteFormById in forms service client");
            return $http.delete("/api/assignment/form/"+ formId);
         };
 

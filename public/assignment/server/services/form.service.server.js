@@ -6,8 +6,11 @@ module.exports = function(app, formModel) {
     app.put("/api/assignment/form/:formId", updateFormById);
 
 
+
     function getFormsForUser(req, res){
+        console.log("entered get forms for user in form service in server");
         var userId = req.params.userId;
+        console.log(userId);
         var forms = formModel.findFormsForUser(userId);
         res.json(forms);
     };

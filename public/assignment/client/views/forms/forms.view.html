@@ -1,5 +1,5 @@
             <h1 class="title">Forms</h1>
-            <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+            <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
                 <li role="presentation"><a href="#/form-fields">Fields</a></li>
@@ -18,16 +18,16 @@
                     <tr>
                         <td>
                             <input type="text"
-                                   ng-model="form.title"
+                                   ng-model="model.form.title"
                                    placeholder="name"
                                    id="title"
                                    class="form-control">
                         </td>
                         <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="addForm(form)"></span>
+                                  ng-click="model.addForm(model.form)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updateForm(form)"></span>
+                                   ng-click="model.updateForm(model.form)"></span>
                         </td>
                     </tr>
                   <tr ng-repeat="form in forms">
@@ -35,10 +35,10 @@
                           {{form.title}}
                       </td>
                         <td align="right">
-                            <span  ng-click="deleteForm($index)"
+                            <span  ng-click="model.deleteForm($index)"
                                   class="glyphicon glyphicon-remove">
                             </span>
-                            <span ng-click="selectForm($index)"
+                            <span ng-click="model.selectForm($index)"
                                   class="glyphicon glyphicon-pencil"></span>
                         </td>
                     </tr>

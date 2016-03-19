@@ -69,11 +69,12 @@ module.exports = function(app){
     };
 
     function findFormsForUser(userId) {
+        console.log("entred find forms for user in form model server");
         var formsForUser = [];
         var form;
         for (var index in mockForms) {
             form = mockForms[index];
-            if (form.userId === userId) {
+            if (form.userId == userId) {
                 formsForUser.push(form);
             }
         }

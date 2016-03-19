@@ -4,30 +4,31 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController(FormService, $scope, UserService, $rootScope){
+    function FormController(FormService,UserService){
 
         //variables :
-        $scope.message= null;
-        $scope.error= null;
-        $scope.selectedForm= null;
-        $scope.addForm = addForm;
-        $scope.deleteForm = deleteForm;
-        $scope.updateForm = updateForm;
-        $scope.selectForm = selectForm;
-        $scope.currentUser = UserService.getCurrentUser();
-        $scope.forms=FormService.findAllFormsForUserId($scope.currentUser._id);
+        var vm = this;
+        vm.message= null;
+        vm.error= null;
+        vm.selectedForm= null;
+        vm.addForm = addForm;
+        vm.deleteForm = deleteForm;
+        vm.updateForm = updateForm;
+        vm.selectForm = selectForm;
+        vm.currentUser = UserService.getCurrentUser();
+        vm.forms=FormService.findAllFormsForUser(vm.currentUser._id);
 
         function addForm(form){
             function callback (response) {
                 if (form == null) {
-                    $scope.message = "Please enter a form name";
+                    vm.message = "Please enter a form name";
                 } else {
-                    $scope.forms = FormService.findAllFormsForUser($scope.currentUser._id);
+                    vm.forms = FormService.findAllFormsForUser(vm.currentUser._id);
                 }
             }
                 FormService.createFormForUser
-                ($scope.currentUser._id, form, callback);
-            $scope.form = null;
+                (vm.currentUser._id, form, callback);
+            vm.form = null;
         }
 
         function deleteForm($index){
@@ -37,11 +38,11 @@
             var callback=
                 function(response){
                     formsAfterDeletion= response;
-                    $scope.forms= FormService.findAllFormsForUserId($scope.currentUser._id);
-                    $scope.error = null;
+                    vm.forms= FormService.findAllFormsForUserId(vm.currentUser._id);
+                    vm.error = null;
                 };
             FormService.deleteFormById
-            ($scope.forms[$index]._id,callback);
+            (vm.forms[$index]._id,callback);
         }
 
         function updateForm(newForm){
@@ -52,24 +53,24 @@
                 userId: newForm.userId
             };
             function callback (newForm){
-                if($scope.form._id == null){
-                    $scope.error = "Form name cannot be empty";
+                if(vm.form._id == null){
+                    vm.error = "Form name cannot be empty";
                 }else {
-                    $scope.forms = FormService.findAllFormsForUserId($scope.currentUser._id);
-                    $scope.error=null;
+                    vm.forms = FormService.findAllFormsForUserId(vm.currentUser._id);
+                    vm.error=null;
                 }
             };
-            FormService.updateFormById($scope.form._id, renewedForm,callback);
-            $scope.form=null;
+            FormService.updateFormById(vm.form._id, renewedForm,callback);
+            vm.form=null;
         }
 
         function selectForm($index){
            // console.log("hello select form");
             //function is responsible for selecting a form to edit
-            $scope.form = {
-                _id: $scope.forms[$index]._id,
-                title: $scope.forms[$index].title,
-                userId: $scope.forms[$index].userId
+            vm.form = {
+                _id: vm.forms[$index]._id,
+                title: vm.forms[$index].title,
+                userId: vm.forms[$index].userId
             };
         }
     }

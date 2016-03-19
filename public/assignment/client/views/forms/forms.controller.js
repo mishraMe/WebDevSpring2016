@@ -31,15 +31,19 @@
         init();
 
         function addForm(form){
-            function callback (response) {
-                if (form == null) {
-                    vm.message = "Please enter a form name";
-                } else {
-                    vm.forms = FormService.findAllFormsForUser(vm.currentUser._id);
-                }
-            }
-                FormService.createFormForUser
-                (vm.currentUser._id, form, callback);
+                FormService
+                    .createFormForUser(vm.currentUser._id, form)
+                    .then(function(response){
+                        FormService
+                            .findAllFormsForUser(vm.currentUser._id)
+                            .then(function(resp){
+                                vm.forms= resp.data;
+                                console.log("response is ");
+                                console.log(resp);
+                                console.log("response data is");
+                                console.log(resp.data);
+                            });
+                    });
             vm.form = null;
         }
 

@@ -32,7 +32,7 @@
 
         function findAllFormsForUser(userId){
             console.log("entered find All forms for User");
-           return $http.get("/api/assignment/user/:"+userId+"/form");
+           return $http.get("/api/assignment/user/"+userId+"/form");
         };
 
         function deleteFormById(formId){

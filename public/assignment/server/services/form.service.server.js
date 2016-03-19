@@ -12,7 +12,9 @@ module.exports = function(app, formModel) {
         var userId = req.params.userId;
         console.log(userId);
         var forms = formModel.findFormsForUser(userId);
-        res.json(forms);
+        console.log("forms in form service server js (response) is ");
+        console.log(forms);
+        res.send(forms);
     };
 
     function getFormById(req, res){

@@ -70,15 +70,24 @@ module.exports = function(app){
 
     function findFormsForUser(userId) {
         console.log("entred find forms for user in form model server");
+        console.log("userId is " + userId);
         var formsForUser = [];
         var form;
         for (var index in mockForms) {
             form = mockForms[index];
+            console.log("form.userId Value is");
+            console.log(form.userId);
+            console.log("userId value");
+            console.log(userId);
+            console.log(form.userId == userId);
             if (form.userId == userId) {
+                console.log("entered if condition");
                 formsForUser.push(form);
             }
         }
+        console.log(formsForUser);
         return formsForUser;
+
     };
 
     //functions for fields of the form

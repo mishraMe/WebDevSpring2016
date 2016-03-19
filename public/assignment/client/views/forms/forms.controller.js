@@ -16,7 +16,19 @@
         vm.updateForm = updateForm;
         vm.selectForm = selectForm;
         vm.currentUser = UserService.getCurrentUser();
-        vm.forms=FormService.findAllFormsForUser(vm.currentUser._id);
+
+        function init(){
+            FormService
+                .findAllFormsForUser(vm.currentUser._id)
+                .then(function(response){
+                    vm.forms= response.data;
+                    console.log("response is ");
+                    console.log(response);
+                    console.log("response data is");
+                    console.log(response.data);
+                });
+        }
+        init();
 
         function addForm(form){
             function callback (response) {

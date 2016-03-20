@@ -98,7 +98,6 @@
                 userId: vm.forms[$index].userId
             }
             FormService.setCurrentForm(vm.form);
-
         }
     }
 

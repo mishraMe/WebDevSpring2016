@@ -1,11 +1,11 @@
-<h1 class="title">model.form.title</h1>
+<h1 class="title">model.form.title same page</h1>
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/forms">Forms</a></li>
-    <li role="presentation" class="active"><a href="#/field">Fields</a></li>
+    <li role="presentation" class="active"><a href="#/form/{{field._id}}/fields">Fields</a></li>
 </ul>
 <div>
     <form ng-model="model.fields">
-        <div  class="form-group" ng-switch="field.type" ng-repeate="field in model.fields">
+        <div  class="form-group" ng-switch="field.type" ng-repeat="field in model.fields">
             <div ng-switch-when="TEXT">
                 <label>{{field.label}}</label>
                 <div>

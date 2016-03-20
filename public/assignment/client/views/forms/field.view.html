@@ -17,7 +17,7 @@
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-remove" ng-click="removeField(model.field)"></span>
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 </br>
@@ -110,7 +110,7 @@
             <br/>
             <div>
             <select class="col-sm-6" ng-model="model.fieldType">
-                <option value="singleText">Single Text</option>
+                <option value="singleText">Single Text Field</option>
                 <option value="date">Date</option>
                 <option value="dropDown">Dropdown</option>
                 <option value="checkBoxes">Checkboxes</option>

@@ -142,6 +142,7 @@ module.exports = function(app){
         var form = findFormById(formId);
         newField._id = (new Date).getTime();
         form.fields.push(newField);
+        return form.fields;
     };
 
     function updateFieldInForm(formId, fieldId, updatedField){

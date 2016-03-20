@@ -8,7 +8,7 @@ module.exports = function(app, userModel) {
     app.delete("/api/assignment/user/:id", deleteUser);
 
     function createUser(req, res){
-        console.log("create user");
+      //  console.log("create user");
 
         var user = req.body;
         var users = [];
@@ -59,14 +59,14 @@ module.exports = function(app, userModel) {
     };
 
     function updateUser(req, res){
-        console.log("enters the updateUser in user.service.server.js");
-        console.log(req);
-        console.log("print req. body");
-        console.log(req.body);
+        //console.log("enters the updateUser in user.service.server.js");
+        //console.log(req);
+        //console.log("print req. body");
+        //console.log(req.body);
         var updatedUser = req.body;
-        console.log("updatedUser is ");
-        console.log(updatedUser);
-        console.log("updatedUser in server user service is ");
+        //console.log("updatedUser is ");
+        //console.log(updatedUser);
+        //console.log("updatedUser in server user service is ");
         userModel.updateUser(req.params.id, updatedUser);
         var users = userModel.findAllUsers();
         res.json(users);

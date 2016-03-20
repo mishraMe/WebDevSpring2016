@@ -49,8 +49,8 @@
                     .createUser(user)
                     .then(function(response){
                         var data = response.data;
-                        console.log("response.data is");
-                        console.log(response.data);
+                      //  console.log("response.data is");
+                      //  console.log(response.data);
                         if(data != null) {
                             UserService.setCurrentUser(user);
                             $location.url("/profile");

@@ -5,6 +5,9 @@ module.exports = function(app, formModel) {
     app.post("/api/assignment/form/:formId/field", createFieldInForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
 
+    console.log("SERVERRRRRR FIELDSSSSS PRINTINIIIIGGGGGGGGGG");
+
+
     function getFieldsOfForm(req, res){
         var formId = req.params.formId;
         var fields =[];

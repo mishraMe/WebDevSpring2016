@@ -32,7 +32,9 @@
                     </tr>
                   <tr ng-repeat="form in model.forms">
                       <td>
-                          {{form.title}}
+                          <a href="#/field">
+                              {{form.title}}
+                          </a>
                       </td>
                         <td align="right">
                             <span  ng-click="model.deleteForm(form)"

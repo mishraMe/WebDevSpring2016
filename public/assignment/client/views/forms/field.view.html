@@ -8,7 +8,11 @@
                 <div class="form-group">
                     <label for="fName">First Name:</label>
                     <div>
-                        <input type="text" id="fName" placeholder="First Name" class="col-sm-6">
+                        <input type="text"
+                               ng-model = "model.firstName"
+                               id="fName"
+                               placeholder="First Name"
+                               class="col-sm-6">
                         </div>
                     <div class="col-sm-6" align="right">
                         <span class="glyphicon glyphicon-pencil"></span>
@@ -20,7 +24,11 @@
                 <div class="form-group">
                     <label for="lName">Last Name:</label>
                     <div>
-                    <input type="text" id="lName" placeholder="Last Name" class="col-sm-6">
+                    <input type="text"
+                           ng-model = "model.lastName"
+                           id="lName"
+                           placeholder="Last Name"
+                           class="col-sm-6">
                         </div>
                     <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -33,7 +41,11 @@
                 <div class="form-group">
                     <label for="dob">Date Of Birth:</label>
                     <div>
-                    <input type="date" id="dob" placeholder="Select Date" class="col-sm-6">
+                    <input type="date"
+                           ng-model="model.DOB"
+                           id="dob"
+                           placeholder="Select Date"
+                           class="col-sm-6">
                         </div>
                     <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -46,7 +58,7 @@
                 <div class="form-group dropdown">
                     <label>Gender:</label>
                     <br/>
-                    <select class="col-sm-6">
+                    <select class="col-sm-6" ng-model="model.gender">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
@@ -90,7 +102,7 @@
                 <div class="form-group dropdown">
                     <label>Add New Field:</label>
                     <br/>
-                        <select class="col-sm-6">
+                        <select class="col-sm-6" ng-model="model.fieldType">
                             <option value="singleText">Single Text</option>
                             <option value="date">Date</option>
                             <option value="dropDown">Dropdown</option>

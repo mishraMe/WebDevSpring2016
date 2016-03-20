@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("FieldService", FieldService);
 
-    function FieldService($rootScope, $http){
+    function FieldService($http){
         var fieldsApi = {
             createFieldForForm: createFieldForForm,
             getFieldsForForm: getFieldsForForm,
@@ -31,7 +31,7 @@
             return $http.delete("/api/assignment/form/"+ formId+"/field/"+ fieldId);
         }
 
-        function udpateField(formId, fieldId, field){
+        function updateField(formId, fieldId, field){
             return $http.put("/api/assignment/form/"+formId+"/field/"+ fieldId, field);
         };
     }

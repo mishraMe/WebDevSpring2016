@@ -5,10 +5,8 @@ module.exports = function(app, formModel) {
     app.post("/api/assignment/form/:formId/field", createFieldInForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
 
-    console.log("SERVERRRRRR FIELDSSSSS PRINTINIIIIGGGGGGGGGG");
-
-
     function getFieldsOfForm(req, res){
+        console.log("entered get Fields of form in server service");
         var formId = req.params.formId;
         var fields =[];
         fields = formModel.findAllFieldsInForm(formId);

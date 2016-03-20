@@ -96,6 +96,7 @@ module.exports = function(app){
 
     //functions for fields of the form
     function findAllFieldsInForm(formId){
+        console.log("entered findAllFieldsInForm! WOOHOOW!!")
         var fields = [];
         var form;
         for(var index in mockForms){

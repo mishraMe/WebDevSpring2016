@@ -2,7 +2,7 @@
             <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
             <ul class="nav nav-tabs">
                 <li role="presentation" class="active"><a href="#/forms">Forms</a></li>
-                <li role="presentation"><a href="#/form-fields">Fields</a></li>
+                <li role="presentation"><a href="#/fields">Fields</a></li>
             </ul>
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -32,7 +32,7 @@
                     </tr>
                   <tr ng-repeat="form in model.forms">
                       <td>
-                          <a href="#/field">
+                          <a href="#/form/{{form._id}}/fields">
                               {{form.title}}
                           </a>
                       </td>

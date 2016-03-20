@@ -22,10 +22,10 @@
                 .findAllFormsForUser(vm.currentUser._id)
                 .then(function(response){
                     vm.forms= response.data;
-                    console.log("response is ");
-                    console.log(response);
-                    console.log("response data is");
-                    console.log(response.data);
+                    //console.log("response is ");
+                    //console.log(response);
+                    //console.log("response data is");
+                    //console.log(response.data);
                 });
         }
         init();
@@ -46,18 +46,18 @@
         function deleteForm(form){
             //function is responsible for deleting a form by the index value
             var formsAfterDeletion=[];
-            console.log("form Id is");
-            console.log(form._id);
+           // console.log("form Id is");
+           // console.log(form._id);
 
             FormService
                 .deleteFormById(form._id)
                 .then(function(response){
-                    console.log("entered then condition of deleteFormByID");
+             //       console.log("entered then condition of deleteFormByID");
                     FormService
                         .findAllFormsForUser(vm.currentUser._id)
                         .then(function(resp){
-                            console.log("entrered then condition of find All forms in delete funciton");
-                            console.log(resp);
+                          //  console.log("entrered then condition of find All forms in delete funciton");
+                          //  console.log(resp);
                             vm.forms= resp.data;
                             vm.error = null;
                         });
@@ -66,7 +66,7 @@
 
         function updateForm(newForm){
             //function is responsible for updating selected form to the new form's value
-            console.log("entered updatedForm")
+           // console.log("entered updatedForm")
             var renewedForm = {
                 _id: newForm._id,
                 title: newForm.title,

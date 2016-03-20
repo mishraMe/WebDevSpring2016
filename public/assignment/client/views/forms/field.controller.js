@@ -12,8 +12,6 @@
         console.log("currentForm value is");
         console.log(vm.currentForm);
         console.log("inside FieldController");
-
-
         //vm.addForm = addForm;
 
         function init(){

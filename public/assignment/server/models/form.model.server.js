@@ -48,8 +48,8 @@ module.exports = function(app){
     };
 
     function deleteForm (formId) {
-        console.log("entered deleteForm in model");
-        console.log("formId is " + formId);
+        //console.log("entered deleteForm in model");
+        //console.log("formId is " + formId);
         for (var index in mockForms) {
             if (mockForms[index]._id == formId) {
                 console.log("entered if condition");
@@ -124,13 +124,14 @@ module.exports = function(app){
     };
 
     function deleteFieldFromForm(fieldId, formId){
+        console.log("entered the deleteFieldFromForm in model");
         var field;
         var form = findFormById(formId);
         for (var index in form.fields){
             field = form.fields[index];
-            if( field._id === fieldId){
+            if( field._id == fieldId){
                 form.fields.splice(index, 1);
-                break;
+                return form.fields;
             }
         }
     };

@@ -24,7 +24,8 @@ module.exports = function(app, formModel) {
     function deleteFieldFromForm(req, res){
         var fieldId = req.params.fieldId;
         var formId = req.params.formId;
-        formModel.deleteFieldFromForm(fieldId,formId);
+       var formsAfterDeletion = formModel.deleteFieldFromForm(fieldId,formId);
+        res.json(formsAfterDeletion);
     };
 
     function createFieldInForm(req, res){

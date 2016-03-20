@@ -7,8 +7,14 @@
     function FieldController(FieldService, $routeParams){
 
         var vm = this;
-        var formId = $routeParams.formId;
 
+        //methods(methods have been written before the variables so for their easy reference)
+        vm.addField = addField;
+        vm.removeField = removeField;
+        vm.editField = editField;
+
+        //variables
+        var formId = $routeParams.formId;
         var fieldTypes =[
             {
                 fieldOption: "singleText",
@@ -36,7 +42,7 @@
                 }
             },
             {
-                fieldOption: "checkboxes",
+                fieldOption: "checkBoxes",
                 template:
                 {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES",
                     "options": [
@@ -63,31 +69,18 @@
                 FieldService
                     .getMyForm(formId)
                     .then(function(response){
-                      //  console.log("entered the then condition for field service get form");
-                      //  console.log(response.data);
                         vm.currentForm = response.data;
-                      //  console.log("current form value is ");
-                     //   console.log(vm.currentForm);
                         FieldService
                             .getFieldsForForm(vm.currentForm._id)
                             .then(function(response){
-                           //     console.log("response data is passed from model YAY");
                                vm.fields=(response.data);
                             });
                     });
         }
         init();
 
-        vm.addField = addField;
-        vm.removeField = removeField;
-        vm.editField = editField;
-
         function addField(fieldType){
             var newFieldTemplate = findTemplateForFieldType(fieldType);
-            console.log("newFieldTemplate is");
-            console.log(newFieldTemplate);
-            console.log("CurrentForm value is :");
-            console.log(vm.currentForm);
             FieldService
                 .createFieldForForm(vm.currentForm._id, newFieldTemplate)
                 .then(function(response){
@@ -106,7 +99,16 @@
         };
 
         function removeField(field){
-
+            //console.log("entered remove field method of controller");
+            //console.log("field is ")
+            //console.log(field);
+            FieldService
+                .deleteFieldFromForm(vm.currentForm._id, field._id)
+                .then(function(response){
+                    console.log("response.data after removeFields is");
+                    console.log(response.data);
+                    vm.fields=response.data;
+                });
         };
 
         function editField(field){

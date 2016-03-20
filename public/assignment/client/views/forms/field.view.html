@@ -1,4 +1,4 @@
-<h1 class="title">model.form.title same page</h1>
+<h1 class="title">model.currentForm.title</h1>
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/forms">Forms</a></li>
     <li role="presentation" class="active"><a href="#/form/{{field._id}}/fields">Fields</a></li>
@@ -6,53 +6,99 @@
 <div>
     <form ng-model="model.fields">
         <div  class="form-group" ng-switch="field.type" ng-repeat="field in model.fields">
-            <div ng-switch-when="TEXT">
+            <div ng-switch-when="TEXT" class="form-group">
                 <label>{{field.label}}</label>
+                <br/>
                 <div>
-                    <input type="text" class="form-control"
+                    <input type="text"
                            placeholder="{{field.placeholder}}"
                            class="col-sm-6">
                 </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
+                </br>
             </div>
 
-            <div ng-switch-when="TEXTAREA">
+            <div ng-switch-when="TEXTAREA" class="form-group">
                 <label>{{field.label}}</label>
+                <br/>
                 <div>
                     <textarea class="form-control" placeolder="{{field.placeholder}}"></textarea>
                 </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
+                <br/>
             </div>
 
-            <div ng-switch-when="DATE">
+            <div ng-switch-when="DATE" class="form-group">
                 <label>{{field.label}}</label>
+                <br/>
                 <div>
                     <input type="date" class="form-control"
                            placeholder={{field.placeholder}}
                            class="col-sm-6">
                 </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
+                <br/>
             </div>
 
-            <div ng-switch-when="OPTIONS">
+            <div ng-switch-when="OPTIONS" class="form-group">
                 <label>{{field.label}}</label>
-                <select class="col-sm-6" class="form-control">
+                <br/>
+                <div>
+                <select class="col-sm-6">
                     <option ng-repeat="option in field.options">{{option.label}}</option>
                 </select>
+                </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
+                <br/>
             </div>
 
-            <div ng-switch-when="CHECKBOXES">
+            <div ng-switch-when="CHECKBOXES" class="form-group">
                 <label>field.label</label>
                 <br/>
                 <div class="checkbox-group col-sm-6">
                     <input type="checkbox" ng-repeat="checkbox in field.options"
                            value="{{checkbox.value}}"/>{{checkbox.label}}<br/>
                 </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
                 <br/>
             </div>
 
-            <div ng-switch-when="RADIOS">
+            <div ng-switch-when="RADIOS" class="form-group">
                 <label>field.label</label>
                 <br/>
                 <div class="radio-group col-sm-6">
                     <input type="radio"  ng-repeat="radio in field.options">{{radio.label}}<br>
+                </div>
+                <div class="col-sm-6" align="right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
                 <br/>
             </div>
@@ -62,6 +108,7 @@
         <div class="form-group dropdown">
             <label>Add New Field:</label>
             <br/>
+            <div>
             <select class="col-sm-6" ng-model="model.fieldType">
                 <option value="singleText">Single Text</option>
                 <option value="date">Date</option>
@@ -70,9 +117,11 @@
                 <option value="radioButtons">Radio buttons</option>
                 <option value="paragraphTextField">Paragraph Text Field</option>
             </select>
+            </div>
             <div class="col-sm-2 col-sm-offset-4" align="center">
                 <span ng-click="model.addField(model.fieldType)" class="glyphicon glyphicon-plus"></span>
             </div>
+            <br/>
         </div>
     </form>
 </div>

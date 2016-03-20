@@ -4,6 +4,7 @@ module.exports = function(app, formModel) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldFromForm);
     app.post("/api/assignment/form/:formId/field", createFieldInForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
+    app.get("/api/assignment/form/:formId", getMyForm);
 
     function getFieldsOfForm(req, res){
         console.log("entered get Fields of form in server service");
@@ -39,4 +40,9 @@ module.exports = function(app, formModel) {
         var fieldId = req.params.fieldId;
         formModel.updateFieldInForm(formId,fieldId, updatedField);
     };
+
+    function getMyForm(req, res){
+        var form = formModel.findFormById(req.params.formId);
+        res.send(form);
+    }
 };

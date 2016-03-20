@@ -12,7 +12,7 @@
             updateFormById: updateFormById,
             setCurrentForm: setCurrentForm,
             getCurrentForm: getCurrentForm,
-            getCurrentForms: getCurrentForm
+            getCurrentForms: getCurrentForm,
         };
         //$rootScope.forms = formsApi.forms;
         return formsApi;

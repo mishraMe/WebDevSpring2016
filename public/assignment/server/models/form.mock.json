@@ -15,9 +15,20 @@
 
 {"_id": "010", "title": "ToDo", "userId": 234,
 "fields": [
-{"_id": "777", "label": "Title", "type": "TEXT", "placeholder": "Title"},
-{"_id": "888", "label": "Description", "type": "TEXTAREA", "placeholder": "Title"},
-{"_id": "999", "label": "Due Date", "type": "DATE"}
+  {"_id": "777", "label": "Title", "type": "TEXT", "placeholder": "Title"},
+  {"_id": "888", "label": "Description", "type": "TEXTAREA", "placeholder": "Title"},
+  {"_id": "999", "label": "Due Date", "type": "DATE"},
+  {"_id": "1000","label": "Roles", "type": "CHECKBOXES",
+    "options": [
+      {"label": "Student", "value": "student"},
+      {"label": "Admin", "value": "Admin"},
+      {"label": "Faculty", "value": "Faculty"}
+    ]},
+  {"_id": "1100", "label": "License Agreement", "type": "RADIOS",
+    "options": [
+    {"label": "Agree", "value": "Agreement"},
+    {"label": "Disagree", "value": "Disagreement"}
+  ]}
 ]
 }
 ]

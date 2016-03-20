@@ -11,6 +11,7 @@
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField,
+            getMyForm: getMyForm
         };
         //$rootScope.forms = formsApi.forms;
         return fieldsApi;
@@ -33,6 +34,10 @@
 
         function updateField(formId, fieldId, field){
             return $http.put("/api/assignment/form/"+formId+"/field/"+ fieldId, field);
+        };
+
+        function getMyForm(formId){
+            return $http.get("/api/assignment/form/"+ formId);
         };
     }
 })();

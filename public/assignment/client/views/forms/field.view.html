@@ -27,7 +27,7 @@
                 <label>{{field.label}}</label>
                 <br/>
                 <div>
-                    <textarea  placeolder="{{field.placeholder}}"></textarea>
+                    <textarea class="col-sm-6" placeolder="{{field.placeholder}}"></textarea>
                 </div>
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -73,12 +73,12 @@
             </div>
 
             <div ng-switch-when="CHECKBOXES" class="form-group">
-                <label>field.label</label>
+                <label>{{field.label}}</label>
                 <br/>
-                <div class="checkbox-group col-sm-6">
-                    <input type="checkbox" ng-repeat="checkbox in field.options"
-                           value="{{checkbox.value}}"/>{{checkbox.label}}<br/>
+                <div class="checkbox-group col-sm-6" ng-repeat="checkbox in field.options">
+                    <input type="checkbox" value="{{checkbox.value}}"/>{{checkbox.label}}<br/>
                 </div>
+                <br/>
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="glyphicon glyphicon-plus"></span>
@@ -89,10 +89,10 @@
             </div>
 
             <div ng-switch-when="RADIOS" class="form-group">
-                <label>field.label</label>
+                <label>{{field.label}}</label>
                 <br/>
-                <div class="radio-group col-sm-6">
-                    <input type="radio"  ng-repeat="radio in field.options">{{radio.label}}<br>
+                <div class="radio-group col-sm-6" ng-repeat="radio in field.options">
+                    <input type="radio">{{radio.label}}<br/>
                 </div>
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"></span>

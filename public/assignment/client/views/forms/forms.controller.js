@@ -83,7 +83,7 @@
                         .then(function(resp){
                             vm.forms= resp.data;
                             vm.error = null;
-                           // vm.form = null;
+                            vm.form = null;
                         });
                 });
 
@@ -97,7 +97,6 @@
                 title: vm.forms[$index].title,
                 userId: vm.forms[$index].userId
             }
-            FormService.setCurrentForm(vm.form);
         }
     }
 

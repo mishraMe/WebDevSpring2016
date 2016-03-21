@@ -20,20 +20,24 @@
             [
             {
                 fieldOption: "singleText",
+                type: "TEXT",
                 template:
                 {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"}
             },
             {
                 fieldOption: "paragraphTextField",
+                type: "TEXTAREA",
                 template:
                 {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
             },
             {
                 fieldOption: "date",
+                type: "DATE",
                 template:{"_id": null, "label": "New Date Field", "type": "DATE"}
             },
             {
                 fieldOption: "dropDown",
+                type: "OPTIONS",
                 template:
                 {"_id": null, "label": "New Dropdown", "type": "OPTIONS",
                     "options": [
@@ -45,6 +49,7 @@
             },
             {
                 fieldOption: "checkBoxes",
+                type: "CHECKBOXES",
                 template:
                 {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES",
                     "options": [
@@ -56,6 +61,7 @@
             },
             {
                 fieldOption: "radioButtons",
+                type: "RADIOS",
                 template:
                 {"_id": null, "label": "New Radio Buttons", "type": "RADIOS",
                     "options": [
@@ -135,7 +141,8 @@
 
         function updateField(field){
             vm.field = field;
-
+            console.log("updateField field is");
+            console.log(field);
             if (vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"
                 || vm.field.type == "RADIOS") {
@@ -150,6 +157,10 @@
                 }
                 vm.field.options = newOptions;
             }
+                       console.log("current form id is:" +vm.currentForm.id);
+            console.log("current field id is:" +vm.field.id);
+            console.log("current form is:");
+            console.log(vm.field);
             FieldService
                 .updateField(vm.currentForm._id, vm.field._id, vm.field)
                 .then(function(response){

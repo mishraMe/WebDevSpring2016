@@ -37,6 +37,7 @@ module.exports = function(app, formModel) {
     };
 
     function updateFieldInForm(req, res){
+        console.log("entered the updateFieldInForm server service")
         var updatedField = req.body;
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;

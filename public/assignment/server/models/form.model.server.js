@@ -148,9 +148,14 @@ module.exports = function(app){
 
     function updateFieldInForm(formId, fieldId, updatedField){
         var form = findFormById(formId);
+        console.log("formId is" + formId);
+        console.log("fieldId is" + fieldId);
+        console.log("updatedField is");
+        console.log(updatedField);
         var field;
         for(var index in form.fields){
-            if(form.fields[index]._id === fieldId){
+            if(form.fields[index]._id == fieldId){
+                console.log("entered the updatefieldInForm if condition model here");
                 form.fields[index] = updatedField;
                 return form.fields;
             }

@@ -4,7 +4,7 @@
     <li role="presentation" class="active"><a href="#/form/{{field._id}}/fields">Fields</a></li>
 </ul>
 <div>
-    <form ng-model="model.fields">
+    <form ng-model="model.fields" ui-sortable="model.fields">
         <div  class="form-group" ng-switch="field.type" ng-repeat="field in model.fields">
             <div ng-switch-when="TEXT" class="form-group">
                 <br/>

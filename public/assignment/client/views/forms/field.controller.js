@@ -135,8 +135,6 @@
 
         function updateField(field){
             vm.field = field;
-            console.log("field in updateField is");
-            console.log(field);
 
             if (vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"
@@ -152,14 +150,12 @@
                 }
                 vm.field.options = newOptions;
             }
-
             FieldService
                 .updateField(vm.currentForm._id, vm.field._id, vm.field)
                 .then(function(response){
                     console.log("response after updating is");
                     console.log(response.data);
                     vm.fields = response.data;
-
                 });
         }
 

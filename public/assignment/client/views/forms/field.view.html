@@ -192,8 +192,10 @@
                                        placeholder="Label">
                                 <br>
                                 <label>Options</label>
-                                 <textarea ng-model="model.newOptions" class="form-control"
-                                           placeholder="Options" ng-list="&#10;">{{model.newOptions}}</textarea>
+                                 <textarea ng-model="model.newOptions"class="form-control"
+                                           placeholder="Options" ng-list="&#10;" ng-trim="false">
+                                     {{model.newOptions}}
+                                 </textarea>
                             </div>
                     </div>
                     <div ng-switch-when="CHECKBOXES">
@@ -205,7 +207,8 @@
                                 <br>
                                 <label>Options</label>
                                  <textarea ng-model="model.newOptions" class="form-control"
-                                           placeholder="Options" ng-list="&#10;" type="text">{{model.newOptions}}</textarea>
+                                           placeholder="Options" ng-list="&#10;" ng-trim="false">
+                                     {{model.newOptions}}</textarea>
                             </div>
                     </div>
                     <div ng-switch-when="RADIOS">
@@ -217,12 +220,22 @@
                                 <br>
                                 <label>Options</label>
                                  <textarea ng-model="model.newOptions" class="form-control"
-                                           placeholder="Options" ng-list="&#10;">{{model.newOptions}}</textarea>
+                                           placeholder="Options" ng-list="&#10;" ng-trim="false">
+                                     {{model.newOptions}}
+                                 </textarea>
                             </div>
                     </div>
                     <div class="modal-footer">
-                            <button class="btn btn-primary" type="button" ng-click="model.updateField(field)">OK</button>
-                            <button class="btn btn-warning" type="button" ng-click="model.cancelField(field)">Cancel</button>
+                            <button class="btn btn-primary" type="button"
+                                    data-dismiss="modal"
+                                    ng-click="model.updateField(model.field)">
+                                OK
+                            </button>
+                            <button class="btn btn-warning"
+                                    type="button"
+                                    data-dismiss="modal">
+                                Cancel
+                            </button>
                         </div>
                     </div>
                 </div>

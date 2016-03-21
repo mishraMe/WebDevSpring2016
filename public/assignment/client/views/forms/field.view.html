@@ -1,4 +1,4 @@
-<h1 class="title">currentForm.title</h1>
+<h1 class="title">{{model.currentForm.title}}</h1>
 <ul class="nav nav-tabs">
     <li role="presentation"><a href="#/forms">Forms</a></li>
     <li role="presentation" class="active"><a href="#/form/{{field._id}}/fields">Fields</a></li>
@@ -146,8 +146,6 @@
     <!-- modal for editing forms-->
     <div id="editField" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
-            <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>

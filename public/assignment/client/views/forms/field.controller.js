@@ -135,6 +135,8 @@
 
         function updateField(field){
             vm.field = field;
+            console.log("field in updateField is");
+            console.log(field);
 
             if (vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"

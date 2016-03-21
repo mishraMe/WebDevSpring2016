@@ -20,23 +20,27 @@
             [
             {
                 fieldOption: "singleText",
+                heading: "Single Line Text Field",
                 type: "TEXT",
                 template:
                 {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"}
             },
             {
                 fieldOption: "paragraphTextField",
+                heading: "Multi Line Text Field",
                 type: "TEXTAREA",
                 template:
                 {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
             },
             {
                 fieldOption: "date",
+                heading: "Date Field",
                 type: "DATE",
                 template:{"_id": null, "label": "New Date Field", "type": "DATE"}
             },
             {
                 fieldOption: "dropDown",
+                heading: "Dropdown Field",
                 type: "OPTIONS",
                 template:
                 {"_id": null, "label": "New Dropdown", "type": "OPTIONS",
@@ -49,6 +53,7 @@
             },
             {
                 fieldOption: "checkBoxes",
+                heading: "Checkbox Field",
                 type: "CHECKBOXES",
                 template:
                 {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES",
@@ -61,6 +66,7 @@
             },
             {
                 fieldOption: "radioButtons",
+                heading: "Radio Button Field",
                 type: "RADIOS",
                 template:
                 {"_id": null, "label": "New Radio Buttons", "type": "RADIOS",
@@ -122,7 +128,7 @@
         function editField(field){
             console.log("entered edit field")
             vm.field = field;
-
+            vm.modalHeading = findHeadingForModal(vm.field);
             if(vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"
                 || vm.field.type == "RADIOS"){
@@ -169,6 +175,14 @@
                     vm.fields = response.data;
                 });
         }
+
+        function findHeadingForModal(field){
+            for(var index in fieldTypes){
+                if(fieldTypes[index].type == field.type){
+                    return fieldTypes[index].heading;
+                }
+            }
+        };
 
 
 

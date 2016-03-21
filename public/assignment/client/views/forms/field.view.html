@@ -162,11 +162,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">{{model.field.text}}</h3>
+                    <h3 class="modal-title">{{model.modalHeading}}</h3>
                 </div>
                 <div class="modal-body" ng-switch="model.field.type">
                     <div ng-switch-when="TEXT">
-                        <h3>Single Line Field</h3>
                         <div>
                             <label>Label</label>
                             <input ng-model="model.field.label" class="form-control" type="text"
@@ -178,7 +177,6 @@
                         </div>
                     </div>
                     <div ng-switch-when="TEXTAREA">
-                            <h3>Multi Line Text Field</h3>
                             <div>
                                 <label>Label</label>
                                 <input ng-model="model.field.label" class="form-control" type="text"
@@ -190,7 +188,6 @@
                             </div>
                     </div>
                     <div ng-switch-when="DATE">
-                            <h3>Date Field</h3>
                             <div>
                                 <label>Label</label>
                                 <input ng-model="model.field.label" class="form-control" type="text"
@@ -198,7 +195,6 @@
                             </div>
                     </div>
                     <div ng-switch-when="OPTIONS">
-                            <h3>DropDown Field</h3>
                             <div>
                                 <label>Label</label>
                                 <input ng-model="model.field.label" class="form-control" type="text"
@@ -212,7 +208,6 @@
                             </div>
                     </div>
                     <div ng-switch-when="CHECKBOXES">
-                            <h3>Checkbox Field</h3>
                             <div>
                                 <label>Label</label>
                                 <input ng-model="model.field.label" class="form-control" type="text"
@@ -225,7 +220,6 @@
                             </div>
                     </div>
                     <div ng-switch-when="RADIOS">
-                            <h3>Radio Button Field</h3>
                             <div>
                                 <label>Label</label>
                                 <input ng-model="model.field.label" class="form-control" type="text"

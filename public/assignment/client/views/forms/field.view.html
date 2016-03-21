@@ -45,6 +45,7 @@
             </div>
 
             <div ng-switch-when="DATE" class="form-group">
+                <br/>
                 <label>{{field.label}}</label>
                 <br/>
                 <div>
@@ -87,8 +88,12 @@
             <div ng-switch-when="CHECKBOXES" class="form-group">
                 <label>{{field.label}}</label>
                 <br/>
-                <div class="checkbox-group col-sm-6" ng-repeat="checkbox in field.options">
-                    <input type="checkbox" value="{{checkbox.value}}"/>{{checkbox.label}}<br/>
+                <div class="checkbox-group col-sm-6">
+                <div ng-repeat="checkbox in field.options">
+                    <input type="checkbox" value="{{checkbox.value}}"/>
+                    {{checkbox.label}}
+                    <br/>
+                </div>
                 </div>
                 <br/>
                 <div class="col-sm-6" align="right">
@@ -104,10 +109,13 @@
             </div>
 
             <div ng-switch-when="RADIOS" class="form-group">
+                <br/>
                 <label>{{field.label}}</label>
                 <br/>
-                <div class="radio-group col-sm-6" ng-repeat="radio in field.options">
+                <div class="radio-group col-sm-6">
+                    <div  ng-repeat="radio in field.options">
                     <input type="radio">{{radio.label}}<br/>
+                    </div>
                 </div>
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"
@@ -124,6 +132,7 @@
         </div>
 
         <div class="form-group dropdown">
+            <br/>
             <label>Add New Field:</label>
             <br/>
             <div>

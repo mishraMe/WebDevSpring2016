@@ -7,6 +7,7 @@
     <form ng-model="model.fields">
         <div  class="form-group" ng-switch="field.type" ng-repeat="field in model.fields">
             <div ng-switch-when="TEXT" class="form-group">
+                <br/>
                 <label>{{field.label}}</label>
                 <br/>
                 <div>
@@ -27,6 +28,7 @@
             </div>
 
             <div ng-switch-when="TEXTAREA" class="form-group">
+                <br/>
                 <label>{{field.label}}</label>
                 <br/>
                 <div>
@@ -66,6 +68,7 @@
             </div>
 
             <div ng-switch-when="OPTIONS" class="form-group">
+                <br/>
                 <label>{{field.label}}</label>
                 <br/>
                 <div>
@@ -116,7 +119,7 @@
                     <div  ng-repeat="radio in field.options">
                     <input type="radio">{{radio.label}}<br/>
                     </div>
-                </div>
+                </div><br/>
                 <div class="col-sm-6" align="right">
                     <span class="glyphicon glyphicon-pencil"
                           ng-click="model.editField(field)"

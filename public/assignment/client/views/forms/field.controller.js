@@ -15,7 +15,8 @@
 
         //variables
         var formId = $routeParams.formId;
-        var fieldTypes =[
+        var fieldTypes =
+            [
             {
                 fieldOption: "singleText",
                 template:
@@ -112,8 +113,32 @@
         };
 
         function editField(field){
+            vm.field = field;
+            var fieldType = field.type
+           if( fieldType == "TEXT"){
+               textPopup(field._id, field.label, field.placeholder);
+           }
+           else if( fieldType == "TEXTAREA"){
+               textAreaPopup(field._id, field.label, field.placeholder);
+           }
+           else if (fieldType == "DATE"){
+               datePopup(field._id, field.label);
+           }
+           else if(fieldType == "OPTIONS"){
+               dropDownPopup(field._id, field.label, field.options);
+           }
+           else if(fieldType == "CHECKBOXES"){
+               checkBoxPopup(field._id, field.label, field.options);
+           }
+           else if(fieldType == "RADIOS"){
+               radioPopup(field._id, field.label, field.options);
+           }
+           else{
+            console.log("NONE OF THE TYPES MATCHED")
+           };
 
-        }
+        };
+
 
     }
 

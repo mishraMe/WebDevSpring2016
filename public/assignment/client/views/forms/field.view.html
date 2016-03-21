@@ -15,7 +15,9 @@
                            class="col-sm-6">
                 </div>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                    ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -31,7 +33,9 @@
                     <textarea class="col-sm-6" placeolder="{{field.placeholder}}"></textarea>
                 </div>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                          ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -49,7 +53,9 @@
                            class="col-sm-6">
                 </div>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                          ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -67,7 +73,9 @@
                 </select>
                 </div>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                          ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -84,7 +92,9 @@
                 </div>
                 <br/>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                          ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -100,7 +110,9 @@
                     <input type="radio">{{radio.label}}<br/>
                 </div>
                 <div class="col-sm-6" align="right">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="glyphicon glyphicon-pencil"
+                          ng-click="model.editField(field)"
+                          data-toggle="modal" data-target="#editField"></span>
                     <span class="glyphicon glyphicon-plus"></span>
                     <span class="glyphicon glyphicon-remove"
                           ng-click="model.removeField(field)"></span>
@@ -130,4 +142,97 @@
             <br/>
         </div>
     </form>
+
+    <!-- modal for editing forms-->
+    <div id="editField" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title"></h3>
+                </div>
+                <div class="modal-body" ng-switch="model.field.type">
+                    <div ng-switch-when="TEXT">
+                        <h3>Single Line Field</h3>
+                        <div>
+                            <label>Label</label>
+                            <input ng-model="model.field.label" class="form-control" type="text"
+                                   placeholder="Label">
+                            <br>
+                            <label>Placeholder</label>
+                            <input ng-model="model.field.placeholder" class="form-control" type="text"
+                                   placeholder="Placeholder">
+                        </div>
+                    </div>
+                    <div ng-switch-when="TEXTAREA">
+                            <h3>Multi Line Text Field</h3>
+                            <div>
+                                <label>Label</label>
+                                <input ng-model="model.field.label" class="form-control" type="text"
+                                       placeholder="Label">
+                                <br>
+                                <label>Placeholder</label>
+                                <input ng-model="model.field.placeholder" class="form-control" type="text"
+                                       placeholder="Placeholder">
+                            </div>
+                    </div>
+                    <div ng-switch-when="DATE">
+                            <h3>Date Field</h3>
+                            <div>
+                                <label>Label</label>
+                                <input ng-model="model.field.label" class="form-control" type="text"
+                                       placeholder="Label">
+                            </div>
+                    </div>
+                    <div ng-switch-when="OPTIONS">
+                            <h3>DropDown Field</h3>
+                            <div>
+                                <label>Label</label>
+                                <input ng-model="model.field.label" class="form-control" type="text"
+                                       placeholder="Label">
+                                <br>
+                                <label>Options</label>
+                                 <textarea ng-model="model.optionText" class="form-control"
+                                           placeholder="Options" ng-list="&#10;"></textarea>
+                            </div>
+                    </div>
+                    <div ng-switch-when="CHECKBOXES">
+                            <h3>Checkbox Field</h3>
+                            <div>
+                                <label>Label</label>
+                                <input ng-model="model.field.label" class="form-control" type="text"
+                                       placeholder="Label">
+                                <br>
+                                <label>Options</label>
+                                 <textarea ng-model="model.optionText" class="form-control"
+                                           placeholder="Options" ng-list="&#10;"></textarea>
+                            </div>
+                    </div>
+                    <div ng-switch-when="RADIOS">
+                            <h3>Radio Button Field</h3>
+                            <div>
+                                <label>Label</label>
+                                <input ng-model="model.field.label" class="form-control" type="text"
+                                       placeholder="Label">
+                                <br>
+                                <label>Options</label>
+                                 <textarea ng-model="model.optionText" class="form-control"
+                                           placeholder="Options" ng-list="&#10;"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+

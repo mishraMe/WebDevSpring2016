@@ -12,6 +12,7 @@
         vm.addField = addField;
         vm.removeField = removeField;
         vm.editField = editField;
+        vm.updateField = updateField;
 
         //variables
         var formId = $routeParams.formId;
@@ -113,31 +114,54 @@
         };
 
         function editField(field){
+            console.log("entered edit field")
             vm.field = field;
-            var fieldType = field.type
-           if( fieldType == "TEXT"){
-               textPopup(field._id, field.label, field.placeholder);
-           }
-           else if( fieldType == "TEXTAREA"){
-               textAreaPopup(field._id, field.label, field.placeholder);
-           }
-           else if (fieldType == "DATE"){
-               datePopup(field._id, field.label);
-           }
-           else if(fieldType == "OPTIONS"){
-               dropDownPopup(field._id, field.label, field.options);
-           }
-           else if(fieldType == "CHECKBOXES"){
-               checkBoxPopup(field._id, field.label, field.options);
-           }
-           else if(fieldType == "RADIOS"){
-               radioPopup(field._id, field.label, field.options);
-           }
-           else{
-            console.log("NONE OF THE TYPES MATCHED")
-           };
 
+            if(vm.field.type == "OPTIONS"
+                || vm.field.type == "CHECKBOXES"
+                || vm.field.type == "RADIOS"){
+                console.log("entered if condition in edit field");
+                var editedOptions = [];
+                var opts=[];
+                opts = vm.field.options;
+                for (var index in opts) {
+                    editedOptions.push(opts[index].label + ":" + opts[index].value);
+                }
+                vm.newOptions = editedOptions.join("\n");
+                console.log("vm.newOptions is");
+                console.log(vm.newOptions);
+            }
         };
+
+        function updateField(field){
+            vm.field = field;
+
+            if (vm.field.type == "OPTIONS"
+                || vm.field.type == "CHECKBOXES"
+                || vm.field.type == "RADIOS") {
+                var newOptions=[];
+                var enteredOptions = vm.newOptions;
+                for(var index in enteredOptions){
+                    newOptions.push
+                    ({
+                        "label": enteredOptions[index].split(":")[0],
+                        "value": enteredOptions[index].split(":")[1],
+                    });
+                }
+                vm.field.options = newOptions;
+            }
+
+            FieldService
+                .updateField(vm.currentForm._id, vm.field._id, vm.field)
+                .then(function(response){
+                    console.log("response after updating is");
+                    console.log(response.data);
+                    vm.fields = response.data;
+
+                });
+        }
+
+
 
 
     }

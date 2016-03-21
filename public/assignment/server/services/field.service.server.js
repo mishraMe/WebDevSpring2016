@@ -40,7 +40,8 @@ module.exports = function(app, formModel) {
         var updatedField = req.body;
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel.updateFieldInForm(formId,fieldId, updatedField);
+        var allFields = formModel.updateFieldInForm(formId,fieldId, updatedField);
+        allFields = res.json(allFields);
     };
 
     function getMyForm(req, res){

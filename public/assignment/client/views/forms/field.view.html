@@ -151,7 +151,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title"></h3>
+                    <h3 class="modal-title">{{model.field.text}}</h3>
                 </div>
                 <div class="modal-body" ng-switch="model.field.type">
                     <div ng-switch-when="TEXT">
@@ -194,8 +194,8 @@
                                        placeholder="Label">
                                 <br>
                                 <label>Options</label>
-                                 <textarea ng-model="model.optionText" class="form-control"
-                                           placeholder="Options" ng-list="&#10;"></textarea>
+                                 <textarea ng-model="model.newOptions" class="form-control"
+                                           placeholder="Options" ng-list="&#10;">{{model.newOptions}}</textarea>
                             </div>
                     </div>
                     <div ng-switch-when="CHECKBOXES">
@@ -206,8 +206,8 @@
                                        placeholder="Label">
                                 <br>
                                 <label>Options</label>
-                                 <textarea ng-model="model.optionText" class="form-control"
-                                           placeholder="Options" ng-list="&#10;"></textarea>
+                                 <textarea ng-model="model.newOptions" class="form-control"
+                                           placeholder="Options" ng-list="&#10;" type="text">{{model.newOptions}}</textarea>
                             </div>
                     </div>
                     <div ng-switch-when="RADIOS">
@@ -218,13 +218,13 @@
                                        placeholder="Label">
                                 <br>
                                 <label>Options</label>
-                                 <textarea ng-model="model.optionText" class="form-control"
-                                           placeholder="Options" ng-list="&#10;"></textarea>
+                                 <textarea ng-model="model.newOptions" class="form-control"
+                                           placeholder="Options" ng-list="&#10;">{{model.newOptions}}</textarea>
                             </div>
                     </div>
                     <div class="modal-footer">
-                            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                            <button class="btn btn-primary" type="button" ng-click="model.updateField(field)">OK</button>
+                            <button class="btn btn-warning" type="button" ng-click="model.cancelField(field)">Cancel</button>
                         </div>
                     </div>
                 </div>

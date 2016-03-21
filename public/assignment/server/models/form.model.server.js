@@ -152,7 +152,7 @@ module.exports = function(app){
         for(var index in form.fields){
             if(form.fields[index]._id === fieldId){
                 form.fields[index] = updatedField;
-                break;
+                return form.fields;
             }
         }
     };

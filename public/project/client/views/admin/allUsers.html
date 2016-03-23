@@ -1,0 +1,27 @@
+<!-- allUsers.html-->
+<h1 class="title">Forms</h1>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="forms.view.html">Forms</a></li>
+    <li role="presentation"><a href="form-fields.view.html">Fields</a></li>
+</ul>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Form Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="form in forms">
+            <td>
+                {{user.username}}
+            </td>
+            <td align="right">
+                <span ng-click="deleteForm($index)" class="glyphicon glyphicon-remove"></span>
+                <span ng-click="selectForm($index)" class="glyphicon glyphicon-pencil"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

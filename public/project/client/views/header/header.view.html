@@ -21,10 +21,10 @@
                 <li ng-show="currentUser">
                    <a href="" ng-click="logout()">Logout</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl()=='/myDocuments'}">
-                    <a href="#/myDocuments">myDocuments</a></li>
-                <li ng-class="{'active': $locationUrl()=='/allDocuments'}">
-                    <a href="#/allDocuments">allDocuments</a></li>
+                    ng-class="{'active': $locationUrl()=='/myPosts'}">
+                    <a href="#/myPosts">My Posts</a></li>
+                <li ng-class="{'active': $locationUrl()=='/publicPosts'}">
+                    <a href="#/publicPosts">Public Posts</a></li>
                 <li ng-show="currentUser"
                     ng-class="{'active': $locationUrl()=='/account'}">
                     <a href="#/account">{{currentUser.username}}</a></li>

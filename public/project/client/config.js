@@ -20,29 +20,30 @@
                 templateUrl: "views/user/login.view.html",
                 controller: "LoginController"
             })
-            .when("/account",{
-                templateUrl: "views/user/account.view.html",
-                controller: "AccountController"
+            .when("/profile",{
+                templateUrl: "views/user/profile.view.html",
+                controller: "ProfileController"
             })
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController"
             })
-            .when("/document",{
-                templateUrl: "views/document/writeDocument.view.html",
-                 controller: "DocumentController"
+            //this url is for all crud operations of a post.
+            .when("/post/:id",{
+                templateUrl: "views/post/post.view.html",
+                 controller: "PostController"
             })
-            .when("/myDocuments",{
-                templateUrl: "views/document/myDocuments.view.html",
-                controller: "DocumentController"
+
+            //this view is handled by the same controller and provides a different view.
+            .when("/myPosts",{
+                templateUrl: "views/post/myPosts.view.html",
+                controller: "PostController"
             })
-            .when("/allDocuments",{
-                templateUrl: "views/document/allDocuments.view.html",
-                controller: "DocumentController"
-            })
-            .when("/viewDocument",{
-            templateUrl: "views/document/viewDocument.view.html",
-            controller: "DocumentController"
+
+            //this view is handled by the same controller and provides a different view.
+            .when("/publicPosts",{
+                templateUrl: "views/post/publicPosts.view.html",
+                controller: "PostController"
             })
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
@@ -56,9 +57,11 @@
                 templateUrl: "views/details/details.view.html",
                 controller: "DetailsController"
             })
-            .when("/documentTable", {
-                templateUrl: "views/document/documentTable.view.html",
-                controller: "DocumentTableController"
+
+            //table views links
+            .when("/postTable", {
+                templateUrl: "views/post/postTable.view.html",
+                controller: "PostTableController"
             })
             .when("/userTable", {
                 templateUrl: "views/user/userTable.view.html",

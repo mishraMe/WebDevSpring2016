@@ -1,0 +1,33 @@
+[
+{
+"_id": "005", "postId": "005",
+"title": "55, Mahaveer Nagar, Indore",
+"rating": 2, "comments":""
+},
+{
+"_id": "004", "postId": "004",
+"title": "God is on a Holiday",
+"rating" : 4, "comments" : "Great work!"
+},
+{
+"_id": "003", "postId": "003",
+"title": "The most beautiful girl",
+"rating" : 3,
+"comments" : "Good concept, but the story could be better"
+},
+{
+"_id": "002",  "postId": "002",
+"title": "Love is literally in the air",
+"rating" : 5, "comments" : "hahaha interesting Story"
+},
+{
+"_id": "000", "postId": "000",
+"title": "First Day At School",
+"rating" : 4, "comments": "Great Story"
+},
+{
+"_id": "007", "postId": "000",
+"title": "First Day At School",
+"rating" : 5, "comments": "Wow! I never observed so damn true!!"
+}
+]

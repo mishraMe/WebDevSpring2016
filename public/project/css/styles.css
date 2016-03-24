@@ -5,4 +5,9 @@
 
 .form-horizontal .control-label{
     text-align: left;
-    }
+}
+.textarea{
+    width: 100%;
+    overflow-y: hidden;
+}
+

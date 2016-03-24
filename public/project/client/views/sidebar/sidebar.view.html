@@ -3,24 +3,41 @@
     <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
             <li ng-class="{'active': $locationUrl().indexOf('home') >= 0}">
-                <a href="#/home">Home<span class="sr-only">(current)</span></a></li>
+                <a href="#/home">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a></li>
+
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('account') >= 0}">
-                <a href="#/account">Account</a></li>
+                <a href="#/account">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a></li>
+
             <li ng-show="currentUser"
-                ng-class="{'active': $locationUrl().indexOf('document') >= 0}">
-                <a href="#/document">Add Document</a></li>
+                ng-class="{'active': $locationUrl().indexOf('post') >= 0}">
+                <a ng-click="model.createPost()">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                </a></li>
+
             <li ng-show="currentUser"
-                ng-class="{'active': $locationUrl().indexOf('myDocuments') >= 0}">
-                <a href="#/myDocuments">My Documents</a></li>
-            <li ng-class="{'active': $locationUrl().indexOf('allDocuments') >= 0}">
-                <a href="#/allDocuments">All Documents</a></li>
+                ng-class="{'active': $locationUrl().indexOf('myPosts') >= 0}">
+                <a href="#/myPosts">
+                    <span class="glyphicon glyphicon-book"></span>
+                </a></li>
+
+            <li ng-class="{'active': $locationUrl().indexOf('publicPosts') >= 0}">
+                <a href="#/publicPosts">
+                    <span class="glyphicon glyphicon-open-book"></span>
+                </a></li>
+
             <li ng-class="{'active': $locationUrl().indexOf('search') >= 0}">
-                <a href="#/search">More To Read</a></li>
-            <li ng-class="{'active': $locationUrl().indexOf('details') >= 0}">
-                <a href="#/details/:id">Details</a></li>
-            <li ng-class="{'active': $locationUrl().indexOf('documentTable') >= 0}">
-                <a href="#/documentTable">DocumentTable</a></li>
+                <a href="#/search">
+                    <span class="glyphicon glyphicon-search"></span>
+                </a></li>
+
+            <!-- table views-->
+            <li ng-class="{'active': $locationUrl().indexOf('postTable') >= 0}">
+                <a href="#/postTable">PostTable</a></li>
             <li ng-class="{'active': $locationUrl().indexOf('userTable') >= 0}">
                 <a href="#/userTable">UserTable</a></li>
             <li ng-class="{'active': $locationUrl().indexOf('reviewTable') >= 0}">

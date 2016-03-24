@@ -25,6 +25,11 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/profile/:id",{
+                templateUrl: "views/users/profile.view.html",
+                controller: "ProfileController",
+                controllerAs: "model"
+            })
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html",
                // controller: "AdminController"

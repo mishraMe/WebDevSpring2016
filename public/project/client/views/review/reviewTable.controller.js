@@ -22,7 +22,7 @@
         function createReview(review) {
             function callback(response) {
                 if (document === null) {
-                    $scope.message = "Please enter a document name";
+                    $scope.message = "Please enter a post name";
                 } else {
                     $scope.documentTable = DocumentService.getAllReviews();
                 }
@@ -34,7 +34,7 @@
         }
 
         function deleteReview($index) {
-            //function is responsible for deleting a document by the index value
+            //function is responsible for deleting a post by the index value
             var reviewsAfterDeletion = [];
             var callback =
                 function (response) {
@@ -48,7 +48,7 @@
 
         function updateReview(newReview) {
 
-            //function is responsible for updating selected document to the new document's value
+            //function is responsible for updating selected post to the new post's value
             if (!newReview) {
                 $scope.message = "Please enter updates";
             }
@@ -73,8 +73,8 @@
         }
 
         function selectReview($index) {
-            // console.log("hello select document");
-            //function is responsible for selecting a document to edit
+            // console.log("hello select post");
+            //function is responsible for selecting a post to edit
             $scope.review = {
                 _id: $scope.reviewTable[$index]._id,
                 documentId: $scope.reviewTable[$index].documentId,

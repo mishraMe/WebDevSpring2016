@@ -4,24 +4,25 @@
     angular.module("WritersClubApp")
         .controller("DocumentTableController", documentTableController);
 
-    function documentTableController($scope, DocumentService){
+    function documentTableController(DocumentService){
 
+        var vm = this;
         //variables :
-        $scope.error=null;
-        $scope.message= null;
-        $scope.selectedDocument= null;
-        $scope.createDocument= createDocument;
-        $scope.deleteDocument = deleteDocument;
-        $scope.updateDocument = updateDocument;
-        $scope.selectDocument = selectDocument;
-        $scope.documentTable= DocumentService.getAllDocuments();
+        vm.error=null;
+        vm.message= null;
+        vm.selectedDocument= null;
+        vm.createDocument= createDocument;
+        vm.deleteDocument = deleteDocument;
+        vm.updateDocument = updateDocument;
+        vm.selectDocument = selectDocument;
+        vm.documentTable= DocumentService.getAllDocuments();
 
         // functions
 
         function createDocument(document){
             function callback (response) {
                 if (document === null) {
-                    $scope.message = "Please enter a document name";
+                    $scope.message = "Please enter a post name";
                 } else {
                     $scope.documentTable = DocumentService.getAllDocuments();
                 }
@@ -32,7 +33,7 @@
         }
 
         function deleteDocument($index){
-            //function is responsible for deleting a document by the index value
+            //function is responsible for deleting a post by the index value
             var documentsAfterDeletion=[];
             var callback=
                 function(response){
@@ -46,7 +47,7 @@
 
         function updateDocument(newDocument){
 
-            //function is responsible for updating selected document to the new document's value
+            //function is responsible for updating selected post to the new post's value
             if(!newDocument){
                 $scope.message = "Please enter updates";
             }
@@ -70,8 +71,8 @@
         }
 
         function selectDocument($index){
-            // console.log("hello select document");
-            //function is responsible for selecting a document to edit
+            // console.log("hello select post");
+            //function is responsible for selecting a post to edit
             $scope.document = {
                 _id: $scope.documentTable[$index]._id,
                 title: $scope.documentTable[$index].title,

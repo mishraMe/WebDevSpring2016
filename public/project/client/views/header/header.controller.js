@@ -6,7 +6,8 @@
         .controller("HeaderController", headerController);
     function headerController($scope, $location, UserService){
         console.log("header controller hey!");
-        $scope.$location = $location;
+        var vm = this;
+        vm.$location = $location;
         $scope.logout = logout;
         function logout(){
             console.log("logout fired");

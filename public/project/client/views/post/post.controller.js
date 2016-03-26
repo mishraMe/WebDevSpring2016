@@ -11,11 +11,9 @@
         vm.error=null;
         vm.message= null;
         vm.selectedPost= null;
-       //vm.createPost= createPost;
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
-
 
         function init(){
             vm.currentUser = UserService.getCurrentUser();
@@ -25,7 +23,6 @@
             vm.allPosts=PostService.getAllPosts();
         }
         init();
-
 
         function deletePost(post){
             var formsAfterDeletion=[];
@@ -66,19 +63,7 @@
             };
         }
 
-        //  functions
 
-        //function createPost(post){
-        //    function callback (response) {
-        //        if (post === null) {
-        //            vm.message = "Please enter a post name";
-        //        } else {
-        //            vm.post = PostService.findAllPostsForUser(vm.currentUser._id);
-        //        }
-        //    }
-        //    PostService.createPostForUser
-        //    (vm.currentUser._id, post, callback);
-        //    vm.post = null;
-        //}
     }
+
 })();

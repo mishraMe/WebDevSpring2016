@@ -33,10 +33,16 @@
                 controller: "AdminController",
                 controllerAs: "model",
             })
-            //this url is for all crud operations of a post.
+
+            .when("/post",{
+                templateUrl: "views/post/post.view.html",
+                controller: "PostController",
+                controllerAs: "model",
+            })
+                     //this url is for all crud operations of a post.
             .when("/post/:id",{
                 templateUrl: "views/post/post.view.html",
-                 controller: "PostController",
+                controller: "PostController",
                 controllerAs: "model",
             })
 

@@ -4,13 +4,13 @@
     angular
         .module("WritersClubApp")
         .controller("SidebarController",sidebarController);
-    function sidebarController($location, PostService, UserService){
+    function sidebarController($scope, $location, PostService, UserService){
         var vm = this;
 
-        vm.createPost = createPost;
+        $scope.createPost = createPost;
         vm.currentUser = UserService.getCurrentUser();
+        vm.$location = $location;
         console.log(vm.currentUser);
-
 
         var postTemplate =
         {
@@ -28,11 +28,14 @@
         function createPost(){
             vm.currentUser = UserService.getCurrentUser();
             PostService
-                .createPostForUser(vm.currentUser._id,postTemplate)
+                .createPostForUser(vm.currentUser._id, postTemplate)
                 .then(function(response)
                 {
                     vm.post = response.data;
-                    $location.url("#/post/{{response.data._id}}");
+                    console.log("the response is ");
+                    console.log(response);
+                    console.log("response.data._id" + response.data._id);
+                    $location.url("/post");
                 });
         };
 

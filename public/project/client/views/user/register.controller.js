@@ -18,25 +18,25 @@
 
         function register(user) {
 
-            vm.err = null;
+            vm.error = null;
             if (user == null) {
                 vm.err = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
-                vm.err = "Please provide a username";
+                vm.error = "Please provide a username";
                 return;
             }
             if (!user.password || !user.verifyPassword) {
-                vm.err = "Please provide a password";
+                vm.error = "Please provide a password";
                 return;
             }
             if (user.password != user.verifyPassword) {
-                vm.err = "Passwords must match";
+                vm.error = "Passwords must match";
                 return;
             }
             if (!user.email) {
-                vm.err = "Please provide an email address"
+                vm.error = "Please provide an email address"
             }
 
             UserService
@@ -45,7 +45,7 @@
                     if (foundUser.data == "") {
                         createUser(user);
                     } else {
-                        vm.message = "User exists already"
+                        vm.error = "User exists already";
                     }
                 });
 

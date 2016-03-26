@@ -8,11 +8,11 @@ module.exports = function(app, formModel) {
 
 
     function getFormsForUser(req, res){
-      //  console.log("entered get forms for user in form service in server");
+      //  console.log("entered get forms for user in form wc_services in server");
         var userId = req.params.userId;
       //  console.log(userId);
         var forms = formModel.findFormsForUser(userId);
-      //  console.log("forms in form service server js (response) is ");
+      //  console.log("forms in form wc_services server js (response) is ");
       //  console.log(forms);
         res.send(forms);
     };
@@ -24,7 +24,7 @@ module.exports = function(app, formModel) {
     };
 
     function deleteFormById(req, res){
-      //  console.log("entered deleteFormById in server service");
+      //  console.log("entered deleteFormById in server wc_services");
         var deleteFormId = req.params.formId;
        var response = formModel.deleteForm(deleteFormId);
         res.send(response);

@@ -48,7 +48,7 @@ module.exports = function(app){
     };
 
     function deleteForm (formId) {
-        //console.log("entered deleteForm in model");
+        //console.log("entered deleteForm in wc_models");
         //console.log("formId is " + formId);
         for (var index in mockForms) {
             if (mockForms[index]._id == formId) {
@@ -73,7 +73,7 @@ module.exports = function(app){
     };
 
     function findFormsForUser(userId) {
-        console.log("entred find forms for user in form model server");
+        console.log("entred find forms for user in form wc_models server");
         console.log("userId is " + userId);
         var formsForUser = [];
         var form;
@@ -124,7 +124,7 @@ module.exports = function(app){
     };
 
     function deleteFieldFromForm(fieldId, formId){
-        console.log("entered the deleteFieldFromForm in model");
+        console.log("entered the deleteFieldFromForm in wc_models");
         var field;
         var form = findFormById(formId);
         for (var index in form.fields){
@@ -155,7 +155,7 @@ module.exports = function(app){
         var field;
         for(var index in form.fields){
             if(form.fields[index]._id == fieldId){
-                console.log("entered the updatefieldInForm if condition model here");
+                console.log("entered the updatefieldInForm if condition wc_models here");
                 form.fields[index] = updatedField;
                 return form.fields;
             }

@@ -1,7 +1,7 @@
 module.exports = function(app){
-    var userModel = require("./models/user.model.server.js")(app);
-    var formModel = require("./models/post.model.server.js")(app);
+    var userModel = require("./wc_models/user.model.server.js")(app);
+    var postModel = require("./wc_models/post.model.server.js")(app);
 
-    var userService = require("./services/user.service.server.js")(app, userModel);
-    var formService = require("./services/post.service.server.js")(app, formModel);
+    var userService = require("./wc_services/user.service.server.js")(app, userModel);
+    var postService = require("./wc_services/post.service.server.js")(app, postModel);
 }

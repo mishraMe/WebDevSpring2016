@@ -51,7 +51,7 @@
                 return $http.put("/api/assignment/form/"+ postId, newPost);
             };
             function deletePost(postId) {
-                //console.log("entered deleteFormById in posts service client");
+                //console.log("entered deleteFormById in posts wc_services client");
                 return $http.delete("/api/project/post/"+ postId);
             };
 

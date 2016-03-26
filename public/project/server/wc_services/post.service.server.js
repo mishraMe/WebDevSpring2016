@@ -9,11 +9,11 @@ module.exports = function(app, postModel) {
 
 
     function getPostsForUser(req, res){
-        //  console.log("entered get posts for user in post service in server");
+        //  console.log("entered get posts for user in post wc_services in server");
         var userId = req.params.userId;
         //  console.log(userId);
         var posts = postModel.findPostsForUser(userId);
-        //  console.log("posts in post service server js (response) is ");
+        //  console.log("posts in post wc_services server js (response) is ");
         //  console.log(posts);
         res.send(posts);
     };
@@ -25,7 +25,7 @@ module.exports = function(app, postModel) {
     };
 
     function deletePostById(req, res){
-        //  console.log("entered deletePostById in server service");
+        //  console.log("entered deletePostById in server wc_services");
         var deletePostId = req.params.postId;
         var response = postModel.deletePost(deletePostId);
         res.send(response);

@@ -7,7 +7,7 @@ module.exports = function(app, formModel) {
     app.get("/api/assignment/form/:formId", getMyForm);
 
     function getFieldsOfForm(req, res){
-        console.log("entered get Fields of form in server service");
+        console.log("entered get Fields of form in server wc_services");
         var formId = req.params.formId;
         var fields =[];
         fields = formModel.findAllFieldsInForm(formId);
@@ -37,7 +37,7 @@ module.exports = function(app, formModel) {
     };
 
     function updateFieldInForm(req, res){
-        console.log("entered the updateFieldInForm server service")
+        console.log("entered the updateFieldInForm server wc_services")
         var updatedField = req.body;
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;

@@ -9,7 +9,7 @@
 
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('account') >= 0}">
-                <a href="#/account">
+                <a href="#/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a></li>
 
@@ -22,12 +22,12 @@
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('myPosts') >= 0}">
                 <a href="#/myPosts">
-                    <span class="glyphicon glyphicon-book"></span>
+                    <span class="glyphicon glyphicon-lock"></span>
                 </a></li>
 
             <li ng-class="{'active': $locationUrl().indexOf('publicPosts') >= 0}">
                 <a href="#/publicPosts">
-                    <span class="glyphicon glyphicon-open-book"></span>
+                    <span class="glyphicon glyphicon-bullhorn"></span>
                 </a></li>
 
             <li ng-class="{'active': $locationUrl().indexOf('search') >= 0}">

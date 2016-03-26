@@ -9,8 +9,6 @@
         vm.error = null;
         vm.message = null;
         vm.currentUser= UserService.getCurrentUser();
-        // console.log("currentuser give below:");
-        // console.log(vm.currentUser);
         if(!vm.currentUser){
             $location.url("/home");
         }
@@ -23,8 +21,8 @@
                 .updateUser(vm.currentUser._id, user)
                 .then(
                     function (response){
-                        //  console.log(response.data);
                         UserService.setCurrentUser(vm.currentUser);
+                        vm.message = "User updated successfully";
                         $location.url("/profile");
                     });
 

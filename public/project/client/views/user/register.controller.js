@@ -1,4 +1,4 @@
-(function(){
+(function() {
     "use strict";
     angular
         .module("WritersClubApp")
@@ -10,52 +10,53 @@
 
         vm.register = register;
 
-
         function init() {
 
         }
+
         init();
 
         function register(user) {
 
-            vm.message = null;
+            vm.err = null;
             if (user == null) {
-                vm.message = "Please fill in the required fields";
+                vm.err = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
-                vm.message = "Please provide a username";
+                vm.err = "Please provide a username";
                 return;
             }
             if (!user.password || !user.verifyPassword) {
-                vm.message = "Please provide a password";
+                vm.err = "Please provide a password";
                 return;
             }
             if (user.password != user.verifyPassword) {
-                vm.message = "Passwords must match";
+                vm.err = "Passwords must match";
                 return;
             }
-            if(user.email!= user.email){
-                vm.message = "Email already exists";
-            }
-
-            var existingUser = UserService.findUserByUsername(user.username);
-            if (existingUser) {
-                vm.message = "User already exists";
-                return;
+            if (!user.email) {
+                vm.err = "Please provide an email address"
             }
 
             UserService
-                .createUser(user)
-                .then(function(response){
-                    var data = response.data;
-                    //  console.log("response.data is");
-                    //  console.log(response.data);
-                    if(data != null) {
-                        UserService.setCurrentUser(user);
-                        $location.url("/profile");
+                .findUserByUsername(user.username)
+                .then(function (foundUser) {
+                    if (foundUser.data === null) {
+                        createUser(user);
+                    } else {
+                        vm.message = "User exists already"
                     }
                 });
+
+            function createUser(newUser){
+                UserService
+                    .createUser(newUser)
+                    .then(function(createdUser){
+                        UserService.setCurrentUser(createdUser.data);
+                        $location.url("/profile");
+                    })
+            }
         }
     }
 })();

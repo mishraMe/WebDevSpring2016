@@ -49,7 +49,7 @@ module.exports = function(app){
     };
 
     function deletePost (postId) {
-        //console.log("entered deletePost in model");
+        //console.log("entered deletePost in wc_models");
         //console.log("postId is " + postId);
         for (var index in mockPosts) {
             if (mockPosts[index]._id == postId) {
@@ -73,7 +73,7 @@ module.exports = function(app){
     };
 
     function findPostsForUser(userId) {
-        console.log("entred find posts for user in post model server");
+        console.log("entred find posts for user in post wc_models server");
         console.log("userId is " + userId);
         var postsForUser = [];
         var post;
@@ -126,7 +126,7 @@ module.exports = function(app){
     };
 
     function deleteFieldFromPost(fieldId, postId){
-        console.log("entered the deleteFieldFromPost in model");
+        console.log("entered the deleteFieldFromPost in wc_models");
         var field;
         var post = findPostById(postId);
         for (var index in post.fields){
@@ -155,7 +155,7 @@ module.exports = function(app){
         var field;
         for(var index in post.fields){
             if(post.fields[index]._id == fieldId){
-                console.log("entered the updatefieldInPost if condition model here");
+                console.log("entered the updatefieldInPost if condition wc_models here");
                 post.fields[index] = updatedField;
                 return post.fields;
             }

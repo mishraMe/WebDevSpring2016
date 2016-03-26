@@ -23,7 +23,7 @@
         }
 
         function getCurrentForm(){
-            //console.log("in get current form from forms services");
+            //console.log("in get current form from forms wc_services");
             //console.log("currentForm is");
             //console.log($rootScope.currentForm);
             return $rootScope.currentForm;
@@ -42,7 +42,7 @@
         };
 
         function deleteFormById(formId){
-        //    console.log("entered deleteFormById in forms service client");
+        //    console.log("entered deleteFormById in forms wc_services client");
            return $http.delete("/api/assignment/form/"+ formId);
         };
 

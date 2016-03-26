@@ -21,7 +21,7 @@
 
         function findBookByID(ID, callback) {
             var url = DETAILS_URL.replace("ID", ID)
-            console.log("entered FindBook in book services");
+            console.log("entered FindBook in book wc_services");
             $http.get(url).success(callback);
         }
 

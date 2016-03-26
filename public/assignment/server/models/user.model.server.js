@@ -15,7 +15,8 @@ module.exports = function(app) {
 
     //createUser function
     function createUser(user) {
-        console.log("entered createUser method of user model in server");
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
+        console.log("entered createUser method of user wc_models in server");
         user._id = (new Date).getTime();
         mockUsers.push(user);
 
@@ -25,11 +26,13 @@ module.exports = function(app) {
 
     //findAllUsers function
     function findAllUsers() {
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
         return mockUsers;
     };
 
     //findUserById function
     function findUserById(userId) {
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
         for (var index in mockUsers) {
             if (mockUsers[index]._id == userId) {
                 return mockUsers[index];
@@ -41,11 +44,6 @@ module.exports = function(app) {
 
     //updateUser function
     function updateUser(userId, user) {
-        console.log("entered updateUser in model")
-        console.log("user in user model server js")
-        console.log(user);
-        console.log("mock users are:");
-        console.log(mockUsers);
         for (var index in mockUsers) {
             if (mockUsers[index]._id == userId) {
               mockUsers[index] = user;
@@ -56,6 +54,7 @@ module.exports = function(app) {
 
     //deleteUser function
     function deleteUser(userId) {
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
         for (var index in mockUsers) {
             if (mockUsers[index]._id === userId) {
                 mockUsers.splice(index, 1);
@@ -67,6 +66,7 @@ module.exports = function(app) {
 
     //findUserByUsername function
     function findUserByUsername(username) {
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
         var user;
         for (var index in mockUsers) {
             user = mockUsers[index];
@@ -80,7 +80,8 @@ module.exports = function(app) {
 
     //findUserByCredentials function
     function findUserByCredentials(credentials) {
-        console.log("entered in user model");
+        console.log("ENTERED ASSIGNEMNT USER MODEL");
+        console.log("entered in user wc_model");
         var user
         for (var index in mockUsers) {
              user = mockUsers[index];

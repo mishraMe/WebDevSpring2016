@@ -2,7 +2,7 @@
    {
      "_id": 123,
      "firstName": "Alice", "lastName": "Wonderland",
-     "username": "alice", "password": "alice", "roles": ["student"],
+     "username": "alice", "password": "alice", "roles": ["user"],
      "email": "alice@gmail.com"
    },
 

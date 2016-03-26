@@ -11,7 +11,7 @@
                    class="form-control"
                    id="username"
                    placeholder="Username"
-                   ng-model="user.username">
+                   ng-model="model.user.username">
         </div>
     </div>
     <div class="form-group">
@@ -24,7 +24,7 @@
                    class="form-control"
                    id="password"
                    placeholder="Password"
-                   ng-model="user.password">
+                   ng-model="model.user.password">
         </div>
     </div>
     <div class="form-group">
@@ -32,7 +32,7 @@
             <button type="login"
                     value="login"
                     class="btn btn-primary btn-block"
-                    ng-click="login(user)">
+                    ng-click="model.login(model.user)">
                 Login
             </button>
         </div>

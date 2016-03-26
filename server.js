@@ -13,5 +13,5 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(multer());
 app.use(express.static(__dirname + '/public'));
 require("./public/assignment/server/app.js")(app);
-//require("./public/project/server/app.js")(app);
+require("./public/project/server/app.js")(app);
 app.listen(port, ipaddress);

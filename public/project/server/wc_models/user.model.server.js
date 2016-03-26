@@ -13,14 +13,13 @@ module.exports = function(app) {
     };
     return api;
 
+    console.log("entered in user.model.server.js");
     //createUser function
     function createUser(user) {
-        console.log("entered createUser method of user model in server");
+        console.log("entered createUser method of user wc_models in server");
         user._id = (new Date).getTime();
         mockUsers.push(user);
-
-        return mockUsers;
-
+        return user;
     };
 
     //findAllUsers function
@@ -41,8 +40,8 @@ module.exports = function(app) {
 
     //updateUser function
     function updateUser(userId, user) {
-        console.log("entered updateUser in model")
-        console.log("user in user model server js")
+        console.log("entered updateUser in wc_models")
+        console.log("user in user wc_models server js")
         console.log(user);
         console.log("mock users are:");
         console.log(mockUsers);
@@ -67,20 +66,23 @@ module.exports = function(app) {
 
     //findUserByUsername function
     function findUserByUsername(username) {
+        console.log("find user by username in server model");
         var user;
         for (var index in mockUsers) {
             user = mockUsers[index];
-            if (user.username === username) {
+            if (user.username == username) {
                 return user;
+                console.log("user in user model is");
+                console.log(user);
                 break;
             }
         }
+        console.log("returning null");
         return null;
     };
 
     //findUserByCredentials function
     function findUserByCredentials(credentials) {
-        console.log("entered in user model");
         var user
         for (var index in mockUsers) {
             user = mockUsers[index];

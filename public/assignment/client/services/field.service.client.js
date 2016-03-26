@@ -33,7 +33,7 @@
         }
 
         function updateField(formId, fieldId, field){
-            console.log("entered the updateField in client service");
+            console.log("entered the updateField in client wc_services");
             return $http.put("/api/assignment/form/"+formId+"/field/"+ fieldId, field);
         };
 

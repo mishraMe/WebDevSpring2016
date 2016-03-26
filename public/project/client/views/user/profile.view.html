@@ -1,19 +1,19 @@
 <!-- profile.view.html-->
-<h2 class="sub-header">Account</h2>
+<h2 class="sub-header">Profile</h2>
 
-<div ng-show="message" class="alert alert-success" role="alert">{{message}}</div>
-<div ng-show="error"  vclass="alert alert-danger"  role="alert">{{error}}</div>
+<div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+<div ng-show="model.error"  vclass="alert alert-danger"  role="alert">{{model.error}}</div>
 
 <form class="form-horizontal">
 
     <div class="form-group">
         <div class="col-sm-offset-6" class="col-sm-offset-6">
-            <button ng-click="listFollowers(currentUser)"
+            <button ng-click="model.listFollowers(model.currentUser)"
                     class="btn btn-primary">
                 followers
             </button>
 
-            <button ng-click="listFollowing(currentUser)"
+            <button ng-click="model.listFollowing(model.currentUser)"
                     class="btn btn-primary">
                 following
             </button>
@@ -23,7 +23,7 @@
     <div class="form-group">
         <label for="username" class="col-sm-2 control-label">Username:</label>
         <div class="col-sm-10">
-            <input ng-model="currentUser.username"
+            <input ng-model="model.currentUser.username"
                    type="text"
                    class="form-control"
                    id="username"
@@ -34,7 +34,7 @@
     <div class="form-group">
         <label for="password" class="col-sm-2 control-label">Password:</label>
         <div class="col-sm-10">
-            <input ng-model="currentUser.password"
+            <input ng-model="model.currentUser.password"
                    type="Password"
                    class="form-control"
                    id="password"
@@ -45,7 +45,7 @@
     <div class="form-group">
         <label for="firstName" class="col-sm-2 control-label">FirstName:</label>
         <div class="col-sm-10">
-            <input ng-model="currentUser.firstName"
+            <input ng-model="model.currentUser.firstName"
                    type="text"
                    class="form-control"
                    id="firstName"
@@ -55,7 +55,7 @@
     <div class="form-group">
         <label for="lastName" class="col-sm-2 control-label">LastName:</label>
         <div class="col-sm-10">
-            <input  ng-model="currentUser.lastName"
+            <input  ng-model="model.currentUser.lastName"
                     type="text"
                     class="form-control"
                     id="lastName"
@@ -66,7 +66,7 @@
     <div class="form-group">
         <label for="email" class="col-sm-2 control-label">Email:</label>
         <div class="col-sm-10">
-            <input ng-model="currentUser.email"
+            <input ng-model="model.currentUser.email"
                    type="email"
                    class="form-control"
                    id="email"
@@ -77,7 +77,7 @@
     <div class="form-group">
         <label for="dob" class="col-sm-2 control-label">Date:</label>
         <div class="col-sm-10">
-            <input ng-model="currentUser.dob"
+            <input ng-model="model.currentUser.dob"
                    type="date"
                    class="form-control"
                    id="dob"
@@ -88,7 +88,8 @@
     <div class="form-group">
     <label class="col-sm-2 control-label">gender:</label>
     <br/>
-    <select class="col-sm-6">
+    <select class="col-sm-6"
+            ng-model="model.currentUser.gender">
         <option value="male">Male</option>
         <option value="female">Female</option>
     </select>
@@ -96,7 +97,7 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2">
-            <button ng-click="update(currentUser)"
+            <button ng-click="model.update(model.currentUser)"
                     class="btn btn-primary
                                 btn-block">
                 Update

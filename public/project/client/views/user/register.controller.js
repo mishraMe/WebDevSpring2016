@@ -42,7 +42,7 @@
             UserService
                 .findUserByUsername(user.username)
                 .then(function (foundUser) {
-                    if (foundUser.data === null) {
+                    if (foundUser.data == "") {
                         createUser(user);
                     } else {
                         vm.message = "User exists already"

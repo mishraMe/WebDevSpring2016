@@ -32,10 +32,10 @@
                 .then(function(response)
                 {
                     vm.post = response.data;
-                    console.log("the response is ");
+                    console.log("response is");
                     console.log(response);
-                    console.log("response.data._id" + response.data._id);
-                    $location.url("/post");
+                    PostService.setCurrentPost(response.data);
+                    $location.url("/editPost");
                 });
         };
 

@@ -1,20 +1,16 @@
 module.exports = function(app, postModel) {
-    app.get("/api/project/user/:userId/post", getPostsForUser);
-    app.get("/api/project/post/:postId", getPostById);
     app.delete("/api/project/post/:postId", deletePostById);
     app.post("/api/project/user/:userId/post", createPostForUser);
     app.put("/api/project/post/:postId", updatePostById);
+    app.get("/api/project/user/:userId/post", getPostsForUser);
+    app.get("/api/project/post/:postId", getPostById);
     app.get("/api/project/post", getAllPosts)
 
 
 
     function getPostsForUser(req, res){
-        //  console.log("entered get posts for user in post wc_services in server");
         var userId = req.params.userId;
-        //  console.log(userId);
         var posts = postModel.findPostsForUser(userId);
-        //  console.log("posts in post wc_services server js (response) is ");
-        //  console.log(posts);
         res.send(posts);
     };
 

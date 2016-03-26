@@ -5,10 +5,13 @@ module.exports = function(app){
         createPost: createPost,
         findAllPosts: findAllPosts,
         findPostById: findPostById,
-        updatePost: updatePost,
-        deletePost: deletePost,
         findPostByTitle: findPostByTitle,
         findPostsForUser: findPostsForUser,
+        updatePost: updatePost,
+        deletePost: deletePost,
+
+
+        //field functions
         findAllFieldsInPost: findAllFieldsInPost,
         findFieldInPost: findFieldInPost,
         deleteFieldFromPost: deleteFieldFromPost,
@@ -19,16 +22,19 @@ module.exports = function(app){
     return api;
 
     function createPost (post) {
+        console.log("created post in model");
         post._id = (new Date).getTime();
         mockPosts.push(post);
         return post;
     };
 
     function findAllPosts () {
+        console.log("entered findAllPosts in post model");
         return mockPosts;
     };
 
     function findPostById (postId) {
+        console.log("entered findPostById in post model");
         for (var index in mockPosts) {
             if (mockPosts[index]._id == postId) {
                 return mockPosts[index];
@@ -39,6 +45,7 @@ module.exports = function(app){
     };
 
     function updatePost (postId, post) {
+        console.log("entered updatePost in post model");
         for (var index in mockPosts) {
             if (mockPosts[index]._id === postId) {
                 mockPosts[index] = post;
@@ -49,8 +56,7 @@ module.exports = function(app){
     };
 
     function deletePost (postId) {
-        //console.log("entered deletePost in wc_models");
-        //console.log("postId is " + postId);
+        console.log("entered deletePost in model");
         for (var index in mockPosts) {
             if (mockPosts[index]._id == postId) {
                 console.log("entered if condition");
@@ -62,6 +68,7 @@ module.exports = function(app){
     };
 
     function findPostByTitle(title) {
+        console.log("entered find postByTitle in post model");
         var post;
         for (var index in mockPosts) {
             post = mockPosts[index];
@@ -73,23 +80,15 @@ module.exports = function(app){
     };
 
     function findPostsForUser(userId) {
-        console.log("entred find posts for user in post wc_models server");
-        console.log("userId is " + userId);
+        console.log("entred findpostsforuser in post wc_models server");
         var postsForUser = [];
         var post;
         for (var index in mockPosts) {
             post = mockPosts[index];
-            console.log("post.userId Value is");
-            console.log(post.userId);
-            console.log("userId value");
-            console.log(userId);
-            console.log(post.userId == userId);
             if (post.userId == userId) {
-                console.log("entered if condition");
                 postsForUser.push(post);
             }
         }
-        console.log(postsForUser);
         return postsForUser;
 
     };

@@ -34,17 +34,25 @@
                 controllerAs: "model",
             })
 
-            .when("/post",{
-                templateUrl: "views/post/post.view.html",
+            .when("/editPost",{
+                templateUrl: "views/post/editPost.view.html",
                 controller: "PostController",
                 controllerAs: "model",
             })
                      //this url is for all crud operations of a post.
-            .when("/post/:id",{
-                templateUrl: "views/post/post.view.html",
+            .when("/editPost/:id",{
+                templateUrl: "views/post/editPost.view.html",
                 controller: "PostController",
                 controllerAs: "model",
             })
+
+            //this view is handled by the same controller and provides a different view.
+            .when("/viewPost",{
+                templateUrl: "views/post/viewPost.view.html",
+                controller: "PostController",
+                controllerAs: "model"
+            })
+
 
             //this view is handled by the same controller and provides a different view.
             .when("/myPosts",{

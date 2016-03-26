@@ -1,5 +1,5 @@
 <!-- myPosts.view.html-->
-<h1>My Documents</h1>
+<h1>My Posts</h1>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -11,12 +11,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="document in myDocuments">
+        <tr ng-repeat="post in model.myPosts">
             <td>
-                <a href="#/viewDocument">{{document.title}}</a>
-            </td>
-            <td>
-                {{document.rating}}
+                <a href="/viewPost">{{post.title}}</a>
             </td>
         </tr>
         </tbody>

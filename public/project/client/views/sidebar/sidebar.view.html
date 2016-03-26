@@ -8,13 +8,13 @@
                 </a></li>
 
             <li ng-show="currentUser"
-                ng-class="{'active': $locationUrl().indexOf('account') >= 0}">
+                ng-class="{'active': $locationUrl().indexOf('profile') >= 0}">
                 <a href="#/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a></li>
 
             <li ng-show="currentUser"
-                ng-class="{'active': $locationUrl().indexOf('post') >= 0}">
+                ng-class="{'active': $locationUrl().indexOf('editPost') >= 0}">
                 <a  href="" ng-click="createPost()">
                     <span class="glyphicon glyphicon-plus-sign"></span>
                 </a></li>

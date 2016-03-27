@@ -12,13 +12,22 @@
         vm.$location = $location;
         console.log(vm.currentUser);
 
-        var postTemplate =
-        {
+        var postTemplate ={
             "_id": null, "title": null,
             "tag": ["Story", "Poem", "Script"] ,  "type": "private",
             "roles": ["user"],
             "userId": null, "username": "",
             "content":null
+        };
+        if(vm.currentUser){
+
+            postTemplate =   {
+                "_id": null, "title": null,
+                "tag": ["Story", "Poem", "Script"] ,  "type": "private",
+                "roles": ["user"],
+                "userId": vm.currentUser._id, "username": vm.currentUser.username,
+                "content":null
+            }
         }
 
         function init(){

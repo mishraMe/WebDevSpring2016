@@ -11,6 +11,13 @@
         vm.message= null;
         vm.$location = $location;
         vm.selectedPost= null;
+        //current user
+        vm.currentUser = UserService.getCurrentUser();
+        vm.post = PostService.getCurrentPost();
+        vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
+        console.log("isCurrentUser is " + vm.isCurrentUser);
+        console.log("Current post is ");
+        console.log(vm.post);
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
@@ -18,11 +25,6 @@
         vm.changePrivacy = changePrivacy;
 
         function init(){
-            //current user
-            vm.currentUser = UserService.getCurrentUser();
-            vm.post = PostService.getCurrentPost();
-            console.log("Current post is ");
-            console.log(vm.post);
             //public posts
             PostService
                 .getAllPosts()
@@ -125,6 +127,15 @@
                     vm.error = null;
                     vm.message= "Privacy changed to {{post.type}}"
                 });
+        }
+
+        function validateCurrentUser(currUser, currPost){
+          if(currPost!= null && currUser._id == currPost.userId){
+              return true;
+          }else{
+              return false;
+          }
+
         }
 
 

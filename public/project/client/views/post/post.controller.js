@@ -11,31 +11,42 @@
         vm.message= null;
         vm.$location = $location;
         vm.selectedPost= null;
-        vm.post = PostService.getCurrentPost();
+        vm.deletePost = deletePost;
+        vm.updatePost = updatePost;
+        vm.selectPost = selectPost;
+        vm.viewPost = viewPost;
+        vm.changePrivacy = changePrivacy;
+
         function init(){
             //current user
             vm.currentUser = UserService.getCurrentUser();
+            vm.post = PostService.getCurrentPost();
+            console.log("Current post is ");
+            console.log(vm.post);
             //public posts
             PostService
-                .getAllPublicPosts()
-                .then(function(publicPosts){
-                    console.log("public posts are ");
-                    console.log(publicPosts.data);
-                    vm.publicPosts = publicPosts.data;
-                    console.log(vm.publicPosts);
-
-                    //only user's posts
-                    PostService
-                        .findAllPostsForUser(vm.currentUser._id)
-                        .then(function(postsForUser){
-                            vm.myPosts = postsForUser.data;
-                        })
-                    vm.deletePost = deletePost;
-                    vm.updatePost = updatePost;
-                    vm.selectPost = selectPost;
-                    vm.viewPost = viewPost;
-                    vm.changePrivacy = changePrivacy;
+                .getAllPosts()
+                .then(function(allPosts) {
+                    console.log("all posts are ");
+                    vm.allPosts = allPosts.data;
+                    console.log(vm.allPosts);
                 })
+            //public posts
+            PostService
+             .getAllPublicPosts()
+             .then(function(publicPosts) {
+                 console.log("public posts are ");
+                 vm.publicPosts = publicPosts.data;
+                 console.log(vm.publicPosts);
+             })
+
+            //only user's posts
+            PostService
+                .findAllPostsForUser(vm.currentUser._id)
+                .then(function(postsForUser){
+                    vm.myPosts = postsForUser.data;
+                })
+
         }
         init();
 
@@ -72,24 +83,24 @@
                 .updatePostById(vm.post._id, renewedPost)
                 .then(function(resp){
                     vm.error = null;
-                    vm.post = null;
+                    console.log("update post updates the post to: ");
+                    console.log(resp);
+                    vm.post = resp.data;
                     $location.url("/viewPost");
                 });
         }
 
-        function selectPost($index){
-            console.log($index);
-            console.log("vm.posts in selectPost");
-            console.log(vm.posts[$index]);
-            vm.post = {
-                _id: vm.posts[$index]._id,
-                title: vm.posts[$index].title,
-                tag: vm.posts[$index].tag,
-                type: vm.posts[$index].type,
-                userId: vm.posts[$index].userId,
-                username: vm.posts[$index].username,
-                content: vm.posts[$index].content
-            }
+        function selectPost(post){
+            console.log("value of post from view is");
+            console.log(post);
+            PostService
+                .getPostById(post._id)
+                .then(function(selectedPost){
+                    vm.post = selectedPost.data;
+                    console.log("vm.post is ");
+                    console.log(vm.post);
+                });
+
             console.log("vm.post in selectPost is ");
             console.log(vm.post);
             $location.url("/editPost");

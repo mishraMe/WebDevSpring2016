@@ -32,9 +32,9 @@
                 .then(function(response)
                 {
                     vm.post = response.data;
-                    console.log("response is");
-                    console.log(response);
-                    PostService.setCurrentPost(response.data);
+                    console.log("created post is");
+                    console.log(vm.post);
+                    PostService.setCurrentPost(vm.post);
                     $location.url("/editPost");
                 });
         };

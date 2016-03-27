@@ -59,9 +59,11 @@ module.exports = function(app){
     function updatePost (postId, post) {
         console.log("entered updatePost in post model");
         for (var index in mockPosts) {
-            if (mockPosts[index]._id === postId) {
+            if (mockPosts[index]._id == postId) {
                 mockPosts[index] = post;
                 //returns the updated post.
+                console.log("value returned by updatePost in model is ");
+                console.log(mockPosts[index]);
                 return mockPosts[index];
             }
         }
@@ -114,7 +116,7 @@ module.exports = function(app){
         var post;
         for(var index in mockPosts){
             post = mockPosts[index];
-            if(post._id=== postId){
+            if(post._id== postId){
                 fields = post.fields;
                 return fields;
                 break;
@@ -128,7 +130,7 @@ module.exports = function(app){
         var post = findPostById(postId);
         for(var index in post.fields){
             field = post.fields[index];
-            if(field._id === fieldId){
+            if(field._id == fieldId){
                 return field;
                 break;
             }

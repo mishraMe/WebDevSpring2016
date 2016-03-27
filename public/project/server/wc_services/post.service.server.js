@@ -36,11 +36,18 @@ module.exports = function(app, postModel) {
     };
 
     function updatePostById(req, res){
+        console.log("entered the updatePostById in server");
         //updates post
         var postId = req.params.postId;
+        console.log("req.params id is " + req.params.postId);
+        console.log("req.body is ");
+        console.log(req.body);
         var updatedPost = req.body;
         var response = postModel.updatePost(postId, updatedPost);
+        console.log("response is ");
+        console.log(response)
         res.send(response);
+
     };
 
     function getAllPosts(req, res){

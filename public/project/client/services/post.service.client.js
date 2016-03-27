@@ -14,8 +14,9 @@
                 getAllReviews: getAllReviews,
                 createPostForUser: createPostForUser,
                 findAllPostsForUser: findAllPostsForUser,
-                deletePostById: deletePost,
-                updatePostById: updatePost,
+                getPostById: getPostById,
+                deletePostById: deletePostById,
+                updatePostById: updatePostById,
 
                 //table functions
                 createPostInTable: createPostInTable,
@@ -43,6 +44,10 @@
                 return $http.get("/api/project/public/post");
             };
 
+            function getPostById(postId) {
+                return $http.get("/api/project/public/post/" + postId);
+            };
+
             function createPostForUser(userId, post) {
                 return $http.post("/api/project/user/"+userId+"/post", post);
             };
@@ -52,10 +57,10 @@
                 return $http.get("/api/project/user/"+userId+"/post");
             };
 
-            function updatePost(postId, newPost) {
-                return $http.put("/api/assignment/form/"+ postId, newPost);
+            function updatePostById(postId, newPost) {
+                return $http.put("/api/project/post/"+ postId, newPost);
             };
-            function deletePost(postId) {
+            function deletePostById(postId) {
                 //console.log("entered deleteFormById in posts wc_services client");
                 return $http.delete("/api/project/post/"+ postId);
             };

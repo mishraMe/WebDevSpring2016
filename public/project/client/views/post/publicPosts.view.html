@@ -1,5 +1,5 @@
-<!-- allPosts.view.html-->
-<h1>All Documents</h1>
+<!-- publicPosts.view.html-->
+<h1>Public Posts</h1>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -9,22 +9,25 @@
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Writer</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Rating
-            </th>
+                tags</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="document in allDocuments">
+        <tr ng-repeat="post in model.publicPosts">
             <td>
-               <a href="#/viewDocument">{{document.title}}</a>
+               <a href="#/viewPost">
+                   {{post.title}}
+               </a>
             </td>
             <td>
-                <a href="#/profile">
-                    {{document.username}}
+                <a href="#/profile/:id">
+                    {{post.username}}
                 </a>
             </td>
             <td>
-                {{document.tag}}
+                <ul ng-repeat="tag in post.tag">
+                {{tag}}
+                </ul>
             </td>
         </tr>
         </tbody>

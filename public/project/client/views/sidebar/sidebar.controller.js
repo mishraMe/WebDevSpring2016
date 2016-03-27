@@ -14,11 +14,11 @@
 
         var postTemplate =
         {
-            "_id": null, "title": "Title",
-            "tag": ["Tag1", "Tag2", "Tag3"] ,  "type": "private",
+            "_id": null, "title": null,
+            "tag": ["Story", "Poem", "Script"] ,  "type": "private",
             "roles": ["user"],
-            "userId": null, "username":"username",
-            "content": "Write Here!"
+            "userId": null, "username": "",
+            "content":null
         }
 
         function init(){

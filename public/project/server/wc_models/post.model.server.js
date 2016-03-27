@@ -7,6 +7,7 @@ module.exports = function(app){
         findPostById: findPostById,
         findPostByTitle: findPostByTitle,
         findPostsForUser: findPostsForUser,
+        findAllPublicPosts: findAllPublicPosts,
         updatePost: updatePost,
         deletePost: deletePost,
 
@@ -31,6 +32,17 @@ module.exports = function(app){
     function findAllPosts () {
         console.log("entered findAllPosts in post model");
         return mockPosts;
+    };
+
+    function findAllPublicPosts () {
+        var publicPosts = [];
+        console.log("entered findAllPublicPosts in post model");
+        for(var index in mockPosts){
+            if(mockPosts[index].type == "public"){
+                publicPosts.push(mockPosts[index]);
+            }
+        }
+        return publicPosts;
     };
 
     function findPostById (postId) {

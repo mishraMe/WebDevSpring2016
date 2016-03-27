@@ -10,6 +10,7 @@
                 getCurrentPost: getCurrentPost,
                 setCurrentPost: setCurrentPost,
                 getAllPosts: getAllPosts,
+                getAllPublicPosts: getAllPublicPosts,
                 getAllReviews: getAllReviews,
                 createPostForUser: createPostForUser,
                 findAllPostsForUser: findAllPostsForUser,
@@ -36,6 +37,10 @@
 
             function getAllPosts() {
                return $http.get("/api/project/post");
+            };
+
+            function getAllPublicPosts() {
+                return $http.get("/api/project/public/post");
             };
 
             function createPostForUser(userId, post) {

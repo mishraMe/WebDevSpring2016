@@ -12,36 +12,40 @@
         vm.$location = $location;
         vm.selectedPost= null;
         vm.post = PostService.getCurrentPost();
-        vm.currentUser = UserService.getCurrentUser();
-        PostService
-            .findAllPostsForUser(vm.currentUser._id)
-            .then(function(postsForUser){
-                vm.myPosts = postsForUser.data;
-            })
-        PostService
-            .getAllPosts()
-            .then(function(allPosts){
-                vm.allPosts = allPosts.data;
-            })
-
-        vm.deletePost = deletePost;
-        vm.updatePost = updatePost;
-        vm.selectPost = selectPost;
-        vm.viewPost = viewPost;
-        vm.changePrivacy = changePrivacy;
-
         function init(){
+            //current user
+            vm.currentUser = UserService.getCurrentUser();
+            //public posts
+            PostService
+                .getAllPublicPosts()
+                .then(function(publicPosts){
+                    console.log("public posts are ");
+                    console.log(publicPosts.data);
+                    vm.publicPosts = publicPosts.data;
+                    console.log(vm.publicPosts);
 
+                    //only user's posts
+                    PostService
+                        .findAllPostsForUser(vm.currentUser._id)
+                        .then(function(postsForUser){
+                            vm.myPosts = postsForUser.data;
+                        })
+                    vm.deletePost = deletePost;
+                    vm.updatePost = updatePost;
+                    vm.selectPost = selectPost;
+                    vm.viewPost = viewPost;
+                    vm.changePrivacy = changePrivacy;
+                })
         }
         init();
+
 
         function viewPost(post){
             vm.post = post;
             $location.url("/viewPost");
         };
+
         function deletePost(post){
-            console.log("postToBeDeleted is");
-            console.log(post);
             var postsAfterDeletion=[];
             PostService
                 .deletePostById(post._id)
@@ -71,7 +75,6 @@
                     vm.post = null;
                     $location.url("/viewPost");
                 });
-
         }
 
         function selectPost($index){
@@ -93,7 +96,6 @@
         }
 
         function changePrivacy(post){
-            console.log("entered change privacy");
             if(post.type == "private"){
                 post.type = "public";
                 vm.post = post;
@@ -106,10 +108,8 @@
                 .then(function(resp){
                     console.log("vm.post is in updatepost of change privacy");
                     vm.error = null;
-                    $location.url("/editPost");
+                    vm.message= "Privacy changed to {{post.type}}"
                 });
-            console.log("vm.post in selectPost is ");
-            console.log(vm.post);
         }
 
 

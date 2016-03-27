@@ -4,9 +4,8 @@ module.exports = function(app, postModel) {
     app.put("/api/project/post/:postId", updatePostById);
     app.get("/api/project/user/:userId/post", getPostsForUser);
     app.get("/api/project/post/:postId", getPostById);
-    app.get("/api/project/post", getAllPosts)
-
-
+    app.get("/api/project/post", getAllPosts);
+    app.get("/api/project/public/post", getAllPublicPosts);
 
     function getPostsForUser(req, res){
         var userId = req.params.userId;
@@ -15,6 +14,7 @@ module.exports = function(app, postModel) {
     };
 
     function getPostById(req, res){
+        console.log("entered getPostById in server service");
         var postId = req.params.postId;
         var post = postModel.findPostById(postId);
         res.send(post);
@@ -47,5 +47,11 @@ module.exports = function(app, postModel) {
         var allPosts = [];
         allPosts = postModel.findAllPosts();
         res.send(allPosts);
+    };
+
+    function getAllPublicPosts(req, res){
+        var allPublicPosts = [];
+        allPublicPosts = postModel.findAllPublicPosts();
+        res.send(allPublicPosts);
     };
 };

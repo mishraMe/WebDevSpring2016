@@ -52,7 +52,11 @@
 
 
         function viewPost(post){
+            PostService.setCurrentPost(post);
+            console.log("post value from viewing on clicking on it is ");
+            console.log(post);
             vm.post = post;
+            console.log(vm.post);
             $location.url("/viewPost");
         };
 
@@ -67,6 +71,7 @@
                             vm.post = null;
                             vm.error = null;
                             vm.message = null;
+                            PostService.setCurrentPost(null);
                             vm.myPosts = allPostsForUser;
                             $location.url("/myPosts");
                         });
@@ -86,6 +91,7 @@
                     console.log("update post updates the post to: ");
                     console.log(resp);
                     vm.post = resp.data;
+                    PostService.setCurrentPost(vm.post);
                     $location.url("/viewPost");
                 });
         }
@@ -97,12 +103,8 @@
                 .getPostById(post._id)
                 .then(function(selectedPost){
                     vm.post = selectedPost.data;
-                    console.log("vm.post is ");
-                    console.log(vm.post);
                 });
-
-            console.log("vm.post in selectPost is ");
-            console.log(vm.post);
+            PostService.setCurrentPost(vm.post);
             $location.url("/editPost");
         }
 
@@ -117,6 +119,8 @@
             PostService
                 .updatePostById(vm.post._id, post)
                 .then(function(resp){
+                    vm.post= resp.data;
+                    PostService.setCurrentPost(vm.post);
                     console.log("vm.post is in updatepost of change privacy");
                     vm.error = null;
                     vm.message= "Privacy changed to {{post.type}}"

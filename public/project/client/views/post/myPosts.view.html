@@ -13,7 +13,7 @@
         <tbody>
         <tr ng-repeat="post in model.myPosts">
             <td>
-                <a href="/viewPost">{{post.title}}</a>
+                <a ng-click="model.viewPost(post)">{{post.title}}</a>
             </td>
         </tr>
         </tbody>

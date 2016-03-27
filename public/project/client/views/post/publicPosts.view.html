@@ -15,7 +15,7 @@
         <tbody>
         <tr ng-repeat="post in model.publicPosts">
             <td>
-               <a href="#/viewPost">
+               <a ng-click="model.viewPost(model.post)">
                    {{post.title}}
                </a>
             </td>

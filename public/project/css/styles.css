@@ -6,6 +6,19 @@
 .form-horizontal .control-label{
     text-align: left;
 }
+
+.navbar-fixed-top {
+    background-image: url("https://w-dog.net/wallpapers/0/1/461253991453994/typewriter-old-vintage-retro-old-printing-machine-vintage-retro-key-buttons.jpg");
+}
+
+body{
+    background-image: url("http://www.clipartbest.com/cliparts/aie/KbE/aieKbEE9T.png");
+}
+
+.sidebar{
+    background-image: url("https://pixabay.com/static/uploads/photo/2015/12/08/00/47/coffee-beans-1082035_960_720.jpg");
+
+}
 .textarea{
     width: 100%;
     height:100%;

@@ -1,12 +1,12 @@
 module.exports = function(app, userModel) {
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", getAllUsers);
-    app.get("/api/project/user/", getUserById);
-    app.get("/api/project/user/", getUserByUsername);
-    app.get("/api/project/user/", getUserByCredentials);
-    //app.get("/api/project/user/:id", getUserById);
-    //app.get("/api/project/user?username=username", getUserByUsername);
-    //app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
+    //app.get("/api/project/user/", getUserById);
+    //app.get("/api/project/user/", getUserByUsername);
+    //app.get("/api/project/user/", getUserByCredentials);
+    app.get("/api/project/user/:id", getUserById);
+    app.get("/api/project/user?username=username", getUserByUsername);
+    app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
 
@@ -24,17 +24,20 @@ module.exports = function(app, userModel) {
     function getAllUsers(req, res){
         console.log("ENTERED PROJECT USER MODEL");
         console.log("entered the getAllUsers server service");
-
-        var password = req.query.password
-
+        var password = req.query.password;
         var username = req.query.username;
+        var id = req.params.id;
 
        if (username){
             console.log("entered the if condition in getAllUsers");
             getUserByUsername(req, res);
         }
+        else if(id){
+            console.log("entered the else if 1st option in getAllUsers");
+           getUserById(req, res);
+       }
         else if(password){
-            console.log("entered the else if condition in getAllUsers");
+            console.log("entered the else if 2nd option in getAllUsers");
             getUserByCredentials(req, res);
         }
         else{

@@ -11,15 +11,15 @@
         vm.currentUser = UserService.getCurrentUser();
         vm.$location = $location;
         console.log(vm.currentUser);
+        var postTemplate;
 
-        var postTemplate ={
-            "_id": null, "title": null,
-            "tag": ["Story", "Poem", "Script"] ,  "type": "private",
-            "roles": ["user"],
-            "userId": null, "username": "",
-            "content":null
-        };
-        if(vm.currentUser){
+        function init(){
+        }
+        init();
+
+        function createPost(){
+
+            vm.currentUser = UserService.getCurrentUser();
 
             postTemplate =   {
                 "_id": null, "title": null,
@@ -28,14 +28,6 @@
                 "userId": vm.currentUser._id, "username": vm.currentUser.username,
                 "content":null
             }
-        }
-
-        function init(){
-        }
-        init();
-
-        function createPost(){
-            vm.currentUser = UserService.getCurrentUser();
             PostService
                 .createPostForUser(vm.currentUser._id, postTemplate)
                 .then(function(response)

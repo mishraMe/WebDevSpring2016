@@ -45,6 +45,7 @@
         };
 
         function findUserById(userId){
+            console.log("entered te findUserById in client service");
             return $http.get("/api/project/user/" + userId);
 
         };

@@ -1,4 +1,5 @@
 var mockUsers = require("./user.mock.json");
+var mockFollows = require("./follow.mock.json");
 
 module.exports = function(app) {
 
@@ -9,7 +10,9 @@ module.exports = function(app) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        //find all follower and following info for a user
+        findAllFollowInfoForUserByUserId: findAllFollowInfoForUserByUserId
     };
     return api;
 
@@ -95,4 +98,17 @@ module.exports = function(app) {
         }
         return null;
     };
+
+
+    //functions for finding followers and following
+
+    function findAllFollowInfoForUserByUserId(userId){
+        for(var index in mockFollows){
+            if(mockFollows[index].userId == userId){
+                return mockFollows[index];
+            }
+        }
+        return null;
+    }
+
 }

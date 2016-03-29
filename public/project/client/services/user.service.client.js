@@ -11,12 +11,14 @@
             findUserByCredentials: findUserByCredentials,
             findUserByUsername:findUserByUsername,
             findUserById: findUserById,
+            findFollowInfoForUserById: findFollowInfoForUserById,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
-            getCurrentUserId: getCurrentUserId
+            getCurrentUserId: getCurrentUserId,
+
         };
 
         return api;
@@ -65,6 +67,8 @@
         function getCurrentUserId(){
             return $rootScope.currentUser._id;
         };
-
+        function findFollowInfoForUserById(userId){
+            return $http.get("/api/project/user/"+ userId +"/follow");
+        };
     }
 })();

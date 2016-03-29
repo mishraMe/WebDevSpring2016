@@ -87,6 +87,18 @@
                 controller: "AdminController",
                 controllerAs: "model",
             })
+                //follower and following
+            .when("/followers",{
+                templateUrl: "views/user/followers.view.html",
+                controller: "FollowController",
+                controllerAs: "model",
+            })
+
+            .when("/following",{
+                templateUrl: "views/user/following.view.html",
+                controller: "FollowController",
+                controllerAs: "model",
+            })
 
             //table views links
             .when("/postTable", {

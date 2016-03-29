@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "000",
+    "userId": 123, "username": "alice",
+    "followers": ["bob", "charlie", "ed"],
+    "following": ["bob", "ed"]
+  },
+  {
+    "_id": "002",
+    "userId": 234, "username": "bob",
+    "followers": ["charlie", "ed"],
+    "following": ["alice", "ed"]
+  },
+  {
+    "_id": "003",
+    "userId": 456, "username": "dan",
+    "followers": ["charlie", "ed"],
+    "following": ["alice", "bob", "ed", "charlie"]
+  },
+  {
+    "_id": "004",
+    "userId": 567, "username": "ed",
+    "followers": ["alice", "bob", "dan"],
+    "following": ["alice", "bob", "dan"]
+  },
+  {
+    "_id": "005",
+    "userId": 345, "username": "charlie",
+    "followers": ["alice", "bob", "dan"],
+    "following": ["dan"]
+  }
+]

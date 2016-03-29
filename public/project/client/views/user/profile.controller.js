@@ -5,7 +5,6 @@
         .controller("ProfileController", profileController)
     function profileController($location, UserService){
         var vm = this;
-
         vm.error = null;
         vm.message = null;
         vm.currentUser= UserService.getCurrentUser();
@@ -13,7 +12,6 @@
             $location.url("/home");
         }
         vm.update = update;
-
         function update(user){
             vm.error = null;
             vm.message = null;
@@ -25,7 +23,6 @@
                         vm.message = "User updated successfully";
                         $location.url("/profile");
                     });
-
         }
     }
 })();

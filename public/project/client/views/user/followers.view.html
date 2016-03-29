@@ -1,2 +1,9 @@
-<!-- followers.view.html-->
-<h1>Followers</h1>
+<h1>{{model.currentUser.username}}'s Followers</h1>
+
+<form class="form-control">
+    <ul ng-repeat="follower in model.followers">
+        <a>
+            {{follower}}
+        </a>
+    </ul>
+</form>

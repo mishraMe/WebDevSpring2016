@@ -1,2 +1,9 @@
-<!-- following.view.html-->
-<h1>following</h1>
+<h1>{{model.currentUser.username}} Follows</h1>
+
+<form class="form-control">
+    <ul ng-repeat="following in model.following">
+        <a>
+            {{following}}
+        </a>
+    </ul>
+</form>

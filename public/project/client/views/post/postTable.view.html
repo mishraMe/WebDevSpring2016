@@ -1,5 +1,5 @@
-<h1 class="title">Document Table</h1>
-<div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+<h1 class="title">Post Table</h1>
+<div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -22,69 +22,69 @@
         <tr>
             <td>
                 <lable type="datetime"
-                       ng-readonly="document._id"
-                       ng-model="document._id"
-                       placeholder="DocumentID"
+                       ng-readonly="model.post._id"
+                       ng-model="model.post._id"
+                       placeholder="PostID"
                        id="id"
-                       class="form-control">{{document._id}}</lable>
+                       class="form-control">{{model.post._id}}</lable>
             </td>
 
             <td>
                 <input type="text"
-                       ng-model="document.title"
+                       ng-model="model.post.title"
                        placeholder="Title"
                        id="title"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="document.username"
+                       ng-model="model.post.username"
                        placeholder="Writer"
                        id="writer"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="document.tag"
+                       ng-model="model.post.tag"
                        placeholder="Tag"
                        id="tag"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="document.type"
+                       ng-model="model.post.type"
                        placeholder="Type"
                        id="type"
                        class="form-control">
             </td>
             <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="createDocument(document)"></span>
+                                  ng-click="createPost(post)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updateDocument(document)"></span>
+                                   ng-click="updatePost(post)"></span>
             </td>
         </tr>
-        <tr ng-repeat="document in documentTable">
+        <tr ng-repeat="post in model.postTable">
             <td>
-                {{document._id}}
+                {{post._id}}
             </td>
             <td>
-                {{document.title}}
+                {{post.title}}
             </td>
             <td>
-                {{document.username}}
+                {{post.username}}
             </td>
             <td>
-                {{document.tag}}
+                {{post.tag}}
             </td>
             <td>
-                {{document.type}}
+                {{post.type}}
             </td>
             <td align="right">
-                            <span  ng-click="deleteDocument($index)"
+                            <span  ng-click="model.deletePost($index)"
                                    class="glyphicon glyphicon-remove">
                             </span>
-                            <span ng-click="selectDocument($index)"
+                            <span ng-click="model.selectPost($index)"
                                   class="glyphicon glyphicon-pencil"></span>
             </td>
         </tr>

@@ -11,19 +11,10 @@
         vm.listFollowers = listFollowers;
         var username = $routeParams.username;
         vm.currentUser= UserService.getCurrentUser();
-        var userId = $routeParams.userId;
         console.log("username is " + username);
         console.log("userId in account is "+ userId);
 
        function init(){
-           UserService
-               .findUserById(userId)
-               .then(function(userFound){
-                   console.log("userFound is " );
-                   console.log(userFound);
-                   vm.user = userFound.data;
-               })
-
            UserService
                .findUserByUsername(username)
                .then(function(userFound){

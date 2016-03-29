@@ -1,84 +1,84 @@
-//document.controller.js
+//post.controller.js
 (function(){
     "use strict";
     angular.module("WritersClubApp")
-        .controller("DocumentTableController", documentTableController);
+        .controller("PostTableController", postTableController);
 
-    function documentTableController(DocumentService){
+    function postTableController(PostService){
 
         var vm = this;
         //variables :
         vm.error=null;
         vm.message= null;
-        vm.selectedDocument= null;
-        vm.createDocument= createDocument;
-        vm.deleteDocument = deleteDocument;
-        vm.updateDocument = updateDocument;
-        vm.selectDocument = selectDocument;
-        vm.documentTable= DocumentService.getAllDocuments();
+        vm.selectedPost= null;
+        vm.createPost= createPost;
+        vm.deletePost = deletePost;
+        vm.updatePost = updatePost;
+        vm.selectPost = selectPost;
+        vm.postTable= PostService.getAllPosts();
 
         // functions
 
-        function createDocument(document){
+        function createPost(post){
             function callback (response) {
-                if (document === null) {
-                    $scope.message = "Please enter a post name";
+                if (post == null) {
+                    vm.message = "Please enter a post name";
                 } else {
-                    $scope.documentTable = DocumentService.getAllDocuments();
+                    vm.postTable = PostService.getAllPosts();
                 }
             }
-            DocumentService.createDocumentInTable
-            (document, callback);
-            $scope.document = null;
+            PostService.createPostInTable
+            (post, callback);
+            vm.post = null;
         }
 
-        function deleteDocument($index){
+        function deletePost($index){
             //function is responsible for deleting a post by the index value
-            var documentsAfterDeletion=[];
+            var postsAfterDeletion=[];
             var callback=
                 function(response){
-                    documentsAfterDeletion= response;
-                    $scope.documentTable = DocumentService.getAllDocuments();
-                    $scope.error = null;
+                    postsAfterDeletion= response;
+                    vm.postTable = PostService.getAllPosts();
+                    vm.error = null;
                 };
-            DocumentService.deleteDocumentInTable
-            ($scope.documentTable[$index]._id, callback);
+            PostService.deletePostInTable
+            (vm.postTable[$index]._id, callback);
         }
 
-        function updateDocument(newDocument){
+        function updatePost(newPost){
 
             //function is responsible for updating selected post to the new post's value
-            if(!newDocument){
-                $scope.message = "Please enter updates";
+            if(!newPost){
+                vm.message = "Please enter updates";
             }
-            var renewedDocument = {
-                title: newDocument.title,
-                username: newDocument.username,
-                tag: newDocument.tag,
-                type: newDocument.type,
+            var renewedPost = {
+                title: newPost.title,
+                username: newPost.username,
+                tag: newPost.tag,
+                type: newPost.type,
             };
             function callback (response){
                 console.log(response);
-                if($scope.document.title == null){
-                    $scope.error = "Document name cannot be empty";
+                if(vm.post.title == null){
+                    vm.error = "Post name cannot be empty";
                 }else {
-                    $scope.documentTable= DocumentService.getAllDocuments();
-                    $scope.error=null;
+                    vm.postTable= PostService.getAllPosts();
+                    vm.error=null;
                 }
             };
-            DocumentService.updateDocumentInTable($scope.document._id, renewedDocument,callback);
-            $scope.document=null;
+            PostService.updatePostInTable(vm.post._id, renewedPost,callback);
+            vm.post=null;
         }
 
-        function selectDocument($index){
+        function selectPost($index){
             // console.log("hello select post");
             //function is responsible for selecting a post to edit
-            $scope.document = {
-                _id: $scope.documentTable[$index]._id,
-                title: $scope.documentTable[$index].title,
-                username: $scope.documentTable[$index].username,
-                tag: $scope.documentTable[$index].tag,
-                type: $scope.documentTable[$index].type
+            vm.post = {
+                _id: vm.postTable[$index]._id,
+                title: vm.postTable[$index].title,
+                username: vm.postTable[$index].username,
+                tag: vm.postTable[$index].tag,
+                type: vm.postTable[$index].type
             };
         }
     }

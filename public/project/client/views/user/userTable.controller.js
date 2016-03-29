@@ -4,51 +4,70 @@
     angular.module("WritersClubApp")
         .controller("UserTableController", userTableController);
 
-    function userTableController($scope, $http, UserService){
+    function userTableController(UserService){
 
+        var vm = this;
         //variables :
-        $scope.error=null;
-        $scope.message= null;
-        $scope.selectedUser= null;
-        $scope.createUser= createUser;
-        $scope.deleteUser = deleteUser;
-        $scope.updateUser = updateUser;
-        $scope.selectUser = selectUser;
-        $scope.userTable= UserService.getAllUsers();
+        vm.error=null;
+        vm.message= null;
+        vm.selectedUser= null;
+        vm.createUser= createUser;
+        vm.deleteUser = deleteUser;
+        vm.updateUser = updateUser;
+        vm.selectUser = selectUser;
 
         // functions
+        function init() {
+            UserService
+                .findAllUsers()
+                .then(function(resp){
+                    vm.userTable = resp.data;
+                    console.log("resp is ");
+                    console.log(resp);
+                })
+        }
+        init();
 
         function createUser(user){
-            function callback (response) {
-                if (user === null) {
-                    $scope.message = "Please enter a user name";
-                } else {
-                    $scope.userTable = UserService.getAllUsers();
-                }
-            }
-            UserService.createUserInTable
-            (user, callback);
-            $scope.user = null;
+            UserService
+                .createUser(user)
+                .then(function(resp){
+                    if (user == null) {
+                        vm.message = "Please enter a user name";
+                    } else {
+                        UserService
+                            .findAllUsers()
+                            .then(function(resp){
+                                vm.userTable = resp.data;
+                            });
+                    }
+                })
+            vm.user = null;
         }
 
-        function deleteUser($index){
+        function deleteUser(user){
             //function is responsible for deleting a user by the index value
             var UsersAfterDeletion=[];
-            var callback=
-                function(response){
+            UserService
+                .deleteUserById(user._id)
+                .then(function(response){
+                    console.log("response is ");
+                    console.log(response.data);
                     UsersAfterDeletion= response;
-                    $scope.userTable = UserService.getAllUsers();
-                    $scope.error = null;
-                };
-            UserService.deleteUserInTable
-            ($scope.userTable[$index]._id, callback);
+                    UserService
+                        .findAllUsers()
+                        .then(function(resp){
+                            vm.userTable = resp.data;
+                        });
+                    vm.error = null;
+                });
         }
 
         function updateUser(newUser){
 
             //function is responsible for updating selected user to the new user's value
             if(!newUser){
-                $scope.message = "Please enter updates";
+                vm.message = "Please enter updates";
             }
             var renewedUser = {
                 password: newUser.password,
@@ -57,32 +76,36 @@
                 roles: newUser.roles,
                 email: newUser.email
             };
-
-            function callback (response){
-                console.log(response);
-                if($scope.user.username == null){
-                    $scope.error = "Username name cannot be empty";
-                }else {
-                    $scope.userTable= UserService.getAllUsers();
-                    $scope.error=null;
-                }
-            };
-            UserService.updateUserInTable($scope.user._id, renewedUser,callback);
-            $scope.user=null;
+            UserService
+                .updateUser(vm.user._id, renewedUser)
+                .then(function(response){
+                    console.log(response);
+                    if(vm.user.username == null){
+                        vm.error = "Username name cannot be empty";
+                    }else {
+                        UserService
+                            .findAllUsers()
+                            .then(function(resp){
+                                vm.userTable = resp.data;
+                            })
+                        vm.error=null;
+                    }
+                });
+            vm.user=null;
         }
 
         function selectUser($index){
 
             console.log("hello select user");
             //function is responsible for selecting a user to edit
-            $scope.user= {
-                _id: $scope.userTable[$index]._id,
-                username: $scope.userTable[$index].username,
-                password:$scope.userTable[$index].password,
-                firstName: $scope.userTable[$index].firstName,
-                lastName: $scope.userTable[$index].lastName,
-                roles: $scope.userTable[$index].roles,
-                email: $scope.userTable[$index].email
+            vm.user= {
+                _id: vm.userTable[$index]._id,
+                username: vm.userTable[$index].username,
+                password:vm.userTable[$index].password,
+                firstName: vm.userTable[$index].firstName,
+                lastName: vm.userTable[$index].lastName,
+                roles: vm.userTable[$index].roles,
+                email: vm.userTable[$index].email
             };
 
         }

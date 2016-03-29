@@ -1,5 +1,5 @@
 <h1 class="title">User Table</h1>
-<div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
+<div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -26,8 +26,8 @@
         <tr>
             <td>
                 <lable type="datetime"
-                       ng-readonly="user._id"
-                       ng-model="user._id"
+                       ng-readonly="model.user._id"
+                       ng-model="model.user._id"
                        placeholder="UserID"
                        id="id"
                        class="form-control">
@@ -36,7 +36,8 @@
             </td>
             <td>
                 <input type="text"
-                       ng-model="user.username"
+                       ng-readonly="model.user.username"
+                       ng-model="model.user.username"
                        value="user.username"
                        placeholder="Username"
                        id="username"
@@ -44,47 +45,47 @@
             </td>
             <td>
                 <input type="password"
-                       ng-model="user.password"
+                       ng-model="model.user.password"
                        placeholder="Password"
                        id="password"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="user.firstName"
+                       ng-model="model.user.firstName"
                        placeholder="FirstName"
                        id="firstname"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="user.lastName"
+                       ng-model="model.user.lastName"
                        placeholder="LastName"
                        id="lastname"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="user.roles"
+                       ng-model="model.user.roles"
                        placeholder="Roles"
                        id="role"
                        class="form-control">
             </td>
             <td>
                 <input type="text"
-                       ng-model="user.email"
+                       ng-model="model.user.email"
                        placeholder="Email"
                        id="email"
                        class="form-control">
             </td>
             <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="createUser(user)"></span>
+                                  ng-click="model.createUser(model.user)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updateUser(user)"></span>
+                                   ng-click="model.updateUser(model.user)"></span>
             </td>
         </tr>
-        <tr ng-repeat="user in userTable">
+        <tr ng-repeat="user in model.userTable">
             <td>
                 {{user._id}}
             </td>
@@ -92,7 +93,6 @@
                 {{user.username}}
             </td>
             <td>
-
             </td>
             <td>
                 {{user.firstName}}
@@ -110,10 +110,10 @@
                 {{user.email}}
             </td>
             <td align="right">
-                            <span  ng-click="deleteUser($index)"
+                            <span  ng-click="model.deleteUser(user)"
                                    class="glyphicon glyphicon-remove">
                             </span>
-                            <span ng-click="selectUser($index)"
+                            <span ng-click="model.selectUser($index)"
                                   class="glyphicon glyphicon-pencil"></span>
             </td>
         </tr>

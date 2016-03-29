@@ -7,6 +7,8 @@
         var vm = this;
         vm.error = null;
         vm.message = null;
+        vm.listFollowing = listFollowing;
+        vm.listFollowers = listFollowers;
         vm.currentUser= UserService.getCurrentUser();
         if(!vm.currentUser){
             $location.url("/home");
@@ -23,6 +25,14 @@
                         vm.message = "User updated successfully";
                         $location.url("/profile");
                     });
+        }
+
+        function listFollowing(user){
+            $location.url("/following/" + user._id);
+        }
+
+        function listFollowers(user){
+            $location.url("/followers/" + user._id);
         }
     }
 })();

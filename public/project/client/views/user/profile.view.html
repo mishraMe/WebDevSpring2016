@@ -8,13 +8,14 @@
 
     <div class="form-group">
         <div class="col-sm-offset-6" class="col-sm-offset-6">
-            <a href = "#/followers" class="btn btn-primary">
+            <button ng-click="model.listFollowers(model.currentUser)"
+                    class="btn btn-primary">
                 followers
-            </a>
-
-            <a href = "#/following" class="btn btn-primary">
+            </button>
+            <button ng-click="model.listFollowing(model.currentUser)"
+                    class="btn btn-primary">
                 following
-            </a>
+            </button>
         </div>
     </div>
 

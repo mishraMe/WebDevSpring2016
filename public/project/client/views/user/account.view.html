@@ -6,11 +6,12 @@
 
     <div class="form-group">
         <div class="col-sm-offset-6" class="col-sm-offset-6">
-            <button href="#/followers" class="btn btn-primary">
+            <button ng-click="model.listFollowers(model.user)"
+                    class="btn btn-primary">
                 followers
             </button>
-
-            <button href="#/following" class="btn btn-primary">
+            <button ng-click="model.listFollowing(model.user)"
+                    class="btn btn-primary">
                 following
             </button>
         </div>

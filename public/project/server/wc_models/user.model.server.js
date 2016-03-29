@@ -99,9 +99,7 @@ module.exports = function(app) {
         return null;
     };
 
-
     //functions for finding followers and following
-
     function findAllFollowInfoForUserByUserId(userId){
         for(var index in mockFollows){
             if(mockFollows[index].userId == userId){

@@ -3,13 +3,15 @@ var app = express();
 var bodyParser    = require('body-parser');
 var multer        = require('multer');
 //adding session and mongoose
-var passport = require('passport');
-
+var uuid = require('node-uuid');
 var cookieParser  = require('cookie-parser');
 var session       = require('express-session');
 var mongoose      = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 
-mongoose.connect('mongodb://localhost/formMaker');
+
+var db = mongoose.connect('mongodb://localhost/formMaker');
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
@@ -26,10 +28,11 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
-require("./public/assignment/server/app.js")(app);
+require("./public/assignment/server/app.js")(app, db, mongoose);
 require("./public/project/server/app.js")(app);
 app.listen(port, ipaddress);

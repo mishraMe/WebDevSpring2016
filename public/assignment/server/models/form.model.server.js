@@ -9,6 +9,8 @@ module.exports = function(app){
         deleteForm: deleteForm,
         findFormByTitle: findFormByTitle,
         findFormsForUser: findFormsForUser,
+
+        //field model;
         findAllFieldsInForm: findAllFieldsInForm,
         findFieldInForm: findFieldInForm,
         deleteFieldFromForm: deleteFieldFromForm,

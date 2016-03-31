@@ -5,7 +5,7 @@ module.exports = function(app, db , mongoose) {
     var UserSchema = require('./user.schema.server.js')(mongoose);
 
     // create user model from schema
-    var UserModel = mongoose.model("User", userSchema);
+    var UserModel = mongoose.model("User", UserSchema);
 
 
     var api = {
@@ -46,7 +46,7 @@ module.exports = function(app, db , mongoose) {
 
     //findUserById function
     function findUserById(userId) {
-        console.log("ENTERED ASSIGNEMNT USER MODEL");
+        console.log("ENTERED ASSIGNMENT USER MODEL");
         return UserModel.findById(userId);
     };
     //findUserByUsername function

@@ -2,7 +2,7 @@ module.exports = function(app, db, mongoose){
 
 
     var FormSchema = require('./form.schema.server.js')(mongoose);
-    var FieldSchema = require('./feild.schema.server.js')(mogoose);
+    var FieldSchema = require('./field.schema.server.js')(mongoose);
 
     // create user model from schema
     var FormModel = mongoose.model("Form", FormSchema);

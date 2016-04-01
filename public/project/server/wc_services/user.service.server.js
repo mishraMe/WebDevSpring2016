@@ -3,7 +3,7 @@ module.exports = function(app, userModel) {
     app.get("/api/project/user", getAllUsers);
     app.get("/api/project/user/:id", getUserById);
     app.get("/api/project/user?username=username", getUserByUsername);
-    app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
+    app.get("/api/project/user?username=username&password=password", getUserByCredentials);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
     app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);

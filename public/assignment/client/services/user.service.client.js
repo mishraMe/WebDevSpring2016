@@ -35,6 +35,7 @@
         };
 
         function createUser(user) {
+            console.log("entered the createuser in service of client");
            return $http.post("/api/assignment/user", user);
         };
 

@@ -15,17 +15,15 @@ module.exports = function(app, db , mongoose) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        getMongooseModel: getMongooseModel
     };
     return api;
 
     //createUser function
     function createUser(user) {
-        console.log("ENTERED ASSIGNEMNT USER MODEL");
-        console.log("entered createUser method of user wc_models in server");
-        return UserModel.create(user);
+        return (UserModel.create(user));
     };
-
 
     //updateUser function
     function updateUser(userId, user) {
@@ -40,27 +38,34 @@ module.exports = function(app, db , mongoose) {
 
     //findAllUsers function
     function findAllUsers() {
-        console.log("ENTERED ASSIGNMENT USER MODEL");
+        console.log("ENTERED findAllUsers in model");
        return UserModel.find();
     };
 
     //findUserById function
     function findUserById(userId) {
-        console.log("ENTERED ASSIGNMENT USER MODEL");
+        console.log("ENTERED findUserById");
         return UserModel.findById(userId);
     };
     //findUserByUsername function
     function findUserByUsername(username) {
-        console.log("ENTERED ASSIGNEMNT USER MODEL");
+        console.log("ENTERED findUserByUsername");
        return UserModel.findOne({username: username});
+
     };
 
     //findUserByCredentials function
     function findUserByCredentials(credentials) {
-        console.log("ENTERED ASSIGNEMNT USER MODEL");
+        console.log("entered findUserByCredentials");
         console.log("entered in user wc_model");
         var username= credentials.username;
         var password= credentials.password;
        return UserModel.findOne({username: username, password: password});
     };
+
+    // get mongooseModel
+    function getMongooseModel() {
+        return UserModel;
+    }
+
 }

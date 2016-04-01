@@ -13,6 +13,8 @@
         vm.removeField = removeField;
         vm.editField = editField;
         vm.updateField = updateField;
+        vm.fields = [];
+        vm.fieldType = null;
 
         //variables
         var formId = $routeParams.formId;
@@ -87,18 +89,20 @@
                         FieldService
                             .getFieldsForForm(vm.currentForm._id)
                             .then(function(response){
-                               vm.fields=(response.data);
+                               vm.fields= response.data;
                             });
                     });
         }
         init();
 
         function addField(fieldType){
-            var newFieldTemplate = findTemplateForFieldType(fieldType);
+            vm.fieldType = fieldType;
+            var newFieldTemplate = findTemplateForFieldType(vm.fieldType);
             FieldService
                 .createFieldForForm(vm.currentForm._id, newFieldTemplate)
                 .then(function(response){
-                 vm.fields = response.data;
+                    console.log("entered the then for controller");
+                    vm.fields = response.data;
                 });
 
         };

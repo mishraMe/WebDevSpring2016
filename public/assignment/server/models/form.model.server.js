@@ -29,7 +29,14 @@ module.exports = function(app, db, mongoose){
     return api;
 
     function createForm (form) {
-       return FormModel.create(form);
+        var newForm = {
+            userId : form.userId,
+            title : form.title,
+            fields : [],
+            created: new Date(),
+            updated: new Date()
+        };
+       return FormModel.create(newForm);
     };
 
     function findAllForms () {
@@ -62,6 +69,23 @@ module.exports = function(app, db, mongoose){
 
 
     //functions for fields of the form
+    function createFieldInForm(formId, newField){
+        console.log("entered createFieldInForm for model");
+        var formWithField =
+            FormModel
+                .findOne({_id: formId})
+                .then(
+                    function(form) {
+                        console.log("entered the then of findOne for createFieldInform");
+                        form.fields.push(newField);
+                        console.log("after the fields push");
+                         return form.save();
+
+                    });
+        return formWithField;
+    };
+
+
     function findAllFieldsInForm(formId){
     return  FormModel.findById({_id: formId}).select("fields");
     };
@@ -81,17 +105,6 @@ module.exports = function(app, db, mongoose){
                 FormModel.form.fields.id(fieldId).remove();
                 return form.save();
             })
-    };
-
-    // note as the function in assignment doesn't mention any return this returns nothing,
-    //there is still a possibility of change and a return to be added or the updated form to be accessed
-    //from another method.
-    function createFieldInForm(formId, newField){
-     FormModel.findById({_id: formId})
-         .then(function(form){
-             form.fields.push(newField);
-             return form.save();
-         })
     };
 
     function updateFieldInForm(formId, fieldId, updatedField){

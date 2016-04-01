@@ -6,8 +6,7 @@ module.exports = function() {
 
         userId: String,
         title: String,
-        fields: fieldSchema,
-        lastName: String,
+        fields: [fieldSchema],
         created: Date,
         updated: Date
     }, {collection: "form"});

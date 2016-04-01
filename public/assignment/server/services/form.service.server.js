@@ -8,47 +8,102 @@ module.exports = function(app, formModel) {
 
 
     function getFormsForUser(req, res){
-      //  console.log("entered get forms for user in form wc_services in server");
         var userId = req.params.userId;
-      //  console.log(userId);
-        var forms = formModel.findFormsForUser(userId);
-      //  console.log("forms in form wc_services server js (response) is ");
-      //  console.log(forms);
-        res.send(forms);
+        var forms =
+            formModel
+                .findFormsForUser(userId)
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
     };
 
     function getFormById(req, res){
         var formId = req.params.formId;
-        var form = formModel.findFormById(formId);
-        res.send(form);
+        var form =
+            formModel
+                .findFormById(formId)
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
     };
 
     function deleteFormById(req, res){
-      //  console.log("entered deleteFormById in server wc_services");
         var deleteFormId = req.params.formId;
-       var response = formModel.deleteForm(deleteFormId);
-        res.send(response);
+       var response =
+           formModel
+               .deleteForm(deleteFormId)
+               .then(
+                   function(result)
+                   {
+                       res.json(result);
+                   },
+                   function(err){
+                       res.status(400).send(err);
+                   }
+               );
     };
 
     function createFormForUser(req, res){
         var form = req.body;
         var userId = req.params.userId;
         form.userId = userId;
-        var createdForm = formModel.createForm(form);
-        res.send(createdForm);
+        var createdForm =
+            formModel
+                .createForm(form)
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
     };
 
     function updateFormById(req, res){
         //updates form
         var formId = req.params.formId;
         var updatedForm = req.body;
-        var response = formModel.updateForm(formId, updatedForm);
-        res.send(response);
+        var response =
+            formModel
+                .updateForm(formId, updatedForm)
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
     };
 
     function getAllForms(req, res){
         var allForms = [];
-        allForms = formModel.findAllForms();
-        res.send(allForms);
+        allForms =
+            formModel
+                .findAllForms()
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
     };
 };

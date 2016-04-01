@@ -41,9 +41,19 @@
 
                 UserService
                     .createUser(user)
-                    .then(function(response){
-                        console.log(response);
-                    })
+                    .then(
+                    function(response) {
+                        var user = response.config.data;
+                        console.log(user);
+                        if(user != null) {
+                            UserService.setCurrentUser(user);
+                            $location.url("/profile");
+                        }
+                    },
+                    function(err) {
+                        $scope.error = err;
+                    }
+                );
 
             }
         }

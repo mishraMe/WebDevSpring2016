@@ -87,7 +87,7 @@ module.exports = function(app, userModel) {
             password: req.query.password
         };
         var user = userModel.findUserByCredentials(credentials);
-        res.send(user);
+        res.json(user);
     };
 
     function updateUser(req, res){

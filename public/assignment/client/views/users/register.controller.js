@@ -37,25 +37,15 @@
             }
             if (!user.email) {
                 vm.error = "Please provide an email address"
-            }else {
-
-                UserService
-                    .createUser(user)
-                    .then(
-                    function(response) {
-                        var user = response.config.data;
-                        console.log(user);
-                        if(user != null) {
-                            UserService.setCurrentUser(user);
-                            $location.url("/profile");
-                        }
-                    },
-                    function(err) {
-                        $scope.error = err;
-                    }
-                );
-
             }
+            UserService
+                .createUser(user)
+                .then(function(createdUser){
+                    if(createdUser) {
+                        UserService.setCurrentUser(createdUser.data);
+                        $location.url("/profile");
+                    }
+                });
         }
     }
 })();

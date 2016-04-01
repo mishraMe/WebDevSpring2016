@@ -22,7 +22,7 @@ module.exports = function(app, db , mongoose) {
 
     //createUser function
     function createUser(user) {
-        return (UserModel.create(user));
+     return UserModel.create(user);
     };
 
     //updateUser function
@@ -57,7 +57,7 @@ module.exports = function(app, db , mongoose) {
     //findUserByCredentials function
     function findUserByCredentials(credentials) {
         console.log("entered findUserByCredentials");
-        console.log("entered in user wc_model");
+        console.log("entered in user model");
         var username= credentials.username;
         var password= credentials.password;
        return UserModel.findOne({username: username, password: password});

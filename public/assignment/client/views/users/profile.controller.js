@@ -5,12 +5,11 @@
         .controller("ProfileController", profileController)
     function profileController($location, UserService){
         var vm = this;
-
         vm.error = null;
         vm.message = null;
         vm.currentUser= UserService.getCurrentUser();
-       // console.log("currentuser give below:");
-       // console.log(vm.currentUser);
+        console.log("current user is ");
+        console.log(vm.currentUser);
         if(!vm.currentUser){
             $location.url("/home");
         }
@@ -19,15 +18,13 @@
         function update(user){
             vm.error = null;
             vm.message = null;
+            console.log("user in update function is");
             UserService
-                .updateUser(vm.currentUser._id, user)
-                .then(
-                    function (response){
-                      //  console.log(response.data);
-                        UserService.setCurrentUser(vm.currentUser);
+                .updateUser(user._id, user)
+                .then(function (response){
+                        UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     });
-
         }
     }
 })();

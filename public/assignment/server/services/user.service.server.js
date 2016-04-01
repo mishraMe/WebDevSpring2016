@@ -28,7 +28,17 @@ module.exports = function(app, userModel) {
                         res.json(null);
                     } else {
                         console.log("entered else condition of findUserByUsername");
-                        res.json(userModel.createUser(newUser));
+                        var user =
+                            userModel.createUser(newUser)
+                            .then(
+                                function(result){
+                                    console.log("result in createUser is ");
+                                    console.log(result);
+                                    res.json(result);
+                                },
+                                function(err){
+                                    res.status(400).send(err);
+                                });
                     }
                 },
                 function (err) {
@@ -60,6 +70,7 @@ module.exports = function(app, userModel) {
             var users = [];
             users = userModel.findAllUsers();
             res.json(users);
+            res.err(err)
         }
     };
 
@@ -86,17 +97,35 @@ module.exports = function(app, userModel) {
             username: req.query.username,
             password: req.query.password
         };
-        var user = userModel.findUserByCredentials(credentials);
-        res.json(user);
+        var user = userModel
+            .findUserByCredentials(credentials)
+            .then(
+                function(result)
+                {
+                    res.json(result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     };
 
     function updateUser(req, res){
         console.log("entered the updateUser server service");
         var updatedUser = req.body;
-        userModel.updateUser(req.params.id, updatedUser);
-        var users = userModel.findAllUsers();
-        res.json(users);
-    };
+        var user =
+            userModel
+                .updateUser(req.params.id, updatedUser)
+                .then(
+                    function(result)
+                    {
+                        res.json(result);
+                    },
+                    function(err){
+                        res.status(400).send(err);
+                    }
+                );
+    }
 
     function deleteUser(req, res){
         console.log("entered the deleteUser server service");

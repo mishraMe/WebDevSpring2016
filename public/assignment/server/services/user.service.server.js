@@ -119,9 +119,11 @@ module.exports = function(app, userModel) {
                 .then(
                     function(result)
                     {
+                        console.log("entered the updateUser result");
                         res.json(result);
                     },
                     function(err){
+                        console.log("entered the updateUser err");
                         res.status(400).send(err);
                     }
                 );

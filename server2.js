@@ -19,14 +19,14 @@ course
     console.log(err);
     console.log(results);
 })
-
-function findAll(callback){
-    course.find(callback);
-}
-app.get('/rest/course', function(req, res) {
-    findAll(function(err, results){
-        res.json(results);
-    })
-});
-
-app.listen(3000);
+//
+//function findAll(callback){
+//    course.find(callback);
+//}
+//app.get('/rest/course', function(req, res) {
+//    findAll(function(err, results){
+//        res.json(results);
+//    })
+//});
+//
+//app.listen(3000);

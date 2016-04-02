@@ -66,6 +66,7 @@
             //var currentUserId = vm.currentUser._id;
             //delete vm.currentUser._id;
 
+            //had to remove the _id from the renewed Form! it worked then
             if(vm.form._id == null){
                 vm.error = "Form name cannot be empty";
             }

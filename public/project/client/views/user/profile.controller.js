@@ -13,7 +13,7 @@
         if(!vm.currentUser){
             $location.url("/home");
         }
-        vm.update = update;
+               vm.update = update;
         function update(user){
             vm.error = null;
             vm.message = null;

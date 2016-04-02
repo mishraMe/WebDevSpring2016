@@ -56,25 +56,24 @@
 
         function updateForm(newForm){
             var renewedForm = {
-                _id : newForm._id,
                 title: newForm.title,
                 userId: newForm.userId
             };
 
-            var currentFormId = vm.form._id;
-            delete vm.form._id;
+            //var currentFormId = vm.form._id;
+            //delete vm.form._id;
+            //
+            //var currentUserId = vm.currentUser._id;
+            //delete vm.currentUser._id;
 
-            var currentUserId = vm.currentUser._id;
-            delete vm.currentUser._id;
-
-            if(currentFormId == null){
+            if(vm.form._id == null){
                 vm.error = "Form name cannot be empty";
             }
             FormService
-                .updateFormById(currentFormId, renewedForm)
+                .updateFormById(vm.form._id, renewedForm)
                 .then(function(response){
                     FormService
-                        .findAllFormsForUser(currentUserId)
+                        .findAllFormsForUser(vm.currentUser._id)
                         .then(function(resp){
                             vm.forms= resp.data;
                             vm.error = null;

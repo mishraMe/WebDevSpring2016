@@ -62,7 +62,7 @@ module.exports = function(app, db, mongoose){
     function findFormsForUser(userId) {
         console.log("userId is " + userId);
         var formsForUser = [];
-         formsForUser = FormModel.find({userId: mongoose.Types.ObjectId(userId)});
+         formsForUser = FormModel.find({userId: userId});
         return formsForUser;
     };
 

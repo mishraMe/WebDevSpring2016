@@ -74,7 +74,7 @@ module.exports = function(app, db, mongoose){
             .findById(formId)
             .then(function(result) {
                 result.fields.push(newField);
-                result.save();
+               return result.save();
                 });
     };
 
@@ -103,16 +103,21 @@ module.exports = function(app, db, mongoose){
 
     function findFieldInForm(fieldId, formId){
 
-        FormModel.findById({_id: formId})
+       return FormModel.findById(formId)
             .then(function(form){
                 return form.fields.id(fieldId);
             });
     };
+
     function updateFieldInForm(formId, fieldId, updatedField){
-        var field;
-       FormModel.findOne({_id: formId})
+       return FormModel
+           .findById(formId)
            .then(function(form){
-               form.fields.update({_id: fieldId}, {$set: updatedField});
+               console.log("entered the updatedFieldInForm");
+               var field = form.fields.id(fieldId);
+               field.label  = updatedField.label;
+               field.placeholder = updatedField.placeholder;
+               field.options = updatedField.options;
                return form.save();
            })
     };

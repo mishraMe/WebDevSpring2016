@@ -89,8 +89,6 @@
                         FieldService
                             .getFieldsForForm(vm.currentForm._id)
                             .then(function(response){
-                                console.log(response);
-                                console.log(response.data);
                                vm.fields= response.data;
                             });
                     });
@@ -123,30 +121,26 @@
 
         };
 
+
         function editField(field){
-            console.log("entered edit field")
             vm.field = field;
             vm.modalHeading = findHeadingForModal(vm.field);
             if(vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"
                 || vm.field.type == "RADIOS"){
-                console.log("entered if condition in edit field");
                 var editedOptions = [];
                 var opts=[];
                 opts = vm.field.options;
+                console.log(opts);
                 for (var index in opts) {
                     editedOptions.push(opts[index].label + ":" + opts[index].value);
                 }
                 vm.newOptions = editedOptions.join("\n");
-                console.log("vm.newOptions is");
-                console.log(vm.newOptions);
             }
         };
 
         function updateField(field){
             vm.field = field;
-            console.log("updateField field is");
-            console.log(field);
             if (vm.field.type == "OPTIONS"
                 || vm.field.type == "CHECKBOXES"
                 || vm.field.type == "RADIOS") {
@@ -161,17 +155,9 @@
                 }
                 vm.field.options = newOptions;
             }
-                       console.log("current form id is:" +vm.currentForm.id);
-            console.log("current field id is:" +vm.field.id);
-            console.log("current form is:");
-            console.log(vm.field);
             FieldService
                 .updateField(vm.currentForm._id, vm.field._id, vm.field)
-                .then(function(response){
-                    console.log("response after updating is");
-                    console.log(response.data);
-                    vm.fields = response.data;
-                });
+                .then(init);
         }
 
         function findHeadingForModal(field){

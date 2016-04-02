@@ -78,26 +78,27 @@ module.exports = function(app, formModel) {
     };
 
     function updateFieldInForm(req, res){
-        console.log("entered the updateFieldInForm server wc_services")
+        console.log("entered the updateFieldInForm server services")
         var updatedField = req.body;
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        var allFields =
             formModel
                 .updateFieldInForm(formId,fieldId, updatedField)
                 .then(
                     function(result)
                     {
-                        res.json(result);
+                        console.log("entered the result");
+                        res.send(result);
                     },
                     function(err){
+                        console.log("entered err")
                         res.status(400).send(err);
                     }
                 );
     };
 
+
     function getMyForm(req, res){
-        var form =
             formModel
                 .findFormById(req.params.formId)
                 .then(

@@ -29,12 +29,11 @@
         };
 
         function deleteFieldFromForm(formId, fieldId){
-            console.log(fieldId);
             return $http.delete("/api/assignment/form/"+ formId+"/field/"+ fieldId);
         }
 
         function updateField(formId, fieldId, field){
-            console.log("entered the updateField in client wc_services");
+            console.log("entered the updateField in client services");
             return $http.put("/api/assignment/form/"+formId+"/field/"+ fieldId, field);
         };
 

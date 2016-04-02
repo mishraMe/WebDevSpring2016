@@ -56,6 +56,7 @@
 
         function updateForm(newForm){
             var renewedForm = {
+                _id : newForm._id,
                 title: newForm.title,
                 userId: newForm.userId
             };

@@ -67,22 +67,30 @@ module.exports = function(app, db, mongoose){
         return formsForUser;
     };
 
-
     //functions for fields of the form
     function createFieldInForm(formId, newField){
-          var formWithField;
-            return  FormModel
-                .findOne({_id: formId})
-                .then(
-                    function(form) {
-                        console.log("entered the then of findOne for createFieldInform");
-                       FieldModel
-                           .create(newField)
-                           .then(function(createdField){
-                              form.fields.push(createdField);
-                              return form.save();
-                           });
-                    });
+      return
+        FormModel
+            .findById(formId)
+            .then(function(result) {
+                result.fields.push(newField);
+                return form.save();
+                });
+
+
+
+            //return  FormModel
+            //    .findOne({_id: formId})
+            //    .then(
+            //        function(form) {
+            //            console.log("entered the then of findOne for createFieldInform");
+            //           FieldModel
+            //               .create(newField)
+            //               .then(function(createdField){
+            //                  form.fields.push(createdField);
+            //                  return form.save();
+            //               });
+            //        });
     };
 
 

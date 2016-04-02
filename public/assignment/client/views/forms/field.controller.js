@@ -89,7 +89,8 @@
                         FieldService
                             .getFieldsForForm(vm.currentForm._id)
                             .then(function(response){
-                               vm.fields= response.data;
+                                console.log(response);
+                               vm.fields= response.data.fields;
                             });
                     });
         }
@@ -102,13 +103,14 @@
             FieldService
                 .createFieldForForm(vm.currentForm._id, newFieldTemplate)
                 .then(function(response){
+                    console.log("response is ");
                     console.log(response);
                 })
         };
 
         function findTemplateForFieldType(fieldType){
             for (var index in fieldTypes){
-                if(fieldTypes[index].fieldOption=== fieldType){
+                if(fieldTypes[index].fieldOption== fieldType){
                     return fieldTypes[index].template;
                 }
             }

@@ -49,6 +49,7 @@ module.exports = function(app, formModel) {
                    function(result)
                    {
                        res.json(result);
+
                    },
                    function(err){
                        res.status(400).send(err);
@@ -60,17 +61,24 @@ module.exports = function(app, formModel) {
         console.log("CreateFieldInForm in server service");
         var newField = req.body;
         var formId = req.params.formId;
-             formModel
-                .createFieldInForm(formId, newField)
-                .then(function(result)
-                    {
-                        console.log("then of the server form");
-                        console.log("function for result");
-                        res.send(result);
-                    },
-                    function(err){
-                        res.status(400).send(err);
-                    });
+        formModel
+            .createFieldInForm(formId, newField)
+            .then(
+                function(result)
+                {
+                    res.json(result);
+
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
+
+
+
+
+
+
     };
 
     function updateFieldInForm(req, res){

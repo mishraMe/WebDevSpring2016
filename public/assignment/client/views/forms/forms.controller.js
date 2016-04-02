@@ -79,9 +79,12 @@
 
         }
 
+
         function selectForm($index){
+            var formId = vm.forms[$index]._id;
+            delete vm.forms[$index]._id;
             vm.form = {
-                _id: vm.forms[$index]._id,
+                _id: formId,
                 title: vm.forms[$index].title,
                 userId: vm.forms[$index].userId
             }

@@ -135,7 +135,7 @@
                 for (var index in opts) {
                     editedOptions.push(opts[index].label + ":" + opts[index].value);
                 }
-                vm.newOptions = editedOptions.join("\n");
+                vm.newOptions = editedOptions;
             }
         };
 

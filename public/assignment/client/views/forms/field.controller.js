@@ -139,6 +139,7 @@
             }
         };
 
+
         function updateField(field){
             vm.field = field;
             if (vm.field.type == "OPTIONS"

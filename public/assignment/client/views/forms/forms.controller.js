@@ -42,8 +42,10 @@
 
         function deleteForm(form){
             var formsAfterDeletion=[];
+            var formId = form._id;
+            delete form._id;
             FormService
-                .deleteFormById(form._id)
+                .deleteFormById(formId)
                 .then(function(response){
                     FormService
                         .findAllFormsForUser(vm.currentUser._id)

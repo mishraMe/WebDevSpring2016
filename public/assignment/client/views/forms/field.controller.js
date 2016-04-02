@@ -30,9 +30,9 @@
             {
                 fieldOption: "paragraphTextField",
                 heading: "Multi Line Text Field",
-                type: "TEXTAREA",
+                type: "TEXT AREA",
                 template:
-                {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
+                {"label": "New Text Field", "type": "TEXT AREA", "placeholder": "New Field"}
             },
             {
                 fieldOption: "date",

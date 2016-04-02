@@ -4,7 +4,7 @@ module.exports = function() {
     var fieldSchema = new mongoose.Schema({
 
         label: String,
-        type: {type: String, enum:['TEXT', 'EMAIL', 'PASSWORD', 'OPTIONS', 'DATE', 'RADIOS', 'CHECKBOXES'], default: 'TEXT'},
+        type: {type: String, enum:['TEXT', 'TEXT AREA', 'EMAIL', 'PASSWORD', 'OPTIONS', 'DATE', 'RADIOS', 'CHECKBOXES'], default: 'TEXT'},
         palceholder: String,
         options:[{label:String, value:String}]
     }, {collection: "field"});

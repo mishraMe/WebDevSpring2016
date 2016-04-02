@@ -60,8 +60,10 @@
                 title: newForm.title,
                 userId: newForm.userId
             };
+
             var currentFormId = vm.form._id;
             delete vm.form._id;
+
             if(currentFormId == null){
                 vm.error = "Form name cannot be empty";
             }

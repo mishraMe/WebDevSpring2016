@@ -44,7 +44,7 @@ module.exports = function(app, db, mongoose){
     };
 
     function findFormById (formId) {
-        return FormModel.findById(formId);
+        return FormModel.findById(mongoose.Types.ObjectId(formId));
     };
 
     function updateForm (formId, form) {
@@ -60,10 +60,9 @@ module.exports = function(app, db, mongoose){
     };
 
     function findFormsForUser(userId) {
-        console.log("entred find forms for user in form wc_models server");
         console.log("userId is " + userId);
         var formsForUser = [];
-         formsForUser = FormModel.find({userId: userId});
+         formsForUser = FormModel.find({userId: mongoose.Types.ObjectId(userId)});
         return formsForUser;
     };
 

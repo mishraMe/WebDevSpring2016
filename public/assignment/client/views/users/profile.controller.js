@@ -22,9 +22,11 @@
         function update(user){
             vm.error = null;
             vm.message = null;
+            var userId = user._id;
+            delete user._id;
             console.log("user in update function is");
             UserService
-                .updateUser(user._id, user)
+                .updateUser(userId, user)
                 .then(function (response){
                     console.log("response is ");
                     console.log(response);

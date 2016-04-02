@@ -45,7 +45,7 @@ module.exports = function(app, db , mongoose) {
     //findUserById function
     function findUserById(userId) {
         console.log("ENTERED findUserById");
-        return UserModel.findById(mongoose.Types.ObjectId(userId));
+        return UserModel.findById(userId);
     };
     //findUserByUsername function
     function findUserByUsername(username) {

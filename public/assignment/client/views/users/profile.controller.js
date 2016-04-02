@@ -22,6 +22,8 @@
             UserService
                 .updateUser(user._id, user)
                 .then(function (response){
+                    console.log("response is ");
+                    console.log(response);
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     });

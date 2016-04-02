@@ -17,7 +17,6 @@
         return fieldsApi;
 
         function createFieldForForm(formId, field){
-            console.log("Create field for form in client");
             return $http.post("/api/assignment/form/"+formId+"/field", field);
         };
 

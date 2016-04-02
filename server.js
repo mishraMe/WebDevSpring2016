@@ -11,7 +11,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 
-var db = mongoose.connect('mongodb://127.0.0.1:27017/formMaker');
+var db = mongoose.connect('mongodb://localhost/formMaker');
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
@@ -19,9 +19,9 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 //    res.send('hello world');
 //});
 
-app.get('/rest/formMaker', function(req, res) {
-    res.send("formMaker")
-});
+//app.get('/rest/formMaker', function(req, res) {
+//    res.send("formMaker")
+//});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(multer());

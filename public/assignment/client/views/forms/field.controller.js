@@ -25,20 +25,20 @@
                 heading: "Single Line Text Field",
                 type: "TEXT",
                 template:
-                {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"}
+                {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"}
             },
             {
                 fieldOption: "paragraphTextField",
                 heading: "Multi Line Text Field",
                 type: "TEXTAREA",
                 template:
-                {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
+                {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"}
             },
             {
                 fieldOption: "date",
                 heading: "Date Field",
                 type: "DATE",
-                template:{"_id": null, "label": "New Date Field", "type": "DATE"}
+                template:{"label": "New Date Field", "type": "DATE"}
             },
             {
                 fieldOption: "dropDown",
@@ -58,7 +58,7 @@
                 heading: "Checkbox Field",
                 type: "CHECKBOXES",
                 template:
-                {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES",
+                {"label": "New Checkboxes", "type": "CHECKBOXES",
                     "options": [
                     {"label": "Option A", "value": "OPTION_A"},
                     {"label": "Option B", "value": "OPTION_B"},
@@ -71,7 +71,7 @@
                 heading: "Radio Button Field",
                 type: "RADIOS",
                 template:
-                {"_id": null, "label": "New Radio Buttons", "type": "RADIOS",
+                {"label": "New Radio Buttons", "type": "RADIOS",
                     "options": [
                     {"label": "Option X", "value": "OPTION_X"},
                     {"label": "Option Y", "value": "OPTION_Y"},
@@ -96,15 +96,14 @@
         init();
 
         function addField(fieldType){
+        console.log("entered addField");
             vm.fieldType = fieldType;
             var newFieldTemplate = findTemplateForFieldType(vm.fieldType);
             FieldService
                 .createFieldForForm(vm.currentForm._id, newFieldTemplate)
                 .then(function(response){
-                    console.log("entered the then for controller");
-                    vm.fields = response.data;
-                });
-
+                    console.log(response);
+                })
         };
 
         function findTemplateForFieldType(fieldType){

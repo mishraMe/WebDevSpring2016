@@ -3,7 +3,6 @@ var fieldSchema = require("./field.schema.server.js")(mongoose);
 
 module.exports = function() {
     var formSchema = new mongoose.Schema({
-
         userId: String,
         title: String,
         fields: [fieldSchema],

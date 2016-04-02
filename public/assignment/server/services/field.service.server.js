@@ -60,13 +60,13 @@ module.exports = function(app, formModel) {
         console.log("CreateFieldInForm in server service");
         var newField = req.body;
         var formId = req.params.formId;
-         var form =
              formModel
                 .createFieldInForm(formId, newField)
-                .then(
-                    function(result)
+                .then(function(result)
                     {
-                        res.json(result);
+                        console.log("then of the server form");
+                        console.log("function for result");
+                        res.send(result);
                     },
                     function(err){
                         res.status(400).send(err);

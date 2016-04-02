@@ -70,19 +70,19 @@ module.exports = function(app, db, mongoose){
 
     //functions for fields of the form
     function createFieldInForm(formId, newField){
-        console.log("entered createFieldInForm for model");
-        var formWithField =
-            FormModel
+          var formWithField;
+            return  FormModel
                 .findOne({_id: formId})
                 .then(
                     function(form) {
                         console.log("entered the then of findOne for createFieldInform");
-                        form.fields.push(newField);
-                        console.log("after the fields push");
-                         return form.save();
-
+                       FieldModel
+                           .create(newField)
+                           .then(function(createdField){
+                              form.fields.push(createdField);
+                              return form.save();
+                           });
                     });
-        return formWithField;
     };
 
 

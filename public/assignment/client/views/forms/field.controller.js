@@ -45,7 +45,7 @@
                 heading: "Dropdown Field",
                 type: "OPTIONS",
                 template:
-                {"_id": null, "label": "New Dropdown", "type": "OPTIONS",
+                { "label": "New Dropdown", "type": "OPTIONS",
                     "options": [
                     {"label": "Option 1", "value": "OPTION_1"},
                     {"label": "Option 2", "value": "OPTION_2"},
@@ -90,7 +90,8 @@
                             .getFieldsForForm(vm.currentForm._id)
                             .then(function(response){
                                 console.log(response);
-                               vm.fields= response.data.fields;
+                                console.log(response.data);
+                               vm.fields= response.data;
                             });
                     });
         }
@@ -116,16 +117,10 @@
         };
 
         function removeField(field){
-            //console.log("entered remove field method of controller");
-            //console.log("field is ")
-            //console.log(field);
             FieldService
                 .deleteFieldFromForm(vm.currentForm._id, field._id)
-                .then(function(response){
-                    console.log("response.data after removeFields is");
-                    console.log(response.data);
-                    vm.fields=response.data;
-                });
+                .then(init);
+
         };
 
         function editField(field){

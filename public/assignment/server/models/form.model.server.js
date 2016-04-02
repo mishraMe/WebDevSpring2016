@@ -76,24 +76,29 @@ module.exports = function(app, db, mongoose){
                 result.fields.push(newField);
                 result.save();
                 });
+    };
 
-            //return  FormModel
-            //    .findOne({_id: formId})
-            //    .then(
-            //        function(form) {
-            //            console.log("entered the then of findOne for createFieldInform");
-            //           FieldModel
-            //               .create(newField)
-            //               .then(function(createdField){
-            //                  form.fields.push(createdField);
-            //                  return form.save();
-            //               });
-            //        });
+
+    function deleteFieldFromForm(fieldId, formId){
+        console.log("entered the deleteFieldFromForm in model");
+       return FormModel
+            .findById(formId)
+            .then(function(result){
+                console.log("entered the then for delete");
+                 result.fields.id(fieldId).remove();
+                     return result.save();
+            });
+
     };
 
 
     function findAllFieldsInForm(formId){
-    return  FormModel.findById({_id: formId}).select("fields");
+    return FormModel
+        .findById(formId)
+        .then(function(result){
+            return result.fields;
+        })
+
     };
 
     function findFieldInForm(fieldId, formId){
@@ -103,16 +108,6 @@ module.exports = function(app, db, mongoose){
                 return form.fields.id(fieldId);
             });
     };
-
-    function deleteFieldFromForm(fieldId, formId){
-        console.log("entered the deleteFieldFromForm in wc_models");
-        FormModel.findOne({_id: formId})
-            .then(function(form){
-                FormModel.form.fields.id(fieldId).remove();
-                return form.save();
-            })
-    };
-
     function updateFieldInForm(formId, fieldId, updatedField){
         var field;
        FormModel.findOne({_id: formId})

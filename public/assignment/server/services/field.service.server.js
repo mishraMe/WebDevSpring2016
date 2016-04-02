@@ -40,22 +40,6 @@ module.exports = function(app, formModel) {
                 );
     };
 
-    function deleteFieldFromForm(req, res){
-        var fieldId = req.params.fieldId;
-        var formId = req.params.formId;
-       var formsAfterDeletion =
-           formModel.deleteFieldFromForm(fieldId,formId)
-               .then(
-                   function(result)
-                   {
-                       res.json(result);
-
-                   },
-                   function(err){
-                       res.status(400).send(err);
-                   }
-               );
-    };
 
     function createFieldInForm(req, res){
         console.log("CreateFieldInForm in server service");
@@ -73,6 +57,24 @@ module.exports = function(app, formModel) {
                     res.status(400).send(err);
                 }
             );
+    };
+
+    function deleteFieldFromForm(req, res){
+        var fieldId = req.params.fieldId;
+        var formId = req.params.formId;
+           formModel.deleteFieldFromForm(fieldId,formId)
+               .then(
+                   function(result)
+                   {
+                       console.log("entered the then and result");
+                       res.json(result);
+
+                   },
+                   function(err){
+                       console.log("entered the then and err");
+                       res.status(400).send(err);
+                   }
+               );
     };
 
     function updateFieldInForm(req, res){

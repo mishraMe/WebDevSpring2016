@@ -102,10 +102,8 @@
             var newFieldTemplate = findTemplateForFieldType(vm.fieldType);
             FieldService
                 .createFieldForForm(vm.currentForm._id, newFieldTemplate)
-                .then(function(response){
-                    console.log("response is ");
-                    console.log(response);
-                })
+                .then(init);
+            vm.fieldType = null;
         };
 
         function findTemplateForFieldType(fieldType){

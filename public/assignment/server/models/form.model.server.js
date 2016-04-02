@@ -69,15 +69,13 @@ module.exports = function(app, db, mongoose){
 
     //functions for fields of the form
     function createFieldInForm(formId, newField){
-      return
-        FormModel
+
+       return FormModel
             .findById(formId)
             .then(function(result) {
                 result.fields.push(newField);
-                return form.save();
+                result.save();
                 });
-
-
 
             //return  FormModel
             //    .findOne({_id: formId})

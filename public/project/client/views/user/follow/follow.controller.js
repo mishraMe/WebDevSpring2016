@@ -20,14 +20,8 @@
                 .findUserById(userId)
                 .then(function(resp) {
                     vm.user = resp.data;
-                    UserService
-                        .findFollowInfoForUserById(vm.user._id)
-                        .then(function (resp) {
-                            followersForUser = resp.data.followers;
-                            vm.followers = followersForUser;
-                            followingForUser = resp.data.following;
-                            vm.following = followingForUser;
-                        });
+                    vm.followers = vm.user.followers;
+                    vm.following = vm.user.following;
                 });
          }
         init();

@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-module.exports = function(app, userModel, followModel) {
+module.exports = function(app, userModel) {
 
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", getAllUsers);
@@ -9,7 +9,10 @@ module.exports = function(app, userModel, followModel) {
     app.get("/api/project/user?username=username&password=password", getUserByCredentials);
     app.put("/api/project/user/:id", updateUser);
     app.delete("/api/project/user/:id", deleteUser);
-    app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);
+
+    //functions to add follow functionality
+    //app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);
+    app.post("/api/project/user/:userId/follow", addUserToFollowers);
 
     console.log("entered the user service");
 
@@ -64,26 +67,41 @@ module.exports = function(app, userModel, followModel) {
         else{
             console.log("entered the else condition in getAllUsers");
             var users = [];
-            users = userModel.findAllUsers();
-            res.json(users);
-            res.err(err)
+            userModel
+                .findAllUsers()
+                .then(function(userFound){
+                    res.json(userFound);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
         }
     };
 
     function getUserById(req, res){
         console.log("entered the getUserById server service");
         var userId = req.params.id;
-        var user = userModel.findUserById(userId);
-        res.json(user);
+        userModel
+            .findUserById(userId)
+            .then(function(userFound){
+                res.json(userFound);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     };
 
     function getUserByUsername(req, res){
         console.log("getUserByUsername in server service");
         var username= req.query.username;
-        var user = userModel.findUserByUsername(username);
-        console.log("user is ");
-        console.log(user);
-        res.json(user);
+        userModel
+            .findUserByUsername(username)
+            .then(function(userFound){
+                res.json(userFound);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     };
 
     function getUserByCredentials(req, res){
@@ -128,16 +146,35 @@ module.exports = function(app, userModel, followModel) {
         console.log("entered the deleteUser server service");
         var deleteUserId = req.params.id;
         userModel.deleteUser(deleteUserId);
-        var users = userModel.findAllUsers();
-        res.json(users);
+        userModel
+            .findAllUsers
+            .then(function(userFound){
+                res.json(userFound);
+            },
+            function(err){
+                res.status(400).send(err);
+            });
     };
 
-    function getAllFollowInfoByUserId(req, res){
-        var followInfo;
-        var userId = req.params.id;
-        console.log("user Id in SERVER is " + userId);
-        followInfo = followModel.findAllFollowInfoForUserByUserId(userId);
-        res.send(followInfo);
-    };
+    //functions to follow and unfollow User
+    //function getAllFollowInfoByUserId(req, res){
+    //    var followInfo;
+    //    var userId = req.params.id;
+    //    console.log("user Id in SERVER is " + userId);
+    //    followInfo = userModel.findAllFollowInfoForUserByUserId(userId);
+    //    res.send(followInfo);
+    //};
 
+    function addUserToFollowers(req, res){
+        var userToBeFollowedId = req.params.userId;
+        var userFollower = resp.body;
+       userModel
+           .addUserToFollowing(userToBeFollowedId, userFollower)
+           .then(function(userFound){
+               res.json(userFound);
+           },
+           function(err){
+               res.status(400).send(err);
+           });
+    };
 };

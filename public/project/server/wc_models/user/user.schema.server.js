@@ -11,7 +11,9 @@ module.exports = function() {
         "roles":   [String],
         "email":    String,
         "DOB": String,
-        "gender":  {type: String, enum:['MALE', 'FEMALE', 'CHOOSE NOT TO DISCLOSE'], default: 'CHOOSE NOT TO DISCLOSE'}
+        "gender":  {type: String, enum:['MALE', 'FEMALE', 'CHOOSE NOT TO DISCLOSE'], default: 'CHOOSE NOT TO DISCLOSE'},
+        "followers": [String],
+        "following": [String]
     }, {collection: "user"});
 
     return userSchema;

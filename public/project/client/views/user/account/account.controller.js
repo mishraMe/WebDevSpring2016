@@ -10,6 +10,7 @@
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
         vm.currentUser= UserService.getCurrentUser();
+        var currentUser = vm.currentUser;
         var userId = $routeParams.userId;
         var username = $routeParams.username;
 
@@ -41,6 +42,14 @@
 
         function listFollowers(user){
             $location.url("/followers/" + user._id);
+        }
+
+        function followUser(currentUser){
+            UserService
+                .addUserToFollowers(user)
+                .then(function(userAddedToFollowing){
+                    console.log("follower created successfully");
+                });
         }
     }
 })();

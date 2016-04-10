@@ -12,7 +12,11 @@ module.exports = function(app, db, mongoose) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+
+        //find all follower and following info for a user
+        //findAllFollowInfoForUserByUserId: findAllFollowInfoForUserByUserId,
+        addUserToFollowers: addUserToFollowers
 
     };
     return api;
@@ -67,4 +71,26 @@ module.exports = function(app, db, mongoose) {
     function getMongooseModel() {
         return UserModel;
     }
+
+    //functions for finding followers and following
+    //function findAllFollowInfoForUserByUserId(userId){
+    //   var user = UserModel.findOne({"user": userId});
+    //    var followInfo =
+    //    {
+    //        "followers": [user.followers],
+    //        "following": [user.following]
+    //    }
+    //    return followInfo;
+    //}
+
+    function addUserToFollowers(followeeId, follower) {
+       return
+        UserModel
+            .findOne({userId: followeeId})
+            .then(function (userBeingFollowed) {
+
+                userBeingFollowed.followers.push(follower.username);
+                return userBeingFollowed.save();
+            });
+        }
 }

@@ -7,17 +7,24 @@
         //   console.log("entered User wc_services client");
 
         var api= {
+
+            //functions to find Users
             findAllUsers: findAllUsers,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername:findUserByUsername,
             findUserById: findUserById,
-            findFollowInfoForUserById: findFollowInfoForUserById,
+
+            //crud operations
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
             getCurrentUserId: getCurrentUserId,
+
+            //funcitons related to follow funcitonality
+            //findFollowInfoForUserById: findFollowInfoForUserById,
+            addUserToFollowers: addUserToFollowers
 
         };
 
@@ -70,8 +77,14 @@
             return $rootScope.currentUser._id;
         };
 
-        function findFollowInfoForUserById(userId){
-            return $http.get("/api/project/user/"+ userId +"/follow");
-        };
+
+        //follow operations
+        //function findFollowInfoForUserById(userId){
+        //    return $http.get("/api/project/user/"+ userId +"/follow");
+        //};
+
+        function addUserToFollowers(userId, user){
+            return $http.post("/api/project/user/"+ userId+ "/follow");
+        }
     }
 })();

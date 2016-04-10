@@ -5,17 +5,17 @@
         .controller("ProfileController", profileController)
 
     function profileController($location, UserService){
-        var vm = this;
-        vm.error = null;
-        vm.message = null;
-        vm.listFollowing = listFollowing;
-        vm.listFollowers = listFollowers;
-        vm.currentUser= UserService.getCurrentUser();
+                var vm = this;
+                vm.error = null;
+                vm.message = null;
+                vm.listFollowing = listFollowing;
+                vm.listFollowers = listFollowers;
+                vm.currentUser= UserService.getCurrentUser();
 
-        function init(){
-            if(!vm.currentUser){
-                $location.url("/login");
-            }
+                function init(){
+                    if(!vm.currentUser){
+                        $location.url("/login");
+                    }
         }
         init();
 

@@ -14,35 +14,36 @@
             })
 
             .when("/register",{
-                templateUrl: "views/user/register.view.html",
+                templateUrl: "views/user/register/register.view.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
 
             .when("/login",{
-                templateUrl: "views/user/login.view.html",
+                templateUrl: "views/user/login/login.view.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
 
             .when("/profile",{
-                templateUrl: "views/user/profile.view.html",
+                templateUrl: "views/user/profile/profile.view.html",
                 controller: "ProfileController",
                 controllerAs: "model"
             })
 
             .when("/account/userId/:userId",{
-                templateUrl: "views/user/account.view.html",
+                templateUrl: "views/user/account/account.view.html",
                 controller: "AccountController",
                 controllerAs: "model"
             })
 
             .when("/account/username/:username",{
-                templateUrl: "views/user/account.view.html",
+                templateUrl: "views/user/account/account.view.html",
                 controller: "AccountController",
                 controllerAs: "model"
             })
 
+            // paths for posts
             .when("/editPost",{
                 templateUrl: "views/post/editPost.view.html",
                 controller: "PostController",
@@ -70,6 +71,20 @@
                 controllerAs: "model"
             })
 
+            //follower and following
+            .when("/followers/:userId",{
+                templateUrl: "views/user/follow/followers.view.html",
+                controller: "FollowController",
+                controllerAs: "model",
+            })
+
+            .when("/following/:userId",{
+                templateUrl: "views/user/follow/following.view.html",
+                controller: "FollowController",
+                controllerAs: "model",
+            })
+
+            //search paths
             .when("/search", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
@@ -88,21 +103,10 @@
                 controllerAs: "model"
             })
 
+            //admin paths
             .when("/admin",{
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",
-                controllerAs: "model",
-            })
-                //follower and following
-            .when("/followers/:userId",{
-                templateUrl: "views/user/followers.view.html",
-                controller: "FollowController",
-                controllerAs: "model",
-            })
-
-            .when("/following/:userId",{
-                templateUrl: "views/user/following.view.html",
-                controller: "FollowController",
                 controllerAs: "model",
             })
 

@@ -43,6 +43,7 @@
              })
 
             //only user's posts
+            if(vm.currentUser)
             PostService
                 .findAllPostsForUser(vm.currentUser._id)
                 .then(function(postsForUser){

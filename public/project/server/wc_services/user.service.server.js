@@ -1,4 +1,7 @@
-module.exports = function(app, userModel) {
+var mongoose = require("mongoose");
+
+module.exports = function(app, userModel, followModel) {
+
     app.post("/api/project/user", createUser);
     app.get("/api/project/user", getAllUsers);
     app.get("/api/project/user/:id", getUserById);
@@ -11,38 +14,59 @@ module.exports = function(app, userModel) {
     console.log("entered the user service");
 
     function createUser(req, res){
-        console.log("ENTERED PROJECT USER MODEL");
-        console.log("entered the createUser server service");
-        var user = req.body;
-        var users = [];
-        users = userModel.createUser(user);
-        res.send(users);
+        console.log("entered the createUser in server server");
+        var newUser = req.body;
+        newUser.roles = ['user'];
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(
+                function (user) {
+                    if (user) {
+                        res.json(null);
+                    } else {
+                        console.log("entered else condition of findUserByUsername");
+                            userModel.createUser(newUser)
+                                .then(
+                                    function(result){
+                                        console.log("result in createUser is ");
+                                        console.log(result);
+                                        res.json(result);
+                                    },
+                                    function(err){
+                                        res.status(400).send(err);
+                                    });
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
     };
 
     function getAllUsers(req, res){
-        console.log("ENTERED PROJECT USER MODEL");
         console.log("entered the getAllUsers server service");
         var password = req.query.password;
         var username = req.query.username;
         var id = req.params.id;
 
-      if(username && password){
-            console.log("entered the else if 2nd option in getAllUsers");
+        if(username && password){
+            console.log("entered the if in getAllUsers");
             getUserByCredentials(req, res);
         }
-       else if (username){
-            console.log("entered the if condition in getAllUsers");
+        else if (username){
+            console.log("entered the 2nd if condition in getAllUsers");
             getUserByUsername(req, res);
         }
         else if(id){
-            console.log("entered the else if 1st option in getAllUsers");
-           getUserById(req, res);
-       }
+            console.log("entered the 3rd if in getAllUsers");
+            getUserById(req, res);
+        }
         else{
             console.log("entered the else condition in getAllUsers");
             var users = [];
             users = userModel.findAllUsers();
             res.json(users);
+            res.err(err)
         }
     };
 
@@ -51,14 +75,15 @@ module.exports = function(app, userModel) {
         var userId = req.params.id;
         var user = userModel.findUserById(userId);
         res.json(user);
-
     };
 
     function getUserByUsername(req, res){
         console.log("getUserByUsername in server service");
         var username= req.query.username;
         var user = userModel.findUserByUsername(username);
-        res.send(user);
+        console.log("user is ");
+        console.log(user);
+        res.json(user);
     };
 
     function getUserByCredentials(req, res){
@@ -67,16 +92,36 @@ module.exports = function(app, userModel) {
             username: req.query.username,
             password: req.query.password
         };
-        var user = userModel.findUserByCredentials(credentials);
-        res.send(user);
+        var user = userModel
+            .findUserByCredentials(credentials)
+            .then(
+                function(result)
+                {
+                    res.json(result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                }
+            );
     };
 
     function updateUser(req, res){
         console.log("entered the updateUser server service");
         var updatedUser = req.body;
-        userModel.updateUser(req.params.id, updatedUser);
-        var users = userModel.findAllUsers();
-        res.json(users);
+        var user =
+            userModel
+                .updateUser(req.params.id, updatedUser)
+                .then(
+                    function(result)
+                    {
+                        console.log("entered the updateUser result");
+                        res.json(result);
+                    },
+                    function(err){
+                        console.log("entered the updateUser err");
+                        res.status(400).send(err);
+                    }
+                );
     };
 
     function deleteUser(req, res){
@@ -91,7 +136,7 @@ module.exports = function(app, userModel) {
         var followInfo;
         var userId = req.params.id;
         console.log("user Id in SERVER is " + userId);
-        followInfo = userModel.findAllFollowInfoForUserByUserId(userId);
+        followInfo = followModel.findAllFollowInfoForUserByUserId(userId);
         res.send(followInfo);
     };
 

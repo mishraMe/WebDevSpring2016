@@ -23,18 +23,8 @@
 
         return api;
 
-        function findAllUsers() {
-            var users;
-            users = $http.get("/api/project/user");
-            return users;
-        };
-
-        function findUserByCredentials(username, password) {
-            return $http.get("/api/project/user?username="
-                +username+"&password=" +password);
-        };
-
         function createUser(user) {
+            console.log("entered the createuser in service of client");
             return $http.post("/api/project/user", user);
         };
 
@@ -43,17 +33,29 @@
         };
 
         function updateUser(userId, user) {
+            console.log("entered the updateUser function of client service");
             return $http.put("/api/project/user/" + userId, user);
         };
 
+        function findUserByCredentials(username, password) {
+            console.log(username+" - "+password);
+            console.log("entered find User by credentials in user wc_services client");
+            return $http.get("/api/project/user?username="
+                +username+"&password=" +password);
+        };
+
+        function findAllUsers() {
+            var users;
+            users = $http.get("/api/project/user");
+            return users;
+        };
+
         function findUserById(userId){
-            console.log("entered te findUserById in client service");
             return $http.get("/api/project/user/" + userId);
 
         };
 
         function findUserByUsername(username){
-            console.log("find user by username in service client");
             return $http.get("/api/project/user?username="+ username);
         };
 
@@ -67,6 +69,7 @@
         function getCurrentUserId(){
             return $rootScope.currentUser._id;
         };
+
         function findFollowInfoForUserById(userId){
             return $http.get("/api/project/user/"+ userId +"/follow");
         };

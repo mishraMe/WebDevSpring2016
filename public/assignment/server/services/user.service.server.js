@@ -17,7 +17,7 @@ module.exports = function(app, userModel) {
     app.delete("/api/assignment/user/:id", deleteUser);
 
     function createUser(req, res) {
-        console.log("entered the createUser in server server")
+        console.log("entered the createUser in server server");
         var newUser = req.body;
         newUser.roles = ['student'];
         userModel

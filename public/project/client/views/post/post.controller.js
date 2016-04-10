@@ -25,7 +25,7 @@
         vm.changePrivacy = changePrivacy;
 
         function init(){
-            //public posts
+            //all posts
             PostService
                 .getAllPosts()
                 .then(function(allPosts) {
@@ -55,7 +55,8 @@
 
 
         function viewPost(post){
-            PostService.setCurrentPost(post);
+            PostService
+                .setCurrentPost(post);
             console.log("post value from viewing on clicking on it is ");
             console.log(post);
             vm.post = post;

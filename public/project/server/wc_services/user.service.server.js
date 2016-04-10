@@ -69,8 +69,8 @@ module.exports = function(app, userModel) {
             var users = [];
             userModel
                 .findAllUsers()
-                .then(function(userFound){
-                    res.json(userFound);
+                .then(function(allUsers){
+                    res.json(allUsers);
                 },
                 function(err){
                     res.status(400).send(err);
@@ -148,8 +148,8 @@ module.exports = function(app, userModel) {
         userModel.deleteUser(deleteUserId);
         userModel
             .findAllUsers
-            .then(function(userFound){
-                res.json(userFound);
+            .then(function(usersAfterDeletion){
+                res.json(usersAfterDeletion);
             },
             function(err){
                 res.status(400).send(err);
@@ -170,8 +170,8 @@ module.exports = function(app, userModel) {
         var userFollower = resp.body;
        userModel
            .addUserToFollowing(userToBeFollowedId, userFollower)
-           .then(function(userFound){
-               res.json(userFound);
+           .then(function(result){
+               res.json(result);
            },
            function(err){
                res.status(400).send(err);

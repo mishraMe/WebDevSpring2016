@@ -1,7 +1,6 @@
 
 module.exports = function(app, db, mongoose){
 
-
     var PostSchema = require('./post.schema.server.js')(mongoose);
     var PostModel = mongoose.model("Post", PostSchema);
 

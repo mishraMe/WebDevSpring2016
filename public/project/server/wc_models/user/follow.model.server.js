@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app,db, mongoose) {
 
     var FollowSchema = require('./follow.schema.server.js')(mongoose);
 

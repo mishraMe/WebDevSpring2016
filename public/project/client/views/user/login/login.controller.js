@@ -9,6 +9,7 @@
         var vm = this;
         vm.login = login;
         vm.message = null;
+        vm.error = null;
         function init(){
 
         }

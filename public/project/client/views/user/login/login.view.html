@@ -1,5 +1,9 @@
 <!-- login.view.html-->
-<h1 class="sub-header">Login</h1>
+<h2 class="sub-header">Login</h2>
+
+<div ng-show="model.message" class="alert alert-success" role="alert">{{model.message}}</div>
+<div ng-show="model.error"  vclass="alert alert-danger"  role="alert">{{model.error}}</div>
+
 <form class="form-horizontal">
     <div class="form-group">
         <label for="username"

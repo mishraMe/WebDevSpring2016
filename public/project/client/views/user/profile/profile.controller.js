@@ -3,6 +3,7 @@
     angular
         .module("WritersClubApp")
         .controller("ProfileController", profileController)
+
     function profileController($location, UserService){
         var vm = this;
         vm.error = null;
@@ -10,10 +11,15 @@
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
         vm.currentUser= UserService.getCurrentUser();
-        if(!vm.currentUser){
-            $location.url("/home");
+
+        function init(){
+            if(!vm.currentUser){
+                $location.url("/login");
+            }
         }
-               vm.update = update;
+        init();
+
+        vm.update = update;
         function update(user){
             vm.error = null;
             vm.message = null;

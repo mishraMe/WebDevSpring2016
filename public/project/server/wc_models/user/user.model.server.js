@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function(app, db, mongoose) {
 
     var UserSchema = require('./user.schema.server.js')(mongoose);
     // create user model from schema
@@ -21,7 +21,7 @@ module.exports = function(app) {
     //createUser function
     function createUser(user) {
         console.log("entered createUser method of user wc_models in server");
-        UserModel.create(user);
+        return UserModel.create(user);
     };
 
     //findAllUsers function

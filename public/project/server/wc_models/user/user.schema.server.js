@@ -1,7 +1,8 @@
-var mongoose = require("mongoose");
+ var mongoose = require("mongoose");
 
 module.exports = function() {
-    var userSchema = new mongoose.Schema({
+    var userSchema = new mongoose.Schema
+    ({
 
         "firstName":String,
         "lastName": String,
@@ -9,6 +10,8 @@ module.exports = function() {
         "password": String,
         "roles":   [String],
         "email":    String,
+        "DOB": String,
+        "gender":  {type: String, enum:['MALE', 'FEMALE', 'CHOOSE NOT TO DISCLOSE'], default: 'CHOOSE NOT TO DISCLOSE'}
     }, {collection: "user"});
 
     return userSchema;

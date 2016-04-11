@@ -34,11 +34,11 @@
         }
 
         function listFollowing(user){
-            $location.url("/following/" + user._id);
+            $location.url("/following/" + user.username);
         }
 
         function listFollowers(user){
-            $location.url("/followers/" + user._id);
+            $location.url("/followers/" + user.username);
         }
     }
 })();

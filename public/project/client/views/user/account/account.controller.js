@@ -11,21 +11,9 @@
         vm.listFollowers = listFollowers;
         vm.currentUser= UserService.getCurrentUser();
         var currentUser = vm.currentUser;
-        var userId = $routeParams.userId;
         var username = $routeParams.username;
 
-
-        console.log("userId in account is "+ userId);
-
        function init(){
-           UserService
-               .findUserById(userId)
-               .then(function(userFound){
-                   console.log("userFound is " );
-                   console.log(userFound);
-                   vm.user = userFound.data;
-               })
-
            UserService
                .findUserByUsername(username)
                .then(function(userFound){
@@ -37,11 +25,11 @@
         init();
 
         function listFollowing(user){
-            $location.url("/following/" + user._id);
+            $location.url("/following/" + user.username);
         }
 
         function listFollowers(user){
-            $location.url("/followers/" + user._id);
+            $location.url("/followers/" + user.username);
         }
 
         function followUser(currentUser){

@@ -9,15 +9,15 @@
         var vm = this;
         vm.error = null;
         vm.message = null;
-        var userId = $routeParams.userId;
-        console.log("user Id is " + userId);
+        vm.$location = $location;
+        var username = $routeParams.username;
         function init() {
                 vm.error = null;
                 vm.message = null;
                 var followersForUser = [];
                 var followingForUser = [];
             UserService
-                .findUserById(userId)
+                .findUserByUsername(username)
                 .then(function(resp) {
                     vm.user = resp.data;
                     vm.followers = vm.user.followers;

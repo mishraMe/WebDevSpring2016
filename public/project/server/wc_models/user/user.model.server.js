@@ -83,10 +83,10 @@ module.exports = function(app, db, mongoose) {
     //    return followInfo;
     //}
 
-    function addUserToFollowers(followeeId, follower) {
+    function addUserToFollowers(followeeUsername, follower) {
        return
         UserModel
-            .findOne({userId: followeeId})
+            .findOne({username: followeeUsername})
             .then(function (userBeingFollowed) {
 
                 userBeingFollowed.followers.push(follower.username);

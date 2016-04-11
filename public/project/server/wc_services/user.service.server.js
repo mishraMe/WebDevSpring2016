@@ -12,7 +12,7 @@ module.exports = function(app, userModel) {
 
     //functions to add follow functionality
     //app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);
-    app.post("/api/project/user/:userId/follow", addUserToFollowers);
+    app.post("/api/project/user/:username/follow", addUserToFollowers);
 
     console.log("entered the user service");
 
@@ -166,10 +166,10 @@ module.exports = function(app, userModel) {
     //};
 
     function addUserToFollowers(req, res){
-        var userToBeFollowedId = req.params.userId;
+        var userToBeFollowedUsername = req.params.username;
         var userFollower = resp.body;
        userModel
-           .addUserToFollowing(userToBeFollowedId, userFollower)
+           .addUserToFollowing(userToBeFollowedUsername, userFollower)
            .then(function(result){
                res.json(result);
            },

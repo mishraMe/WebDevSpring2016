@@ -31,12 +31,6 @@
                 controllerAs: "model"
             })
 
-            .when("/account/userId/:userId",{
-                templateUrl: "views/user/account/account.view.html",
-                controller: "AccountController",
-                controllerAs: "model"
-            })
-
             .when("/account/username/:username",{
                 templateUrl: "views/user/account/account.view.html",
                 controller: "AccountController",
@@ -72,13 +66,13 @@
             })
 
             //follower and following
-            .when("/followers/:userId",{
+            .when("/followers/:username",{
                 templateUrl: "views/user/follow/followers.view.html",
                 controller: "FollowController",
                 controllerAs: "model",
             })
 
-            .when("/following/:userId",{
+            .when("/following/:username",{
                 templateUrl: "views/user/follow/following.view.html",
                 controller: "FollowController",
                 controllerAs: "model",

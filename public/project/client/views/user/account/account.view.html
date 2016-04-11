@@ -14,9 +14,9 @@
                     class="btn btn-primary">
                 following
             </button>
-            <button ng-click="model.followUser(model.currentUser)"
+            <button ng-click="model.followUnfollowUser(model.user, model.currentUser)"
                     class="btn btn-primary">
-                follow
+                {{model.user.follow}}
             </button>
         </div>
     </div>

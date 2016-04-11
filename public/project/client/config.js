@@ -31,7 +31,7 @@
                 controllerAs: "model"
             })
 
-            .when("/account/username/:username",{
+            .when("/account/:username",{
                 templateUrl: "views/user/account/account.view.html",
                 controller: "AccountController",
                 controllerAs: "model"

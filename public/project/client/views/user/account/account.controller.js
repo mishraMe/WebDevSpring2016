@@ -9,8 +9,11 @@
         vm.message = null;
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
+        vm.followUnfollowUser = followUnfollowUser;
         vm.currentUser= UserService.getCurrentUser();
         var currentUser = vm.currentUser;
+        console.log("value of currentUser is ");
+        console.log(currentUser);
         var username = $routeParams.username;
 
        function init(){
@@ -32,11 +35,30 @@
             $location.url("/followers/" + user.username);
         }
 
+        function followUnfollowUser(accountUser, currentUser){
+            if (accountUser.follow == 'follow'){
+                accountUser.follow = 'unfollow';
+                unfollowUser(currentUser);
+            }
+            else{
+                accountUser.follow = 'follow';
+                followUser(currentUser);
+            }
+        }
+
         function followUser(currentUser){
             UserService
-                .addUserToFollowers(user)
+                .addUserToFollowers(username, currentUser)
                 .then(function(userAddedToFollowing){
-                    console.log("follower created successfully");
+                    console.log("follow successfully");
+                });
+        }
+
+        function unfollowUser(currentUser){
+            UserService
+                .removeUserFromFollowers(username, currentUser)
+                .then(function(removedUserFromFollowing){
+                    console.log("unfollowSuccessfully");
                 });
         }
     }

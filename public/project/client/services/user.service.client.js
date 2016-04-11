@@ -83,8 +83,14 @@
         //    return $http.get("/api/project/user/"+ userId +"/follow");
         //};
 
-        function addUserToFollowers(userId, user){
-            return $http.post("/api/project/user/"+ userId+ "/follow");
+        function addUserToFollowers(username, user){
+            console.log("addUserToFollowers in client service");
+            return $http.post("/api/project/user?username="+ username + "/follow");
+        }
+
+        function removeUserFromFollowers(username, user){
+            console.log("removeUserFromFollowers in client service");
+            return $http.delete("/api/project/user?username="+ username + "/follow");
         }
     }
 })();

@@ -16,7 +16,8 @@ module.exports = function(app, db, mongoose) {
 
         //find all follower and following info for a user
         //findAllFollowInfoForUserByUserId: findAllFollowInfoForUserByUserId,
-        addUserToFollowers: addUserToFollowers
+        addUserToFollowers: addUserToFollowers,
+        removeUserFromFollowers: removeUserFromFollowers
 
     };
     return api;
@@ -84,13 +85,32 @@ module.exports = function(app, db, mongoose) {
     //}
 
     function addUserToFollowers(followeeUsername, follower) {
+
+        console.log("entered the addUserToFollowers");
+
+        console.log("followee username is ");
+        console.log(followeeUsername);
        return
         UserModel
             .findOne({username: followeeUsername})
-            .then(function (userBeingFollowed) {
-
+            .then(function (userBeingFollowed){
                 userBeingFollowed.followers.push(follower.username);
                 return userBeingFollowed.save();
             });
         }
+
+    function removeUserFromFollowers(followeeUsername, follower) {
+
+        console.log("entered the removeUserToFollowers");
+
+        console.log("followee username is ");
+        console.log(followeeUsername);
+        return
+        UserModel
+            .findOne({username: followeeUsername})
+            .then(function (userBeingFollowed){
+                userBeingFollowed.followers.remove(follower.username);
+                return userBeingFollowed.save();
+            });
+    }
 }

@@ -58,6 +58,7 @@
             };
 
             function updatePostById(postId, newPost) {
+                console.log("postId is "+ postId);
                 return $http.put("/api/project/post/"+ postId, newPost);
             };
             function deletePostById(postId) {

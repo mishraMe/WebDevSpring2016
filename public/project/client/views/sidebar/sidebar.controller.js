@@ -22,7 +22,7 @@
             vm.currentUser = UserService.getCurrentUser();
 
             postTemplate =   {
-                "_id": null, "title": null,
+                "title": null,
                 "tag": ["Story", "Poem", "Script"] ,  "type": "private",
                 "roles": ["user"],
                 "userId": vm.currentUser._id, "username": vm.currentUser.username,

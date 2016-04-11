@@ -14,10 +14,9 @@
         //current user
         vm.currentUser = UserService.getCurrentUser();
         vm.post = PostService.getCurrentPost();
-        vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
-        console.log("isCurrentUser is " + vm.isCurrentUser);
-        console.log("Current post is ");
+        console.log("vm.post is ");
         console.log(vm.post);
+        vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
@@ -49,7 +48,6 @@
                 .then(function(postsForUser){
                     vm.myPosts = postsForUser.data;
                 })
-
         }
         init();
 
@@ -86,7 +84,7 @@
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;
             if(vm.post._id == null){
-                vm.error = "Post name cannot be empty";
+                vm.error = "Post cannot be empty";
             }
             PostService
                 .updatePostById(vm.post._id, renewedPost)
@@ -94,7 +92,7 @@
                     vm.error = null;
                     console.log("update post updates the post to: ");
                     console.log(resp);
-                    vm.post = resp.data;
+                    vm.post = resp.config.data;
                     PostService.setCurrentPost(vm.post);
                     $location.url("/viewPost");
                 });
@@ -106,7 +104,7 @@
             PostService
                 .getPostById(post._id)
                 .then(function(selectedPost){
-                    vm.post = selectedPost.data;
+                    vm.post = selectedPost.config.data;
                 });
             PostService.setCurrentPost(vm.post);
             $location.url("/editPost");
@@ -123,7 +121,7 @@
             PostService
                 .updatePostById(vm.post._id, post)
                 .then(function(resp){
-                    vm.post= resp.data;
+                    vm.post= resp.config.data;
                     PostService.setCurrentPost(vm.post);
                     console.log("vm.post is in updatepost of change privacy");
                     vm.error = null;

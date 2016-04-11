@@ -37,7 +37,7 @@ module.exports = function(app, db, mongoose){
 
     function findAllPublicPosts () {
         console.log("entered findAllPublicPosts in post model");
-        return PostModel.find({"type": 'PUBLIC'});
+        return PostModel.find({"type": 'public'});
     };
 
     function findPostById (postId) {

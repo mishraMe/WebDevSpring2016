@@ -3,7 +3,6 @@
 module.exports = function() {
     var userSchema = new mongoose.Schema
     ({
-
         "firstName": String,
         "lastName":  String,
         "username":  String,
@@ -14,7 +13,7 @@ module.exports = function() {
         "gender":    {type: String, enum:['MALE', 'FEMALE', 'CHOOSE NOT TO DISCLOSE'], default: 'CHOOSE NOT TO DISCLOSE'},
         "followers": [String],
         "following": [String],
-        "follow":    {type: String, enum:['follow', 'unfollow'], default: 'unfollow'}
+        "follow":    {type: String, enum:['follow', 'unfollow'], default: 'follow'}
     }, {collection: "user"});
 
     return userSchema;

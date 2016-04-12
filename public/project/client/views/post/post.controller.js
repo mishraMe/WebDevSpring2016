@@ -11,19 +11,23 @@
         vm.message= null;
         vm.$location = $location;
         vm.selectedPost= null;
-        //current user
-        vm.currentUser = UserService.getCurrentUser();
-        vm.post = PostService.getCurrentPost();
-        console.log("vm.post is ");
-        console.log(vm.post);
         vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
+
+        //functions
+
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
         vm.viewPost = viewPost;
+        vm.likePost = likePost;
         vm.changePrivacy = changePrivacy;
 
         function init(){
+
+            //current user
+            vm.currentUser = UserService.getCurrentUser();
+            vm.post = PostService.getCurrentPost();
+
             //all posts
             PostService
                 .getAllPosts()
@@ -48,6 +52,8 @@
                 .then(function(postsForUser){
                     vm.myPosts = postsForUser.data;
                 })
+
+
         }
         init();
 
@@ -135,7 +141,14 @@
           }else{
               return false;
           }
+        }
 
+        function likePost(post){
+            PostService
+                .addLikeToPost(post)
+                .then(function(resp){
+                    console.log("successfully liked");
+                });
         }
 
     }

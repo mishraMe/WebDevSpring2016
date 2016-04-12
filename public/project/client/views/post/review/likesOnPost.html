@@ -1,0 +1,11 @@
+<h1>{{model.post}}</h1>
+
+<ul>
+    <tr ng-repeat="userWhoLiked in model.post.review.usersLiked">
+        <td>
+            <a href="#/account/{{userWhoLiked}}">
+                {{UserWhoLiked}}
+            </a>
+        </td>
+    </tr>
+</ul>

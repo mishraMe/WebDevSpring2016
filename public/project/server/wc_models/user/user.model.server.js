@@ -87,28 +87,25 @@ module.exports = function(app, db, mongoose) {
     function addUserToFollowers(followeeUsername, follower) {
 
         console.log("entered the addUserToFollowers");
-
-        console.log("followee username is ");
-        console.log(followeeUsername);
        return
         UserModel
             .findOne({username: followeeUsername})
             .then(function (userBeingFollowed){
+                console.log("entered the then of addUserfollow");
                 userBeingFollowed.followers.push(follower.username);
+                console.log(userBeingFollowed);
                 return userBeingFollowed.save();
             });
         }
 
     function removeUserFromFollowers(followeeUsername, follower) {
 
-        console.log("entered the removeUserToFollowers");
-
-        console.log("followee username is ");
-        console.log(followeeUsername);
+        console.log("entered the removeUserFromFollowers");
         return
         UserModel
             .findOne({username: followeeUsername})
             .then(function (userBeingFollowed){
+                console.log("entered the delete user function of model");
                 userBeingFollowed.followers.remove(follower.username);
                 return userBeingFollowed.save();
             });

@@ -1,14 +1,14 @@
 var mongoose = require("mongoose");
 
-var postSchema = require("./post.schema.server.js")(mongoose);
-
 module.exports = function() {
     var reviewSchema = new mongoose.Schema({
 
-        "postId": Number,
+        "postId": String,
         "title": String,
-        "rating": Number,
-        "comments": String
+        "likes": Number,
+        "comments": String,
+        "usersLiked": [String],
+        "usersCommented": [String]
     }, {collection: "review"});
 
     return reviewSchema;

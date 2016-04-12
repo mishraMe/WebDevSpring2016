@@ -38,11 +38,11 @@
         function followUnfollowUser(accountUser, currentUser){
             if (accountUser.follow == 'follow'){
                 accountUser.follow = 'unfollow';
-                unfollowUser(currentUser);
+                followUser(currentUser);
             }
             else{
                 accountUser.follow = 'follow';
-                followUser(currentUser);
+                unFollowUser(currentUser);
             }
         }
 
@@ -54,10 +54,10 @@
                 });
         }
 
-        function unfollowUser(currentUser){
+        function unFollowUser(currentUser){
             UserService
                 .removeUserFromFollowers(username, currentUser)
-                .then(function(removedUserFromFollowing){
+                .then(function(removedUserFromFollowers){
                     console.log("unfollowSuccessfully");
                 });
         }

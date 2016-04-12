@@ -24,7 +24,8 @@
 
             //funcitons related to follow funcitonality
             //findFollowInfoForUserById: findFollowInfoForUserById,
-            addUserToFollowers: addUserToFollowers
+            addUserToFollowers: addUserToFollowers,
+            removeUserFromFollowers : removeUserFromFollowers
 
         };
 
@@ -85,12 +86,12 @@
 
         function addUserToFollowers(username, user){
             console.log("addUserToFollowers in client service");
-            return $http.post("/api/project/user?username="+ username + "/follow");
+            return $http.post("/api/project/follow/"+ username, user);
         }
 
         function removeUserFromFollowers(username, user){
             console.log("removeUserFromFollowers in client service");
-            return $http.delete("/api/project/user?username="+ username + "/follow");
+            return $http.delete("/api/project/unfollow/"+ username, user);
         }
     }
 })();

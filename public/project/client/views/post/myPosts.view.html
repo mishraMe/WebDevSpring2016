@@ -7,13 +7,15 @@
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Post</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Rating</th>
+                Rating
+            </th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="post in model.myPosts">
             <td>
                 <a ng-click="model.viewPost(post)">{{post.title}}</a>
+                <a href="/post/:postId/review/likesOnPost">{{post.review.likes}}</a>
             </td>
         </tr>
         </tbody>

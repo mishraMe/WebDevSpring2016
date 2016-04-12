@@ -12,8 +12,8 @@ module.exports = function(app, userModel) {
 
     //functions to add follow functionality
     //app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);
-    app.post("/api/project/user/:username/follow", addUserToFollowers);
-    app.delete("/api/project/user/:username/follow", removeUserFromFollowers);
+    app.post("/api/project/follow/:username", addUserToFollowers);
+    app.delete("/api/project/unfollow/:username", removeUserFromFollowers);
 
     console.log("entered the user service");
 
@@ -171,21 +171,23 @@ module.exports = function(app, userModel) {
         console.log("userTobefollowedUsername is ");
         console.log(userToBeFollowedUsername);
         var userFollower = req.body;
-       userModel
+        console.log("SERVICE BODY");
+        console.log(req.body);
+        userModel
            .addUserToFollowers(userToBeFollowedUsername, userFollower)
            .then(function(result){
                console.log("result is ");
                console.log(result);
-               res.json(result);
+               res.send(result);
            },
            function(err){
                res.status(400).send(err);
            });
     };
 
-    function removeUserToFollowers(req, res){
+    function removeUserFromFollowers(req, res){
         var userToBeFollowedUsername = req.params.username;
-        var userFollower = req.body;
+        var userFollower = req.body
         userModel
             .removeUserFromFollowers(userBeingFollowed, userFollower)
             .then(function(result){

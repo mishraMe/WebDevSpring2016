@@ -13,9 +13,13 @@
         </thead>
         <tbody>
         <tr ng-repeat="post in model.myPosts">
-            <td>
+            <td class="col-sm-6">
                 <a ng-click="model.viewPost(post)">{{post.title}}</a>
-                <a href="/post/:postId/review/likesOnPost">{{post.review.likes}}</a>
+            </td>
+            <td class="col-sm-6">
+                <a ng-click="model.showUsersLikedPost(post)">
+                    {{model.usersLikedLength}} Likes
+                </a>
             </td>
         </tr>
         </tbody>

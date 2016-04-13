@@ -6,6 +6,8 @@ module.exports = function(app, postModel) {
     app.get("/api/project/post/:postId", getPostById);
     app.get("/api/project/post", getAllPosts);
     app.get("/api/project/public/post", getAllPublicPosts);
+    app.put("/api/project/post/:postId/review/addLike", addLikeToPost)
+    app.put("/api/project/post/:postId/review/removeLike", removeLikeFromPost)
 
     function getPostsForUser(req, res){
         var userId = req.params.userId;
@@ -100,4 +102,38 @@ module.exports = function(app, postModel) {
                     res.status(400).send(err);
                 });
     };
+
+    function addLikeToPost(req, res){
+
+        console.log("addLikeToPost function in post server service");
+        var postId = req.params.postId;
+        var user = req.body;
+
+            postModel.addLikeToPost(postId, user)
+            .then(
+                function(postAfterLikeAdded)
+                {
+                    res.json(postAfterLikeAdded);
+                },
+                function(err)
+                {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
+    function removeLikeFromPost(req, res){
+        console.log("removeLikeFromPost function in post server service");
+        var postId = req.params.postId;
+        var user = req.body;
+        postModel
+            .removeLikeFromPost(postId, user)
+            .then(function(postAfterLikeRemoved){
+                    res.json(postAfterLikeRemoved);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
 };

@@ -25,6 +25,12 @@
                 createReviewInTable: createReviewInTable,
                 deleteReviewInTable: deleteReviewInTable,
                 updateReviewInTable: updateReviewInTable,
+
+                //addLikesandRemoveLikes
+
+            addLikeToPost: addLikeToPost,
+            removeLikeFromPost: removeLikeFromPost
+
             };
             return postApi;
 
@@ -66,6 +72,19 @@
                 return $http.delete("/api/project/post/"+ postId);
             };
 
+
+
+            //---------------------------------reviews likes comments---------------------------------//
+
+            function addLikeToPost(postId, user){
+                console.log("entered the addLikeToPost function in post client service");
+                return $http.put("/api/project/post/"+ postId +"/review/addLike", user)
+            }
+
+            function removeLikeFromPost(postId, user){
+                console.log("entered the removeLikeFromPost function in post client service");
+                return $http.put("/api/project/post/"+ postId +"/review/removeLike", user)
+            }
 
             //************************functions for review table***************************************
 

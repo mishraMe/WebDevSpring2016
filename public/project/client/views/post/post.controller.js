@@ -11,15 +11,16 @@
         vm.message= null;
         vm.$location = $location;
         vm.selectedPost= null;
+        //initially
+        vm.userLikedPost = false;
         vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
-
         //functions
 
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
         vm.viewPost = viewPost;
-        vm.likePost = likePost;
+        vm.likeUnlikePost = likeUnlikePost;
         vm.changePrivacy = changePrivacy;
 
         function init(){
@@ -143,11 +144,36 @@
           }
         }
 
-        function likePost(post){
+        function likeUnlikePost(userLikedPost) {
+
+            console.log("entered the likeUnlikePost");
+            if (userLikedPost == false) {
+              vm.userLikedPost = true;
+
+                addLikeToPost(vm.post, vm.currentUser);
+
+            } else {
+               vm.userLikedPost = false;
+                removeLikeFromPost(vm.post, vm.currentUser);
+            }
+        }
+
+        function addLikeToPost(post, user){
+
+            console.log("entered the addLikeToPost");
             PostService
-                .addLikeToPost(post)
+                .addLikeToPost(post._id, user)
                 .then(function(resp){
                     console.log("successfully liked");
+                });
+        }
+
+        function removeLikeFromPost(post, user){
+            console.log("entered the removeLikeFromPost");
+            PostService
+                .removeLikeFromPost(post._id, user)
+                .then(function(resp){
+                    console.log("successfully unliked");
                 });
         }
 

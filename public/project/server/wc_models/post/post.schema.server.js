@@ -10,7 +10,7 @@ module.exports = function() {
         "userId": String,
         "username": String,
         "content": String,
-        "review":  [reviewSchema]
+        "usersLiked":  [String]
     }, {collection: "post"});
 
     return postSchema;

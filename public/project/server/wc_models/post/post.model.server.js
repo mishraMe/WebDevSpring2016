@@ -14,7 +14,8 @@ module.exports = function(app, db, mongoose){
         findAllPublicPosts: findAllPublicPosts,
         updatePost: updatePost,
         deletePost: deletePost,
-
+        addLikeToPost: addLikeToPost,
+        removeLikeFromPost: removeLikeFromPost
         ////field functions
         //findAllFieldsInPost: findAllFieldsInPost,
         //findFieldInPost: findFieldInPost,
@@ -66,6 +67,27 @@ module.exports = function(app, db, mongoose){
         postsForUser = PostModel.find({userId: userId});
         return postsForUser;
     };
+
+
+    function addLikeToPost(postId, user){
+        console.log("entred addLikeToPost in post wc_models model");
+        return PostModel
+            .findById(postId)
+            .then(function(resp){
+               resp.usersLiked.push(user.username);
+                return resp.save();
+            });
+    }
+
+    function removeLikeFromPost(postId, user){
+        console.log("entred removeLikeFromPost in post wc_models model");
+        return PostModel
+            .findById(postId)
+            .then(function(resp){
+                resp.usersLiked.remove(user.username);
+                return  resp.save();
+            });
+    }
 
     //
     ////functions for fields of the post

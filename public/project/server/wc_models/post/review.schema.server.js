@@ -8,7 +8,6 @@ module.exports = function() {
         "likes": Number,
         "comments": String,
         "usersLiked": [String],
-        "usersCommented": [String]
     }, {collection: "review"});
 
     return reviewSchema;

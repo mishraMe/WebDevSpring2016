@@ -35,8 +35,10 @@
          </lable>
     </div>
     <div>
-        <label>
-            {{model.usersLikedLength}}
+        <label ng-model="model.usersLikedLength">
+            <a ng-click="model.showUsersLikedPost(model.post)">
+            {{model.usersLikedLength}} Likes
+            </a>
         </label>
     </div>
     <!--<div>-->

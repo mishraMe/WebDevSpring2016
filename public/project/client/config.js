@@ -65,15 +65,15 @@
                 controllerAs: "model"
             })
             //reviews
-            .when("/post/:postId/likes",{
-                templateUrl: "views/post/review/likesOnPost.view.html",
+            .when("/post/:postId/usersLikedPost",{
+                templateUrl: "views/post/review/usersLikedPost.view.html",
                 controller: "PostController",
                 controllerAs: "model"
             })
             //follower and following
             .when("/followers/:username",{
                 templateUrl: "views/user/follow/followers.view.html",
-                controller: "FollowController",
+                controller: "PostController",
                 controllerAs: "model",
             })
 

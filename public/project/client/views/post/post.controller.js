@@ -13,14 +13,12 @@
         vm.selectedPost= null;
         //initially
         vm.userLikedPost = false;
-        vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
-        //functions
-
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
         vm.viewPost = viewPost;
         vm.likeUnlikePost = likeUnlikePost;
+        vm.showUsersLikedPost = showUsersLikedPost;
         vm.changePrivacy = changePrivacy;
 
         function init(){
@@ -29,6 +27,13 @@
             vm.currentUser = UserService.getCurrentUser();
             vm.post = PostService.getCurrentPost();
 
+            if(vm.currentUser){
+                vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
+            }
+
+            if(vm.post){
+                vm.usersLikedLength = findLengthOfUsersLikedPost(vm.post);
+            }
             //all posts
             PostService
                 .getAllPosts()
@@ -164,7 +169,7 @@
             PostService
                 .addLikeToPost(post._id, user)
                 .then(function(resp){
-                    console.log("successfully liked");
+                    vm.usersLikedLength = resp.data.usersLiked.length;
                 });
         }
 
@@ -173,10 +178,19 @@
             PostService
                 .removeLikeFromPost(post._id, user)
                 .then(function(resp){
-                    console.log("successfully unliked");
+                    vm.usersLikedLength = resp.data.usersLiked.length;
                 });
         }
 
+        function findLengthOfUsersLikedPost(post){
+            return post.usersLiked.length;
+        }
+
+        function showUsersLikedPost(post){
+            vm.post = post;
+            vm.usersLiked = post.usersLiked;
+            $location.url("/post/"+post._id+"/usersLikedPost");
+        }
     }
 
 })();

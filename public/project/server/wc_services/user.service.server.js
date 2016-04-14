@@ -178,7 +178,7 @@ module.exports = function(app, userModel) {
            .then(function(result){
                console.log("result is ");
                console.log(result);
-               res.send(result);
+               res.json(result);
            },
            function(err){
                res.status(400).send(err);

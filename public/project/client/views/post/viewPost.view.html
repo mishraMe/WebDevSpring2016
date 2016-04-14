@@ -13,7 +13,7 @@
                 <span class="glyphicon glyphicon-edit"></span>
             </button>
             <button class="btn btn-primary"
-                    ng-click="model.likeUnlikePost(model.userLikedPost)">
+                    ng-click="model.likeUnlikePost(model.post, model.currentUser)">
                 <span class="glyphicon glyphicon-thumbs-up"></span>
             </button>
         </ul>
@@ -37,7 +37,7 @@
     <div>
         <label ng-model="model.usersLikedLength">
             <a ng-click="model.showUsersLikedPost(model.post)">
-            {{model.usersLikedLength}} Likes
+            {{model.post.usersLiked.length}} Likes
             </a>
         </label>
     </div>

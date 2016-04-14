@@ -11,8 +11,6 @@
         vm.message= null;
         vm.$location = $location;
         vm.selectedPost= null;
-        //initially
-        vm.userLikedPost = false;
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
@@ -29,10 +27,6 @@
 
             if(vm.currentUser){
                 vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
-            }
-
-            if(vm.post){
-                vm.usersLikedLength = findLengthOfUsersLikedPost(vm.post);
             }
             //all posts
             PostService
@@ -58,11 +52,8 @@
                 .then(function(postsForUser){
                     vm.myPosts = postsForUser.data;
                 })
-
-
         }
         init();
-
 
         function viewPost(post){
             PostService
@@ -149,18 +140,27 @@
           }
         }
 
-        function likeUnlikePost(userLikedPost) {
+        function isUserInUsersLiked(){
 
-            console.log("entered the likeUnlikePost");
-            if (userLikedPost == false) {
-              vm.userLikedPost = true;
-
-                addLikeToPost(vm.post, vm.currentUser);
-
-            } else {
-               vm.userLikedPost = false;
-                removeLikeFromPost(vm.post, vm.currentUser);
+            console.log("entered the isUserInUsersLiked#####");
+            for(var x in vm.post.usersLiked){
+                if(vm.post.usersLiked[x] == vm.currentUser.username)
+                {
+                    return true;
+                }
             }
+            return false;
+        }
+        //like unlike post
+
+        function likeUnlikePost(post, currentUser){
+           if(isUserInUsersLiked())
+           {
+               removeLikeFromPost(post, currentUser);
+           }else
+           {
+               addLikeToPost(post, currentUser);
+           }
         }
 
         function addLikeToPost(post, user){
@@ -169,7 +169,7 @@
             PostService
                 .addLikeToPost(post._id, user)
                 .then(function(resp){
-                    vm.usersLikedLength = resp.data.usersLiked.length;
+                     vm.post = resp.data;
                 });
         }
 
@@ -178,12 +178,9 @@
             PostService
                 .removeLikeFromPost(post._id, user)
                 .then(function(resp){
-                    vm.usersLikedLength = resp.data.usersLiked.length;
+                    vm.post = resp.data;
                 });
-        }
 
-        function findLengthOfUsersLikedPost(post){
-            return post.usersLiked.length;
         }
 
         function showUsersLikedPost(post){

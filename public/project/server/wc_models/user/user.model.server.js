@@ -87,8 +87,7 @@ module.exports = function(app, db, mongoose) {
     function addUserToFollowers(followeeUsername, follower) {
 
         console.log("entered the addUserToFollowers");
-       return
-        UserModel
+       return UserModel
             .findOne({username: followeeUsername})
             .then(function (userBeingFollowed){
                 console.log("entered the then of addUserfollow");
@@ -101,8 +100,7 @@ module.exports = function(app, db, mongoose) {
     function removeUserFromFollowers(followeeUsername, follower) {
 
         console.log("entered the removeUserFromFollowers");
-        return
-        UserModel
+        return UserModel
             .findOne({username: followeeUsername})
             .then(function (userBeingFollowed){
                 console.log("entered the delete user function of model");

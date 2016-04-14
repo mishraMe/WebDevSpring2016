@@ -17,7 +17,10 @@ module.exports = function(app, db, mongoose) {
         //find all follower and following info for a user
         //findAllFollowInfoForUserByUserId: findAllFollowInfoForUserByUserId,
         addUserToFollowers: addUserToFollowers,
-        removeUserFromFollowers: removeUserFromFollowers
+        removeUserFromFollowers: removeUserFromFollowers,
+
+        addUserToFollowing: addUserToFollowing,
+        removeUserFromFollowing: removeUserFromFollowing
 
     };
     return api;
@@ -74,15 +77,15 @@ module.exports = function(app, db, mongoose) {
     }
 
     //functions for finding followers and following
-    //function findAllFollowInfoForUserByUserId(userId){
-    //   var user = UserModel.findOne({"user": userId});
-    //    var followInfo =
-    //    {
-    //        "followers": [user.followers],
-    //        "following": [user.following]
-    //    }
-    //    return followInfo;
-    //}
+    function findAllFollowInfoForUserByUserId(userId){
+       var user = UserModel.findOne({"user": userId});
+        var followInfo =
+        {
+            "followers": [user.followers],
+            "following": [user.following]
+        }
+        return followInfo;
+    }
 
     function addUserToFollowers(followeeUsername, follower) {
 
@@ -97,6 +100,19 @@ module.exports = function(app, db, mongoose) {
             });
         }
 
+    function addUserToFollowing(followerUsername, following) {
+
+        console.log("entered the addUserToFollowing");
+        return UserModel
+            .findOne({username: followerUsername})
+            .then(function (userFollowing){
+                console.log("entered the then of addUserfollowing");
+                userFollowing.following.push(following.username);
+                console.log(userFollowing);
+                return userFollowing.save();
+            });
+    }
+
     function removeUserFromFollowers(followeeUsername, follower) {
 
         console.log("entered the removeUserFromFollowers");
@@ -108,4 +124,19 @@ module.exports = function(app, db, mongoose) {
                 return userBeingFollowed.save();
             });
     }
+
+    function removeUserFromFollowing(followerUsername, following) {
+
+        console.log("entered the removeUserFromFollowing");
+        console.log(following.username);
+        return UserModel
+            .findOne({username: followerUsername})
+            .then(function (userFollowing){
+                console.log("entered the then of removeUserFromfollowing");
+                userFollowing.following.remove(following.username);
+                console.log(userFollowing);
+                return userFollowing.save();
+            });
+    }
+
 }

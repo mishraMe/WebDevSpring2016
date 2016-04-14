@@ -17,13 +17,16 @@
         var username = $routeParams.username;
 
        function init(){
+
            UserService
                .findUserByUsername(username)
                .then(function(userFound){
                    console.log("userFound is " );
                    console.log(userFound);
                    vm.user = userFound.data;
-               })
+                   userFollowedByCurrentUser(vm.user, currentUser);
+               });
+
        }
         init();
 
@@ -35,30 +38,78 @@
             $location.url("/followers/" + user.username);
         }
 
-        function followUnfollowUser(accountUser, currentUser){
-            if (accountUser.follow == 'follow'){
-                accountUser.follow = 'unfollow';
-                followUser(currentUser);
+        function userFollowedByCurrentUser(accountUser, currentUser){
+         if(isCurrentUserAFollower(accountUser, currentUser)){
+             accountUser.follow = 'unfollow';
+         }else{
+             accountUser.follow = 'follow';
+         }
+        }
+
+
+        function isCurrentUserAFollower(accountUser, currentUser){
+            for(var index in accountUser.followers){
+                if(accountUser.followers[index] == currentUser.username){
+                   return true;
+                }
             }
-            else{
+            return false;
+        }
+
+        function followUnfollowUser(accountUser, currentUser) {
+            console.log("entered FollowUnfollowUser");
+            if(isCurrentUserAFollower(accountUser, currentUser)){
+                accountUser.follow = 'unfollow';
+                decideFollowUnfollow(accountUser, currentUser);
+            }else
+            {
                 accountUser.follow = 'follow';
-                unFollowUser(currentUser);
+                decideFollowUnfollow(accountUser, currentUser);
             }
         }
 
-        function followUser(currentUser){
+        function decideFollowUnfollow(accountUser)
+        {
+            console.log("entered decideFollowUnfollow");
+            if (accountUser.follow == 'follow'){
+
+                console.log("entered ifCondition in decideFollow");
+
+                accountUser.follow = 'unfollow';
+                followUser(accountUser,currentUser);
+            }
+            else{
+                console.log("entered else condition decideFollow");
+                accountUser.follow = 'follow';
+                unFollowUser(accountUser, currentUser);
+            }
+        }
+
+        function followUser(accountUser, currentUser){
+            console.log("followUser");
             UserService
-                .addUserToFollowers(username, currentUser)
-                .then(function(userAddedToFollowing){
-                    console.log("follow successfully");
+                .addUserToFollowers(accountUser.username, currentUser)
+                .then(function(userAddedToFollowers){
+                    console.log("then of followUser")
+                    UserService
+                        .addUserToFollowing(currentUser.username, accountUser)
+                        .then(function(userAddedToFollowing){
+                            console.log("then after the then ");
+                            console.log("followingSuccessfully");
+                        })
                 });
         }
 
-        function unFollowUser(currentUser){
+        function unFollowUser(accountUser, currentUser){
             UserService
-                .removeUserFromFollowers(username, currentUser)
+                .removeUserFromFollowers(accountUser.username, currentUser)
                 .then(function(removedUserFromFollowers){
-                    console.log("unfollowSuccessfully");
+                    UserService
+                        .removeUserFromFollowing(currentUser.username, accountUser)
+                        .then(function(userAddedToFollowing){
+                            console.log("unfollowingSuccessfully");
+                        })
+
                 });
         }
     }

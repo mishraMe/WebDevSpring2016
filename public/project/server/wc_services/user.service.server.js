@@ -12,8 +12,11 @@ module.exports = function(app, userModel) {
 
     //functions to add follow functionality
     //app.get("/api/project/user/:id/follow", getAllFollowInfoByUserId);
-    app.post("/api/project/follow/:username", addUserToFollowers);
-    app.delete("/api/project/unfollow/:username", removeUserFromFollowers);
+    app.put("/api/project/follow/follower/:username", addUserToFollowers);
+    app.put("/api/project/unfollow/follower/:username", removeUserFromFollowers);
+
+    app.put("/api/project/follow/following/:username", addUserToFollowing);
+    app.put("/api/project/unfollow/following/:username", removeUserFromFollowing);
 
     console.log("entered the user service");
 
@@ -185,11 +188,52 @@ module.exports = function(app, userModel) {
            });
     };
 
-    function removeUserFromFollowers(req, res){
-        var userToBeFollowedUsername = req.params.username;
-        var userFollower = req.body
+
+    function addUserToFollowing(req, res){
+        var userFollowing = req.params.username;
+        console.log("userFollowingis ");
+        console.log(userFollowing);
+        var userBeingFollowed = req.body;
+        console.log("SERVICE BODY");
+        console.log(req.body);
         userModel
-            .removeUserFromFollowers(userBeingFollowed, userFollower)
+            .addUserToFollowing(userFollowing, userBeingFollowed)
+            .then(function(result){
+                    console.log("result is ");
+                    console.log(result);
+                    res.json(result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    };
+
+
+    function removeUserFromFollowers(req, res){
+        var userBeingFollowedUsername = req.params.username;
+        var userFollower = req.body;
+        console.log("^^^^^^^^^^^^^^^^^^&&&&&&&&&^^^^^^^^^^^^^^^^^^^^");
+        console.log(userFollower);
+        userModel
+            .removeUserFromFollowers(userBeingFollowedUsername, userFollower)
+            .then(function(result){
+                    console.log("result is ");
+                    console.log(result);
+                    res.json(result);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    };
+
+
+    function removeUserFromFollowing(req, res){
+        var userFollowing = req.params.username;
+        var userBeingFollowed = req.body;
+        console.log("req.body for removing from following is ******************");
+        console.log(req.body);
+        userModel
+            .removeUserFromFollowing(userFollowing, userBeingFollowed)
             .then(function(result){
                     console.log("result is ");
                     console.log(result);
@@ -200,3 +244,5 @@ module.exports = function(app, userModel) {
                 });
     };
 };
+
+

@@ -73,7 +73,7 @@
             //follower and following
             .when("/followers/:username",{
                 templateUrl: "views/user/follow/followers.view.html",
-                controller: "PostController",
+                controller: "FollowController",
                 controllerAs: "model",
             })
 

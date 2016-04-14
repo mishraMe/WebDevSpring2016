@@ -19,9 +19,11 @@
             UserService
                 .findUserByUsername(username)
                 .then(function(resp) {
+                    console.log(resp);
                     vm.user = resp.data;
-                    vm.followers = vm.user.followers;
                     vm.following = vm.user.following;
+                    vm.followers = vm.user.followers;
+
                 });
          }
         init();

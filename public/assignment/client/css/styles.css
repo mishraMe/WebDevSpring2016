@@ -1,3 +1,4 @@
+
 .glyphicon {
     font-size: 25px;
     }
@@ -7,4 +8,8 @@
     }
 table,th, td{
     border: 1px solid black;
+}
+
+.sidebar{
+    color: khaki;
 }

@@ -13,20 +13,20 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-hide="currentUser"
-                    ng-class="{'active': $locationUrl()=='/register'}">
+                    ng-class="{'active': $locationUrl().indexOf('/register')>= 0}">
                     <a href="#/register">Register</a></li>
                 <li ng-hide="currentUser"
-                    ng-class="{'active': $locationUrl()=='/login'}">
+                    ng-class="{'active': $locationUrl().indexOf('/login') >= 0}">
                     <a href="#/login">Login</a></li>
                 <li ng-show="currentUser">
                    <a href="" ng-click="logout()">Logout</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl()=='/myPosts'}">
+                    ng-class="{'active': $locationUrl().indexOf('/myPosts') >= 0}">
                     <a href="#/myPosts">My Posts</a></li>
-                <li ng-class="{'active': $locationUrl()=='/publicPosts'}">
+                <li ng-class="{'active': $locationUrl().indexOf('/publicPosts') >= 0}">
                     <a href="#/publicPosts">Public Posts</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl()=='/account'}">
+                    ng-class="{'active': $locationUrl().indexOf('/account') >= 0}">
                     <a href="#/account">{{currentUser.username}}</a></li>
                 <li ng-show="currentUser.roles.indexOf('admin')>=0"
                     ng-class="{'active': $locationUrl()=='/admin'}">

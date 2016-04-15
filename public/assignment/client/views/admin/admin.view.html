@@ -1,85 +1,29 @@
-            <h1 class="title">Admin</h1>
-            <h2 class="sub-header">Users</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Role</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <input type="text"
-                                   placeholder="username"
-                                   class="form-control"
-                                   ng-model="username">
-                        </td>
-                        <td>
-                            <input type="text"
-                                   placeholder="password"
-                                   class="form-control"
-                                   ng-model="password">
-                        </td>
-                        <td>
-                            <input type="text"
-                                   placeholder="role1, role2"
-                                   class="form-control"
-                                   ng-model="role">
-                        </td>
-                        <td align="right">
-                            <span class="glyphicon glyphicon-plus"></span>
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <lable>alice</lable>
-                        </td>
-                        <td>
-                            <label></label>
-                        </td>
-                        <td>
-                            <lable>student</lable>
-                        </td>
-                        <td align="right">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <lable>bob</lable>
-                        </td>
-                        <td>
-                            <label></label>
-                        </td>
-                        <td>
-                            <lable>faculty | admin</lable>
-                        </td>
-                        <td align="right">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <lable>charlie</lable>
-                        </td>
-                        <td>
-                            <label></label>
-                        </td>
-                        <td>
-                            <lable></lable>
-                        </td>
-                        <td align="right">
-                            <span class="glyphicon glyphicon-remove"></span>
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<h1>Admin</h1>
+
+<h2>User List</h2>
+<table class="table table-striped">
+    <tr>
+        <td>&nbsp;</td>
+        <td><input ng-model="user.username" class="form-control" placeholder="username"/></td>
+        <td><input ng-model="user.password" class="form-control" type="password" placeholder="password"/></td>
+        <td><input ng-model="user.firstName" class="form-control" placeholder="first"/></td>
+        <td><input ng-model="user.lastName" class="form-control" placeholder="last"/></td>
+        <td><input ng-model="user.email" class="form-control" type="email" placeholder="email"/></td>
+        <td><input ng-model="user.roles" class="form-control" placeholder="roles"/></td>
+        <td><button ng-click="add(user)" class="btn btn-primary">&plus;</button>
+        <td><button ng-click="update(user)" class="btn btn-success">&check;</button>
+    </tr>
+
+    </tr>
+    <tr ng-repeat="user in users">
+        <td>{{user._id}}</td>
+        <td>{{user.username}}</td>
+        <td>&nbsp;</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.roles}}</td>
+        <td><button ng-click="remove(user)" class="btn btn-danger">X</button>
+        <td><button ng-click="select(user)" class="btn btn-success">...</button>
+    </tr>
+</table>

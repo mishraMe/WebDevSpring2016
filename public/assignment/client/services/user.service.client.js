@@ -7,12 +7,15 @@
      //   console.log("entered User wc_services client");
 
         var api= {
-            findUserByCredentials: findUserByCredentials,
-            findUserByUsername:findUserByUsername,
-            findAllUsers: findAllUsers,
+            login: login,
+            logout: logout,
+            register: register,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
+            findUserByCredentials: findUserByCredentials,
+            findUserByUsername:findUserByUsername,
+            findAllUsers: findAllUsers,
             findUserById: findUserById,
             getCurrentUser: getCurrentUser,
             setCurrentUser: setCurrentUser,
@@ -20,19 +23,6 @@
         };
 
         return api;
-
-        function findUserByCredentials(username, password) {
-              console.log(username+" - "+password);
-             console.log("entered find User by credentials in user wc_services client");
-            return $http.get("/api/assignment/user?username="
-                +username+"&password=" +password);
-        };
-
-        function findAllUsers() {
-            var users;
-            users = $http.get("/api/assignment/user");
-            return users;
-        };
 
         function createUser(user) {
             console.log("entered the createuser in service of client");
@@ -57,15 +47,41 @@
             return $http.get("/api/assignment/user?username="+ username);
         };
 
+
+        function findUserByCredentials(username, password) {
+            console.log(username+" - "+password);
+            console.log("entered find User by credentials in user wc_services client");
+            return $http.get("/api/assignment/user?username="
+                +username+"&password=" +password);
+        };
+
+        function findAllUsers() {
+            var users;
+            users = $http.get("/api/assignment/user");
+            return users;
+        };
+
         function setCurrentUser(user){
             $rootScope.currentUser= user;
         };
 
         function getCurrentUser(){
-            return $rootScope.currentUser;
+            return $http.get("/api/assignment/loggedin");
         };
         function getCurrentUserId(){
             return $rootScope.currentUser._id;
         };
+
+        function login(){
+            return $http.post("/api/assignment/login", user);
+        };
+
+        function logout(){
+            return $http.post("/api/assignment/logout");
+        }
+
+        function register(){
+            return $http.post("/api/assignment/register", user);
+        }
     }
 })();

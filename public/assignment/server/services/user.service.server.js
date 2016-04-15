@@ -47,6 +47,35 @@ module.exports = function(app, userModel) {
             );
     }
 
+    function updateUser(req, res){
+        console.log("entered the updateUser server service");
+        var updatedUser = req.body;
+        var user =
+            userModel
+                .updateUser(req.params.id, updatedUser)
+                .then(
+                    function(result)
+                    {
+                        console.log("entered the updateUser result");
+                        res.json(result);
+                    },
+                    function(err){
+                        console.log("entered the updateUser err");
+                        res.status(400).send(err);
+                    }
+                );
+    }
+
+    function deleteUser(req, res){
+        console.log("entered the deleteUser server service");
+        var deleteUserId = req.params.id;
+        userModel.deleteUser(deleteUserId);
+        var users = userModel.findAllUsers();
+        res.json(users);
+    };
+
+
+
     function getAllUsers(req, res){
         console.log("entered the getAllUsers server service");
         var password = req.query.password;
@@ -108,33 +137,6 @@ module.exports = function(app, userModel) {
                     res.status(400).send(err);
                 }
             );
-    };
-
-    function updateUser(req, res){
-        console.log("entered the updateUser server service");
-        var updatedUser = req.body;
-        var user =
-            userModel
-                .updateUser(req.params.id, updatedUser)
-                .then(
-                    function(result)
-                    {
-                        console.log("entered the updateUser result");
-                        res.json(result);
-                    },
-                    function(err){
-                        console.log("entered the updateUser err");
-                        res.status(400).send(err);
-                    }
-                );
-    }
-
-    function deleteUser(req, res){
-        console.log("entered the deleteUser server service");
-        var deleteUserId = req.params.id;
-        userModel.deleteUser(deleteUserId);
-        var users = userModel.findAllUsers();
-        res.json(users);
     };
 
 };

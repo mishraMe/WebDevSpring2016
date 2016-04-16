@@ -16,7 +16,6 @@
         vm.selectPost = selectPost;
         vm.viewPost = viewPost;
         vm.likeUnlikePost = likeUnlikePost;
-        vm.showUsersLikedPost = showUsersLikedPost;
         vm.changePrivacy = changePrivacy;
 
         function init(){
@@ -32,17 +31,13 @@
             PostService
                 .getAllPosts()
                 .then(function(allPosts) {
-                    console.log("all posts are ");
                     vm.allPosts = allPosts.data;
-                    console.log(vm.allPosts);
                 })
             //public posts
             PostService
              .getAllPublicPosts()
              .then(function(publicPosts) {
-                 console.log("public posts are ");
                  vm.publicPosts = publicPosts.data;
-                 console.log(vm.publicPosts);
              })
 
             //only user's posts
@@ -58,8 +53,6 @@
         function viewPost(post){
             PostService
                 .setCurrentPost(post);
-            console.log("post value from viewing on clicking on it is ");
-            console.log(post);
             vm.post = post;
             console.log(vm.post);
             $location.url("/viewPost");
@@ -93,8 +86,6 @@
                 .updatePostById(vm.post._id, renewedPost)
                 .then(function(resp){
                     vm.error = null;
-                    console.log("update post updates the post to: ");
-                    console.log(resp);
                     vm.post = resp.config.data;
                     PostService.setCurrentPost(vm.post);
                     $location.url("/viewPost");
@@ -102,8 +93,6 @@
         }
 
         function selectPost(post){
-            console.log("value of post from view is");
-            console.log(post);
             PostService
                 .getPostById(post._id)
                 .then(function(selectedPost){
@@ -126,7 +115,6 @@
                 .then(function(resp){
                     vm.post= resp.config.data;
                     PostService.setCurrentPost(vm.post);
-                    console.log("vm.post is in updatepost of change privacy");
                     vm.error = null;
                     vm.message= "Privacy changed to {{post.type}}"
                 });
@@ -140,53 +128,8 @@
           }
         }
 
-        function isUserInUsersLiked(){
-
-            console.log("entered the isUserInUsersLiked#####");
-            for(var x in vm.post.usersLiked){
-                if(vm.post.usersLiked[x] == vm.currentUser.username)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        //like unlike post
-
         function likeUnlikePost(post, currentUser){
-           if(isUserInUsersLiked())
-           {
-               removeLikeFromPost(post, currentUser);
-           }else
-           {
-               addLikeToPost(post, currentUser);
-           }
-        }
 
-        function addLikeToPost(post, user){
-
-            console.log("entered the addLikeToPost");
-            PostService
-                .addLikeToPost(post._id, user)
-                .then(function(resp){
-                     vm.post = resp.data;
-                });
-        }
-
-        function removeLikeFromPost(post, user){
-            console.log("entered the removeLikeFromPost");
-            PostService
-                .removeLikeFromPost(post._id, user)
-                .then(function(resp){
-                    vm.post = resp.data;
-                });
-
-        }
-
-        function showUsersLikedPost(post){
-            vm.post = post;
-            vm.usersLiked = post.usersLiked;
-            $location.url("/post/"+post._id+"/usersLikedPost");
         }
     }
 

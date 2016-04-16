@@ -2,7 +2,8 @@
 module.exports = function(app, db, mongoose){
 
     var PostSchema = require('./post.schema.server.js')(mongoose);
-    var reviw
+    var reviewSchema = require('./review.schema.server.js')(mongoose);
+    var userReviewMapSchema = require('./user_review_map.schema.server.js');
     var PostModel = mongoose.model("Post", PostSchema);
 
 
@@ -18,12 +19,6 @@ module.exports = function(app, db, mongoose){
         deletePost: deletePost,
         addLikeToPost: addLikeToPost,
         removeLikeFromPost: removeLikeFromPost
-        ////field functions
-        //findAllFieldsInPost: findAllFieldsInPost,
-        //findFieldInPost: findFieldInPost,
-        //deleteFieldFromPost: deleteFieldFromPost,
-        //createFieldInPost: createFieldInPost,
-        //updateFieldInPost: updateFieldInPost
     };
 
     return api;
@@ -90,72 +85,5 @@ module.exports = function(app, db, mongoose){
                 return  resp.save();
             });
     }
-
-    //
-    ////functions for fields of the post
-    //function findAllFieldsInPost(postId){
-    //    console.log("entered findAllFieldsInPost! WOOHOOW!!")
-    //    var fields = [];
-    //    var post;
-    //    for(var index in mockPosts){
-    //        post = mockPosts[index];
-    //        if(post._id== postId){
-    //            fields = post.fields;
-    //            return fields;
-    //            break;
-    //        }
-    //    }
-    //    return null;
-    //};
-    //
-    //function findFieldInPost(fieldId, postId){
-    //    var field;
-    //    var post = findPostById(postId);
-    //    for(var index in post.fields){
-    //        field = post.fields[index];
-    //        if(field._id == fieldId){
-    //            return field;
-    //            break;
-    //        }
-    //    }
-    //    return null;
-    //};
-    //
-    //function deleteFieldFromPost(fieldId, postId){
-    //    console.log("entered the deleteFieldFromPost in wc_models");
-    //    var field;
-    //    var post = findPostById(postId);
-    //    for (var index in post.fields){
-    //        field = post.fields[index];
-    //        if( field._id == fieldId){
-    //            post.fields.splice(index, 1);
-    //            return post.fields;
-    //        }
-    //    }
-    //};
-    //
-    //
-    //function createFieldInPost(postId, newField){
-    //    var post = findPostById(postId);
-    //    newField._id = (new Date).getTime();
-    //    post.fields.push(newField);
-    //    return post.fields;
-    //};
-    //
-    //function updateFieldInPost(postId, fieldId, updatedField){
-    //    var post = findPostById(postId);
-    //    console.log("postId is" + postId);
-    //    console.log("fieldId is" + fieldId);
-    //    console.log("updatedField is");
-    //    console.log(updatedField);
-    //    var field;
-    //    for(var index in post.fields){
-    //        if(post.fields[index]._id == fieldId){
-    //            console.log("entered the updatefieldInPost if condition wc_models here");
-    //            post.fields[index] = updatedField;
-    //            return post.fields;
-    //        }
-    //    }
-    //};
 
 }

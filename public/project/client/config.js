@@ -64,12 +64,7 @@
                 controller: "PostController",
                 controllerAs: "model"
             })
-            //reviews
-            .when("/post/:postId/usersLikedPost",{
-                templateUrl: "views/post/review/usersLikedPost.view.html",
-                controller: "PostController",
-                controllerAs: "model"
-            })
+
             //follower and following
             .when("/followers/:username",{
                 templateUrl: "views/user/follow/followers.view.html",
@@ -84,13 +79,14 @@
             })
 
             //search paths
-            .when("/search", {
+
+            .when("/search/:title",{
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
                 controllerAs: "model"
             })
 
-            .when("/search/:title",{
+            .when("/search", {
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
                 controllerAs: "model"

@@ -2,25 +2,19 @@
 <div class="form-horizontal">
     <div>
         <ul>
-            <button class="btn btn-primary"
-                    class="btn-default"
-                    ng-click="model.viewPost(model.post)">
-                <span class="glyphicon glyphicon-eye-open"></span>
+            <button ng-click="model.viewPost(model.post)">
+                <i class="fa fa-quote-left fa-2x" aria-hidden="true"></i>
             </button>
             <button ng-show="model.isCurrentUser"
-                    class="btn btn-primary"
                     ng-click="model.selectPost(model.post)">
-                <span class="glyphicon glyphicon-edit"></span>
+                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
             </button>
-            <button class="btn btn-primary"
-                    ng-click="model.likeUnlikePost(model.post, model.currentUser)">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
+            <button ng-click="model.likeUnlikePost(model.post, model.currentUser)">
+                <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
             </button>
         </ul>
     </div>
-    <div>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js"></script>
-    </div>
+
     <div class="form-group" class="form-control">
         <h1>
             <label class="col-sm-12" id="title"
@@ -29,10 +23,13 @@
             </label>
         </h1>
     </div>
-    <div class="form-group" class="form-control">
-         <lable class="form-control" id="post"
-                   ng-model="model.post.content">{{model.post.content}}
-         </lable>
+    <div class="form-group" align="center">
+         <textarea id="post"
+                   ng-model="model.post.content"
+                   ng-readonly="model.post.content"
+                   rows="30" cols="80">
+             {{model.post.content}}
+         </textarea>
     </div>
     <div>
         <label ng-model="model.usersLikedLength">

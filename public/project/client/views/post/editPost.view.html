@@ -2,31 +2,25 @@
  <div class="form-horizontal">
  <div>
      <ul>
-         <button class="btn btn-primary"
-                 class="btn-default"
-                 ng-click="model.viewPost(model.post)">
-         <span class="glyphicon glyphicon-eye-open"></span>
+         <button ng-click="model.viewPost(model.post)">
+             <i class="fa fa-quote-left fa-2x" aria-hidden="true"></i>
          </button>
 
          <button ng-show="model.currentUser"
-                 class="btn btn-primary"
                  ng-click="model.updatePost(model.post)">
-             <span class="glyphicon glyphicon-cloud"></span>
+             <i class="fa fa-floppy-o fa-2x" aria-hidden="true"></i>
          </button>
 
          <button ng-show="model.currentUser"
-                 class="btn btn-primary"
                  ng-click="model.selectPost(model.post)">
-             <span class="glyphicon glyphicon-edit"></span>
+             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
          </button>
 
          <button ng-show="model.currentUser"
-                 class="btn btn-primary"
                  ng-click="model.deletePost(model.post)">
-             <span class="glyphicon glyphicon-remove"></span>
+             <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
          </button>
          <button ng-show="model.currentUser"
-                 class="btn btn-primary"
                  ng-model="model.post.type"
                  ng-click="model.changePrivacy(model.post)">
              {{model.post.type}}
@@ -46,10 +40,11 @@
              </div>
          </h1>
  </div>
-     <div class="form-group">
-         <textarea class="form-control" id="post"
+     <div class="form-group" align="center">
+         <textarea id="post"
                    ng-model="model.post.content"
-                   placeholder="content">{{model.post.content}}
+                   placeholder="content"
+                   rows="15" cols="80">{{model.post.content}}
          </textarea>
      </div>
  </div>

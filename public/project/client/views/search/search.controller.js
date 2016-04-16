@@ -6,8 +6,16 @@
         .controller("SearchController", searchController);
 
     function searchController($scope, $location, BookService) {
-        $scope.search=search;
 
+
+
+        $scope.search=search;
+        $scope.$location = $location;
+
+        function init(){
+
+        }
+        init();
 
         function search(title) {
             console.log("entered search");
@@ -18,15 +26,11 @@
         }
 
         function fetchBooks(bookTitle) {
-            console.log("entered  fetch books");
             BookService.findBooksByTitle(bookTitle, renderBooks)
         }
 
         function renderBooks(response) {
-            console.log(response);
             $scope.books = response.items;
-            console.log("books are:");
-           console.log($scope.books);
         }
     }
 })();

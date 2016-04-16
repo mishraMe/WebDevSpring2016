@@ -3,7 +3,7 @@
         .module("WritersClubApp")
         .controller("DetailsController", detailsController);
 
-    function detailsController($scope,$http, $routeParams, BookService) {
+    function detailsController($scope, $routeParams, BookService) {
 
 
         var id = $routeParams.id;
@@ -20,7 +20,6 @@
 
         function renderDetails(response) {
             console.log("enter render details");
-            console.log(response);
             $scope.details = response.items[0];
             console.log($scope.details);
         }

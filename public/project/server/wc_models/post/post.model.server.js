@@ -2,7 +2,9 @@
 module.exports = function(app, db, mongoose){
 
     var PostSchema = require('./post.schema.server.js')(mongoose);
+    var reviw
     var PostModel = mongoose.model("Post", PostSchema);
+
 
 
     var api = {

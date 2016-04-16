@@ -10,7 +10,8 @@
                 <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
             </button>
             <button ng-click="model.likeUnlikePost(model.post, model.currentUser)">
-                <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+                <!-- <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>-->
+                {{model.post.likeState}}
             </button>
         </ul>
     </div>
@@ -30,13 +31,6 @@
                    rows="30" cols="80">
              {{model.post.content}}
          </textarea>
-    </div>
-    <div>
-        <label ng-model="model.usersLikedLength">
-            <a ng-click="model.showUsersLikedPost(model.post)">
-            {{model.post.usersLiked.length}} Likes
-            </a>
-        </label>
     </div>
     <!--<div>-->
         <!--<tr>-->

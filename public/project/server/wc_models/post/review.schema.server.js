@@ -5,6 +5,7 @@ module.exports = function() {
 
         "postId": String,
         "title":  String,
+        "likeState": {type: String, enum: ['like', 'unlike'], default: 'like'},
         "likes": [String],
         "comments": [{username: String, value: String}],
     }, {collection: "review"});

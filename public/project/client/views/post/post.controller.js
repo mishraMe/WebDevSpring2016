@@ -27,6 +27,10 @@
             if(vm.currentUser){
                 vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
             }
+
+            if(vm.currentUser, vm.post){
+                userLikedThePost(vm.post, vm.currentUser);
+            }
             //all posts
             PostService
                 .getAllPosts()
@@ -128,9 +132,69 @@
           }
         }
 
-        function likeUnlikePost(post, currentUser){
 
+        //like unlike funcitonality
+
+        function userLikedThePost(post, currentUser){
+            if(hasTheUserLikedThePost(post, currentUser)){
+                post.likeState = 'unlike';
+            }else{
+                post.likeState = 'like';
+            }
         }
-    }
+
+        function hasTheUserLikedThePost(post, currentUser){
+            for(var index in post.usersLiked){
+                if(post.usersLiked[index] == currentUser.username){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function likeUnlikePost(post, currentUser) {
+            console.log("entered likeUnlikePost");
+            if(hasTheUserLikedThePost(post, currentUser)){
+                post.likeState = 'unlike';
+                decideLikeUnlikePost(post, currentUser);
+            }else
+            {
+                post.likeState = 'like';
+                decideLikeUnlikePost(post, currentUser);
+            }
+        }
+
+        function decideLikeUnlikePost(post, currentUser)
+        {
+            console.log("entered decideLikeUnlike");
+            if (post.likeState == 'like'){
+
+                post.likeState = 'unlike';
+                likePost(post, currentUser);
+            }
+            else{
+                console.log("entered else condition decideFollow");
+                post.follow = 'follow';
+                unlikePost(post, currentUser);
+            }
+        }
+
+        function likePost(post, currentUser){
+            console.log("likePost");
+            PostService
+                .likePost(post, currentUser)
+                .then(function(userAddedToUsersLiked){
+                   console.log("user added Successfully");
+                });
+        }
+
+        function unlikePost(post, currentUser){
+            PostService
+                .unlikePost(post, currentUser)
+                .then(function(removedUserFromUsersLiked){
+                    console.log("user removed successfully");
+                });
+        }
+}
 
 })();

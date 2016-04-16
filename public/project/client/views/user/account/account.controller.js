@@ -50,7 +50,7 @@
         function isCurrentUserAFollower(accountUser, currentUser){
             for(var index in accountUser.followers){
                 if(accountUser.followers[index] == currentUser.username){
-                   return true;
+                    return true;
                 }
             }
             return false;

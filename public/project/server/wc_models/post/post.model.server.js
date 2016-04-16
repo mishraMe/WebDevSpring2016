@@ -2,9 +2,11 @@
 module.exports = function(app, db, mongoose){
 
     var PostSchema = require('./post.schema.server.js')(mongoose);
-    var reviewSchema = require('./review.schema.server.js')(mongoose);
-    var userReviewMapSchema = require('./user_review_map.schema.server.js');
+  //  var ReviewSchema = require('./review.schema.server.js')(mongoose);
+    // var UserReviewMapSchema = require('./user_review_map.schema.server.js')(mongoose);
     var PostModel = mongoose.model("Post", PostSchema);
+    //var ReviewModel = mongoose.model("Review", ReviewSchema);
+    //var UserReviewMapModel = mongoose.model("UserReviewMap", UserReviewMapSchema);
 
 
 
@@ -17,8 +19,11 @@ module.exports = function(app, db, mongoose){
         findAllPublicPosts: findAllPublicPosts,
         updatePost: updatePost,
         deletePost: deletePost,
-        addLikeToPost: addLikeToPost,
-        removeLikeFromPost: removeLikeFromPost
+
+
+        //review functions
+        likePost: likePost,
+        unlikePost: unlikePost
     };
 
     return api;
@@ -66,24 +71,29 @@ module.exports = function(app, db, mongoose){
     };
 
 
-    function addLikeToPost(postId, user){
-        console.log("entred addLikeToPost in post wc_models model");
+    function likePost(postId, user) {
+        console.log("entered the likePost");
         return PostModel
             .findById(postId)
-            .then(function(resp){
-               resp.usersLiked.push(user.username);
-                return resp.save();
+            .then(function (postFound){
+                console.log("entered the then of likePost");
+                postFound.usersLiked.push(user.username);
+                console.log(postFound);
+                return postFound.save();
             });
     }
 
-    function removeLikeFromPost(postId, user){
-        console.log("entred removeLikeFromPost in post wc_models model");
+    function unlikePost(postId, user) {
+        console.log("entered the unlikePost");
         return PostModel
             .findById(postId)
-            .then(function(resp){
-                resp.usersLiked.remove(user.username);
-                return  resp.save();
+            .then(function (postFound){
+                console.log("entered the then of unlikePost");
+                postFound.usersLiked.remove(user.username);
+                return postFound.save();
             });
+
     }
+
 
 }

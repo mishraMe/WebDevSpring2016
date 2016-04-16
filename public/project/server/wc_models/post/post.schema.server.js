@@ -10,7 +10,9 @@ module.exports = function() {
         "userId": String,
         "username": String,
         "content": String,
-        "usersLiked":  [String]
+        "likeState": {type: String, enum:['like', 'unlike'], default: 'like'},
+        "usersLiked":  [String],
+        "comments": [{username: String, value:String}],
     }, {collection: "post"});
 
     return postSchema;

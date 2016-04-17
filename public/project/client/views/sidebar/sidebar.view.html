@@ -4,13 +4,13 @@
         <ul class="nav nav-sidebar">
             <li ng-class="{'active': $locationUrl().indexOf('home') >= 0}">
                 <a href="#/home">
-                    <span class="glyphicon glyphicon-home"></span>
+                    <i class="fa fa-home fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('profile') >= 0}">
                 <a href="#/profile">
-                    <span class="glyphicon glyphicon-user"></span>
+                    <i class="fa fa-user fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <li ng-show="currentUser"
@@ -22,17 +22,17 @@
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('myPosts') >= 0}">
                 <a href="#/myPosts">
-                    <span class="glyphicon glyphicon-lock"></span>
+                    <i class="fa fa-book fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <li ng-class="{'active': $locationUrl().indexOf('publicPosts') >= 0}">
                 <a href="#/publicPosts">
-                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <li ng-class="{'active': $locationUrl().indexOf('search') >= 0}">
                 <a href="#/search">
-                    <span class="glyphicon glyphicon-search"></span>
+                    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <!-- table views-->

@@ -23,7 +23,7 @@
 
             postTemplate =   {
                 "title": null,
-                "tag": ["Story", "Poem", "Script"] ,  "type": "private",
+                "tag": [] ,  "type": "private",
                 "roles": ["user"],
                 "userId": vm.currentUser._id, "username": vm.currentUser.username,
                 "content":null

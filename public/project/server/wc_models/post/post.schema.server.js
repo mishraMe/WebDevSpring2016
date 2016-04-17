@@ -12,7 +12,7 @@ module.exports = function() {
         "content": String,
         "likeState": {type: String, enum:['like', 'unlike'], default: 'like'},
         "usersLiked":  [String],
-        "comments": [{username: String, value:String}],
+        "comments": [{label: String, value:String}],
     }, {collection: "post"});
 
     return postSchema;

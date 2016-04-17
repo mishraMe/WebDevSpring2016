@@ -50,7 +50,7 @@
             };
 
             function getPostById(postId) {
-                return $http.get("/api/project/public/post/" + postId);
+                return $http.get("/api/project/post/getPostById/"+ postId);
             };
 
             function createPostForUser(userId, post) {

@@ -3,7 +3,7 @@ module.exports = function(app, postModel) {
     app.post("/api/project/user/:userId/post", createPostForUser);
     app.put("/api/project/post/:postId", updatePostById);
     app.get("/api/project/user/:userId/post", getPostsForUser);
-    app.get("/api/project/post/:postId", getPostById);
+    app.get("/api/project/post/getPostById/:postId", getPostById);
     app.get("/api/project/post", getAllPosts);
     app.get("/api/project/public/post", getAllPublicPosts);
     app.put("/api/project/post/:postId/review/likePost", likePost)
@@ -79,6 +79,7 @@ module.exports = function(app, postModel) {
     };
 
     function getAllPosts(req, res){
+
         var allPosts = [];
         postModel
             .findAllPosts()

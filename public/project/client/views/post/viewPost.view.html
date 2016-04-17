@@ -32,6 +32,13 @@
              {{model.post.content}}
          </textarea>
     </div>
+    <div>
+        <lable ng-click="model.showUsersLiked(model.post)">
+           <a>
+               {{model.post.usersLiked.length}} Likes
+           </a>
+        </lable>
+    </div>
     <!--<div>-->
         <!--<tr>-->
         <!--<td>-->

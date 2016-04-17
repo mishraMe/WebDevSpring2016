@@ -65,6 +65,14 @@
                 controllerAs: "model"
             })
 
+            //reviews on post
+
+            .when("/post/:postId/review/usersLiked",{
+                templateUrl: "views/post/review/usersLiked.view.html",
+                controller: "ReviewController",
+                controllerAs: "model"
+            })
+
             //follower and following
             .when("/followers/:username",{
                 templateUrl: "views/user/follow/followers.view.html",

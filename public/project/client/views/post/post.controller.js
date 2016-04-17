@@ -181,17 +181,18 @@
             }
         }
 
-        function likePost(post, currentUser){
+        function likePost(post, currentUser) {
             console.log("likePost");
             PostService
                 .likePost(post, currentUser)
-                .then(function(userAddedToUsersLiked){
+                .then(function (userAddedToUsersLiked) {
                     vm.post = userAddedToUsersLiked.data;
                     console.log(vm.post);
                     vm.post.likeState = "unlike";
-                   console.log("user added Successfully");
+                    console.log("user added successfully");
                 });
         }
+
 
         function unlikePost(post, currentUser){
             console.log("the post in controller unlikePost is ");

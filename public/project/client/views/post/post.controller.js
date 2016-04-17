@@ -144,21 +144,29 @@
         }
 
         function hasTheUserLikedThePost(post, currentUser){
+            console.log("the userLikedIndexed and currentUserusername is");
+            console.log(post);
+            console.log(currentUser.username);
+
             for(var index in post.usersLiked){
                 if(post.usersLiked[index] == currentUser.username){
+                    console.log("entered the if in hasTheUserLikedThePost");
                     return true;
                 }
             }
+            console.log("didn't enter the if in hasTheUserLikedThePost")
             return false;
         }
 
         function likeUnlikePost(post, currentUser) {
             console.log("entered likeUnlikePost");
             if(hasTheUserLikedThePost(post, currentUser)){
+                console.log("entered the if condition of likeUnlikePost");
                 post.likeState = 'unlike';
                 decideLikeUnlikePost(post, currentUser);
             }else
             {
+                console.log("entered the else condition of likeUnlikePost");
                 post.likeState = 'like';
                 decideLikeUnlikePost(post, currentUser);
             }
@@ -174,7 +182,7 @@
             }
             else{
                 console.log("entered else condition decideFollow");
-                post.follow = 'follow';
+                post.likeState = 'like';
                 unlikePost(post, currentUser);
             }
         }
@@ -184,14 +192,20 @@
             PostService
                 .likePost(post, currentUser)
                 .then(function(userAddedToUsersLiked){
+                    vm.post = userAddedToUsersLiked.data;
+                    vm.post.likeState = 'unlike';
                    console.log("user added Successfully");
                 });
         }
 
         function unlikePost(post, currentUser){
+            console.log("the post in controller unlikePost is ");
+            console.log(post);
             PostService
                 .unlikePost(post, currentUser)
                 .then(function(removedUserFromUsersLiked){
+                    vm.post= removedUserFromUsersLiked.data;
+                    vm.post.likeState = 'like';
                     console.log("user removed successfully");
                 });
         }

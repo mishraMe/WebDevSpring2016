@@ -108,7 +108,7 @@ module.exports = function(app, postModel) {
         var postId = req.params.postId;
         var user = req.body;
 
-            postModel.likePost(postId, user)
+        postModel.likePost(postId, user)
             .then(
                 function(postAfterLikeAdded)
                 {
@@ -122,7 +122,7 @@ module.exports = function(app, postModel) {
     }
 
     function unlikePost(req, res){
-        console.log("removeLikeFromPost function in post server service");
+        console.log("unlikePost function in post server service");
         var postId = req.params.postId;
         var user = req.body;
         postModel

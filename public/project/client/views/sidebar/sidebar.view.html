@@ -36,9 +36,17 @@
                 </a></li>
 
             <!-- adminViews views-->
+            <li ng-show="currentUser.roles.indexOf('admin')==0"
+                ng-class="{'active': $locationUrl().indexOf('/admin/userTable')>=0}">
+                <a href="#/admin/userTable">All Writers</a></li>
+
             <li ng-show="currentUser.roles.indexOf('admin')>=0"
-                ng-class="{'active': $locationUrl()=='/admin'}">
-                <a href="#/admin">Admin</a></li>
+                ng-class="{'active': $locationUrl().indexOf('/admin/postTable')>=0}">
+                <a href="#/admin/postTable">All Posts</a></li>
+
+            <li ng-show="currentUser.roles.indexOf('admin')>=0"
+                ng-class="{'active': $locationUrl().indexOf('/admin/reviewTable')>=0}">
+                <a href="#/admin/reviewTable">All Reviews</a></li>
         </ul>
     </div>
 </div>

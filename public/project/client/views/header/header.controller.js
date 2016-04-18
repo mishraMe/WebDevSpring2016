@@ -4,15 +4,24 @@
     angular
         .module("WritersClubApp")
         .controller("HeaderController", headerController);
-    function headerController($scope, $location, UserService){
+    function headerController($scope,$rootScope, $location, UserService){
         console.log("header controller hey!");
-        var vm = this;
-        vm.$location = $location;
+
+        $scope.$location = $location;
         $scope.logout = logout;
-        function logout(){
-            console.log("logout fired");
-            UserService.setCurrentUser(null);
-            $location.url("/home");
+        function logout()
+        {
+            UserService
+                .logout()
+                .then(
+                    function(response){
+                        $rootScope.currentUser = null;
+                        $location.url("/login");
+                    },
+                    function(err) {
+                        $scope.error = err;
+                    }
+                );
         }
     }
 })();

@@ -55,17 +55,14 @@
             .when("/viewPost",{
                 templateUrl: "views/post/viewPost.view.html",
                 controller: "PostController",
-                controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
-                }
+                controllerAs: "model"
             })
 
             //this view is handled by the same controller and provides a different view.
             .when("/myPosts",{
                 templateUrl: "views/post/myPosts.view.html",
                 controller: "PostController",
-                controllerAs: "model"
+                controllerAs: "model",
             })
 
             //this view is handled by the same controller and provides a different view.
@@ -116,26 +113,19 @@
                 controllerAs: "model"
             })
 
-            //admin paths
-            .when("/admin",{
-                templateUrl: "views/admin/admin.view.html",
-                controller: "AdminController",
-                controllerAs: "model",
-            })
-
-            //table views links
-            .when("/postTable", {
-                templateUrl: "views/post/postTable.view.html",
+            //admin paths //table views links
+            .when("/admin/postTable", {
+                templateUrl: "views/admin/postTable.view.html",
                 controller: "PostTableController",
                 controllerAs: "model"
             })
-            .when("/userTable", {
-                templateUrl: "views/user/userTable.view.html",
+            .when("/admin/userTable", {
+                templateUrl: "views/admin/userTable.view.html",
                 controller: "UserTableController",
                 controllerAs: "model"
             })
-            .when("/reviewTable", {
-                templateUrl: "views/review/reviewTable.view.html",
+            .when("/admin/reviewTable", {
+                templateUrl: "views/admin/reviewTable.view.html",
                 controller: "ReviewTableController",
                 controllerAs: "model"
             })
@@ -164,6 +154,23 @@
                 deferred.reject();
                 $location.url('/login');
             }
+        });
+
+        return deferred.promise;
+    };
+    var checkCurrentUser = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin').success(function(user)
+        {
+            $rootScope.error = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                $rootScope.currentUser = user;
+            }
+            deferred.resolve();
         });
 
         return deferred.promise;

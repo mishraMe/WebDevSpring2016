@@ -25,8 +25,6 @@
                 UserService
                     .getCurrentUser()
                     .then(function(response){
-                        console.log("post currentUser");
-                        console.log(response.data);
                         vm.currentUser = response.data;
                         vm.post = PostService.getCurrentPost();
 

@@ -10,8 +10,14 @@
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
         vm.followUnfollowUser = followUnfollowUser;
-        vm.currentUser= UserService.getCurrentUser();
-        var currentUser = vm.currentUser;
+        var currentUser;
+        UserService
+            .getCurrentUser()
+            .then(function(response){
+                vm.currentUser = response.data;
+                currentUser = vm.currentUser;
+            });
+
         console.log("value of currentUser is ");
         console.log(currentUser);
         var username = $routeParams.username;

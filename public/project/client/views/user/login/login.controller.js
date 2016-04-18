@@ -15,22 +15,39 @@
         }
         init();
 
-        function login(user){
-            //  console.log("entered Login function in login controller");
-            if(!user){
+    //function login(user){
+    //    //  console.log("entered Login function in login controller");
+    //    if(!user){
+    //        return;
+    //    }
+    //    UserService
+    //        .findUserByCredentials (user.username, user.password)
+    //        .then(function(response){
+    //            if(response!= null && response.data){
+    //                UserService.setCurrentUser(response.data);
+    //                $location.url("/profile");
+    //            }
+    //            else{
+    //                vm.error =" Please Check Your Credentials";
+    //            }
+    //        });
+    //}
+
+
+        function login(user) {
+            if(!user) {
                 return;
             }
-            UserService
-                .findUserByCredentials (user.username, user.password)
+            UserService.login(user)
                 .then(function(response){
-                    if(response!= null && response.data){
+                    if(response.data) {
+                        console.log(response.data);
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
-                    }
-                    else{
-                        vm.error =" Please Check Your Credentials";
+                    }else{
+                        vm.message="Please Check Your Credentials";
                     }
                 });
         }
-    }
+}
 })();

@@ -8,18 +8,21 @@
                 var vm = this;
                 vm.error = null;
                 vm.message = null;
+                vm.update = update;
                 vm.listFollowing = listFollowing;
                 vm.listFollowers = listFollowers;
-                vm.currentUser= UserService.getCurrentUser();
+
 
                 function init(){
-                    if(!vm.currentUser){
-                        $location.url("/login");
-                    }
+
+                    UserService
+                            .getCurrentUser()
+                            .then(function(response){
+                              vm.currentUser = response.data;
+                    });
         }
         init();
 
-        vm.update = update;
         function update(user){
             vm.error = null;
             vm.message = null;

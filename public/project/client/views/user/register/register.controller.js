@@ -8,9 +8,11 @@
 
         var vm = this;
         vm.register = register;
+
         function init() {
         }
         init();
+
         function register(user) {
 
             vm.error = null;
@@ -35,9 +37,9 @@
             }
 
             UserService
-                .createUser(user)
+                .register(user)
                 .then(function(createdUser){
-                    if(createdUser) {
+                    if(createdUser.data) {
                         UserService.setCurrentUser(createdUser.data);
                         $location.url("/profile");
                     }

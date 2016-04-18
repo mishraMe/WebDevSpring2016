@@ -23,12 +23,17 @@
                 templateUrl: "views/user/login/login.view.html",
                 controller: "LoginController",
                 controllerAs: "model"
+
             })
 
             .when("/profile",{
                 templateUrl: "views/user/profile/profile.view.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkLoggedin
+
+                }
             })
 
             .when("/account/:username",{
@@ -133,4 +138,32 @@
                 redirectTo:"/home"
             })
     }
+
+    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin').success(function(user)
+        {
+            $rootScope.error = null;
+            // User is Authenticated
+            if (user !== '0')
+            {
+                console.log("config user is ");
+                console.log(user);
+                $rootScope.currentUser = user;
+                deferred.resolve();
+            }
+            // User is Not Authenticated
+            else
+            {
+                $rootScope.error = 'You need to log in.';
+                deferred.reject();
+                $location.url('/login');
+            }
+        });
+
+        return deferred.promise;
+    };
+
 })();

@@ -7,12 +7,12 @@ module.exports = function(app, db, mongoose) {
     var api = {
 
         createUser: createUser,
+        updateUser: updateUser,
+        deleteUser: deleteUser,
         findAllUsers: findAllUsers,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser,
 
         //find all follower and following info for a user
         //findAllFollowInfoForUserByUserId: findAllFollowInfoForUserByUserId,
@@ -30,18 +30,6 @@ module.exports = function(app, db, mongoose) {
     function createUser(user) {
         console.log("entered createUser method of user wc_models in server");
         return UserModel.create(user);
-    };
-
-    //findAllUsers function
-    function findAllUsers() {
-        console.log("entered findAllUsers in model");
-        return UserModel.find();
-    };
-
-    //findUserById function
-    function findUserById(userId) {
-        console.log("entered findUserById");
-        return UserModel.findById(userId);
     };
 
     //updateUser function
@@ -69,6 +57,19 @@ module.exports = function(app, db, mongoose) {
         var username= credentials.username;
         var password= credentials.password;
         return UserModel.findOne({username: username, password: password});
+    };
+
+
+    //findAllUsers function
+    function findAllUsers() {
+        console.log("entered findAllUsers in model");
+        return UserModel.find();
+    };
+
+    //findUserById function
+    function findUserById(userId) {
+        console.log("entered findUserById");
+        return UserModel.findById(userId);
     };
 
     // get mongooseModel

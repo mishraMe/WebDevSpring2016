@@ -15,6 +15,9 @@
             findUserById: findUserById,
 
             //crud operations
+            login: login,
+            register: register,
+            logout: logout,
             createUser: createUser,
             deleteUserById: deleteUserById,
             updateUser: updateUser,
@@ -33,8 +36,23 @@
 
         return api;
 
+        function login(user) {
+            console.log("entered the login in service of client");
+            return $http.post("/api/project/login", user);
+        }
+
+
+        function register(user) {
+            console.log("entered the register in service of client");
+            return $http.post("/api/project/register", user);
+        }
+
+        function logout() {
+            return $http.post("/api/project/logout");
+        }
+
         function createUser(user) {
-            console.log("entered the createuser in service of client");
+            console.log("entered the createUser in service of client");
             return $http.post("/api/project/user", user);
         };
 
@@ -74,17 +92,12 @@
         };
 
         function getCurrentUser(){
-            return $rootScope.currentUser;
-        };
+            return $http.get("/api/project/loggedin");
+        }
         function getCurrentUserId(){
             return $rootScope.currentUser._id;
         };
 
-
-        //follow operations
-        //function findFollowInfoForUserById(userId){
-        //    return $http.get("/api/project/user/"+ userId +"/follow");
-        //};
 
         function addUserToFollowers(username, user){
             console.log("addUserToFollowers in client service");

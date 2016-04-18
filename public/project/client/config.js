@@ -32,7 +32,6 @@
                 controllerAs: "model",
                 resolve:{
                     loggedin:checkLoggedin
-
                 }
             })
 
@@ -47,13 +46,19 @@
                 templateUrl: "views/post/editPost.view.html",
                 controller: "PostController",
                 controllerAs: "model",
+                resolve:{
+                    loggedin:checkLoggedin
+                }
             })
 
             //this view is handled by the same controller and provides a different view.
             .when("/viewPost",{
                 templateUrl: "views/post/viewPost.view.html",
                 controller: "PostController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkLoggedin
+                }
             })
 
             //this view is handled by the same controller and provides a different view.
@@ -149,8 +154,6 @@
             // User is Authenticated
             if (user !== '0')
             {
-                console.log("config user is ");
-                console.log(user);
                 $rootScope.currentUser = user;
                 deferred.resolve();
             }

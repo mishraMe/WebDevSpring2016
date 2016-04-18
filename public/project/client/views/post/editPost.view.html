@@ -21,11 +21,6 @@
              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
          </button>
          <button ng-show="model.currentUser"
-                 ng-model="model.post.tag"
-                 ng-click="model.addTag(model.post)">
-             {{model.post.type}}
-         </button>
-         <button ng-show="model.currentUser"
                  ng-model="model.post.type"
                  ng-click="model.changePrivacy(model.post)">
              {{model.post.type}}

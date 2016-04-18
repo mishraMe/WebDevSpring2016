@@ -22,36 +22,45 @@
         function init(){
 
             //current user
-            vm.currentUser = UserService.getCurrentUser();
-            vm.post = PostService.getCurrentPost();
+                UserService
+                    .getCurrentUser()
+                    .then(function(response){
+                        console.log("post currentUser");
+                        console.log(response.data);
+                        vm.currentUser = response.data;
+                        vm.post = PostService.getCurrentPost();
 
-            if(vm.currentUser){
-                vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
-            }
+                        if(vm.currentUser){
 
-            if(vm.currentUser && vm.post){
-                userLikedThePost(vm.post, vm.currentUser);
-            }
-            //all posts
-            PostService
-                .getAllPosts()
-                .then(function(allPosts) {
-                    vm.allPosts = allPosts.data;
-                })
-            //public posts
-            PostService
-             .getAllPublicPosts()
-             .then(function(publicPosts) {
-                 vm.publicPosts = publicPosts.data;
-             })
+                            vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
+                        }
 
-            //only user's posts
-            if(vm.currentUser)
-            PostService
-                .findAllPostsForUser(vm.currentUser._id)
-                .then(function(postsForUser){
-                    vm.myPosts = postsForUser.data;
-                })
+                        if(vm.currentUser && vm.post){
+                            userLikedThePost(vm.post, vm.currentUser);
+                        }
+
+                        //all posts
+                        PostService
+                            .getAllPosts()
+                            .then(function(allPosts) {
+                                vm.allPosts = allPosts.data;
+                            })
+                        //public posts
+                        PostService
+                            .getAllPublicPosts()
+                            .then(function(publicPosts) {
+                                vm.publicPosts = publicPosts.data;
+                            })
+
+                        //only user's posts
+                        if(vm.currentUser)
+                            PostService
+                                .findAllPostsForUser(vm.currentUser._id)
+                                .then(function(postsForUser){
+                                    vm.myPosts = postsForUser.data;
+                                })
+                    });
+
         }
         init();
 
@@ -82,6 +91,8 @@
         }
 
         function updatePost(newPost){
+            console.log("new post is ");
+            console.log(newPost);
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;
             if(vm.post._id == null){

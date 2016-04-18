@@ -5,36 +5,42 @@
         .module("WritersClubApp")
         .controller("SidebarController",sidebarController);
     function sidebarController($scope, $location, PostService, UserService){
-        var vm = this;
 
         $scope.createPost = createPost;
-        vm.currentUser = UserService.getCurrentUser();
-        vm.$location = $location;
-        console.log(vm.currentUser);
+        $scope.$location = $location;
         var postTemplate;
 
         function init(){
+            UserService
+                .getCurrentUser()
+                .then(function(response){
+                    $scope.currentUser = response.data;
+                });
         }
         init();
 
         function createPost(){
 
-            vm.currentUser = UserService.getCurrentUser();
+            UserService
+                .getCurrentUser()
+                .then(function(response){
+                    $scope.currentUser = response.data;
 
             postTemplate =   {
                 "title": null,
                 "tag": [] ,  "type": "private",
                 "roles": ["user"],
-                "userId": vm.currentUser._id, "username": vm.currentUser.username,
+                "userId": $scope.currentUser._id, "username": $scope.currentUser.username,
                 "content":null
             }
             PostService
-                .createPostForUser(vm.currentUser._id, postTemplate)
+                .createPostForUser($scope.currentUser._id, postTemplate)
                 .then(function(response)
                 {
-                    vm.post = response.data;
-                    PostService.setCurrentPost(vm.post);
+                    $scope.post = response.data;
+                    PostService.setCurrentPost($scope.post);
                     $location.url("/editPost");
+                });
                 });
         };
 

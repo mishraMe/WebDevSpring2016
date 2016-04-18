@@ -165,15 +165,14 @@ module.exports = function(app, userModel) {
     function deleteUser(req, res){
         console.log("entered the deleteUser server service");
         var deleteUserId = req.params.id;
-        userModel.deleteUser(deleteUserId);
         userModel
-            .findAllUsers
-            .then(function(usersAfterDeletion){
-                res.json(usersAfterDeletion);
+            .deleteUser(deleteUserId)
+            .then(function(response){
+                res.json(response);
             },
             function(err){
                 res.status(400).send(err);
-            });
+            })
     };
 
     function getAllUsers(req, res){

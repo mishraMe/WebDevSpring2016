@@ -22,8 +22,6 @@
                 .findAllUsers()
                 .then(function(resp){
                     vm.userTable = resp.data;
-                    console.log("resp is ");
-                    console.log(resp);
                 })
         }
         init();
@@ -34,12 +32,9 @@
                 .then(function(resp){
                     if (user == null) {
                         vm.message = "Please enter a user name";
+                        init();
                     } else {
-                        UserService
-                            .findAllUsers()
-                            .then(function(resp){
-                                vm.userTable = resp.data;
-                            });
+                        init();
                     }
                 })
             vm.user = null;
@@ -51,47 +46,36 @@
             UserService
                 .deleteUserById(user._id)
                 .then(function(response){
-                    console.log("response is ");
-                    console.log(response.data);
-                    UsersAfterDeletion= response;
-                    UserService
-                        .findAllUsers()
-                        .then(function(resp){
-                            vm.userTable = resp.data;
-                        });
-                    vm.error = null;
+                    console.log("user deleted sucessfully");
+                    init();
                 });
         }
 
         function updateUser(newUser){
+            console.log("entered the update user and updated new user is ");
+            console.log(newUser);
 
             //function is responsible for updating selected user to the new user's value
             if(!newUser){
                 vm.message = "Please enter updates";
             }
             var renewedUser = {
+                username: newUser.username,
                 password: newUser.password,
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
                 roles: newUser.roles,
                 email: newUser.email
             };
+
             UserService
                 .updateUser(vm.user._id, renewedUser)
-                .then(function(response){
-                    console.log(response);
-                    if(vm.user.username == null){
-                        vm.error = "Username name cannot be empty";
-                    }else {
-                        UserService
-                            .findAllUsers()
-                            .then(function(resp){
-                                vm.userTable = resp.data;
-                            })
-                        vm.error=null;
-                    }
-                });
-            vm.user=null;
+                .then(
+                    function (response){
+                        init();
+                    });
+
+
         }
 
         function selectUser($index){

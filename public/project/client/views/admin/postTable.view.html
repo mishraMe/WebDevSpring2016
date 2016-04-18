@@ -45,13 +45,6 @@
             </td>
             <td>
                 <input type="text"
-                       ng-model="model.post.tag"
-                       placeholder="Tag"
-                       id="tag"
-                       class="form-control">
-            </td>
-            <td>
-                <input type="text"
                        ng-model="model.post.type"
                        placeholder="Type"
                        id="type"
@@ -59,9 +52,9 @@
             </td>
             <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="createPost(post)"></span>
+                                  ng-click="model.createPost(post)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updatePost(post)"></span>
+                                   ng-click="model.updatePost(post)"></span>
             </td>
         </tr>
         <tr ng-repeat="post in model.postTable">

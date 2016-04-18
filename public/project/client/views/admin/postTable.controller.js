@@ -20,15 +20,19 @@
         // functions
 
         function createPost(post){
-            function callback (response) {
-                if (post == null) {
-                    vm.message = "Please enter a post name";
-                } else {
-                    vm.postTable = PostService.getAllPosts();
-                }
-            }
-            PostService.createPostInTable
-            (post, callback);
+            PostService
+                .createPost(post)
+                .then(function(resp){
+                    if (post == null) {
+                        vm.message = "Please enter a post title";
+                    } else {
+                        PostService
+                            .findAllPosts()
+                            .then(function(resp){
+                                vm.postTable = resp.data;
+                            });
+                    }
+                })
             vm.post = null;
         }
 
@@ -52,10 +56,7 @@
                 vm.message = "Please enter updates";
             }
             var renewedPost = {
-                title: newPost.title,
-                username: newPost.username,
-                tag: newPost.tag,
-                type: newPost.type,
+                roles: newPost.roles,
             };
             function callback (response){
                 console.log(response);

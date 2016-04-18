@@ -36,7 +36,7 @@
                 </a></li>
 
             <!-- adminViews views-->
-            <li ng-show="currentUser.roles.indexOf('admin')==0"
+            <li ng-show="currentUser.roles.indexOf('admin')>=0"
                 ng-class="{'active': $locationUrl().indexOf('/admin/userTable')>=0}">
                 <a href="#/admin/userTable">All Writers</a></li>
 

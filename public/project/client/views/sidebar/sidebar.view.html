@@ -16,7 +16,7 @@
             <li ng-show="currentUser"
                 ng-class="{'active': $locationUrl().indexOf('editPost') >= 0}">
                 <a  href="" ng-click="createPost()">
-                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
                 </a></li>
 
             <li ng-show="currentUser"
@@ -35,15 +35,9 @@
                     <i class="fa fa-search fa-2x" aria-hidden="true"></i>
                 </a></li>
 
-            <!-- table views-->
-            <li ng-class="{'active': $locationUrl().indexOf('postTable') >= 0}">
-                <a href="#/postTable">PostTable</a></li>
-            <li ng-class="{'active': $locationUrl().indexOf('userTable') >= 0}">
-                <a href="#/userTable">UserTable</a></li>
-            <li ng-class="{'active': $locationUrl().indexOf('reviewTable') >= 0}">
-                <a href="#/reviewTable">ReviewTable</a></li>
+            <!-- adminViews views-->
             <li ng-show="currentUser.roles.indexOf('admin')>=0"
-                ng-class="{'active': $locationUrl()==='/admin'}">
+                ng-class="{'active': $locationUrl()=='/admin'}">
                 <a href="#/admin">Admin</a></li>
         </ul>
     </div>

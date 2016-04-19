@@ -72,8 +72,9 @@
 
         function deletePost(post){
             var postsAfterDeletion=[];
+
             PostService
-                .deletePostById(post._id)
+                .deletePostById(vm.post._id)
                 .then(function(deletedPost){
                     PostService
                         .findAllPostsForUser(vm.currentUser._id)
@@ -89,15 +90,16 @@
         }
 
         function updatePost(newPost){
-
+            var postId;
             console.log(newPost);
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;
             if(vm.post._id == null){
                 vm.error = "Post cannot be empty";
             }
+            postId = vm.post._id;
             PostService
-                .updatePostById(vm.post._id, renewedPost)
+                .updatePostById(postId, renewedPost)
                 .then(function(resp){
                     vm.error = null;
                     vm.post = resp.config.data;
@@ -107,6 +109,8 @@
         }
 
         function selectPost(post){
+            console.log("SELECT POST IS");
+            console.log(post);
             PostService
                 .getPostById(post._id)
                 .then(function(selectedPost){
@@ -124,8 +128,10 @@
                 post.type = "private";
                 vm.post = post;
             }
+            var postId;
+            postId = vm.post._id;
             PostService
-                .updatePostById(vm.post._id, post)
+                .updatePostById(postId, post)
                 .then(function(resp){
                     vm.post= resp.config.data;
                     PostService.setCurrentPost(vm.post);

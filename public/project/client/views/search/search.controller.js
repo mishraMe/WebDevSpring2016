@@ -7,8 +7,6 @@
 
     function searchController($scope, $location, BookService) {
 
-
-
         $scope.search=search;
         $scope.$location = $location;
 

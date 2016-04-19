@@ -44,7 +44,6 @@
             //function is responsible for deleting a post by the index value
             var PostsAfterDeletion=[];
             var postId = post._id;
-            delete(post._id);
             PostService
                 .deletePostById(postId)
                 .then(function(response){
@@ -57,8 +56,6 @@
             console.log("entered the update post and updated new post is ");
             console.log(newPost);
             var postId = vm.post._id;
-            delete vm.post._id;
-
             //function is responsible for updating selected post to the new post's value
             if(!newPost){
                 vm.message = "Please enter updates";

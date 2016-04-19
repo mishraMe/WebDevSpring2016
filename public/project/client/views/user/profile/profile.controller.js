@@ -24,17 +24,23 @@
         init();
 
         function update(user){
+
             vm.error = null;
             vm.message = null;
-            var currentUserId= currentUserId._id;
+            UserService
+                .getCurrentUser()
+                .then(function(response){
+                    vm.currentUser = response.data;
+                    var currentUserId= vm.currentUser._id;
+
             UserService
                 .updateUser(currentUserId, user)
-                .then(
-                    function (response){
-                        UserService.setCurrentUser(vm.currentUser);
-                        vm.message = "User updated successfully";
-                        $location.url("/profile");
+                .then(function (response){
+                   vm.currentUser = user;
+                    vm.message = "User updated successfully";
+                    $location.url("/profile");
                     });
+                })
         }
 
         function listFollowing(user){

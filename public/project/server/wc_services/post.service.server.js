@@ -69,6 +69,7 @@ module.exports = function(app, postModel) {
         //updates post
         var postId = req.params.postId;
         var updatedPost = req.body;
+        delete updatedPost._id;
         postModel
             .updatePost(postId, updatedPost)
             .then(function(updatedPost){
@@ -109,7 +110,6 @@ module.exports = function(app, postModel) {
 
         var postId = req.params.postId;
         var user = req.body;
-
         postModel.likePost(postId, user)
             .then(
                 function(postAfterLikeAdded)

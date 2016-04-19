@@ -94,17 +94,14 @@
             })
 
             //search paths
+            .when("/search", {
+                templateUrl: "views/search/search.view.html",
+                controller: "SearchController",
+            })
 
             .when("/search/:title",{
                 templateUrl: "views/search/search.view.html",
                 controller: "SearchController",
-                controllerAs: "model"
-            })
-
-            .when("/search", {
-                templateUrl: "views/search/search.view.html",
-                controller: "SearchController",
-                controllerAs: "model"
             })
 
             .when("/details/:id", {

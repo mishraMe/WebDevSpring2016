@@ -5,11 +5,15 @@
         .module("WritersClubApp")
         .controller("SearchController", searchController);
 
-    function searchController($scope, $location, BookService) {
+    function searchController($scope, $location, $routeParams, BookService) {
 
         $scope.search=search;
+        $scope.title= $routeParams.title;
         $scope.$location = $location;
 
+        if($scope.title){
+            search($scope.title);
+        }
         function init(){
 
         }
@@ -20,6 +24,7 @@
             var bookTitle = title;
             if(bookTitle) {
                 fetchBooks(bookTitle);
+                $location.url("/search/"+ $scope.title);
             }
         }
 

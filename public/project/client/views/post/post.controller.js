@@ -98,7 +98,6 @@
                 vm.error = "Post cannot be empty";
             }
             postId = vm.post._id;
-            delete post._id;
             PostService
                 .updatePostById(postId, renewedPost)
                 .then(function(resp){
@@ -131,7 +130,6 @@
             }
             var postId;
             postId = vm.post._id;
-            delete vm.post._id;
             PostService
                 .updatePostById(postId, post)
                 .then(function(resp){

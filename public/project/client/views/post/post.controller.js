@@ -131,6 +131,7 @@
             }
             var postId;
             postId = vm.post._id;
+            delete vm.post._id;
             PostService
                 .updatePostById(postId, post)
                 .then(function(resp){

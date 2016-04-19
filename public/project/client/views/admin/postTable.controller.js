@@ -18,7 +18,6 @@
         vm.postTable= PostService.getAllPosts();
 
         // functions
-
         function createPost(post){
             PostService
                 .createPost(post)

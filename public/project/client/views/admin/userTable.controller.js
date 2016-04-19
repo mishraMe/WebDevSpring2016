@@ -16,6 +16,7 @@
         vm.updateUser = updateUser;
         vm.selectUser = selectUser;
 
+
         // functions
         function init() {
             UserService
@@ -27,15 +28,15 @@
         init();
 
         function createUser(user){
+
+            if (user.username == "") {
+                vm.message = "Please enter a user name";
+                init();
+            }
             UserService
                 .createUser(user)
                 .then(function(resp){
-                    if (user == null) {
-                        vm.message = "Please enter a user name";
-                        init();
-                    } else {
-                        init();
-                    }
+                    init();
                 })
             vm.user = null;
         }
@@ -54,6 +55,8 @@
         function updateUser(newUser){
             console.log("entered the update user and updated new user is ");
             console.log(newUser);
+            var userId = vm.user._id;
+            delete vm.user._id;
 
             //function is responsible for updating selected user to the new user's value
             if(!newUser){
@@ -67,8 +70,11 @@
                 email: newUser.email
             };
 
+            if(userId == null){
+                vm.message = "User not in the database";
+            }
             UserService
-                .updateUser(vm.user._id, renewedUser)
+                .updateUser(userId, renewedUser)
                 .then(
                     function (response){
                         init();

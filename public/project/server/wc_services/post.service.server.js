@@ -8,6 +8,7 @@ module.exports = function(app, postModel) {
     app.get("/api/project/public/post", getAllPublicPosts);
     app.put("/api/project/post/:postId/review/likePost", likePost)
     app.put("/api/project/post/:postId/review/unlikePost", unlikePost)
+    app.get("/api/project/post/reviews", getAllReviews)
 
     function getPostsForUser(req, res){
         var userId = req.params.userId;
@@ -130,6 +131,18 @@ module.exports = function(app, postModel) {
             .unlikePost(postId, user)
             .then(function(postAfterLikeRemoved){
                     res.json(postAfterLikeRemoved);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
+    function getAllReviews(req, res){
+        console.log("get all reviews function in post server service");
+        postModel
+            .getAllReviews()
+            .then(function(allReviews){
+                    res.json(allReviews);
                 },
                 function(err){
                     res.status(400).send(err);

@@ -11,9 +11,9 @@
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Writer</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Tag</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Type</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Likes</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Actions</th>
         </tr>
@@ -50,11 +50,18 @@
                        id="type"
                        class="form-control">
             </td>
+            <td>
+                <input type="text"
+                       ng-model="model.post.usersLiked"
+                       placeholder="Likes"
+                       id="likes"
+                       class="form-control">
+            </td>
             <td align="right">
                             <span class="glyphicon glyphicon-plus"
-                                  ng-click="model.createPost(post)"></span>
+                                  ng-click="model.createPost(model.post)"></span>
                             <span  class="glyphicon glyphicon-ok"
-                                   ng-click="model.updatePost(post)"></span>
+                                   ng-click="model.updatePost(model.post)"></span>
             </td>
         </tr>
         <tr ng-repeat="post in model.postTable">
@@ -68,13 +75,13 @@
                 {{post.username}}
             </td>
             <td>
-                {{post.tag}}
-            </td>
-            <td>
                 {{post.type}}
             </td>
+            <td>
+                {{post.usersLiked.length}}
+            </td>
             <td align="right">
-                            <span  ng-click="model.deletePost($index)"
+                            <span  ng-click="model.deletePost(post)"
                                    class="glyphicon glyphicon-remove">
                             </span>
                             <span ng-click="model.selectPost($index)"

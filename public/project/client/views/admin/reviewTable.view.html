@@ -5,87 +5,75 @@
         <thead>
         <tr>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                ID</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                DocumentID</th>
+                PostID</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Title</th>
             <th><span class="glyphicon glyphicon-triangle-bottom"></span>
+                Writer</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
                 Rating</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Comments</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Actions</th>
+            <!--<th><span class="glyphicon glyphicon-triangle-bottom"></span>-->
+                <!--Actions</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <!--<tr>-->
+            <!--<td>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.post._id"-->
+                       <!--placeholder="PostId"-->
+                       <!--id="post._id"-->
+                       <!--class="form-control">-->
+            <!--</td>-->
+            <!--<td>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.post.title"-->
+                       <!--ng-readOnly="model.post.title"-->
+                       <!--placeholder="Title"-->
+                       <!--id="title"-->
+                       <!--class="form-control">-->
+            <!--</td>-->
+            <!--<td>-->
+                <!--<input type="text"-->
+                       <!--ng-model="model.post.username"-->
+                       <!--placeholder="username"-->
+                       <!--id="username"-->
+                       <!--class="form-control">-->
+            <!--</td>-->
+            <!--<td>-->
+                <!--<input type="number"-->
+                       <!--ng-model="model.post.rating"-->
+                       <!--placeholder="Rating"-->
+                       <!--id="rating"-->
+                       <!--class="form-control">-->
+            <!--</td>-->
+            <!--<td align="right">-->
+                            <!--<span class="glyphicon glyphicon-plus"-->
+                                  <!--ng-click="createReview(review)"></span>-->
+                            <!--<span  class="glyphicon glyphicon-ok"-->
+                                   <!--ng-click="updateReview(review)"></span>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <tr ng-repeat="review in model.reviewTable">
             <td>
-                <lable type="datetime"
-                       ng-readonly="review._id"
-                       ng-model="review._id"
-                       placeholder="ID"
-                       id="id"
-                       class="form-control">{{document._id}}</lable>
-            </td>
-            <td>
-                <input type="text"
-                       ng-model="review.documentId"
-                       placeholder="DocumentID"
-                       id="document._id"
-                       class="form-control">
-            </td>
-            <td>
-                <input type="text"
-                       ng-model="review.title"
-                       placeholder="Title"
-                       id="title"
-                       class="form-control">
-            </td>
-            <td>
-                <input type="number"
-                       ng-model="review.rating"
-                       placeholder="Rating"
-                       id="rating"
-                       class="form-control">
-            </td>
-            <td>
-                <input type="text"
-                       ng-model="review.comments"
-                       placeholder="Comments"
-                       id="comments"
-                       class="form-control">
-            </td>
-            <td align="right">
-                            <span class="glyphicon glyphicon-plus"
-                                  ng-click="createReview(review)"></span>
-                            <span  class="glyphicon glyphicon-ok"
-                                   ng-click="updateReview(review)"></span>
-            </td>
-        </tr>
-        <tr ng-repeat="review in reviewTable">
-            <td>
-                {{review._id}}
-            </td>
-            <td>
-                {{review.documentId}}
+                {{review.postId}}
             </td>
             <td>
                 {{review.title}}
             </td>
             <td>
-                {{review.rating}}
+                {{review.username}}
             </td>
             <td>
-                {{review.comments}}
+                {{review.usersLiked}}
             </td>
-            <td align="right">
-                            <span  ng-click="deleteReview($index)"
-                                   class="glyphicon glyphicon-remove">
-                            </span>
-                            <span ng-click="selectReview($index)"
-                                  class="glyphicon glyphicon-pencil"></span>
-            </td>
+            <!--<td align="right">-->
+                            <!--<span  ng-click="deleteReview(review)"-->
+                                   <!--class="glyphicon glyphicon-remove">-->
+                            <!--</span>-->
+                            <!--<span ng-click="selectReview($index)"-->
+                                  <!--class="glyphicon glyphicon-pencil"></span>-->
+            <!--</td>-->
         </tr>
         </tbody>
     </table>

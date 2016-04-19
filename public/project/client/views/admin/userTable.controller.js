@@ -29,7 +29,7 @@
 
         function createUser(user){
 
-            if (user.username == "") {
+            if (user.username == null) {
                 vm.message = "Please enter a user name";
                 init();
             }
@@ -44,8 +44,10 @@
         function deleteUser(user){
             //function is responsible for deleting a user by the index value
             var UsersAfterDeletion=[];
+            var userId = user._id;
+            delete user.id;
             UserService
-                .deleteUserById(user._id)
+                .deleteUserById(userId)
                 .then(function(response){
                     console.log("user deleted sucessfully");
                     init();
@@ -85,8 +87,6 @@
 
         function selectUser($index){
 
-            console.log("hello select user");
-            //function is responsible for selecting a user to edit
             vm.user= {
                 _id: vm.userTable[$index]._id,
                 username: vm.userTable[$index].username,

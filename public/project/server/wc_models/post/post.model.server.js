@@ -2,12 +2,7 @@
 module.exports = function(app, db, mongoose){
 
     var PostSchema = require('./post.schema.server.js')(mongoose);
-  //  var ReviewSchema = require('./review.schema.server.js')(mongoose);
-    // var UserReviewMapSchema = require('./user_review_map.schema.server.js')(mongoose);
     var PostModel = mongoose.model("Post", PostSchema);
-    //var ReviewModel = mongoose.model("Review", ReviewSchema);
-    //var UserReviewMapModel = mongoose.model("UserReviewMap", UserReviewMapSchema);
-
 
 
     var api = {
@@ -23,7 +18,8 @@ module.exports = function(app, db, mongoose){
 
         //review functions
         likePost: likePost,
-        unlikePost: unlikePost
+        unlikePost: unlikePost,
+        getAllReviews: getAllReviews,
     };
 
     return api;
@@ -92,8 +88,28 @@ module.exports = function(app, db, mongoose){
                 postFound.usersLiked.remove(user.username);
                 return postFound.save();
             });
-
     }
 
+    function getAllReviews(){
+        var reviews = [];
+       return PostModel
+            .find()
+            .then(function(resp){
+                var review;
+                for( var index in resp){
+                    review =
+                    {
+                        postId: resp[index]._id,
+                        title: resp[index].title,
+                        username: resp[index].username,
+                        usersLiked: resp[index].usersLiked.length,
+                    }
+                    reviews.push(review);
+                }
+                return reviews;
+            });
+
+
+    }
 
 }

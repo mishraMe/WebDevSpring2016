@@ -15,59 +15,72 @@
         vm.deletePost = deletePost;
         vm.updatePost = updatePost;
         vm.selectPost = selectPost;
-        vm.postTable= PostService.getAllPosts();
 
         // functions
-        function createPost(post){
+        function init() {
             PostService
-                .createPost(post)
+                .getAllPosts()
                 .then(function(resp){
-                    if (post == null) {
-                        vm.message = "Please enter a post title";
-                    } else {
-                        PostService
-                            .findAllPosts()
-                            .then(function(resp){
-                                vm.postTable = resp.data;
-                            });
-                    }
+                    vm.postTable = resp.data;
                 })
-            vm.post = null;
+        }
+        init();
+
+        function createPost(post){
+            if (post.title == null) {
+                vm.message = "Please enter a title";
+                init();
+            }else{
+                PostService
+                    .createPostForUser(post)
+                    .then(function(resp){
+                        init();
+                    })
+                vm.post = null;
+            }
         }
 
-        function deletePost($index){
+        function deletePost(post){
             //function is responsible for deleting a post by the index value
-            var postsAfterDeletion=[];
-            var callback=
-                function(response){
-                    postsAfterDeletion= response;
-                    vm.postTable = PostService.getAllPosts();
-                    vm.error = null;
-                };
-            PostService.deletePostInTable
-            (vm.postTable[$index]._id, callback);
+            var PostsAfterDeletion=[];
+            var postId = post._id;
+            delete(post._id);
+            PostService
+                .deletePostById(postId)
+                .then(function(response){
+                    console.log("post deleted sucessfully");
+                    init();
+                });
         }
 
         function updatePost(newPost){
+            console.log("entered the update post and updated new post is ");
+            console.log(newPost);
+            var postId = vm.post._id;
+            delete vm.post._id;
 
             //function is responsible for updating selected post to the new post's value
             if(!newPost){
                 vm.message = "Please enter updates";
             }
             var renewedPost = {
-                roles: newPost.roles,
+                title: newPost.title,
+                tag: newPost.tag,
+                username: newPost.username,
+                type: newPost.type,
             };
-            function callback (response){
-                console.log(response);
-                if(vm.post.title == null){
-                    vm.error = "Post name cannot be empty";
-                }else {
-                    vm.postTable= PostService.getAllPosts();
-                    vm.error=null;
-                }
-            };
-            PostService.updatePostInTable(vm.post._id, renewedPost,callback);
-            vm.post=null;
+
+            if(postId == null){
+                vm.message = "post not in the database";
+            }
+            PostService
+                .updatePostById(postId, renewedPost)
+                .then(
+                    function (response){
+                        init();
+                        vm.post = null;
+                    });
+
         }
 
         function selectPost($index){

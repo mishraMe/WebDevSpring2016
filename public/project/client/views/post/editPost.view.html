@@ -20,6 +20,11 @@
                  ng-click="model.deletePost(model.post)">
              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
          </button>
+         <!--<button ng-show="model.currentUser"-->
+                 <!--ng-model="model.post.tag"-->
+                 <!--ng-click="model.addTag(model.post)">-->
+             <!--{{model.post.tag}}-->
+         <!--</button>-->
          <button ng-show="model.currentUser"
                  ng-model="model.post.type"
                  ng-click="model.changePrivacy(model.post)">
@@ -43,8 +48,8 @@
      <div class="form-group" align="center">
          <textarea id="post"
                    ng-model="model.post.content"
-                   placeholder="content"
-                   rows="15" cols="80">{{model.post.content}}
+                   placeholder="Write, because world needs to know what you think!"
+                   rows="18" cols="120">{{model.post.content}}
          </textarea>
      </div>
  </div>

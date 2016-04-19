@@ -60,7 +60,6 @@
                 vm.message = "Please enter updates";
             }
             var renewedUser = {
-                username: newUser.username,
                 password: newUser.password,
                 firstName: newUser.firstName,
                 lastName: newUser.lastName,
@@ -73,8 +72,8 @@
                 .then(
                     function (response){
                         init();
+                        vm.user = null;
                     });
-
 
         }
 

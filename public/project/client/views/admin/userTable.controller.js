@@ -45,7 +45,6 @@
             //function is responsible for deleting a user by the index value
             var UsersAfterDeletion=[];
             var userId = user._id;
-            delete user.id;
             UserService
                 .deleteUserById(userId)
                 .then(function(response){
@@ -58,8 +57,6 @@
             console.log("entered the update user and updated new user is ");
             console.log(newUser);
             var userId = vm.user._id;
-            delete vm.user._id;
-
             //function is responsible for updating selected user to the new user's value
             if(!newUser){
                 vm.message = "Please enter updates";
@@ -89,7 +86,6 @@
 
             vm.user= {
                 _id: vm.userTable[$index]._id,
-                username: vm.userTable[$index].username,
                 password:vm.userTable[$index].password,
                 firstName: vm.userTable[$index].firstName,
                 lastName: vm.userTable[$index].lastName,

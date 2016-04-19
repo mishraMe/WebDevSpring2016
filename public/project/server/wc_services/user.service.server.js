@@ -146,6 +146,7 @@ module.exports = function(app, userModel) {
     function updateUser(req, res){
         console.log("entered the updateUser server service");
         var updatedUser = req.body;
+        delete updatedUser._id;
         var user =
             userModel
                 .updateUser(req.params.id, updatedUser)

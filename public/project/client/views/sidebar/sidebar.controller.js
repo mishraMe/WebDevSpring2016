@@ -21,7 +21,6 @@
                    vm.currentUser = response.data;
                    currentUser = vm.currentUser;
                    currentUserId = vm.currentUser._id;
-                   delete vm.currentUser._id;
                })
         }
         init();
@@ -32,13 +31,13 @@
                 .then(function(response){
                     vm.currentUser = response.data;
                     currentUser = vm.currentUser;
-                })
+                    currentUserId = vm.currentUser._id;
 
             postTemplate =   {
                 "title": null,
                 "tag": [] ,  "type": "private",
                 "roles": ["user"],
-                "userId": currentUser.Id, "username": currentUser.username,
+                "userId": currentUserId, "username": currentUser.username,
                 "content":null
             }
             PostService
@@ -46,10 +45,14 @@
                 .then(function(response)
                 {
                     vm.post = response.data;
+                    console.log("vm.post from sidebar is ");
+                    console.log(vm.post);
                     PostService.setCurrentPost(vm.post);
                     $location.url("/editPost");
                 });
+                });
         };
+
 
 
     }

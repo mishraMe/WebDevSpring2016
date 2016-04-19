@@ -89,7 +89,7 @@
         }
 
         function updatePost(newPost){
-            console.log("new post is ");
+
             console.log(newPost);
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;

@@ -43,6 +43,8 @@
                     if(response.data) {
                         console.log(response.data);
                         UserService.setCurrentUser(response.data);
+                        console.log("setUCrrentUserIn loginUserservice is ");
+                        console.log(response.data);
                         $location.url("/profile");
                     }else{
                         vm.message="Please Check Your Credentials";

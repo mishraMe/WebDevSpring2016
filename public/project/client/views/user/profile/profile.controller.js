@@ -26,8 +26,9 @@
         function update(user){
             vm.error = null;
             vm.message = null;
+            var currentUserId= currentUserId._id;
             UserService
-                .updateUser(vm.currentUser._id, user)
+                .updateUser(currentUserId, user)
                 .then(
                     function (response){
                         UserService.setCurrentUser(vm.currentUser);

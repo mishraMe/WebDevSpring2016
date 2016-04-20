@@ -28,9 +28,12 @@
                 <li ng-show="currentUser"
                     ng-class="{'active': $locationUrl().indexOf('/account') >= 0}">
                     <a href="#/account">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser.roles.indexOf('admin')>=0"
-                    ng-class="{'active': $locationUrl()=='/admin'}">
-                    <a href="#/admin">Admin</a></li>
+                <li ng-show="currentUser"
+                    ng-class="{'active': $locationUrl().indexOf('editPost') >= 0}">
+                    <a  href="" ng-click="createPost()">
+                        AddPost
+                    </a></li>
+
                 <li>
                     <a href="https://docs.google.com/document/d/1VHk4VDrxX7wSScK5v0rT-spQL5SZrnjFSTqSKD7CROs/edit?usp=sharing">
                     Project Document</a></li>

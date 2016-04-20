@@ -2,20 +2,14 @@
 <div ng-show="model.message" class="alert alert-danger" role="alert">{{model.message}}</div>
 <div class="table-responsive">
     <table class="table table-striped">
-        <thead>
+        <thead class="table" style="background-color:beige">
         <tr>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                 ID</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Title</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Writer</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Type</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Likes</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Actions</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">ID</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Title</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Writer</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Type</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Likes</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Actions</span></th>
         </tr>
         </thead>
         <tbody>
@@ -68,17 +62,17 @@
             <td>
                 {{post._id}}
             </td>
-            <td>
-                {{post.title}}
+            <td ng-click="model.viewPost(post)">
+                <a>{{post.title}}</a>
             </td>
-            <td>
-                {{post.username}}
+            <td ng-click="model.showWriter(post)">
+                 <a>{{post.username}}</a>
             </td>
             <td>
                 {{post.type}}
             </td>
-            <td>
-                {{post.usersLiked.length}}
+            <td ng-click="model.showUsersLiked(post)">
+                <a>{{post.usersLiked.length}}</a>
             </td>
             <td align="right">
                             <span  ng-click="model.deletePost(post)"

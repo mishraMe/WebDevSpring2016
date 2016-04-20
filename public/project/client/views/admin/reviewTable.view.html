@@ -2,16 +2,12 @@
 <div ng-show="message" class="alert alert-danger" role="alert">{{message}}</div>
 <div class="table-responsive">
     <table class="table table-striped">
-        <thead>
+        <thead class="table" style="background-color:beige">
         <tr>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                PostID</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Title</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Writer</th>
-            <th><span class="glyphicon glyphicon-triangle-bottom"></span>
-                Rating</th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">PostID</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Title</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Writer</span></th>
+            <th><span class="glyphicon glyphicon-triangle-bottom">Likes</span></th>
             <!--<th><span class="glyphicon glyphicon-triangle-bottom"></span>-->
                 <!--Actions</th>-->
         </tr>
@@ -58,14 +54,14 @@
             <td>
                 {{review.postId}}
             </td>
-            <td>
-                {{review.title}}
+            <td ng-click="model.viewPost(review)">
+                <a>{{review.title}}</a>
             </td>
-            <td>
-                {{review.username}}
+            <td ng-click="model.showWriter(review)">
+                <a>{{review.username}}</a>
             </td>
-            <td>
-                {{review.usersLiked}}
+            <td ng-click="model.showUsersLiked(review)">
+               <a>{{review.usersLiked}}</a>
             </td>
             <!--<td align="right">-->
                             <!--<span  ng-click="deleteReview(review)"-->

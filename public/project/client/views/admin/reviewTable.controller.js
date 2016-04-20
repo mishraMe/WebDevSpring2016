@@ -4,17 +4,17 @@
     angular.module("WritersClubApp")
         .controller("ReviewTableController", reviewTableController);
 
-    function reviewTableController(PostService){
+    function reviewTableController(PostService, UserService, $location){
 
         var vm = this;
         //variables :
         vm.error=null;
         vm.message= null;
-        //vm.selectedPost= null;
-        //vm.createReview= createReview;
-        //vm.deletePost = deletePost;
-        //vm.updatePost = updatePost;
-        //vm.selectPost = selectPost;
+        vm.$location = $location;
+        vm.showUsersLiked = showUsersLiked;
+        vm.showWriter = showWriter;
+        vm.viewPost = viewPost;
+
 
         // functions
         function init() {
@@ -87,5 +87,30 @@
         //        usersLiked: vm.reviewTable[$index].usersLiked
         //    };
         //}
+
+
+        function showWriter(post){
+            console.log("post is");
+            console.log(post);
+            UserService
+                .findUserByUsername(post.username)
+                .then(function(response){
+                    vm.currentUser = response.data;
+                    $location.url("/account/"+ post.username);
+                })
+        }
+
+
+        function viewPost(post){
+            PostService.setCurrentPost(post);
+            $location.url("/viewPost");
+        };
+
+
+        function showUsersLiked(post){
+            PostService.setCurrentPost(post);
+            $location.url("/post/"+ post._id +"/review/usersLiked");
+        }
+
     }
 })();

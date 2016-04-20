@@ -94,8 +94,11 @@
             console.log(newPost);
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;
+            if(renewedPost.title == null){
+                renewedPost.title = "Untitled";
+            }
             if(vm.post._id == null){
-                vm.error = "Post cannot be empty";
+                vm.error = "Post not found in the database";
             }
             postId = vm.post._id;
             PostService

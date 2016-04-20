@@ -50,6 +50,9 @@ module.exports = function(app, postModel) {
 
     function createPostForUser(req, res){
         var post = req.body;
+        if(post.title == null){
+            post.title = "Untitled";
+        }
         var userId = req.params.userId;
         post.userId = userId;
         postModel

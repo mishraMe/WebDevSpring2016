@@ -114,17 +114,26 @@
             .when("/admin/postTable", {
                 templateUrl: "views/admin/postTable.view.html",
                 controller: "PostTableController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkAdmin
+                }
             })
             .when("/admin/userTable", {
                 templateUrl: "views/admin/userTable.view.html",
                 controller: "UserTableController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkAdmin
+                }
             })
             .when("/admin/reviewTable", {
                 templateUrl: "views/admin/reviewTable.view.html",
                 controller: "ReviewTableController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve:{
+                    loggedin:checkAdmin
+                }
             })
             .otherwise({
                 redirectTo:"/home"
@@ -172,5 +181,24 @@
 
         return deferred.promise;
     };
+
+
+    var checkAdmin = function($q, $timeout, $http, $location, $rootScope)
+    {
+        var deferred = $q.defer();
+
+        $http.get('/api/project/loggedin')
+            .success(function(user){
+                $rootScope.errorMessage = null;
+                    // User is Authenticated
+                if (user !== '0' && user.roles.indexOf('admin') != -1)
+                {
+                    $rootScope.currentUser = user;
+                    deferred.resolve();
+                }
+            });
+            return deferred.promise;
+        };
+
 
 })();

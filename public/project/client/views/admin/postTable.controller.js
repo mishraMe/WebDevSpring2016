@@ -39,7 +39,6 @@
                 vm.post = null;
             }
         }
-
         function deletePost(post){
             //function is responsible for deleting a post by the index value
             var PostsAfterDeletion=[];

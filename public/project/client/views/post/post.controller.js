@@ -18,6 +18,7 @@
         vm.likeUnlikePost = likeUnlikePost;
         vm.changePrivacy = changePrivacy;
         vm.showUsersLiked = showUsersLiked;
+        vm.showWriter= showWriter;
 
         function init(){
 
@@ -29,7 +30,6 @@
                         vm.post = PostService.getCurrentPost();
 
                         if(vm.currentUser){
-
                             vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
                         }
 
@@ -208,7 +208,6 @@
                 });
         }
 
-
         function unlikePost(post, currentUser){
             console.log("the post in controller unlikePost is ");
             PostService
@@ -222,7 +221,20 @@
         }
 
         function showUsersLiked(post){
+            PostService.setCurrentPost(post);
+            vm.post = post;
             $location.url("/post/"+ post._id +"/review/usersLiked");
+        }
+
+        function showWriter(post){
+            console.log("post is");
+            console.log(post);
+            UserService
+                .findUserByUsername(post.username)
+                .then(function(response){
+                    vm.currentUser = response.data;
+                    $location.url("/account/"+ post.username);
+                })
         }
 
 }

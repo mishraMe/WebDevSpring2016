@@ -14,8 +14,10 @@
         UserService
             .getCurrentUser()
             .then(function(response){
-                vm.currentUser = response.data;
-                currentUser = vm.currentUser;
+                if(response){
+                    vm.currentUser = response.data;
+                    currentUser = vm.currentUser;
+                }
             });
 
         console.log("value of currentUser is ");
@@ -27,8 +29,6 @@
            UserService
                .findUserByUsername(username)
                .then(function(userFound){
-                   console.log("userFound is " );
-                   console.log(userFound);
                    vm.user = userFound.data;
                    userFollowedByCurrentUser(vm.user, currentUser);
                });

@@ -66,7 +66,6 @@
         };
 
         function findUserByCredentials(username, password) {
-            console.log(username+" - "+password);
             console.log("entered find User by credentials in user wc_services client");
             return $http.get("/api/project/user?username="
                 +username+"&password=" +password);

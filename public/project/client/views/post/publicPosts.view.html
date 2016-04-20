@@ -20,14 +20,14 @@
                </a>
             </td>
             <td>
-                <a href="#/account/{{post.username}}">
+                <a ng-click="model.showWriter(post)">
                     {{post.username}}
                 </a>
             </td>
             <td>
-                <ul ng-repeat="tag in post.tag">
-                    {{tag}}
-                </ul>
+                <a ng-click="model.showUsersLiked(post)">
+                    {{post.usersLiked.length}}
+                </a>
             </td>
         </tr>
         </tbody>

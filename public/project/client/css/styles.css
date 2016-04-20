@@ -29,7 +29,7 @@ body{
 
 
 .fa{
-    color: darkcyan;
+    color:dimgray;
 }
 
 .textarea{
@@ -52,6 +52,9 @@ body{
 textarea{
     background-color: lemonchiffon;
 }
+
+
+
 
 /*img{*/
     /*width: 45%;*/

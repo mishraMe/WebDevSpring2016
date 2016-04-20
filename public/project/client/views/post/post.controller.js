@@ -94,7 +94,7 @@
             console.log(newPost);
             //function is responsible for updating selected post to the new post's value
             var renewedPost = newPost;
-            if(renewedPost.title == null){
+            if(renewedPost.title == ""){
                 renewedPost.title = "Untitled";
             }
             if(vm.post._id == null){

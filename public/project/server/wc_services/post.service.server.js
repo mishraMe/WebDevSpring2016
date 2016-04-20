@@ -4,6 +4,7 @@ module.exports = function(app, postModel) {
     app.put("/api/project/post/:postId", updatePostById);
     app.get("/api/project/user/:userId/post", getPostsForUser);
     app.get("/api/project/post/getPostById/:postId", getPostById);
+    app.get("/api/project/post/getPostByTitle/:title", getPostByTitle);
     app.get("/api/project/post", getAllPosts);
     app.get("/api/project/public/post", getAllPublicPosts);
     app.put("/api/project/post/:postId/review/likePost", likePost)
@@ -34,6 +35,22 @@ module.exports = function(app, postModel) {
                 res.status(400).send(err);
             });
     };
+
+
+    function getPostByTitle(req, res){
+        console.log("entered getPostByTitle in server service");
+        var postTitle = req.params.title;
+        postModel
+            .findPostByTitle(postTitle)
+            .then(function(postForTitle){
+
+                    res.json(postForTitle);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    };
+
 
     function deletePostById(req, res){
         //  console.log("entered deletePostById in server wc_services");

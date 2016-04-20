@@ -15,6 +15,7 @@
                 createPostForUser: createPostForUser,
                 findAllPostsForUser: findAllPostsForUser,
                 getPostById: getPostById,
+                getPostByTitle: getPostByTitle,
                 deletePostById: deletePostById,
                 updatePostById: updatePostById,
 
@@ -32,7 +33,7 @@
             };
 
             function getCurrentPost() {
-                return $rootScope.currentPost;
+                return $rootScope.currentPost   ;
             };
 
             function getAllPosts() {
@@ -45,6 +46,10 @@
 
             function getPostById(postId) {
                 return $http.get("/api/project/post/getPostById/"+ postId);
+            };
+
+            function getPostByTitle(title) {
+                return $http.get("/api/project/post/getPostByTitle/"+ title);
             };
 
             function createPostForUser(userId, post) {

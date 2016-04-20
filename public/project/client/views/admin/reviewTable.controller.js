@@ -101,15 +101,27 @@
         }
 
 
-        function viewPost(post){
-            PostService.setCurrentPost(post);
-            $location.url("/viewPost");
-        };
+        function viewPost(post) {
+            PostService
+                .getPostByTitle(post.title)
+                .then(function (response) {
+                    console.log(response.data);
+                    PostService.setCurrentPost(response.data);
+                    $location.url("/viewPost");
+                });
+        }
+
 
 
         function showUsersLiked(post){
-            PostService.setCurrentPost(post);
-            $location.url("/post/"+ post._id +"/review/usersLiked");
+
+            PostService
+                .getPostByTitle(post.title)
+                .then(function (response) {
+                    console.log(response.data);
+                    PostService.setCurrentPost(response.data);
+                    $location.url("/post/"+ post._id +"/review/usersLiked");
+                });
         }
 
     }

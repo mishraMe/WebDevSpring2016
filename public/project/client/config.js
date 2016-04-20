@@ -45,6 +45,13 @@
             .when("/editPost",{
                 templateUrl: "views/post/editPost.view.html",
                 controller: "PostController",
+                controllerAs: "model"
+            })
+
+            //this view is handled by the same controller and provides a different view.
+            .when("/viewPost",{
+                templateUrl: "views/post/viewPost.view.html",
+                controller: "PostController",
                 controllerAs: "model",
                 resolve:{
                     loggedin:checkLoggedin
@@ -52,17 +59,13 @@
             })
 
             //this view is handled by the same controller and provides a different view.
-            .when("/viewPost",{
-                templateUrl: "views/post/viewPost.view.html",
-                controller: "PostController",
-                controllerAs: "model"
-            })
-
-            //this view is handled by the same controller and provides a different view.
             .when("/myPosts",{
                 templateUrl: "views/post/myPosts.view.html",
                 controller: "PostController",
                 controllerAs: "model",
+                resolve:{
+            loggedin:checkLoggedin
+        }
             })
 
             //this view is handled by the same controller and provides a different view.

@@ -42,6 +42,16 @@ body{
     color: darkgreen;
 }
 
+body{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+textarea{
+    background-color: lemonchiffon;
+}
+
+
 img{
     width: 45%;
     height: 70%;

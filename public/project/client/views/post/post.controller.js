@@ -172,16 +172,23 @@
 
         function likeUnlikePost(post, currentUser) {
             console.log("entered likeUnlikePost");
-            if(hasTheUserLikedThePost(post, currentUser)){
-                console.log("entered the if condition of likeUnlikePost");
-                post.likeState = "unlike";
-                decideLikeUnlikePost(post, currentUser);
+            if(vm.currentUser!='0'){
+                if(hasTheUserLikedThePost(post, currentUser)){
+                    console.log("entered the if condition of likeUnlikePost");
+                    post.likeState = "unlike";
+                    decideLikeUnlikePost(post, currentUser);
+                }else
+                {
+                    console.log("entered the else condition of likeUnlikePost");
+                    post.likeState = "like";
+                    decideLikeUnlikePost(post, currentUser);
+                }
             }else
             {
-                console.log("entered the else condition of likeUnlikePost");
-                post.likeState = "like";
-                decideLikeUnlikePost(post, currentUser);
+                $location.url("/login");
+
             }
+
         }
 
         function decideLikeUnlikePost(post, currentUser)

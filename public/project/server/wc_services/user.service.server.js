@@ -13,7 +13,7 @@ module.exports = function(app, userModel) {
     app.post("/api/project/user", auth, createUser);
     app.put("/api/project/user/:id", auth, updateUser);
     app.delete("/api/project/user/:id", auth, deleteUser);
-    app.get("/api/project/user",  auth, getAllUsers);
+    app.get("/api/project/user",  getAllUsers);
     app.get("/api/project/user/:id", getUserById);
     app.get("/api/project/user?username=username", getUserByUsername);
     app.get("/api/project/user?username=username&password=password", getUserByCredentials);

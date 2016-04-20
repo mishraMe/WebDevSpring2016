@@ -64,14 +64,19 @@
 
         function followUnfollowUser(accountUser, currentUser) {
             console.log("entered FollowUnfollowUser");
-            if(isCurrentUserAFollower(accountUser, currentUser)){
-                accountUser.follow = 'unfollow';
-                decideFollowUnfollow(accountUser, currentUser);
-            }else
-            {
-                accountUser.follow = 'follow';
-                decideFollowUnfollow(accountUser, currentUser);
+            if(currentUser != '0'){
+                if(isCurrentUserAFollower(accountUser, currentUser)){
+                    accountUser.follow = 'unfollow';
+                    decideFollowUnfollow(accountUser, currentUser);
+                }else
+                {
+                    accountUser.follow = 'follow';
+                    decideFollowUnfollow(accountUser, currentUser);
+                }
+            }else{
+                $location.url("/login");
             }
+
         }
 
         function decideFollowUnfollow(accountUser)

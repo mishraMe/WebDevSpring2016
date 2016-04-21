@@ -33,25 +33,20 @@
          </textarea>
     </div>
     <div>
-        <lable ng-click="model.showUsersLiked(model.post)">
-           <a>
+        <button ng-click="model.showUsersLiked(model.post)"
+                class="btn btn-primary" align="center">
                {{model.post.usersLiked.length}} Likes
-           </a>
-        </lable>
+        </button>
     </div>
     <div>
+        </br>
     <tr>
-        <td>
-            <lable class="col-sm-2">
-                Comment:
-            </lable>
-        </td>
         <td>
             <input type="text" id="comment" ng-model="model.comment"
                    placeholder="Hey! how did you like it? ... any comments??" class="col-sm-8">
         </td>
         <td align="right" class="col-sm-2">
-            <button class="bn btn-primary"
+            <button class="bn btn-success"
                     ng-click="model.addCommentToPost(model.comment)">
                 Comment
             </button>
@@ -59,23 +54,30 @@
     </tr>
     </div>
     <div>
-        </br>
-        <lable>
-            Comments:
-        </lable>
+        <div>
+            </br>
+            <lable>
+                Comments:
+            </lable>
+        </div>
+        <div>
+            <br>
         <ul ng-repeat="comment in model.commentsRetrieved">
             <td>
-            <textarea class="col-sm-10" ng-readonly="model.commentsRetrieved">
+            <textarea class="col-sm-10" ng-readonly="model.commentsRetrieved" rows="2">
                 {{comment}}
             </textarea>
             </td>
             <td>
-            <button class="btn btn-danger"
+            <div>
+            <button class="btn btn-danger" class="col-sm-2"
                     ng-show="model.currentUser.roles.indexOf('admin')>=0"
                     ng-click="model.deleteComment(comment)">
                 <span class="glyphicon glyphicon-remove"></span>
             </button>
+            </div>
             </td>
         </ul>
+        </div>
     </div>
 </div>

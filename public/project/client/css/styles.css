@@ -11,6 +11,14 @@
     color: #444444;
 }
 
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:focus {
+    text-shadow: none; /* Prevent inheritence from `body` */
+    width:10%;
+    height:10%
+}
+
 .navbar .nav > li > a{
     font-family: "Times New Roman";
     font-size: 20px;

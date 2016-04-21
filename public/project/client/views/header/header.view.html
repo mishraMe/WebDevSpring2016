@@ -12,6 +12,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{'active': $locationUrl().indexOf('search') >= 0}">
+                    <a href="#/search"><i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                    </a>
+                </li>
                 <li ng-hide="currentUser"
                     ng-class="{'active': $locationUrl().indexOf('/register')>= 0}">
                     <a href="#/register">Register</a></li>
@@ -21,22 +25,16 @@
                 <li ng-show="currentUser">
                    <a href="" ng-click="logout()">Logout</a></li>
                 <li ng-show="currentUser"
+                    ng-class="{'active': $locationUrl().indexOf('editPost') >= 0}">
+                    <a  href="" ng-click="createPost()">AddPost</a></li>
+                <li ng-show="currentUser"
                     ng-class="{'active': $locationUrl().indexOf('/myPosts') >= 0}">
                     <a href="#/myPosts">My Posts</a></li>
                 <li ng-class="{'active': $locationUrl().indexOf('/publicPosts') >= 0}">
                     <a href="#/publicPosts">Public Posts</a></li>
                 <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl().indexOf('/account') >= 0}">
-                    <a href="#/account">{{currentUser.username}}</a></li>
-                <li ng-show="currentUser"
-                    ng-class="{'active': $locationUrl().indexOf('editPost') >= 0}">
-                    <a  href="" ng-click="createPost()">
-                        AddPost
-                    </a></li>
-
-                <li>
-                    <a href="https://docs.google.com/document/d/1VHk4VDrxX7wSScK5v0rT-spQL5SZrnjFSTqSKD7CROs/edit?usp=sharing">
-                    Project Document</a></li>
+                    ng-class="{'active': $locationUrl().indexOf('/profile') >= 0}">
+                    <a href="#/profile">{{currentUser.username}}</a></li>
             </ul>
         </div>
     </div>

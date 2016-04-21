@@ -20,6 +20,7 @@
         vm.showUsersLiked = showUsersLiked;
         vm.showWriter = showWriter;
         vm.addCommentToPost = addCommentToPost;
+        vm.deleteComment = deleteComment;
 
         function init(){
 
@@ -275,10 +276,28 @@
             for(var index in comments)
             {
                commentArray
-                   .push(comments[index].label +" says:  "+comments[index].value);
+                   .push(comments[index].label +":"+comments[index].value);
             }
 
             return commentArray;
+        }
+
+        function deleteComment(comment){
+            console.log("comment is ");
+            console.log(comment);
+           var toBeDeletedComment = [];
+            var label = comment.split(":")[0];
+            var value = comment.split(":")[1];
+            toBeDeletedComment.push({label: label, value: value});
+            PostService
+                .deleteComment(vm.post._id, toBeDeletedComment)
+                .then(function(response){
+                    PostService.setCurrentPost(response.data);
+                    vm.post = PostService.getCurrentPost();
+                    vm.commentsRetrieved = renderComments(vm.post.comments);
+                    console.log("comment deleted successfully");
+
+                })
         }
 
 }

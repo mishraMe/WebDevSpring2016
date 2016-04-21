@@ -64,9 +64,18 @@
             Comments:
         </lable>
         <ul ng-repeat="comment in model.commentsRetrieved">
-            <textarea class="form-control" ng-readonly="model.commentsRetrieved">
+            <td>
+            <textarea class="col-sm-10" ng-readonly="model.commentsRetrieved">
                 {{comment}}
             </textarea>
+            </td>
+            <td>
+            <button class="btn btn-danger"
+                    ng-show="model.currentUser.roles.indexOf('admin')>=0"
+                    ng-click="model.deleteComment(comment)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            </td>
         </ul>
     </div>
 </div>

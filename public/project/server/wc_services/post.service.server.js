@@ -11,6 +11,7 @@ module.exports = function(app, postModel) {
     app.put("/api/project/post/:postId/review/unlikePost", unlikePost)
     app.get("/api/project/post/reviews", getAllReviews)
     app.put("/api/project/post/:postId/review/addComment", addCommentToPost)
+    app.put("/api/project/post/:postId/review/deleteComment", deleteComment)
 
 
 
@@ -186,5 +187,17 @@ module.exports = function(app, postModel) {
                 });
     }
 
+    function deleteComment(req, res){
+        var postId = req.params.postId;
+        var comment = req.body;
+        postModel
+            .deleteComment(postId, comment)
+            .then(function(response){
+                    res.json(response);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
 
 };

@@ -20,7 +20,8 @@ module.exports = function(app, db, mongoose){
         likePost: likePost,
         unlikePost: unlikePost,
         getAllReviews: getAllReviews,
-        addCommentToPost: addCommentToPost
+        addCommentToPost: addCommentToPost,
+        deleteComment: deleteComment
     };
 
     return api;
@@ -127,5 +128,24 @@ module.exports = function(app, db, mongoose){
             });
     }
 
+    function deleteComment(postId, comment) {
+        var commentUsername = comment[0].label;
+        var commentValue = comment[0].value;
+        console.log(commentUsername);
+        console.log(commentValue);
+        console.log("entered the deleteComment");
+        return PostModel
+            .findById(postId)
+            .then(function (postFound){
+               for(var c in postFound.comments){
+                   if(postFound.comments[c].label === commentUsername &&
+                      postFound.comments[c].value === commentValue){
+                       postFound.comments.remove(postFound.comments[c]);
+                   }
+               }
+                postFound.save();
+                return postFound;
+            });
+    }
 
 }

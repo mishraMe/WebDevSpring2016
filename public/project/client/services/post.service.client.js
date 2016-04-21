@@ -26,6 +26,7 @@
 
                 //addCommentToPost
                 addCommentToPost: addCommentToPost,
+                deleteComment: deleteComment
 
 
             };
@@ -97,6 +98,10 @@
 
             function addCommentToPost(postId, comment){
                 return $http.put("/api/project/post/"+ postId +"/review/addComment", comment)
+            }
+
+            function deleteComment(postId, comment){
+                return $http.put("/api/project/post/"+ postId +"/review/deleteComment", comment)
             }
         };
 

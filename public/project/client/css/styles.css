@@ -18,15 +18,13 @@
 
 
 body{
-    background-image: url("http://img.mota.ru/upload/wallpapers/source/2014/02/21/17/05/39334/imW6Xn8UYu.jpg");
+    background-image: url("http://orig08.deviantart.net/4aaf/f/2007/271/0/e/parchment_paper_texture_by_sinnedaria.jpg");
 }
 
 
 .sidebar{
-    background-color: olive;
+    background-color: khaki;
 }
-
-
 
 .sidebar .fa{
     color:burlywood;
@@ -54,7 +52,9 @@ textarea{
 }
 
 
-
+.nav-sidebar > .active > a{
+    background-color : #428bca;
+}
 
 /*img{*/
     /*width: 45%;*/

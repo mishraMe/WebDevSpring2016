@@ -24,6 +24,9 @@
                 unlikePost: unlikePost,
                 getAllReviews: getAllReviews,
 
+                //addCommentToPost
+                addCommentToPost: addCommentToPost,
+
 
             };
             return postApi;
@@ -90,6 +93,10 @@
 
             function getAllReviews(){
                 return $http.get("/api/project/post/reviews");
+            }
+
+            function addCommentToPost(postId, comment){
+                return $http.put("/api/project/post/"+ postId +"/review/addComment", comment)
             }
         };
 

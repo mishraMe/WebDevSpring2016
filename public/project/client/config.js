@@ -52,10 +52,7 @@
             .when("/viewPost",{
                 templateUrl: "views/post/viewPost.view.html",
                 controller: "PostController",
-                controllerAs: "model",
-                resolve:{
-                    loggedin:checkLoggedin
-                }
+                controllerAs: "model"
             })
 
             //this view is handled by the same controller and provides a different view.

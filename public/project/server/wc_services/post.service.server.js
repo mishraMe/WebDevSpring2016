@@ -10,6 +10,9 @@ module.exports = function(app, postModel) {
     app.put("/api/project/post/:postId/review/likePost", likePost)
     app.put("/api/project/post/:postId/review/unlikePost", unlikePost)
     app.get("/api/project/post/reviews", getAllReviews)
+    app.put("/api/project/post/:postId/review/addComment", addCommentToPost)
+
+
 
     function getPostsForUser(req, res){
         var userId = req.params.userId;
@@ -168,5 +171,20 @@ module.exports = function(app, postModel) {
                     res.status(400).send(err);
                 });
     }
+
+    function addCommentToPost(req, res){
+        var postId = req.params.postId;
+        var comment = req.body;
+        console.log("get addCommentToPost function in post server service");
+        postModel
+            .addCommentToPost(postId, comment)
+            .then(function(response){
+                    res.json(response);
+                },
+                function(err){
+                    res.status(400).send(err);
+                });
+    }
+
 
 };

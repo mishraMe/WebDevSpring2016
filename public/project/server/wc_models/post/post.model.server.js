@@ -20,6 +20,7 @@ module.exports = function(app, db, mongoose){
         likePost: likePost,
         unlikePost: unlikePost,
         getAllReviews: getAllReviews,
+        addCommentToPost: addCommentToPost
     };
 
     return api;
@@ -108,8 +109,23 @@ module.exports = function(app, db, mongoose){
                 }
                 return reviews;
             });
-
-
     }
+
+
+    function addCommentToPost(postId, comment) {
+        console.log("entered the addCommentToPost");
+        console.log("Comemnt sent is ");
+        console.log(comment);
+        return PostModel
+            .findById(postId)
+            .then(function (postFound){
+                console.log("entered the then of unlikePost");
+                postFound.comments.push(comment);
+                console.log("Comments are !!!!");
+                console.log(postFound.comments);
+                return postFound.save();
+            });
+    }
+
 
 }

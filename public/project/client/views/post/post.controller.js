@@ -18,7 +18,8 @@
         vm.likeUnlikePost = likeUnlikePost;
         vm.changePrivacy = changePrivacy;
         vm.showUsersLiked = showUsersLiked;
-        vm.showWriter= showWriter;
+        vm.showWriter = showWriter;
+        vm.addCommentToPost = addCommentToPost;
 
         function init(){
 
@@ -29,6 +30,10 @@
                         vm.currentUser = response.data;
 
                         vm.post = PostService.getCurrentPost();
+
+                        if(vm.post){
+                            vm.commentsRetrieved = renderComments(vm.post.comments);
+                        }
 
                         if(vm.currentUser){
                             vm.isCurrentUser = validateCurrentUser(vm.currentUser, vm.post);
@@ -64,10 +69,9 @@
         init();
 
         function viewPost(post){
-            PostService
-                .setCurrentPost(post);
-            vm.post = post;
-            console.log(vm.post);
+            PostService.setCurrentPost(post);
+            vm.post = PostService.getCurrentPost();
+            vm.commentsRetrieved = renderComments(vm.post.comments);
             $location.url("/viewPost");
         };
 
@@ -78,7 +82,7 @@
                 .deletePostById(vm.post._id)
                 .then(function(deletedPost){
                     PostService
-                        .findAllPostsForUser(vm.currentUser._id)
+                        .getAllPostsForUser(vm.currentUser._id)
                         .then(function(allPostsForUser){
                             vm.post = null;
                             vm.error = null;
@@ -108,6 +112,7 @@
                     vm.error = null;
                     vm.post = resp.config.data;
                     PostService.setCurrentPost(vm.post);
+                    vm.commentsRetrieved = renderComments(vm.post.comments);
                     $location.url("/viewPost");
                 });
         }
@@ -246,6 +251,34 @@
                     vm.currentUser = response.data;
                     $location.url("/account/"+ post.username);
                 })
+        }
+
+        function addCommentToPost(commentValue){
+            var commentObj =
+            {
+                label: vm.currentUser.username,
+                value: commentValue
+            }
+            PostService
+                .addCommentToPost(vm.post._id, commentObj)
+                .then(function(response){
+                    PostService.setCurrentPost(response.data)
+                    vm.comment = null;
+                    vm.post = PostService.getCurrentPost();
+                    vm.commentsRetrieved = renderComments(vm.post.comments);
+                });
+        }
+
+
+        function renderComments(comments){
+            var commentArray=[];
+            for(var index in comments)
+            {
+               commentArray
+                   .push(comments[index].label +" says:  "+comments[index].value);
+            }
+
+            return commentArray;
         }
 
 }

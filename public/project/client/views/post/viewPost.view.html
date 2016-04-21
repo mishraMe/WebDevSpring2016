@@ -39,23 +39,34 @@
            </a>
         </lable>
     </div>
-    <!--<div>-->
-        <!--<tr>-->
-        <!--<td>-->
-        <!--<lable class="col-sm-2">-->
-          <!--Comment:-->
-        <!--</lable>-->
-        <!--</td>-->
-        <!--<td>-->
-            <!--<input type="text" id="comment" ng-model="model.post.comment"-->
-               <!--placeholder="Hey! how did you like it? ... any comments??" class="col-sm-8">-->
-            <!--</td>-->
-        <!--<td align="right">-->
-        <!--<button class="bn btn-primary" class="col-sm-2"-->
-                <!--ng-click="model.addCommentToPost(model.post.comment)">-->
-            <!--Comment-->
-        <!--</button>-->
-        <!--</td>-->
-        <!--</tr>-->
-    <!--</div>-->
- </div>
+    <div>
+    <tr>
+        <td>
+            <lable class="col-sm-2">
+                Comment:
+            </lable>
+        </td>
+        <td>
+            <input type="text" id="comment" ng-model="model.comment"
+                   placeholder="Hey! how did you like it? ... any comments??" class="col-sm-8">
+        </td>
+        <td align="right" class="col-sm-2">
+            <button class="bn btn-primary"
+                    ng-click="model.addCommentToPost(model.comment)">
+                Comment
+            </button>
+        </td>
+    </tr>
+    </div>
+    <div>
+        </br>
+        <lable>
+            Comments:
+        </lable>
+        <ul ng-repeat="comment in model.commentsRetrieved">
+            <textarea class="form-control" ng-readonly="model.commentsRetrieved">
+                {{comment}}
+            </textarea>
+        </ul>
+    </div>
+</div>

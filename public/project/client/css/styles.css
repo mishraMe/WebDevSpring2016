@@ -11,6 +11,7 @@
     color: #444444;
 }
 
+
 .btn-danger,
 .btn-danger:hover,
 .btn-danger:focus {
@@ -34,9 +35,7 @@ body{
     background-color: khaki;
 }
 
-.sidebar .fa{
-    color:burlywood;
-}
+
 
 .textarea{
     width: 100%;

@@ -13,7 +13,7 @@
                 getAllPublicPosts: getAllPublicPosts,
                 getAllReviews: getAllReviews,
                 createPostForUser: createPostForUser,
-                findAllPostsForUser: findAllPostsForUser,
+                getAllPostsForUser: getAllPostsForUser,
                 getPostById: getPostById,
                 getPostByTitle: getPostByTitle,
                 deletePostById: deletePostById,
@@ -56,7 +56,7 @@
                 return $http.post("/api/project/user/"+userId+"/post", post);
             };
 
-            function findAllPostsForUser(userId) {
+            function getAllPostsForUser(userId) {
                 //console.log("entered find All posts for User");
                 return $http.get("/api/project/user/"+userId+"/post");
             };

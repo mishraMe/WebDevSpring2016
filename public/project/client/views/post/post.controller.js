@@ -54,7 +54,7 @@
                         //only user's posts
                         if(vm.currentUser)
                             PostService
-                                .findAllPostsForUser(vm.currentUser._id)
+                                .getAllPostsForUser(vm.currentUser._id)
                                 .then(function(postsForUser){
                                     vm.myPosts = postsForUser.data;
                                 })

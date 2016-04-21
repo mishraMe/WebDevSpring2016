@@ -85,8 +85,28 @@
             </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Posts By {{model.user.username}}</label>
-        <div class="col-sm-10">
-        </div>
+        <label class="col-sm-2 control-label">Posts By {{model.currentUser.username}}</label>
+    </div>
+    <div>
+        <ul ng-repeat="post in model.myPosts">
+            <li>
+                <a ng-click="model.viewPost(post)">
+                    {{post.title}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Post {{model.currentUser.username}} Likes</label>
+    </div>
+    <div>
+        <ul ng-repeat="post in model.likedPosts">
+            <li>
+                <a ng-click="model.viewPost(post)">
+                    {{post.title}}
+                </a>
+            </li>
+        </ul>
     </div>
 </form>

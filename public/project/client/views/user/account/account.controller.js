@@ -3,13 +3,15 @@
     angular
         .module("WritersClubApp")
         .controller("AccountController", accountController)
-    function accountController($location, UserService, $routeParams){
+    function accountController($location, UserService, $routeParams, PostService){
         var vm = this;
         vm.error = null;
         vm.message = null;
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
         vm.followUnfollowUser = followUnfollowUser;
+        vm.viewPost = viewPost;
+        vm.myPosts=[];
         var currentUser;
         UserService
             .getCurrentUser()
@@ -18,6 +20,29 @@
                     vm.currentUser = response.data;
                     currentUser = vm.currentUser;
                 }
+                PostService
+                    .getAllPostsForUser(vm.currentUser._id)
+                    .then(function(response){
+                        var posts=response.data;
+                        vm.myPosts = posts;
+                    });
+
+                PostService
+                    .getAllPosts(vm.currentUser._id)
+                    .then(function(response){
+                        var favPosts=[];
+                        var posts=response.data;
+                        for(var index in posts){
+                            for(var index2 in posts[index].usersLiked){
+                                if(posts[index].usersLiked[index2]
+                                    == vm.currentUser.username ){
+                                    favPosts.push(posts[index])
+                                }
+                            }
+                        }
+                        console.log(favPosts);
+                        vm.likedPosts = favPosts;
+                    });
             });
 
         console.log("value of currentUser is ");
@@ -121,6 +146,16 @@
                             console.log("unfollowingSuccessfully");
                         })
 
+                });
+        }
+
+        function viewPost(post) {
+            PostService
+                .getPostByTitle(post.title)
+                .then(function (response) {
+                    console.log(response.data);
+                    PostService.setCurrentPost(response.data);
+                    $location.url("/viewPost");
                 });
         }
     }

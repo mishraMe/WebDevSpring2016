@@ -15,27 +15,18 @@
         }
         init();
 
-    //function login(user){
-    //    //  console.log("entered Login function in login controller");
-    //    if(!user){
-    //        return;
-    //    }
-    //    UserService
-    //        .findUserByCredentials (user.username, user.password)
-    //        .then(function(response){
-    //            if(response!= null && response.data){
-    //                UserService.setCurrentUser(response.data);
-    //                $location.url("/profile");
-    //            }
-    //            else{
-    //                vm.error =" Please Check Your Credentials";
-    //            }
-    //        });
-    //}
-
-
         function login(user) {
             if(!user) {
+                vm.error = "Please provide the credentials"
+                return;
+            }
+            if(!user.username){
+                vm.error = "Please provide a username"
+                return;
+            }
+
+            if(!user.password){
+                vm.error = "Please provide a password"
                 return;
             }
             UserService.login(user)
@@ -46,9 +37,9 @@
                         console.log("setUCrrentUserIn loginUserservice is ");
                         console.log(response.data);
                         $location.url("/profile");
-                    }else{
-                        vm.message="Please Check Your Credentials";
                     }
+                }, function(err){
+                    vm.error ="Please Check Your Credentials";
                 });
         }
 }

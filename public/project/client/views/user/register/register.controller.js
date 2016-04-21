@@ -14,10 +14,9 @@
         init();
 
         function register(user) {
-
             vm.error = null;
             if (user == null) {
-                vm.err = "Please fill in the required fields";
+                vm.error = "Please fill in the required fields";
                 return;
             }
             if (!user.username) {
@@ -33,17 +32,19 @@
                 return;
             }
             if (!user.email) {
-                vm.error = "Please provide an email address"
+                vm.error = "Please provide an email address";
+                return;
             }
-
-            UserService
-                .register(user)
-                .then(function(createdUser){
-                    if(createdUser.data) {
-                        UserService.setCurrentUser(createdUser.data);
-                        $location.url("/profile");
-                    }
-                });
+            else{
+                UserService
+                    .register(user)
+                    .then(function(createdUser){
+                        if(createdUser.data) {
+                            UserService.setCurrentUser(createdUser.data);
+                            $location.url("/profile");
+                        }
+                    });
+            }
         }
     }
     })();

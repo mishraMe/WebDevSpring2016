@@ -70,10 +70,14 @@
                        class="form-control">
             </td>
             <td align="right">
-                            <span class="glyphicon glyphicon-plus"
-                                  ng-click="model.createUser(model.user)"></span>
-                            <span  class="glyphicon glyphicon-ok"
-                                   ng-click="model.updateUser(model.user)"></span>
+                <button>
+                     <span class="glyphicon glyphicon-plus"
+                           ng-click="model.createUser(model.user)"></span>
+                </button>
+                <button>
+                     <span  class="glyphicon glyphicon-ok"
+                            ng-click="model.updateUser(model.user)"></span>
+                </button>
             </td>
         </tr>
         <tr ng-repeat="user in model.userTable">
@@ -101,11 +105,14 @@
                 {{user.email}}
             </td>
             <td align="right">
-                            <span  ng-click="model.deleteUser(user)"
-                                   class="glyphicon glyphicon-remove">
-                            </span>
-                            <span ng-click="model.selectUser($index)"
-                                  class="glyphicon glyphicon-pencil"></span>
+                <button>
+                    <span  ng-click="model.deleteUser(user)"
+                           class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button>
+                     <span ng-click="model.selectUser($index)"
+                           class="glyphicon glyphicon-pencil"></span>
+                </button>
             </td>
         </tr>
         </tbody>

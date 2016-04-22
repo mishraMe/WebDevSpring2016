@@ -11,6 +11,18 @@
     color: #444444;
 }
 
+.glyphicon-remove{
+    color: red;
+}
+
+.glyphicon-ok{
+    color: forestgreen;
+}
+
+.glyphicon-pencil{
+    color: brown;
+}
+
 
 .btn-danger,
 .btn-danger:hover,
@@ -72,11 +84,20 @@ textarea{
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
     background-color: burlywood;
+    color: darkslategrey;
 }
 
 .table-striped>tbody>tr:nth-child(even)>td,
 .table-striped>tbody>tr:nth-child(even)>th {
     background-color: navajowhite;
+    color: darkslategray;
 }
+.table-striped th{
+    color:darkslategrey;
+}
+.table-striped td{
+    text-align: center;
+}
+
 
 

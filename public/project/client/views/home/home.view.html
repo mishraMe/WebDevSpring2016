@@ -13,23 +13,28 @@
       <h1> A professional writer is an amateur who didn’t quit </h1>
 </p>
 
-<button class="btn btn-primary">
+<script>
+    (function(){
+        $("aboutBtn").click(function(){
+            $("#aboutText").show();
+        });
+    })();
+</script>
+
+<button  id="aboutBtn" class="btn btn-primary">
     ABOUT
 </button>
-<p id="about">
-    Writers Club is an application that allows its user to create an account where
-    they can write their own posts, these posts can be personal diary entry, plays,
-    poems, short stories, film manuscript etc. Anything that they want to write and
-    save.
+    <p id="aboutText">
+        Writers Club is an application that allows its user to create an account where
+        they can write their own posts, these posts can be personal diary entry, plays,
+        poems, short stories, film manuscript etc. Anything that they want to write and
+        save.
 
-    It has allows its user to publish what they have written and get reviews from other
-    users through their Comments and Likes,
-    encouragement for their work and also suggestions for improvements on your work.
+        It has allows its user to publish what they have written and get reviews from other
+        users through their Comments and Likes,
+        encouragement for their work and also suggestions for improvements on your work.
 
-    If You like a post you can also follow the user and read their posts more often.
-    You can also read what they like and get to know more about them.
-
-
-</p>
-
+        If You like a post you can also follow the user and read their posts more often.
+        You can also read what they like and get to know more about them.
+    </p>
 

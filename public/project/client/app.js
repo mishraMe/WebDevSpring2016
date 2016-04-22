@@ -2,6 +2,6 @@
 (function() {
         "use strict";
         angular
-            .module("WritersClubApp", ['ngRoute']);
+            .module("WritersClubApp", ['ngRoute', 'textAngular']);
     }
 )();

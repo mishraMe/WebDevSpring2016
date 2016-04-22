@@ -52,11 +52,11 @@
                        class="form-control">
             </td>
             <td align="right">
-                <button class>
+                <button style="color: blue">
                      <span class="glyphicon glyphicon-plus"
                            ng-click="model.createPost(model.post)"></span>
                 </button>
-                <button>
+                <button style="color:green">
                      <span  class="glyphicon glyphicon-ok"
                             ng-click="model.updatePost(model.post)"></span>
                 </button>
@@ -79,11 +79,14 @@
                 <a>{{post.usersLiked.length}}</a>
             </td>
             <td align="right">
-                            <span  ng-click="model.deletePost(post)"
-                                   class="glyphicon glyphicon-remove">
-                            </span>
-                            <span ng-click="model.selectPost($index)"
-                                  class="glyphicon glyphicon-pencil"></span>
+                <button>
+                     <span  ng-click="model.deletePost(post)"
+                            class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button>
+                    <span ng-click="model.selectPost($index)"
+                          class="glyphicon glyphicon-pencil"></span>
+                </button>
             </td>
         </tr>
         </tbody>

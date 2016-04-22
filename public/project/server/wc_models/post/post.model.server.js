@@ -3,7 +3,7 @@ module.exports = function(app, db, mongoose){
 
     var PostSchema = require('./post.schema.server.js')(mongoose);
     var PostModel = mongoose.model("Post", PostSchema);
-
+    var q = require('q');
 
     var api = {
         createPost: createPost,
@@ -27,47 +27,125 @@ module.exports = function(app, db, mongoose){
     return api;
 
     function createPost (post) {
+        var deferred = q.defer();
         console.log("created post in model");
-        return PostModel.create(post);
+        PostModel.create(post,
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function findAllPosts () {
+        var deferred = q.defer();
         console.log("entered findAllPosts in post model");
-        return PostModel.find();
+        PostModel.find(
+            function(err, resp){
+            if(err){
+                deferred.resolve(err)
+            }else
+            {
+                deferred.resolve(resp)
+            }
+        });
+        return deferred.promise;
     };
 
     function findAllPublicPosts () {
         console.log("entered findAllPublicPosts in post model");
-        return PostModel.find({"type": 'public'});
+        var deferred = q.defer();
+        PostModel.find({"type": 'public'},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function findPostById (postId) {
         console.log("entered findPostById in post model");
-        return PostModel.findById(postId);
+        var deferred = q.defer();
+
+        PostModel.findById(postId,
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function updatePost (postId, post) {
         console.log("entered updatePost in post model");
-        return PostModel.update({_id: postId}, {$set: post});
+        var deferred = q.defer();
+        PostModel.update({_id: postId}, {$set: post},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function deletePost (postId) {
         console.log("entered deletePost in model");
-        return PostModel.remove({_id: postId});
+        var deferred = q.defer();
+        return PostModel.remove({_id: postId},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function findPostByTitle(title) {
         console.log("entered find postByTitle in post model");
-        return PostModel.findOne({title: title});
+        var deferred = q.defer();
+        return PostModel.findOne({title: title},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     function findPostsForUser(userId) {
         console.log("entred findpostsforuser in post wc_models server");
-        var postsForUser = [];
-        postsForUser = PostModel.find({userId: userId});
-        return postsForUser;
+        var deferred = q.defer();
+        PostModel.find({userId: userId},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
-
 
     function likePost(postId, user) {
         console.log("entered the likePost");

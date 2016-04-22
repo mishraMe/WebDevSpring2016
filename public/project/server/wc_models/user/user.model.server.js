@@ -1,8 +1,8 @@
 module.exports = function(app, db, mongoose) {
 
     var UserSchema = require('./user.schema.server.js')(mongoose);
-    // create user model from schema
     var UserModel = mongoose.model("User", UserSchema);
+    var q = require('q');
 
     var api = {
 
@@ -28,25 +28,65 @@ module.exports = function(app, db, mongoose) {
     console.log("entered in user.model.server.js");
     //createUser function
     function createUser(user) {
+        var deferred = q.defer();
         console.log("entered createUser method of user wc_models in server");
-        return UserModel.create(user);
+        UserModel
+            .create(user, function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     //updateUser function
     function updateUser(userId, user) {
-        return UserModel.update({_id: userId},{$set: user});
+        var deferred = q.defer();
+        UserModel.update({_id: userId},{$set: user},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     //deleteUser function
     function deleteUser(userId) {
-        return UserModel.remove({_id: userId});
+        var deferred = q.defer();
+        UserModel.remove({_id: userId},
+        function(err, resp){
+            if(err){
+                deferred.resolve(err)
+            }else
+            {
+                deferred.resolve(resp)
+            }
+        });
+        return deferred.promise;
     };
 
 
     //findUserByUsername function
     function findUserByUsername(username) {
+        var deferred = q.defer();
         console.log("ENTERED findUserByUsername");
-        return UserModel.findOne({username: username});
+        UserModel.findOne({username: username},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
 
     };
 
@@ -56,20 +96,51 @@ module.exports = function(app, db, mongoose) {
         console.log("entered in user model");
         var username= credentials.username;
         var password= credentials.password;
-        return UserModel.findOne({username: username, password: password});
+        var deferred = q.defer();
+        UserModel
+            .findOne({username: username, password: password},
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
 
     //findAllUsers function
     function findAllUsers() {
         console.log("entered findAllUsers in model");
-        return UserModel.find();
+        var deferred = q.defer();
+        UserModel
+            .find(function(err, resp){
+            if(err){
+                deferred.resolve(err)
+            }else
+            {
+                deferred.resolve(resp)
+            }
+        });
+        return deferred.promise;
     };
 
     //findUserById function
     function findUserById(userId) {
+        var deferred = q.defer();
         console.log("entered findUserById");
-        return UserModel.findById(userId);
+        UserModel.findById(userId,
+            function(err, resp){
+                if(err){
+                    deferred.resolve(err)
+                }else
+                {
+                    deferred.resolve(resp)
+                }
+            });
+        return deferred.promise;
     };
 
     // get mongooseModel

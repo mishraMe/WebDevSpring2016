@@ -52,10 +52,14 @@
                        class="form-control">
             </td>
             <td align="right">
-                            <span class="glyphicon glyphicon-plus"
-                                  ng-click="model.createPost(model.post)"></span>
-                            <span  class="glyphicon glyphicon-ok"
-                                   ng-click="model.updatePost(model.post)"></span>
+                <button class>
+                     <span class="glyphicon glyphicon-plus"
+                           ng-click="model.createPost(model.post)"></span>
+                </button>
+                <button>
+                     <span  class="glyphicon glyphicon-ok"
+                            ng-click="model.updatePost(model.post)"></span>
+                </button>
             </td>
         </tr>
         <tr ng-repeat="post in model.postTable">

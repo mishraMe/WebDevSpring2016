@@ -60,7 +60,8 @@ textarea{
 
 
 .nav-sidebar > .active > a{
-    background-color : #428bca;
+    color: White;
+    background-color : blue;
 }
 
 /*img{*/

@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", userService);
     function userService($http, $rootScope) {
-     //   console.log("entered User wc_services client");
+
 
         var api= {
             login: login,

@@ -8,13 +8,94 @@ module.exports = function(app, userModel) {
 
     var auth = auth;
 
-    app.post("/api/assignment/user", createUser);
-    app.get("/api/assignment/user", getAllUsers);
-    app.get("/api/assignment/user/:id", getUserById);
+    app.post("/api/assignment/login",       login);
+    app.post("/api/assignment/logout",     logout);
+    app.get("/api/assignment/loggedin",  loggedin);
+    app.post("/api/assignment/register", register);
     app.get("/api/assignment/user?username=username", getUserByUsername);
-    app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
-    app.put("/api/assignment/user/:id", updateUser);
+    app.get("/api/assignment/user/:id", getUserById);
+    app.post("/api/assignment/user",     createUser);
+    app.put("/api/assignment/user/:id",  updateUser);
     app.delete("/api/assignment/user/:id", deleteUser);
+    app.get("/api/assignment/user",     getAllUsers);
+    app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
+
+
+
+    function serializeUser(user, done) {
+        delete user.password;
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function (user) {
+                    delete user.password;
+                    done(null, user);
+                },
+                function (err) {
+                    done(err, null);
+                }
+            );
+    }
+    function login(req, res) {
+        var user = req.user;
+        //console.log(user);
+        res.json(user);
+    }
+    function loggedin(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+    function logout(req, res) {
+        req.logOut();
+        res.send(200);
+    }
+    function register(req, res) {
+        var newUser = req.body;
+        //console.log(newUser);
+        newUser.roles = ['student'];
+        console.log(newUser);
+        //var emails=newUser.emails.split(",");
+        //newUser.emails =emails;
+        for(var i in newUser.emails){
+            newUser.emails[i]=newUser.emails[i].trim();
+        }
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(
+                function (user) {
+                    if (user) {
+                        //console.log(user);
+                        res.json(null);
+                    } else {
+                        newUser.password = bcrypt.hashSync(newUser.password);
+                        return userModel.createUser(newUser);
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(
+                function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            );
+    }
+
 
     function createUser(req, res) {
         console.log("entered the createUser in server server");

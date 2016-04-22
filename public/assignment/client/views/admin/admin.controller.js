@@ -13,6 +13,8 @@
         vm.update = update;
         vm.add    = add;
         vm.select = select;
+        vm.sortField = 'username';
+        vm.order = "false";
 
         function init() {
             UserService
@@ -21,19 +23,24 @@
         }
         init();
 
-        function remove(user)
+
+        function remove(user, index)
         {
             UserService
                 .deleteUser(user._id)
-                .then(handleSuccess, handleError);
+                .then(function(response) {
+                    vm.users.splice(index,1);
+                });
         }
 
         function update(user)
         {
             UserService
-                .updateUser(user._id, user)
+                .updateUserById(user._id, user)
                 .then(handleSuccess, handleError);
         }
+
+
 
         function add(user)
         {
@@ -48,7 +55,12 @@
         }
 
         function handleSuccess(response) {
+
+            for(var i in response.data) {
+                response.data[i].roles = response.data[i].roles.toString();
+            }
             vm.users = response.data;
+
         }
 
         function handleError(error) {

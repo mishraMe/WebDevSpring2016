@@ -7,55 +7,54 @@
         var vm = this;
         vm.error = null;
         vm.message = null;
+
         vm.listFollowing = listFollowing;
         vm.listFollowers = listFollowers;
         vm.followUnfollowUser = followUnfollowUser;
         vm.viewPost = viewPost;
         vm.myPosts=[];
         var currentUser;
-        UserService
-            .getCurrentUser()
-            .then(function(response){
-                if(response){
-                    vm.currentUser = response.data;
-                    currentUser = vm.currentUser;
-                }
-                PostService
-                    .getAllPostsForUser(vm.currentUser._id)
-                    .then(function(response){
-                        var posts=response.data;
-                        vm.myPosts = posts;
-                    });
-
-                PostService
-                    .getAllPosts(vm.currentUser._id)
-                    .then(function(response){
-                        var favPosts=[];
-                        var posts=response.data;
-                        for(var index in posts){
-                            for(var index2 in posts[index].usersLiked){
-                                if(posts[index].usersLiked[index2]
-                                    == vm.currentUser.username ){
-                                    favPosts.push(posts[index])
-                                }
-                            }
-                        }
-                        console.log(favPosts);
-                        vm.likedPosts = favPosts;
-                    });
-            });
-
-        console.log("value of currentUser is ");
-        console.log(currentUser);
-        var username = $routeParams.username;
 
        function init(){
+           UserService
+               .getCurrentUser()
+               .then(function(response){
+                   if(response){
+                       vm.currentUser = response.data;
+                       currentUser = vm.currentUser;
+                   }
+               });
+           var username = $routeParams.username;
+
 
            UserService
                .findUserByUsername(username)
                .then(function(userFound){
                    vm.user = userFound.data;
                    userFollowedByCurrentUser(vm.user, currentUser);
+                   PostService
+                       .getAllPostsForUser(vm.currentUser._id)
+                       .then(function(response){
+                           var posts=response.data;
+                           vm.myPosts = posts;
+                       });
+
+                   PostService
+                       .getAllPosts(vm.user._id)
+                       .then(function(response){
+                           var favPosts=[];
+                           var posts=response.data;
+                           for(var index in posts){
+                               for(var index2 in posts[index].usersLiked){
+                                   if(posts[index].usersLiked[index2]
+                                       == vm.user.username ){
+                                       favPosts.push(posts[index])
+                                   }
+                               }
+                           }
+                           console.log(favPosts);
+                           vm.likedPosts = favPosts;
+                       });
                });
 
        }

@@ -17,16 +17,28 @@
         function login(user){
           //  console.log("entered Login function in login controller");
             if(!user){
+                vm.error="Please enter the credentials";
                 return;
             }
-            UserService
-                .findUserByCredentials (user.username, user.password)
-                .then(function(response){
-                    if(response.data){
-                        UserService.setCurrentUser(response.data);
-                       $location.url("/profile");
-                    }
-                });
+            if(!user.username){
+                vm.error="Please enter the username";
+                return;
+            }
+            if(!user.password){
+                vm.error="Please enter the password";
+                return;
+            }else {
+                UserService
+                    .login(user)
+                    .then(function (response) {
+                        if (response.data) {
+                            UserService.setCurrentUser(response.data);
+                            $location.url("/profile");
+                        }else{
+                            vm.error="Please check your credentials";
+                        }
+                    });
+            }
         }
     }
 })();

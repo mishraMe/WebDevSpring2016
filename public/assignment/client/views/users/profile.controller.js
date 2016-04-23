@@ -7,30 +7,31 @@
         var vm = this;
         vm.error = null;
         vm.message = null;
-        vm.currentUser= UserService.getCurrentUser();
-        console.log("current user is ");
-        console.log(vm.currentUser);
-        if(!vm.currentUser){
-            $location.url("/home");
-        }
         vm.update = update;
 
-
+        function init(){
+            UserService
+                .getCurrentUser()
+                .then(function(resp){
+                    vm.currentUser = resp.data;
+                    if(!vm.currentUser){
+                        $location.url("/home");
+                    }
+                })
+        } init();
 
         function update(user){
             vm.error = null;
             vm.message = null;
-
-            var userId = user._id;
-            delete user._id;
-            console.log("user in update function is");
-
+            var emails = user.emails.toString();
+            emails = emails.split(",");
+            user.emails=emails;
             UserService
-                .updateUser(userId, user)
+                .updateUser(user._id, user)
                 .then(function (response){
                     console.log("response is ");
                     console.log(response);
-                    vm.message = "User updated successfully"
+                    vm.message = "User updated successfully";
                         UserService.setCurrentUser(response.data);
                         $location.url("/profile");
                     });

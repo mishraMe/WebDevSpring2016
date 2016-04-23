@@ -38,12 +38,9 @@
             if (!user.email) {
                 vm.error = "Please provide an email address"
             }
-            var emails = [];
-            emails.push(user.emails);
-            user.emails=emails;
-
+            user.emails = user.emails.trim().split(",");
             UserService
-                .createUser(user)
+                .register(user)
                 .then(function(createdUser){
                     if(createdUser) {
                         UserService.setCurrentUser(createdUser.data);

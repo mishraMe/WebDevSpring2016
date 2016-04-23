@@ -11,7 +11,8 @@
             getFieldForForm: getFieldForForm,
             deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField,
-            getMyForm: getMyForm
+            getMyForm: getMyForm,
+            sortField: sortField
         };
         //$rootScope.forms = formsApi.forms;
         return fieldsApi;
@@ -40,5 +41,9 @@
         function getMyForm(formId){
             return $http.get("/api/assignment/form/"+ formId);
         };
+
+        function sortField(formId, startIndex, endIndex) {
+            return $http.put("/api/assignment/"+formId+"/form?startIndex="+startIndex+"&endIndex="+endIndex);
+        }
     }
 })();

@@ -169,6 +169,17 @@
             }
         };
 
+        function sortField(start, end) {
+            FieldService
+                .sortField(formId, start, end)
+                .then(
+                    function (response) {
+                    },
+                    function (err) {
+                        vm.error = err;
+                    }
+                );
+        }
 
 
 

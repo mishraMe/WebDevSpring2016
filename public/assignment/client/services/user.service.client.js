@@ -5,7 +5,6 @@
         .factory("UserService", userService);
     function userService($http, $rootScope) {
 
-
         var api= {
             login: login,
             logout: logout,
@@ -23,6 +22,7 @@
         };
 
         return api;
+
 
         function createUser(user) {
             console.log("entered the createuser in service of client");
@@ -72,7 +72,7 @@
             return $rootScope.currentUser._id;
         };
 
-        function login(){
+        function login(user){
             return $http.post("/api/assignment/login", user);
         };
 
@@ -80,7 +80,8 @@
             return $http.post("/api/assignment/logout");
         }
 
-        function register(){
+        function register(user){
+            console.log(user);
             return $http.post("/api/assignment/register", user);
         }
     }

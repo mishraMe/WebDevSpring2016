@@ -12,7 +12,7 @@
             updateFormById: updateFormById,
             setCurrentForm: setCurrentForm,
             getCurrentForm: getCurrentForm,
-            getCurrentForms: getCurrentForm,
+            getFormById: getFormById,
         };
         //$rootScope.forms = formsApi.forms;
         return formsApi;
@@ -23,15 +23,9 @@
         }
 
         function getCurrentForm(){
-            //console.log("in get current form from forms wc_services");
-            //console.log("currentForm is");
-            //console.log($rootScope.currentForm);
             return $rootScope.currentForm;
         }
 
-        function getCurrentForms(){
-            return formsApi.forms;
-        }
         function createFormForUser(userId, form){
             return $http.post("/api/assignment/user/"+userId+"/form", form);
         };
@@ -49,5 +43,9 @@
         function updateFormById(formId, newForm){
             return $http.put("/api/assignment/form/"+ formId, newForm);
         };
+
+        function getFormById (formId) {
+            return $http.get("/api/assignment/form/" + formId);
+        }
     }
 })();

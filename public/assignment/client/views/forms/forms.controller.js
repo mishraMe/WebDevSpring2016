@@ -15,46 +15,36 @@
         vm.deleteForm = deleteForm;
         vm.updateForm = updateForm;
         vm.selectForm = selectForm;
-        vm.currentUser = UserService.getCurrentUser();
         console.log(vm.currentUser);
 
         function init(){
-            FormService
-                .findAllFormsForUser(vm.currentUser._id)
-                .then(function(response){
-                    vm.forms= response.data;
-                });
+            UserService.getCurrentUser()
+                .then(function(resp){
+                    vm.currentUser = resp.data;
+                    FormService
+                        .findAllFormsForUser(vm.currentUser._id)
+                        .then(function(response){
+                            vm.forms= response.data;
+                            vm.form = null;
+                        });
+                })
         }
         init();
 
         function addForm(form){
                 FormService
                     .createFormForUser(vm.currentUser._id, form)
-                    .then(function(response){
-                        FormService
-                            .findAllFormsForUser(vm.currentUser._id)
-                            .then(function(resp){
-                                vm.forms= resp.data;
-                            });
+                    .then(function(response) {
+                        init();
                     });
-            vm.form = null;
         }
 
         function deleteForm(form){
             var formsAfterDeletion=[];
-
-            var formId = form._id;
-            delete form._id;
-
             FormService
-                .deleteFormById(formId)
+                .deleteFormById(form._id)
                 .then(function(response){
-                    FormService
-                        .findAllFormsForUser(vm.currentUser._id)
-                        .then(function(resp){
-                            vm.forms= resp.data;
-                            vm.error = null;
-                        });
+                    init();
                 });
         }
 
@@ -64,26 +54,13 @@
                 userId: newForm.userId
             };
 
-            //var currentFormId = vm.form._id;
-            //delete vm.form._id;
-            //
-            //var currentUserId = vm.currentUser._id;
-            //delete vm.currentUser._id;
-
-            //had to remove the _id from the renewed Form! it worked then
             if(vm.form._id == null){
                 vm.error = "Form name cannot be empty";
             }
             FormService
                 .updateFormById(vm.form._id, renewedForm)
                 .then(function(response){
-                    FormService
-                        .findAllFormsForUser(vm.currentUser._id)
-                        .then(function(resp){
-                            vm.forms= resp.data;
-                            vm.error = null;
-                            vm.form = null;
-                        });
+                    init();
                 });
 
         }

@@ -7,10 +7,15 @@
         console.log("header controller hey!");
         $scope.$location = $location;
         $scope.logout = logout;
+
         function logout(){
-            console.log("logout fired");
-            UserService.setCurrentUser(null);
-            $location.url("/home");
+            UserService
+                .logout()
+                .then(function(){
+                    console.log("logout fired");
+                    UserService.setCurrentUser(null);
+                    $location.url("/home");
+                })
         }
     }
 })();

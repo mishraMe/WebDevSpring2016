@@ -21,6 +21,8 @@
         } init();
 
         function update(user){
+            console.log("update in profile");
+            console.log(user);
             vm.error = null;
             vm.message = null;
             var emails = user.emails.toString();
@@ -32,7 +34,7 @@
                     console.log("response is ");
                     console.log(response);
                     vm.message = "User updated successfully";
-                        UserService.setCurrentUser(response.data);
+                        UserService.setCurrentUser(user);
                         $location.url("/profile");
                     });
         }

@@ -41,6 +41,8 @@ module.exports = function(app, db , mongoose) {
 
     //updateUser function
     function updateUser(userId, user) {
+        console.log("user in model to be updated is ");
+        console.log(user);
         var deferred = q.defer();
     UserModel.update({_id: userId},{$set: user},
         function (err, doc)
@@ -113,9 +115,11 @@ module.exports = function(app, db , mongoose) {
        UserModel.findOne({username: username},
            function (err, doc) {
                if (err) {
+                   console.log("entered error")
                    deferred.reject(err);
                }
                else {
+                   console.log("entered doc");
                    deferred.resolve(doc);
                }
            });

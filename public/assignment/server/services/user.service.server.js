@@ -7,9 +7,9 @@ var bcrypt = require("bcrypt-nodejs");
 module.exports = function(app, userModel) {
 
     var auth = authorized;
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('assignment', new LocalStrategy(localStrategy));
 
-    app.post("/api/assignment/login", passport.authenticate('local'), login);
+    app.post("/api/assignment/login", passport.authenticate('assignment'), login);
     app.post("/api/assignment/logout", logout);
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/register", register);
@@ -32,10 +32,14 @@ module.exports = function(app, userModel) {
             .then(
 
                 function (user) {
+                    console.log("user in server service");
+                    console.log(user);
 
                     if(user && bcrypt.compareSync(password, user.password)) {
+                        console.log("entered the return user");
                         return done(null, user);
                     }else {
+                        console.log("entred error!!!");
                         return done(null, false);
                     }
 
@@ -72,7 +76,7 @@ module.exports = function(app, userModel) {
 
     function login(req, res) {
         console.log("Login in form maker");
-        var user = req.user;
+        var user = req.body;
         console.log(user);
         res.json(user);
     }
@@ -86,12 +90,10 @@ module.exports = function(app, userModel) {
     function register (req, res) {
 
         var newUser = req.body;
-        newUser.roles = ['student'];
+        newUser.roles = ['admin'];
 
         userModel.findUserByUsername(newUser.username)
-            .then(
-
-                function (user) {
+            .then(function (user) {
 
                     if(user) {
                         res.json(null);
@@ -102,7 +104,6 @@ module.exports = function(app, userModel) {
                     }
                 }
             )
-
             .then(
 
                 function (user) {
@@ -134,7 +135,7 @@ module.exports = function(app, userModel) {
     function createUser(req, res) {
         console.log("entered the createUser in server server");
         var newUser = req.body;
-        newUser.roles = ['admin'];
+        newUser.roles = ['student'];
         console.log(newUser);
         userModel
             .findUserByUsername(newUser.username)
@@ -143,20 +144,9 @@ module.exports = function(app, userModel) {
                     if (user) {
                         res.json(null);
                     } else {
-
                         newUser.password = bcrypt.hashSync(newUser.password);
                         console.log("entered else condition of findUserByUsername");
-                        var user =
-                            userModel.createUser(newUser)
-                            .then(
-                                function(result){
-                                    console.log("result in createUser is ");
-                                    console.log(result);
-                                    res.json(result);
-                                },
-                                function(err){
-                                    res.status(400).send(err);
-                                });
+                          return  userModel.createUser(newUser);
                     }
                 },
                 function (err) {
@@ -167,7 +157,6 @@ module.exports = function(app, userModel) {
 
     function updateUser(req, res){
         console.log("entered the updateUser server service");
-
         var userId = req.params.id;
         var updatedUser = req.body;
 
@@ -177,8 +166,8 @@ module.exports = function(app, userModel) {
 
         updatedUser.password = bcrypt.hashSync(updatedUser.password);
 
-            userModel
-                .updateUser(req.params.id, updatedUser)
+              userModel
+                .updateUser(userId, updatedUser)
                 .then(
                     function(result)
                     {

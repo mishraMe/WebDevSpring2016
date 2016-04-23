@@ -19,9 +19,6 @@
             UserService
                 .findAllUsers()
                 .then(function(response){
-                        for(var i in response.data) {
-                            response.data[i].roles = response.data[i].roles.toString();
-                        }
                         vm.users = response.data;
                 });
         }
@@ -39,7 +36,8 @@
         }
 
 
-        function selectUser(user) {
+            function selectUser(user) {
+               var userArray = [];
             vm.user = {
                 _id: user._id,
                 username: user.username,
@@ -51,10 +49,10 @@
         }
 
         function updateUser(user) {
-
             UserService.updateUser(user._id, user)
                 .then(function (response) {
                         if(response) {
+                            console.log(response);
                             init();
                             vm.user = null;
                         }

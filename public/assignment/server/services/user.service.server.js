@@ -86,7 +86,7 @@ module.exports = function(app, userModel) {
     function register (req, res) {
 
         var newUser = req.body;
-        newUser.roles = ['admin'];
+        newUser.roles = ['student'];
 
         userModel.findUserByUsername(newUser.username)
             .then(
@@ -190,10 +190,34 @@ module.exports = function(app, userModel) {
         console.log("entered the deleteUser server service");
         var deleteUserId = req.params.id;
         userModel.deleteUser(deleteUserId);
-        var users = userModel.findAllUsers();
+        var users = userModel.findAllUsers()
         res.json(users);
     };
+    function deleteUserById(req, res) {
 
+        var userId = req.params.id;
+
+        if(isAdmin(req.user)) {
+
+            userModel.deleteUserById(userId)
+
+                .then(
+                    function (resp) {
+
+                        if (resp) {
+
+                            res.status(200).send('Deleted');
+                        }
+                        else {
+
+                            res.status(400).send(err);
+                        }
+                    }
+                );
+        }else {
+            res.status(403);
+        }
+    }
 
 
     function getAllUsers(req, res){

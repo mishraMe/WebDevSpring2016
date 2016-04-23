@@ -9,7 +9,7 @@
     function adminController($location, UserService)
     {
         var vm = this;
-        //vm.remove = remove;
+        vm.deleteUser = deleteUser;
         //vm.update = update;
         //vm.add    = add;
         //vm.select = select;
@@ -26,6 +26,21 @@
                 });
         }
         init();
+
+
+
+        function deleteUser(user) {
+
+            UserService.deleteUserById(user._id)
+
+                .then(
+
+                    function (response) {
+
+                        init();
+                    }
+                );
+        }
 
     }
 })();

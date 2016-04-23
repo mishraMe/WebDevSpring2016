@@ -9,10 +9,12 @@
     function adminController($location, UserService)
     {
         var vm = this;
+
         vm.deleteUser = deleteUser;
         vm.updateUser = updateUser;
         vm.addUser    = addUser;
         vm.selectUser = selectUser;
+        vm.sortBy = sortBy;
 
         console.log("entered the admin controller");
         function init() {
@@ -70,6 +72,13 @@
                         }
                     }
                 );
+        }
+
+
+        function sortBy(attribute) {
+
+            vm.reverse = (vm.attribute == attribute)? !vm.reverse: false;
+            vm.attribute = attribute;
         }
     }
 })();

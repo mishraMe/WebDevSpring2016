@@ -9,22 +9,34 @@
 
     <thead>
     <tr>
-        <th>
-            <span class="sortorder glyphicon glyphicon-triangle-top"></span>
-            <span class="sortorder glyphicon glyphicon-triangle-bottom"></span>
+        <th ng-click="model.sortBy('username')">
+            <span class="glyphicon glyphicon-triangle-top"
+                  ng-show="model.attribute == 'username' && !model.reverse"
+                  ng-class="{reverse:!model.reverse}"></span>
+            <span class="glyphicon glyphicon-triangle-bottom"
+                  ng-show="model.attribute == 'username' && model.reverse"
+                  ng-class="{reverse:model.reverse}"></span>
             Username
         </th>
         <th>
             Password
         </th>
-        <th>
-            <span class="sortorder glyphicon glyphicon-triangle-top"></span>
-            <span class="sortorder glyphicon glyphicon-triangle-bottom"></span>
+        <th ng-click="model.sortBy('firstName')">
+            <span class="sortorder glyphicon glyphicon-triangle-top"
+                  ng-show="model.attribute == 'firstName' && !model.reverse"
+                  ng-class="{reverse:!model.reverse}"></span>
+            <span class="sortorder glyphicon glyphicon-triangle-bottom"
+                  ng-show="model.attribute == 'firstName' && model.reverse"
+                  ng-class="{reverse:model.reverse}"></span>
             FirstName
         </th>
-        <th>
-            <span class="sortorder glyphicon glyphicon-triangle-top"></span>
-            <span class="sortorder glyphicon glyphicon-triangle-bottom"></span>
+        <th ng-click="model.sortBy('lastName')">
+            <span class="glyphicon glyphicon-triangle-top"
+                  ng-show="model.attribute == 'lastName' && !model.reverse"
+                  ng-class="{reverse:!model.reverse}"></span>
+            <span class="glyphicon glyphicon-triangle-bottom"
+                  ng-show="model.attribute == 'lastName' && !model.reverse"
+                  ng-class="{reverse:!model.reverse}"></span>
             LastName
         </th>
         <th>
@@ -58,7 +70,7 @@
             <span class="glyphicon glyphicon-ok" ng-click="model.updateUser(model.user)"></span>
         </td>
     </tr>
-    <tr ng-repeat="user in model.users">
+    <tr ng-repeat="user in model.users| orderBy:model.attribute:model.reverse">
         <td>
             {{user.username}}
         </td>

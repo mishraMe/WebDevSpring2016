@@ -11,7 +11,7 @@
         var vm = this;
         vm.deleteUser = deleteUser;
         vm.updateUser = updateUser;
-        //vm.add    = add;
+        vm.addUser    = addUser;
         vm.selectUser = selectUser;
 
         console.log("entered the admin controller");
@@ -50,6 +50,18 @@
 
         function updateUser(user) {
             UserService.updateUser(user._id, user)
+                .then(function (response) {
+                        if(response) {
+                            console.log(response);
+                            init();
+                            vm.user = null;
+                        }
+                    }
+                );
+        }
+
+        function addUser(user) {
+            UserService.createUser(user)
                 .then(function (response) {
                         if(response) {
                             console.log(response);

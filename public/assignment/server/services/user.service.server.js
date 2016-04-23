@@ -90,10 +90,12 @@ module.exports = function(app, userModel) {
     function register (req, res) {
 
         var newUser = req.body;
-        newUser.roles = ['admin'];
+        newUser.roles = ['student'];
 
         userModel.findUserByUsername(newUser.username)
-            .then(function (user) {
+            .then(
+
+                function (user) {
 
                     if(user) {
                         res.json(null);
@@ -135,7 +137,6 @@ module.exports = function(app, userModel) {
     function createUser(req, res) {
         console.log("entered the createUser in server server");
         var newUser = req.body;
-        newUser.roles = ['student'];
         console.log(newUser);
         userModel
             .findUserByUsername(newUser.username)
@@ -146,7 +147,17 @@ module.exports = function(app, userModel) {
                     } else {
                         newUser.password = bcrypt.hashSync(newUser.password);
                         console.log("entered else condition of findUserByUsername");
-                          return  userModel.createUser(newUser);
+
+                            userModel.createUser(newUser)
+                            .then(
+                                function(result){
+                            console.log("result in createUser is ");
+                            console.log(result);
+                            res.json(result);
+                        },
+                        function(err){
+                            res.status(400).send(err);
+                        });
                     }
                 },
                 function (err) {

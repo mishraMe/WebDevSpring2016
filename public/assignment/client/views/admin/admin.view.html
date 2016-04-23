@@ -58,19 +58,28 @@
             <span class="glyphicon glyphicon-ok" ng-click="model.updateUser(model.user)"></span>
         </td>
     </tr>
-    </tr>
+    <tr ng-repeat="user in model.users">
+        <td>
+            {{user.username}}
+        </td>
+        <td>
 
-    </tr>
-    <tr ng-repeat="user in users">
-        <td>{{user._id}}</td>
-        <td>{{user.username}}</td>
-        <td>&nbsp;</td>
-        <td>{{user.firstName}}</td>
-        <td>{{user.lastName}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.roles}}</td>
-        <td><button ng-click="remove(user)" class="btn btn-danger">X</button>
-        <td><button ng-click="select(user)" class="btn btn-success">...</button>
+        </td>
+        <td>
+            {{user.firstName}}
+        </td>
+        <td>
+            {{user.lastName}}
+        </td>
+        <td>
+            {{user.roles.join(', ')}}
+        </td>
+        <td>
+            <span class="glyphicon glyphicon-remove"
+                  ng-click="model.removeUser(user)"></span>
+            <span class="glyphicon glyphicon-cog"
+                  ng-click="model.selectUser(user)"></span>
+        </td>
     </tr>
     </tbody>
 </table>

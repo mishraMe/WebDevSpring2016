@@ -7,6 +7,7 @@ module.exports = function() {
         password: String,
         firstName: String,
         lastName: String,
+        roles:[String],
         emails: [String],
         phones: [String]
     }, {collection: "user"});

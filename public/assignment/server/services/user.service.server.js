@@ -73,7 +73,7 @@ module.exports = function(app, userModel) {
     function login(req, res) {
         console.log("Login in form maker");
         var user = req.user;
-        //console.log(user);
+        console.log(user);
         res.json(user);
     }
     function loggedin(req, res) {
@@ -86,7 +86,7 @@ module.exports = function(app, userModel) {
     function register (req, res) {
 
         var newUser = req.body;
-        newUser.roles = ['student'];
+        newUser.roles = ['admin'];
 
         userModel.findUserByUsername(newUser.username)
             .then(
@@ -134,7 +134,8 @@ module.exports = function(app, userModel) {
     function createUser(req, res) {
         console.log("entered the createUser in server server");
         var newUser = req.body;
-        newUser.roles = ['student'];
+        newUser.roles = ['admin'];
+        console.log(newUser);
         userModel
             .findUserByUsername(newUser.username)
             .then(
@@ -216,9 +217,19 @@ module.exports = function(app, userModel) {
         else{
             console.log("entered the else condition in getAllUsers");
             var users = [];
-            users = userModel.findAllUsers();
-            res.json(users);
-            res.err(err)
+            userModel
+                .findAllUsers()
+                .then(
+                    function(result)
+                    {
+                        console.log("entered the updateUser result");
+                        res.json(result);
+                    },
+                    function(err){
+                        console.log("entered the updateUser err");
+                        res.status(400).send(err);
+                    }
+                );
         }
     };
 

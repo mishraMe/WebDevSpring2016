@@ -207,6 +207,7 @@ module.exports = function(app, db, mongoose){
     }
 
     function deleteComment(postId, comment) {
+        console.log("deleteComment in model");
         var commentUsername = comment[0].label;
         var commentValue = comment[0].value;
         console.log(commentUsername);

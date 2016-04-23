@@ -101,6 +101,7 @@
             }
 
             function deleteComment(postId, comment){
+                console.log("entered delete comment in post client");
                 return $http.put("/api/project/post/"+ postId +"/review/deleteComment", comment)
             }
         };

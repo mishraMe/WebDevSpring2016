@@ -188,11 +188,13 @@ module.exports = function(app, postModel) {
     }
 
     function deleteComment(req, res){
+        console.log("delete comment in server service");
         var postId = req.params.postId;
         var comment = req.body;
         postModel
             .deleteComment(postId, comment)
             .then(function(response){
+                console.log("entered the then of deleteComment in service");
                     res.json(response);
                 },
                 function(err){

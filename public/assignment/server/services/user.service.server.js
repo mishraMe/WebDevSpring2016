@@ -56,17 +56,22 @@ module.exports = function(app, userModel) {
     function deserializeUser(user, done) {
         userModel
             .findUserById(user._id)
+
             .then(
-                function (user) {
-                    delete user.password;
+                function(user){
+
                     done(null, user);
                 },
-                function (err) {
+
+                function(err){
+
                     done(err, null);
                 }
             );
     }
+
     function login(req, res) {
+        console.log("Login in form maker");
         var user = req.user;
         //console.log(user);
         res.json(user);
@@ -137,6 +142,8 @@ module.exports = function(app, userModel) {
                     if (user) {
                         res.json(null);
                     } else {
+
+                        newUser.password = bcrypt.hashSync(newUser.password);
                         console.log("entered else condition of findUserByUsername");
                         var user =
                             userModel.createUser(newUser)
@@ -160,7 +167,9 @@ module.exports = function(app, userModel) {
     function updateUser(req, res){
         console.log("entered the updateUser server service");
         var updatedUser = req.body;
-        var user =
+
+        updatedUser.password = bcrypt.hashSync(updatedUser.password);
+
             userModel
                 .updateUser(req.params.id, updatedUser)
                 .then(
@@ -216,18 +225,39 @@ module.exports = function(app, userModel) {
     function getUserById(req, res){
         console.log("entered the getUserById server service");
         var userId = req.params.id;
-        var user = userModel.findUserById(userId);
-        res.json(user);
+        userModel
+            .findUserById(userId)
+            .then(
 
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
     };
 
     function getUserByUsername(req, res){
         console.log("getUserByUsername in server service");
         var username= req.query.username;
-        var user = userModel.findUserByUsername(username);
-        console.log("user is ");
-        console.log(user);
-        res.json(user);
+        userModel
+            .findUserByUsername(username)
+            .then(
+
+                function (doc) {
+
+                    res.json(doc);
+                },
+
+                function (err) {
+
+                    res.status(400).send(err);
+                }
+            );
     };
 
     function getUserByCredentials(req, res){

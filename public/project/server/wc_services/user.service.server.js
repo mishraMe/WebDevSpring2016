@@ -6,7 +6,7 @@ module.exports = function(app, userModel) {
 
 
     var auth = authorized;
-    app.post  ('/api/project/login', passport.authenticate('local'), login);
+    app.post  ('/api/project/login', passport.authenticate('project'), login);
     app.post  ('/api/project/logout',         logout);
     app.post  ('/api/project/register',       register);
     app.get   ('/api/project/loggedin',       loggedin);
@@ -25,7 +25,7 @@ module.exports = function(app, userModel) {
     app.put("/api/project/follow/following/:username", addUserToFollowing);
     app.put("/api/project/unfollow/following/:username", removeUserFromFollowing);
 
-    passport.use(new LocalStrategy(localStrategy));
+    passport.use('project',new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 

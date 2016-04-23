@@ -14,12 +14,12 @@ module.exports = function(app, userModel) {
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/register", register);
     app.get("/api/assignment/user?username=username", getUserByUsername);
-    app.get("/api/assignment/user/:id",getUserById);
-    app.post("/api/assignment/user", auth,createUser);
-    app.put("/api/assignment/user/:id", auth,updateUser);
-    app.delete("/api/assignment/user/:id", auth, deleteUser);
-    app.get("/api/assignment/user",auth,getAllUsers);
     app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
+    app.post("/api/assignment/admin/user", auth,createUser);
+    app.put("/api/assignment/admin/user/:id", auth,updateUser);
+    app.delete("/api/assignment/admin/user/:id", auth, deleteUser);
+    app.get("/api/assignment/admin/user/:id",getUserById);
+    app.get("/api/assignment/admin/user",auth,getAllUsers);
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -135,35 +135,41 @@ module.exports = function(app, userModel) {
     }
 
     function createUser(req, res) {
-        console.log("entered the createUser in server server");
-        var newUser = req.body;
-        console.log(newUser);
-        userModel
-            .findUserByUsername(newUser.username)
-            .then(
-                function (user) {
-                    if (user) {
-                        res.json(null);
-                    } else {
-                        newUser.password = bcrypt.hashSync(newUser.password);
-                        console.log("entered else condition of findUserByUsername");
+
+        if(isAdmin(req.user)){
+            console.log("entered the createUser in server server");
+            var newUser = req.body;
+            console.log(newUser);
+            userModel
+                .findUserByUsername(newUser.username)
+                .then(
+                    function (user) {
+                        if (user) {
+                            res.json(null);
+                        } else {
+                            newUser.password = bcrypt.hashSync(newUser.password);
+                            console.log("entered else condition of findUserByUsername");
 
                             userModel.createUser(newUser)
-                            .then(
-                                function(result){
-                            console.log("result in createUser is ");
-                            console.log(result);
-                            res.json(result);
-                        },
-                        function(err){
-                            res.status(400).send(err);
-                        });
+                                .then(
+                                    function(result){
+                                        console.log("result in createUser is ");
+                                        console.log(result);
+                                        res.json(result);
+                                    },
+                                    function(err){
+                                        res.status(400).send(err);
+                                    });
+                        }
+                    },
+                    function (err) {
+                        res.status(400).send(err);
                     }
-                },
-                function (err) {
-                    res.status(400).send(err);
-                }
-            );
+                );
+        }else{
+            res.status(403);
+        }
+
     }
 
     function updateUser(req, res){
@@ -237,41 +243,49 @@ module.exports = function(app, userModel) {
             getUserById(req, res);
         }
         else{
-            console.log("entered the else condition in getAllUsers");
-            var users = [];
-            userModel
-                .findAllUsers()
-                .then(
-                    function(result)
-                    {
-                        console.log("entered the updateUser result");
-                        res.json(result);
-                    },
-                    function(err){
-                        console.log("entered the updateUser err");
-                        res.status(400).send(err);
-                    }
-                );
+            if(isAdmin(req.user)){
+                console.log("entered the else condition in getAllUsers");
+                var users = [];
+                userModel
+                    .findAllUsers()
+                    .then(
+                        function(result)
+                        {
+                            console.log("entered the updateUser result");
+                            res.json(result);
+                        },
+                        function(err){
+                            console.log("entered the updateUser err");
+                            res.status(400).send(err);
+                        }
+                    );
+            }else {
+                res.status(403);
+            }
         }
     };
 
     function getUserById(req, res){
-        console.log("entered the getUserById server service");
-        var userId = req.params.id;
-        userModel
-            .findUserById(userId)
-            .then(
+        if(isAdmin(req.user)){
+            console.log("entered the getUserById server service");
+            var userId = req.params.id;
+            userModel
+                .findUserById(userId)
+                .then(
 
-                function (doc) {
+                    function (doc) {
 
-                    res.json(doc);
-                },
+                        res.json(doc);
+                    },
 
-                function (err) {
+                    function (err) {
 
-                    res.status(400).send(err);
-                }
-            );
+                        res.status(400).send(err);
+                    }
+                );
+        }else{
+            req.status(403);
+        }
     };
 
     function getUserByUsername(req, res){

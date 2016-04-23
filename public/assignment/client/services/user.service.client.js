@@ -26,20 +26,20 @@
 
         function createUser(user) {
             console.log("entered the createuser in service of client");
-           return $http.post("/api/assignment/user", user);
+           return $http.post("/api/assignment/admin/user", user);
         };
 
         function deleteUser(userId) {
-            return $http.delete("/api/assignment/user/" + userId);
+            return $http.delete("/api/assignment/admin/user/" + userId);
         };
 
         function updateUser(userId, user) {
             console.log("entered the updateUser function of client service");
-           return $http.put("/api/assignment/user/" + userId, user);
+           return $http.put("/api/assignment/admin/user/" + userId, user);
         };
 
         function findUserById(userId){
-            return $http.get("/api/assignment/user/" + userId);
+            return $http.get("/api/assignment/admin/user/" + userId);
 
         };
 
@@ -57,7 +57,7 @@
 
         function findAllUsers() {
             var users;
-            users = $http.get("/api/assignment/user");
+            users = $http.get("/api/assignment/admin/user");
             return users;
         };
 

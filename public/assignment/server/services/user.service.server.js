@@ -9,16 +9,16 @@ module.exports = function(app, userModel) {
     var auth = authorized;
     passport.use(new LocalStrategy(localStrategy));
 
-    app.post("/api/assignment/login",       passport.authenticate('local'), login);
-    app.post("/api/assignment/logout",     logout);
-    app.get("/api/assignment/loggedin",  loggedin);
+    app.post("/api/assignment/login", passport.authenticate('local'), login);
+    app.post("/api/assignment/logout", logout);
+    app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/register", register);
     app.get("/api/assignment/user?username=username", getUserByUsername);
-    app.get("/api/assignment/user/:id",        getUserById);
-    app.post("/api/assignment/user",   auth,    createUser);
-    app.put("/api/assignment/user/:id",auth,    updateUser);
-    app.delete("/api/assignment/user/:id",auth, deleteUser);
-    app.get("/api/assignment/user",   auth,    getAllUsers);
+    app.get("/api/assignment/user/:id",getUserById);
+    app.post("/api/assignment/user", auth,createUser);
+    app.put("/api/assignment/user/:id", auth,updateUser);
+    app.delete("/api/assignment/user/:id", auth, deleteUser);
+    app.get("/api/assignment/user",auth,getAllUsers);
     app.get("/api/assignment/user?username=username&password=password", getUserByCredentials);
 
     passport.serializeUser(serializeUser);
@@ -167,7 +167,13 @@ module.exports = function(app, userModel) {
 
     function updateUser(req, res){
         console.log("entered the updateUser server service");
+
+        var userId = req.params.id;
         var updatedUser = req.body;
+
+        if(!isAdmin(req.user)) {
+            delete updatedUser.roles;
+        }
 
         updatedUser.password = bcrypt.hashSync(updatedUser.password);
 
@@ -187,26 +193,18 @@ module.exports = function(app, userModel) {
     }
 
     function deleteUser(req, res){
-        console.log("entered the deleteUser server service");
-        var deleteUserId = req.params.id;
-        userModel.deleteUser(deleteUserId);
-        var users = userModel.findAllUsers()
-        res.json(users);
-    };
-    function deleteUserById(req, res) {
 
         var userId = req.params.id;
 
         if(isAdmin(req.user)) {
 
-            userModel.deleteUserById(userId)
+            userModel.deleteUser(userId)
 
-                .then(
-                    function (resp) {
+                .then(function (resp) {
 
                         if (resp) {
 
-                            res.status(200).send('Deleted');
+                            res.json(resp);
                         }
                         else {
 
@@ -314,6 +312,15 @@ module.exports = function(app, userModel) {
             );
     };
 
+    function isAdmin(user) {
+
+        if(user.roles.indexOf("admin") >= 0) {
+
+            return true;
+        }
+
+        return false;
+    }
 
     function authorized (req, res, next) {
 

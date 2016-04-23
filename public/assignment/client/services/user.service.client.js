@@ -10,7 +10,7 @@
             logout: logout,
             register: register,
             createUser: createUser,
-            deleteUserById: deleteUserById,
+            deleteUser: deleteUser,
             updateUser: updateUser,
             findUserByCredentials: findUserByCredentials,
             findUserByUsername:findUserByUsername,
@@ -29,7 +29,7 @@
            return $http.post("/api/assignment/user", user);
         };
 
-        function deleteUserById(userId) {
+        function deleteUser(userId) {
             return $http.delete("/api/assignment/user/" + userId);
         };
 

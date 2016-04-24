@@ -12,7 +12,7 @@
             deleteFieldFromForm: deleteFieldFromForm,
             updateField: updateField,
             getMyForm: getMyForm,
-            sortField: sortField
+            sortFields: sortFields
         };
         //$rootScope.forms = formsApi.forms;
         return fieldsApi;
@@ -42,8 +42,8 @@
             return $http.get("/api/assignment/form/"+ formId);
         };
 
-        function sortField(formId, startIndex, endIndex) {
-            return $http.put("/api/assignment/"+formId+"/form?startIndex="+startIndex+"&endIndex="+endIndex);
+        function sortFields(formId, startIndex, endIndex) {
+            return $http.put("/api/assignment/form/"+formId+"/field?startIndex="+startIndex+"&endIndex="+endIndex);
         }
     }
 })();

@@ -4,7 +4,8 @@
     <li role="presentation" class="active"><a href="#/form/{{field._id}}/fields">Fields</a></li>
 </ul>
 <div>
-    <form ng-model="model.fields" ui-sortable="model.fields">
+    <form ng-model="model.fields">
+        <div field-sortable field-sortable-callback="model.sortFields(start, end)" field-axis="y">
         <div  class="form-group" ng-switch="field.type" ng-repeat="field in model.fields">
             <div ng-switch-when="TEXT" class="form-group">
                 <br/>
@@ -154,6 +155,7 @@
             </div>
             <br/>
         </div>
+            </div>
     </form>
 
     <!-- modal for editing forms-->

@@ -13,9 +13,9 @@
         vm.removeField = removeField;
         vm.editField = editField;
         vm.updateField = updateField;
+        vm.sortFields = sortFields;
         vm.fields = [];
         vm.fieldType = null;
-
         //variables
         var formId = $routeParams.formId;
         var fieldTypes =
@@ -169,20 +169,19 @@
             }
         };
 
-        function sortField(start, end) {
-            FieldService
-                .sortField(formId, start, end)
-                .then(
-                    function (response) {
+        function sortFields(start, end) {
+
+            FieldService.sortFields(formId, start, end)
+
+                .then(function (response) {
+
                     },
                     function (err) {
+
                         vm.error = err;
                     }
                 );
         }
-
-
-
     }
 
 })();

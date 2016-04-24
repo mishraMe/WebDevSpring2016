@@ -4,7 +4,9 @@ module.exports = function(app, formModel) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldFromForm);
     app.post("/api/assignment/form/:formId/field", createFieldInForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldInForm);
+    app.put("/api/assignment/form/:formId/field", sortFields);
     app.get("/api/assignment/form/:formId", getMyForm);
+
 
     function getFieldsOfForm(req, res){
         console.log("entered get Fields of form in server services");
@@ -97,6 +99,31 @@ module.exports = function(app, formModel) {
                 );
     };
 
+
+    function sortFields(req, res) {
+        console.log("entered the sortFields in fieldService");
+        var formId = req.params.formId;
+        var startIndex = req.query.startIndex;
+        var endIndex = req.query.endIndex;
+
+        if(startIndex && endIndex) {
+
+            formModel.sortFields(formId, startIndex, endIndex)
+
+                .then(function (stat) {
+                        console.log("entered the then  and success of sortFields")
+
+                       res.json(200);
+                    },
+                    function (err) {
+
+                        res.json(400);
+                    })
+        }else{
+            updateFieldInForm(req, res);
+        }
+
+    }
 
     function getMyForm(req, res){
             formModel

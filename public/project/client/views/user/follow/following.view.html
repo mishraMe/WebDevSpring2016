@@ -1,9 +1,9 @@
 <h1>{{model.user.username}} Follows</h1>
 
-<form class="form-control">
+<div>
     <ul ng-repeat="following in model.following">
         <a href="#/account/{{following}}">
             {{following}}
         </a>
     </ul>
-</form>
+</div>

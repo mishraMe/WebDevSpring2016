@@ -91,7 +91,7 @@ module.exports = function(app, userModel) {
 
         var newUser = req.body;
         delete newUser._id;
-        newUser.roles = ['admin'];
+        newUser.roles = ['student'];
 
         userModel.findUserByUsername(newUser.username)
             .then(

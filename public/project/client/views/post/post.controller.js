@@ -254,7 +254,7 @@
                 })
         }
 
-        function addCommentToPost(commentValue){
+        function addCommentToPost(post,commentValue){
             var commentObj =
             {
                 label: vm.currentUser.username,

@@ -79,7 +79,7 @@ module.exports = function(app, userModel) {
 
     function register(req, res) {
         var newUser = req.body;
-      //  newUser.roles=["admin"];
+        newUser.roles=["user"];
         userModel
             .findUserByUsername(newUser.username)
             .then(
@@ -115,7 +115,7 @@ module.exports = function(app, userModel) {
     function createUser(req, res){
         console.log("entered the createUser in server server");
         var newUser = req.body;
-        newUser.roles = ['user'];
+     //   newUser.roles = ['user'];
         userModel
             .findUserByUsername(newUser.username)
             .then(

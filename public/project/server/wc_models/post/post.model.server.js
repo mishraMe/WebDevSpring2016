@@ -153,6 +153,7 @@ module.exports = function(app, db, mongoose){
             .findById(postId)
             .then(function (postFound){
                 console.log("entered the then of likePost");
+                postFound.likeState = 'unlike';
                 postFound.usersLiked.push(user.username);
                 console.log(postFound);
                 return postFound.save();
@@ -165,6 +166,7 @@ module.exports = function(app, db, mongoose){
             .findById(postId)
             .then(function (postFound){
                 console.log("entered the then of unlikePost");
+                postFound.likeState = 'like';
                 postFound.usersLiked.remove(user.username);
                 return postFound.save();
             });
@@ -198,6 +200,8 @@ module.exports = function(app, db, mongoose){
         return PostModel
             .findById(postId)
             .then(function (postFound){
+                console.log("add comment function response");
+                console.log(postFound);
                 console.log("entered the then of unlikePost");
                 postFound.comments.push(comment);
                 console.log("Comments are !!!!");

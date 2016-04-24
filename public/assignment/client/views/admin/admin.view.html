@@ -35,8 +35,8 @@
                   ng-show="model.attribute == 'lastName' && !model.reverse"
                   ng-class="{reverse:!model.reverse}"></span>
             <span class="glyphicon glyphicon-triangle-bottom"
-                  ng-show="model.attribute == 'lastName' && !model.reverse"
-                  ng-class="{reverse:!model.reverse}"></span>
+                  ng-show="model.attribute == 'lastName' && model.reverse"
+                  ng-class="{reverse:model.reverse}"></span>
             LastName
         </th>
         <th>

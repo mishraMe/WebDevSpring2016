@@ -90,7 +90,8 @@ module.exports = function(app, userModel) {
     function register (req, res) {
 
         var newUser = req.body;
-        newUser.roles = ['student'];
+        delete newUser._id;
+        newUser.roles = ['admin'];
 
         userModel.findUserByUsername(newUser.username)
             .then(
@@ -176,7 +177,7 @@ module.exports = function(app, userModel) {
         console.log("entered the updateUser server service");
         var userId = req.params.id;
         var updatedUser = req.body;
-
+        delete updatedUser._id;
         if(!isAdmin(req.user)) {
             delete updatedUser.roles;
         }

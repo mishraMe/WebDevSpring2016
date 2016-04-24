@@ -297,8 +297,6 @@ module.exports = function(app, userModel) {
     function removeUserFromFollowers(req, res){
         var userBeingFollowedUsername = req.params.username;
         var userFollower = req.body;
-        console.log("^^^^^^^^^^^^^^^^^^&&&&&&&&&^^^^^^^^^^^^^^^^^^^^");
-        console.log(userFollower);
         userModel
             .removeUserFromFollowers(userBeingFollowedUsername, userFollower)
             .then(function(result){

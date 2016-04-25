@@ -276,7 +276,7 @@
             for(var index in comments)
             {
                commentArray
-                   .push(comments[index].label +":"+comments[index].value);
+                   .push(comments[index].label +" says: "+comments[index].value);
             }
 
             return commentArray;
@@ -286,8 +286,8 @@
             console.log("comment is ");
             console.log(comment);
            var toBeDeletedComment = [];
-            var label = comment.split(":")[0];
-            var value = comment.split(":")[1];
+            var label = comment.split(" says: ")[0];
+            var value = comment.split(" says: ")[1];
             toBeDeletedComment.push({label: label, value: value});
             PostService
                 .deleteComment(vm.post._id, toBeDeletedComment)

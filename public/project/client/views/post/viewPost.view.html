@@ -64,9 +64,9 @@
             <br>
         <ul ng-repeat="comment in model.commentsRetrieved">
             <td>
-            <textarea class="col-sm-10" ng-readonly="model.commentsRetrieved" rows="2">
-                {{comment}}
-            </textarea>
+                </br>
+            <input class="col-sm-10" ng-readonly="model.commentsRetrieved" value="{{comment}}">
+                </br>
             </td>
             <td>
             <div>

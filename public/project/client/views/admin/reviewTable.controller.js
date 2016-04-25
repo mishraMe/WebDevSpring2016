@@ -114,13 +114,12 @@
 
 
         function showUsersLiked(post){
-
             PostService
                 .getPostByTitle(post.title)
                 .then(function (response) {
-                    console.log(response.data);
                     PostService.setCurrentPost(response.data);
-                    $location.url("/post/"+ post._id +"/review/usersLiked");
+                    vm.post = response.data;
+                    $location.url("/post/"+ vm.post._id +"/review/usersLiked");
                 });
         }
 

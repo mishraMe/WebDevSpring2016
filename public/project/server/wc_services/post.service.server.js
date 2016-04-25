@@ -1,19 +1,27 @@
 module.exports = function(app, postModel) {
+
+
+    //crud functionality
     app.delete("/api/project/post/:postId", deletePostById);
     app.post("/api/project/user/:userId/post", createPostForUser);
     app.put("/api/project/post/:postId", updatePostById);
     app.get("/api/project/user/:userId/post", getPostsForUser);
     app.get("/api/project/post/getPostById/:postId", getPostById);
     app.get("/api/project/post/getPostByTitle/:title", getPostByTitle);
+
+    //all posts functions
     app.get("/api/project/post", getAllPosts);
     app.get("/api/project/public/post", getAllPublicPosts);
+
+    //review functions
     app.put("/api/project/post/:postId/review/likePost", likePost)
     app.put("/api/project/post/:postId/review/unlikePost", unlikePost)
     app.get("/api/project/post/reviews", getAllReviews)
     app.put("/api/project/post/:postId/review/addComment", addCommentToPost)
     app.put("/api/project/post/:postId/review/deleteComment", deleteComment)
 
-
+    //search post functions
+    app.get("/api/project/search/:title", searchPostsByTitle);
 
     function getPostsForUser(req, res){
         var userId = req.params.userId;
@@ -202,4 +210,16 @@ module.exports = function(app, postModel) {
                 });
     }
 
+
+    function searchPostsByTitle(req, res){
+        var title = req.params.title;
+        postModel
+            .searchPostsByTitle(title)
+            .then(function(response){
+                res.json(response)
+            },
+            function(err){
+                res.status(400).send(err);
+            })
+    }
 };

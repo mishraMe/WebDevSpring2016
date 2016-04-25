@@ -5,11 +5,13 @@
         .module("WritersClubApp")
         .controller("SearchController", searchController);
 
-    function searchController($scope, $location, $routeParams, BookService) {
+    function searchController($scope, $location, $routeParams, BookService, PostService) {
 
+        var vm = this;
         $scope.search=search;
         $scope.title= $routeParams.title;
         $scope.$location = $location;
+        $scope.viewPost = viewPost;
 
         if($scope.title){
             search($scope.title);
@@ -21,9 +23,9 @@
 
         function search(title) {
             console.log("entered search");
-            var bookTitle = title;
-            if(bookTitle) {
-                fetchBooks(bookTitle);
+            if(title) {
+                fetchBooks(title);
+                fetchPosts(title);
                 $location.url("/search/"+ $scope.title);
             }
         }
@@ -31,9 +33,38 @@
         function fetchBooks(bookTitle) {
             BookService.findBooksByTitle(bookTitle, renderBooks)
         }
+        function fetchPosts(title){
+            PostService
+                .searchPostsByTitle(title)
+                .then(function(resp){
+                    var bgPosts = [];
+                    bgPosts = resp.data;
+                    console.log("bg posts is ");
+                    console.log(bgPosts);
+                    $scope.posts = resp.data;
+                })
+        }
 
         function renderBooks(response) {
             $scope.books = response.items;
         }
+
+        function viewPost(post) {
+            PostService
+                .getAllPublicPosts()
+                .then(function(publicPosts) {
+                    var posts = [];
+                    posts= publicPosts.data;
+
+                    for(var i in posts){
+                        if(posts[i].title == (post.title)&&
+                           posts[i].username == (post.username)){
+                            PostService.setCurrentPost(posts[i])
+                            $location.url("/viewPost");
+                        }
+                    }
+                })
+        }
+
     }
 })();

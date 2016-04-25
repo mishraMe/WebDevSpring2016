@@ -15,10 +15,23 @@
             <tr>
                 <th>Cover</th>
                 <th>Title</th>
-                <th>Publish Date</th>
+                <th>Writers</th>
             </tr>
             </thead>
             <tbody>
+            <tr ng-repeat="post in posts">
+                <td>
+                    WritersClub
+                </td>
+                <td>
+                    <a ng-click="viewPost(post)">{{post.title}}</a>
+                </td>
+                <td>
+                    <a>
+                        {{post.username}}
+                    </a>
+                </td>
+            </tr>
             <tr ng-repeat="book in books">
                 <td>
                     <img width="100px" height="150px" ng-src="{{book.volumeInfo.imageLinks.thumbnail}}"/>
@@ -29,7 +42,7 @@
                     </a>
                 </td>
                 <td>
-                    {{book.volumeInfo.publishedDate}}
+                    {{book.volumeInfo.writers.trim().split(",")}}
                 </td>
             </tr>
             </tbody>

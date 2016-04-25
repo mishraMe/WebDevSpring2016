@@ -26,9 +26,10 @@
 
                 //addCommentToPost
                 addCommentToPost: addCommentToPost,
-                deleteComment: deleteComment
+                deleteComment: deleteComment,
 
-
+                //search post functions
+                searchPostsByTitle: searchPostsByTitle,
             };
             return postApi;
 
@@ -104,8 +105,12 @@
                 console.log("entered delete comment in post client");
                 return $http.put("/api/project/post/"+ postId +"/review/deleteComment", comment)
             }
+
+            //search posts
+
+            function searchPostsByTitle(title){
+                return $http.get("/api/project/search/"+title);
+            }
         };
-
-
 
 })();

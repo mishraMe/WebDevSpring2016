@@ -21,7 +21,10 @@ module.exports = function(app, db, mongoose){
         unlikePost: unlikePost,
         getAllReviews: getAllReviews,
         addCommentToPost: addCommentToPost,
-        deleteComment: deleteComment
+        deleteComment: deleteComment,
+
+        //search functions
+        searchPostsByTitle: searchPostsByTitle,
     };
 
     return api;
@@ -229,6 +232,22 @@ module.exports = function(app, db, mongoose){
                 postFound.save();
                 return postFound;
             });
+    }
+
+    function searchPostsByTitle(title){
+        var deferred = q.defer();
+      PostModel
+          .find({title: title})
+          .then(
+              function(err, resp){
+                  if(err){
+                      deferred.resolve(err)
+                  }else
+                  {
+                      deferred.resolve(resp)
+                  }
+              });
+        return deferred.promise;
     }
 
 }

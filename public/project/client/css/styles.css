@@ -69,6 +69,9 @@ textarea{
     background-color: lemonchiffon;
 }
 
+input {
+    background-color: whitesmoke;
+}
 
 .nav-sidebar > .active > a{
     color: White;

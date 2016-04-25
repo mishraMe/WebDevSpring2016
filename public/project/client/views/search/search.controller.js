@@ -5,13 +5,15 @@
         .module("WritersClubApp")
         .controller("SearchController", searchController);
 
-    function searchController($scope, $location, $routeParams, BookService, PostService) {
+    function searchController($scope, $location, $routeParams,
+                              BookService, PostService, UserService) {
 
         var vm = this;
         $scope.search=search;
         $scope.title= $routeParams.title;
         $scope.$location = $location;
         $scope.viewPost = viewPost;
+        $scope.showWriter = showWriter;
 
         if($scope.title){
             search($scope.title);
@@ -65,6 +67,16 @@
                     }
                 })
         }
+
+
+        function showWriter(post){
+            UserService
+                .findUserByUsername(post.username)
+                .then(function(response){
+                    $location.url("/account/"+ post.username);
+                })
+        }
+
 
     }
 })();

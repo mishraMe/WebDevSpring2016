@@ -12,6 +12,12 @@
             <button class="btn btn-primary" ng-click="model.likeUnlikePost(model.post, model.currentUser)">
                 {{model.post.likeState}}
             </button>
+            <div>
+                </br>
+                <div ng-model="model.post.tags">
+                    {{model.post.tags.toString()}}
+                </div>
+            </div>
         </ul>
     </div>
 

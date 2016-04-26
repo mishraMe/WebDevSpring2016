@@ -25,6 +25,10 @@ module.exports = function(app, db, mongoose){
 
         //search functions
         searchPostsByTitle: searchPostsByTitle,
+        //tagging
+
+        addTag: addTag,
+
     };
 
     return api;
@@ -250,4 +254,22 @@ module.exports = function(app, db, mongoose){
         return deferred.promise;
     }
 
+
+    function addTag(tagText, postId){
+        console.log(tagText);
+        console.log(postId);
+        console.log("entered the  addTag in model");
+        var tagTextArray = [];
+        tagTextArray= tagText.trim().split(", ");
+        console.log(tagTextArray);
+      return  PostModel
+          .findById(postId)
+          .then(function(resp){
+              for(var idx in tagTextArray){
+                  resp.tags.push(tagTextArray[idx]);
+              }
+              console.log(resp.tags);
+              return  resp.save();
+          })
+    }
 }

@@ -19,16 +19,27 @@
                  ng-click="model.deletePost(model.post)">
              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
          </button>
-         <!--<button ng-show="model.currentUser"-->
-                 <!--ng-model="model.post.tag"-->
-                 <!--ng-click="model.addTag(model.post)">-->
-             <!--{{model.post.tag}}-->
-         <!--</button>-->
-         <button ng-show="model.currentUser"
+         <button class="btn btn-warning"
+                 ng-show="model.currentUser"
                  ng-model="model.post.type"
                  ng-click="model.changePrivacy(model.post)">
              {{model.post.type}}
          </button>
+         <input type="text"
+                ng-show="model.currentUser"
+                placeholder = "story, poem etc.."
+                ng-model="model.addTagText"/>
+         <button class="btn btn-warning"
+                 ng-show="model.currentUser"
+                 ng-click="model.addTag(model.addTagText, model.post)">
+             #Tag
+         </button>
+         <div>
+             </br>
+             <div ng-model="model.post.tags">
+                 {{model.post.tags.toString()}}
+             </div>
+         </div>
      </ul>
  </div>
  <div class="form-group" class="form-control">
@@ -36,6 +47,7 @@
              <div class="col-sm-12">
                  <input type="text" id="title"
                         ng-model="model.post.title"
+                        align="center"
                         placeholder="Title"
                         class="form-control">
              </div>

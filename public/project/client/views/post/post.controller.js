@@ -21,6 +21,8 @@
         vm.showWriter = showWriter;
         vm.addCommentToPost = addCommentToPost;
         vm.deleteComment = deleteComment;
+        vm.addTag = addTag;
+
 
         function init(){
 
@@ -297,6 +299,15 @@
                     vm.commentsRetrieved = renderComments(vm.post.comments);
                     console.log("comment deleted successfully");
 
+                })
+        }
+
+        function addTag(tagText, post){
+            PostService
+                .addTag(tagText, post)
+                .then(function(resp){
+                    vm.post = resp.data;
+                    vm.addTagText = null;
                 })
         }
 

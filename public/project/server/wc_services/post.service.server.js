@@ -23,6 +23,9 @@ module.exports = function(app, postModel) {
     //search post functions
     app.get("/api/project/search/:title", searchPostsByTitle);
 
+    //tagging
+    app.put("/api/project/post/:postId/addTag/:tag", addTag);
+
     function getPostsForUser(req, res){
         var userId = req.params.userId;
         postModel
@@ -221,5 +224,18 @@ module.exports = function(app, postModel) {
             function(err){
                 res.status(400).send(err);
             })
+    }
+
+    function addTag(req, res){
+        var postId = req.params.postId;
+        var tagText = req.params.tag;
+        postModel
+            .addTag(tagText, postId)
+            .then(function(response){
+                    res.json(response)
+                },
+                function(err){
+                    res.status(400).send(err);
+                })
     }
 };

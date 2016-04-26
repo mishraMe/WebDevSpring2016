@@ -30,6 +30,9 @@
 
                 //search post functions
                 searchPostsByTitle: searchPostsByTitle,
+
+                //adding tags
+                addTag: addTag
             };
             return postApi;
 
@@ -110,6 +113,12 @@
 
             function searchPostsByTitle(title){
                 return $http.get("/api/project/search/"+title);
+            }
+
+            function addTag(tagText, post){
+                console.log("post is ");
+                console.log(post);
+                return $http.put("/api/project/post/"+ post._id +"/addTag/"+ tagText);
             }
         };
 

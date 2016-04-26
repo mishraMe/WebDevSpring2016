@@ -28,6 +28,7 @@
             if(title) {
                 fetchBooks(title);
                 fetchPosts(title);
+
                 $location.url("/search/"+ $scope.title);
             }
         }
@@ -36,6 +37,7 @@
             BookService.findBooksByTitle(bookTitle, renderBooks)
         }
         function fetchPosts(title){
+            var currUser;
             PostService
                 .searchPostsByTitle(title)
                 .then(function(resp){
@@ -44,6 +46,23 @@
                     console.log("bg posts is ");
                     console.log(bgPosts);
                     $scope.posts = resp.data;
+                })
+            PostService
+                .searchPostsByTag(title)
+                .then(function(resp){
+                    var posts = [];
+                    var allPosts = resp.data;
+                    for(p in allPosts){
+                        var tags = allPosts[p].tags;
+                        for(t in tags){
+                            if(tags[t] == title &&
+                                allPosts[p].type == "public")
+                            {
+                                posts.push(allPosts[p]);
+                            }
+                        }
+                    }
+                    $scope.taggedPosts = posts;
                 })
         }
 

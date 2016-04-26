@@ -32,6 +32,19 @@
                     </a>
                 </td>
             </tr>
+            <tr ng-repeat="taggedPost in taggedPosts">
+                <td>
+                    WritersClub
+                </td>
+                <td>
+                    <a ng-click="viewPost(taggedPost)">{{taggedPost.title}}</a>
+                </td>
+                <td>
+                    <a ng-click="showWriter(taggedPost)">
+                        {{taggedPost.username}}
+                    </a>
+                </td>
+            </tr>
             <tr ng-repeat="book in books">
                 <td>
                     <img width="100px" height="150px" ng-src="{{book.volumeInfo.imageLinks.thumbnail}}"/>

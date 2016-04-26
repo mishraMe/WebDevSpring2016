@@ -25,9 +25,10 @@ module.exports = function(app, db, mongoose){
 
         //search functions
         searchPostsByTitle: searchPostsByTitle,
-        //tagging
 
+        //tagging
         addTag: addTag,
+        searchPostsByTag : searchPostsByTag,
 
     };
 
@@ -271,5 +272,10 @@ module.exports = function(app, db, mongoose){
               console.log(resp.tags);
               return  resp.save();
           })
+    }
+
+    function searchPostsByTag(tag) {
+        var posts = [];
+        return PostModel.find();
     }
 }

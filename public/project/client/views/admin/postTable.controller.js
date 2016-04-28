@@ -20,8 +20,11 @@
         vm.showWriter = showWriter;
         vm.viewPost = viewPost;
 
+
         // functions
         function init() {
+
+            vm.currentUser = UserService.getCurrentUser();
             PostService
                 .getAllPosts()
                 .then(function(resp){
@@ -35,12 +38,19 @@
                 vm.message = "Please enter a title";
                 init();
             }else{
+                var username = post.username;
+                UserService
+                    .findUserByUsername(username)
+                    .then(function(resp){
+                        console.log(resp);
+                        var userId = resp.data._id;
                 PostService
-                    .createPostForUser(post)
+                    .createPostForUser(userId, post)
                     .then(function(resp){
                         init();
                     })
                 vm.post = null;
+                    });
             }
         }
         function deletePost(post){

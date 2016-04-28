@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">gender:</label>
+        <label class="col-sm-2 control-label">Gender:</label>
         <div>
         <label class="col-sm-6"
                 ng-model="model.user.gender">
@@ -85,9 +85,11 @@
             </div>
     </div>
     <div class="form-group">
+        </br>
         <label class="col-sm-2 control-label">Posts By {{model.user.username}}</label>
     </div>
     <div>
+        </br>
         <ul ng-repeat="post in model.myPosts">
             <li>
                 <a ng-click="model.viewPost(post)">
@@ -98,9 +100,11 @@
     </div>
     </div>
     <div class="form-group">
+        </br>
         <label class="col-sm-2 control-label">Post {{model.user.username}} Likes</label>
     </div>
     <div>
+        </br>
         <ul ng-repeat="post in model.likedPosts">
             <li>
                 <a ng-click="model.viewPost(post)">

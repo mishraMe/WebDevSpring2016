@@ -31,9 +31,11 @@
                .findUserByUsername(username)
                .then(function(userFound){
                    vm.user = userFound.data;
+
                    userFollowedByCurrentUser(vm.user, currentUser);
+
                    PostService
-                       .getAllPostsForUser(vm.currentUser._id)
+                       .getAllPostsForUser(vm.user._id)
                        .then(function(response){
                            var posts=response.data;
                            vm.myPosts = posts;
